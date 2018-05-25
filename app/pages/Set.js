@@ -3,7 +3,6 @@ import {AppRegistry,View,Text,Image} from 'react-native';
 const Stylecss = require('../common/Stylecss');
 export default class Set extends   Component{
     static navigationOptions = {
-        // title:'登录',
         headerStyle:{height:0},
     };
     constructor(props){

@@ -155,4 +155,7 @@ export const styles = StyleSheet.create({
         width:width,
         lineHeight:49,
     },
+    update_message:{
+
+    }
 });
