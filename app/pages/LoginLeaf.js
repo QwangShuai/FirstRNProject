@@ -42,7 +42,7 @@ export default class LoginLeaf extends Component {
         return (
             <View style={Stylecss.styles.container}>
                 <View style={Stylecss.styles.top_title_view}>
-                    <Image source={require('../../asstes/back.png')} style={Stylecss.styles.top_title_back}></Image>
+                    <Image source={require('../../asstes/chevron-left.png')} style={Stylecss.styles.top_title_back}></Image>
                     <Text style={Stylecss.styles.top_title_text}>登录</Text>
                 </View>
                 <Image source={require('../../asstes/head.png')} style={Stylecss.styles.login_head_image}/>

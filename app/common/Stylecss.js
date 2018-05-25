@@ -114,5 +114,14 @@ export const styles = StyleSheet.create({
         marginRight:42,
         marginTop:16,
     },
+    set_label_text:{
+        marginLeft:20,
+        fontSize:14,
+    },
+    set_label_view:{
+      flexDirection:'row',
+      height:44,
+      backgroundColor:'#fff',
+    },
 
 });
