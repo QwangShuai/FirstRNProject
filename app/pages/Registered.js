@@ -17,7 +17,7 @@ export default class Registered extends   Component {
         };
         this.updatePW = this.updatePW.bind(this);
         this.updateNum = this.updateNum.bind(this);
-        // this.jumpToWaiting = this.jumpToWaiting.bind(this);
+        this.jumpToWaiting = this.jumpToWaiting.bind(this);
     }
 
     shouldCompontUpdate(){
@@ -38,7 +38,7 @@ export default class Registered extends   Component {
         return (
             <View style={Stylecss.styles.container}>
                 <View style={Stylecss.styles.top_title_view}>
-                    <Image source={require('../../asstes/back.png')} style={Stylecss.styles.top_title_back}></Image>
+                    <Image source={require('../../asstes/chevron-left.png')} style={Stylecss.styles.top_title_back}></Image>
                     <Text style={Stylecss.styles.top_title_text}>注册</Text>
                 </View>
                 <Image source={require('../../asstes/head.png')} style={Stylecss.styles.login_head_image}/>
@@ -65,7 +65,7 @@ export default class Registered extends   Component {
         );
     }
     jumpToWaiting(){
-        this.props.onLoginPressed(this.state.inputedNum,this.state.inputedPW);
+        this.props.navigation.navigate('Set');
     }
     userPressAddressBook(){
         var {NativeModules} = require('react-native');

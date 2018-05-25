@@ -114,5 +114,21 @@ export const styles = StyleSheet.create({
         marginRight:42,
         marginTop:16,
     },
+    set_label_text:{
+        color:'#000',
+        marginLeft:20,
+        fontSize:14,
+        height:44,
+        alignItems:'center',
+        textAlign:'center',
+        justifyContent:'center',
+        alignSelf:'center',
+    },
+    set_label_view:{
+        marginTop:6,
+      flexDirection:'row',
+      height:44,
+      backgroundColor:'#fff',
+    },
 
 });
