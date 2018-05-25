@@ -10,7 +10,6 @@ export default class ToolBar extends Component {
 
     constructor(props) {
         super(props);
-        alert(props.title)
         this.state = {
             backW: 0,
             backH: 0,
@@ -53,7 +52,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        height: UtilScree.getHeight(120),
+        height: UtilScree.getHeight(140),
         backgroundColor: '#000'
     },
     back: {
