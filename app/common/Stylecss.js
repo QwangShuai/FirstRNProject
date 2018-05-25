@@ -112,5 +112,7 @@ export const styles = StyleSheet.create({
         color:'#ff9d00',
         textAlign:'right',
         marginRight:42,
+        marginTop:16,
     },
+
 });
