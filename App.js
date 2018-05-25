@@ -9,7 +9,7 @@ import {
     StyleSheet,
     YellowBox,
 } from 'react-native';
-import RouterConfig from './app/RouterConfig';
+import RouterConfig from './app/router/RouterConfig';
 
 YellowBox.ignoreWarnings(['Warning: isMounted(...) is deprecated', 'Module RCTImageLoader']);
 export default class App extends Component<Props> {

@@ -3,9 +3,9 @@ import {
     AppRegistry
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-import LoginLeaf from './LoginLeaf';
-import WaitingLeaf from './WaitingLeaf';
-import Registered from './Registered';
+import LoginLeaf from '../pages/LoginLeaf';
+import WaitingLeaf from '../components/WaitingLeaf';
+import Registered from '../pages/Registered';
 const RouterConfig = StackNavigator({
     Home: { screen: LoginLeaf },
     Wait: { screen: WaitingLeaf },

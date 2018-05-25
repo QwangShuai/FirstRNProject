@@ -3,7 +3,7 @@ import { AppRegistry ,View,Text,Image,StyleSheet,Dimensions,PixelRatio,TextInput
 // import App from './App';
 import {StackNavigator} from 'react-navigation';
 import Registered from './Registered';
-const Stylecss = require('./common/Stylecss');
+const Stylecss = require('../common/Stylecss');
 let widthOfMargin = Dimensions.get('window').width * 0.05;
 const {height,width} = Dimensions.get('window');
 const pixelRatio = PixelRatio.get();
@@ -42,16 +42,16 @@ export default class LoginLeaf extends Component {
         return (
             <View style={Stylecss.styles.container}>
                 <View style={Stylecss.styles.top_title_view}>
-                    <Image source={require('../asstes/back.png')} style={Stylecss.styles.top_title_back}></Image>
+                    <Image source={require('../../asstes/back.png')} style={Stylecss.styles.top_title_back}></Image>
                     <Text style={Stylecss.styles.top_title_text}>登录</Text>
                 </View>
-                <Image source={require('../asstes/head.png')} style={Stylecss.styles.login_head_image}/>
+                <Image source={require('../../asstes/head.png')} style={Stylecss.styles.login_head_image}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入手机号'} onChangeText={this.updateNum}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入你的密码'} secureTextEntry={true}/>
                 <Text style={Stylecss.styles.bigTextPrompt} onPress={this.userPressConfirm.bind(this)}>确定</Text>
                 <View style={Stylecss.styles.other_view}>
                     <Text style={Stylecss.styles.login_register} onPress={this.register.bind(this)}>注册</Text>
-                    <Image source={require('../asstes/80.png')} style={Stylecss.styles.login_divider}/>
+                    <Image source={require('../../asstes/80.png')} style={Stylecss.styles.login_divider}/>
                     <Text style={Stylecss.styles.login_get_pw}>忘记密码</Text>
                 </View>
                     <Text style={Stylecss.styles.login_wxlogin}>常用第三方登录</Text>

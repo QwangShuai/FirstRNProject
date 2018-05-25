@@ -3,7 +3,7 @@ import { AppRegistry ,View,Text,Image,StyleSheet,Dimensions,PixelRatio,TextInput
 // import App from './App';
 let widthOfMargin = Dimensions.get('window').width * 0.05;
 const {height,width} = Dimensions.get('window');
-const Stylecss = require('./common/Stylecss');
+const Stylecss = require('../common/Stylecss');
 const pixelRatio = PixelRatio.get();
 export default class Registered extends   Component {
     static navigationOptions = {
@@ -38,10 +38,10 @@ export default class Registered extends   Component {
         return (
             <View style={Stylecss.styles.container}>
                 <View style={Stylecss.styles.top_title_view}>
-                    <Image source={require('../asstes/back.png')} style={Stylecss.styles.top_title_back}></Image>
+                    <Image source={require('../../asstes/back.png')} style={Stylecss.styles.top_title_back}></Image>
                     <Text style={Stylecss.styles.top_title_text}>注册</Text>
                 </View>
-                <Image source={require('../asstes/head.png')} style={Stylecss.styles.login_head_image}/>
+                <Image source={require('../../asstes/head.png')} style={Stylecss.styles.login_head_image}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入手机号'} onChangeText={this.updateNum} keybordType={'number-pad'}/>
                 <View style={Stylecss.styles.other_view}>
                     <TextInput style={Stylecss.styles.register_getcode} />
