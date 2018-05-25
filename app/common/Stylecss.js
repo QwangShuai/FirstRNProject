@@ -145,7 +145,7 @@ export const styles = StyleSheet.create({
         color:'#333333',
     },
     set_logout:{
-        alignItems:'center',
+        textAlign:'center',
         position:'absolute',
         bottom:0,
         height:49,

@@ -92,5 +92,5 @@ export default class LoginLeaf extends Component {
 };
 
 
-AppRegistry.registerComponent('FirstRNProject', () => LoginLeaf);
+//AppRegistry.registerComponent('FirstRNProject', () => LoginLeaf);
 

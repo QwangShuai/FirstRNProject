@@ -74,5 +74,5 @@ export default class Registered extends   Component {
     }
 };
 
-AppRegistry.registerComponent('FirstRNProject', () => Registered);
+// AppRegistry.registerComponent('FirstRNProject', () => Registered);
 
