@@ -16,6 +16,9 @@ export default class Set extends   Component{
                     <Image source={require('../../asstes/chevron-left.png')} style={Stylecss.styles.top_title_back}></Image>
                     <Text style={Stylecss.styles.top_title_text}>设置</Text>
                 </View>
+                <View style={Stylecss.styles.set_label_view}>
+                    <Text style={Stylecss.styles.set_label_text}>检查更新</Text>
+                </View>
             </View>
         )
     }
