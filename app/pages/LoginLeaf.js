@@ -8,6 +8,7 @@ let widthOfMargin = Dimensions.get('window').width * 0.05;
 const {height,width} = Dimensions.get('window');
 const pixelRatio = PixelRatio.get();
 import UtilScree from '../util/UtilScreen'
+import {styles} from "../common/Stylecss";
 export default class LoginLeaf extends Component {
     static navigationOptions = {
         // title:'登录',
@@ -57,7 +58,6 @@ export default class LoginLeaf extends Component {
                     <Text style={Stylecss.styles.login_get_pw}>忘记密码</Text>
                 </View>
                     <Text style={Stylecss.styles.login_wxlogin}>常用第三方登录</Text>
-
             </View>
         )
     }

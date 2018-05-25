@@ -11,7 +11,6 @@ const UtilScreen = {
             const {height} = Dimensions.get('window');
             this.height = height;
         }
-        alert(this.height)
         return h / currentPixel * (this.height / BASE_WIN_HEIGHT);
     },
 
