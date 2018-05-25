@@ -5,14 +5,19 @@ import UtilScreen from '../util/UtilScreen'
 export default class PersonalInfo extends Component{
     constructor(props) {
         super(props);
+        this.test='回上个页面';
     }
+
+    /**
+     * ToolBar 点击按钮回调
+     */
     backClick(){
-        alert('ooo')
+        alert(this.test)
     }
     render(){
         return (
             <View style={styles.container}>
-            <ToolBar  title={'热映榜'} router={'noo'} backClick={this.backClick}/>
+            <ToolBar  title={'个人中心'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <View style={styles.test}/>
             </View>
         );
@@ -29,4 +34,4 @@ const styles = StyleSheet.create({
         backgroundColor:'#fff'
     }
 });
-// AppRegistry.registerComponent('FirstRNProject', () => PersonalInfo);
+//AppRegistry.registerComponent('FirstRNProject', () => PersonalInfo);

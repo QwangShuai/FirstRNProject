@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, StyleSheet, ImageBackground, Image, Text, TouchableHighlight} from 'react-native';
+import {View, StyleSheet, Image, Text, TouchableHighlight} from 'react-native';
 import UtilScree from '../util/UtilScreen';
 
 export default class ToolBar extends Component {
     static defaultProps = {
         title: '标题',
-        router: 'no0',
+        isShowBack: true,
     }
 
     constructor(props) {
@@ -18,7 +18,7 @@ export default class ToolBar extends Component {
 
 
     componentWillMount() {
-        if (this.props.router === 'no') {
+        if (!this.props.isShowBack) {
             this.setState({
                 backW: 0,
                 backH: 0,
@@ -34,7 +34,7 @@ export default class ToolBar extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <TouchableHighlight onPress={this.props.backClick && this.props.backClick.bind(this)}
+                <TouchableHighlight onPress={this.props.backClick && this.props.backClick}
                                     underlayColor={'#333333'}
                                     style={[styles.back, {height: this.state.backH, width: this.state.backW}]}>
                     <Image source={require('../../asstes/chevron-left.png')}
@@ -58,14 +58,13 @@ const styles = StyleSheet.create({
     back: {
         position: 'absolute',
         left: 0,
-        backgroundColor:'#000',
-        justifyContent:'center',
-        alignItems:'center',
-        borderRadius:UtilScree.getWidth(80),
+        backgroundColor: '#000',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: UtilScree.getWidth(80),
     },
     text: {
         fontSize: 16,
         color: '#fff',
     },
 });
-// AppRegistry.registerComponent('FirstRNProject', () => ToolBar);
