@@ -26,7 +26,7 @@ export default class Set extends   Component{
                 </View>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>清除缓存</Text>
-                    <Text style={Stylecss.styles.set_cache_textt}>236MB</Text>
+                    <Text style={Stylecss.styles.set_cache_text}>236MB</Text>
                 </View>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>用户协议</Text>
