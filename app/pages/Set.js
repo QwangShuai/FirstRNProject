@@ -18,7 +18,21 @@ export default class Set extends   Component{
                 </View>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>检查更新</Text>
+                    <Image source={require('../../asstes/chevron-left2.png')} style={Stylecss.styles.set_label_enter}/>
                 </View>
+                <View style={Stylecss.styles.set_label_view}>
+                    <Text style={Stylecss.styles.set_label_text}>意见反馈</Text>
+                    <Image source={require('../../asstes/chevron-left2.png')} style={Stylecss.styles.set_label_enter}/>
+                </View>
+                <View style={Stylecss.styles.set_label_view}>
+                    <Text style={Stylecss.styles.set_label_text}>清除缓存</Text>
+                    <Text style={Stylecss.styles.set_cache_textt}>236MB</Text>
+                </View>
+                <View style={Stylecss.styles.set_label_view}>
+                    <Text style={Stylecss.styles.set_label_text}>用户协议</Text>
+                    <Image source={require('../../asstes/chevron-left2.png')} style={Stylecss.styles.set_label_enter}/>
+                </View>
+                <Text style={Stylecss.styles.set_logout}>注销登录</Text>
             </View>
         )
     }
