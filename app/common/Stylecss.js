@@ -92,13 +92,12 @@ export const styles = StyleSheet.create({
         fontSize:14,
         alignItems:'center',
         color:'#cacaca',
-        bottom:88,
         alignSelf:'center',
     },
     login_otherlogin_view:{
         height:102,
         position:'absolute',
-        bottom:0,
+        bottom:88,
     },
     register_getcode:{
         flex:2,
@@ -145,7 +144,7 @@ export const styles = StyleSheet.create({
         color:'#333333',
     },
     set_logout:{
-       alignItems:'center',
+       textAlign:'center',
       position:'absolute',
       bottom:0,
       height:49,
