@@ -7,6 +7,7 @@ const Stylecss = require('../common/Stylecss');
 let widthOfMargin = Dimensions.get('window').width * 0.05;
 const {height,width} = Dimensions.get('window');
 const pixelRatio = PixelRatio.get();
+import UtilScree from '../util/UtilScreen'
 export default class LoginLeaf extends Component {
     static navigationOptions = {
         // title:'登录',
@@ -21,6 +22,7 @@ export default class LoginLeaf extends Component {
         this.updatePW = this.updatePW.bind(this);
         this.updateNum = this.updateNum.bind(this);
         this.jumpToWaiting = this.jumpToWaiting.bind(this);
+        UtilScree.getHeight(10);
     }
 
     shouldCompontUpdate(){
