@@ -90,15 +90,15 @@ export const styles = StyleSheet.create({
         position:'absolute',
         bottom:0,
         fontSize:14,
-        alignItems:'center',
+        alignSelf:'center',
         color:'#cacaca',
-        bottom:88,
         alignSelf:'center',
     },
     login_otherlogin_view:{
         height:102,
         position:'absolute',
         bottom:0,
+        alignSelf:'center',
     },
     register_getcode:{
         flex:2,
@@ -155,4 +155,7 @@ export const styles = StyleSheet.create({
         width:width,
         lineHeight:49,
     },
+    update_message:{
+
+    }
 });

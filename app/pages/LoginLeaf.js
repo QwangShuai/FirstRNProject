@@ -8,7 +8,6 @@ let widthOfMargin = Dimensions.get('window').width * 0.05;
 const {height,width} = Dimensions.get('window');
 const pixelRatio = PixelRatio.get();
 import UtilScree from '../util/UtilScreen'
-import {styles} from "../common/Stylecss";
 export default class LoginLeaf extends Component {
     static navigationOptions = {
         // title:'登录',
@@ -57,7 +56,8 @@ export default class LoginLeaf extends Component {
                     <Image source={require('../../asstes/80.png')} style={Stylecss.styles.login_divider}/>
                     <Text style={Stylecss.styles.login_get_pw}>忘记密码</Text>
                 </View>
-                    <Text style={Stylecss.styles.login_wxlogin}>常用第三方登录</Text>
+                    <Text style={Stylecss.styles.login_otherlogin_view}>常用第三方登录</Text>
+
             </View>
         )
     }
@@ -83,11 +83,6 @@ export default class LoginLeaf extends Component {
                 userPW:5555,
             }
         });
-    }
-    userPressAddressBook(){
-        var {NativeModules} = require('react-native');
-        let ExampleInterface = NativeModules.ExampleInterface;
-        NativeModules.ExampleInterface.HandleMessage('testMessage');
     }
 };
 
