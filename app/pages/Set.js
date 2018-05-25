@@ -37,4 +37,4 @@ export default class Set extends   Component{
         )
     }
 };
-AppRegistry.registerComponent('FirstRNProject', () => Set);
+// AppRegistry.registerComponent('FirstRNProject', () => Set);
