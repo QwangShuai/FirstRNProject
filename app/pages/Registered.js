@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { AppRegistry ,View,Text,Image,StyleSheet,Dimensions,PixelRatio,TextInput,Alert} from 'react-native';
 // import App from './App';
+import ToolBar from '../components/ToolBar';
 let widthOfMargin = Dimensions.get('window').width * 0.05;
 const {height,width} = Dimensions.get('window');
 const Stylecss = require('../common/Stylecss');
@@ -19,7 +20,9 @@ export default class Registered extends   Component {
         this.updateNum = this.updateNum.bind(this);
         this.jumpToWaiting = this.jumpToWaiting.bind(this);
     }
-
+    backClick(){
+        this.props.navigation.navigate('Home');
+    }
     shouldCompontUpdate(){
         if(this.state.inputedNum.length<3)
             return false;
@@ -37,10 +40,7 @@ export default class Registered extends   Component {
     render() {
         return (
             <View style={Stylecss.styles.container}>
-                <View style={Stylecss.styles.top_title_view}>
-                    <Image source={require('../../asstes/chevron-left.png')} style={Stylecss.styles.top_title_back}></Image>
-                    <Text style={Stylecss.styles.top_title_text}>注册</Text>
-                </View>
+                <ToolBar  title={'注册'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <Image source={require('../../asstes/head.png')} style={Stylecss.styles.login_head_image}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入手机号'} onChangeText={this.updateNum} keybordType={'number-pad'}/>
                 <View style={Stylecss.styles.other_view}>

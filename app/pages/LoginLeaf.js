@@ -3,6 +3,7 @@ import { AppRegistry ,View,Text,Image,StyleSheet,Dimensions,PixelRatio,TextInput
 // import App from './App';
 import {StackNavigator} from 'react-navigation';
 import Registered from './Registered';
+import ToolBar from '../components/ToolBar';
 const Stylecss = require('../common/Stylecss');
 let widthOfMargin = Dimensions.get('window').width * 0.05;
 const {height,width} = Dimensions.get('window');
@@ -24,7 +25,9 @@ export default class LoginLeaf extends Component {
         this.jumpToWaiting = this.jumpToWaiting.bind(this);
         UtilScree.getHeight(10);
     }
-
+    backClick(){
+        this.props.navigation.navigate('PersonalInfoHead');
+    }
     shouldCompontUpdate(){
         if(this.state.inputedNum.length<3)
             return false;
@@ -43,10 +46,7 @@ export default class LoginLeaf extends Component {
         const navigate = this.props.navigation;
         return (
             <View style={Stylecss.styles.container}>
-                <View style={Stylecss.styles.top_title_view}>
-                    <Image source={require('../../asstes/chevron-left.png')} style={Stylecss.styles.top_title_back}></Image>
-                    <Text style={Stylecss.styles.top_title_text}>登录</Text>
-                </View>
+                <ToolBar  title={'注册'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <Image source={require('../../asstes/head.png')} style={Stylecss.styles.login_head_image}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入手机号'} onChangeText={this.updateNum}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入你的密码'} secureTextEntry={true}/>

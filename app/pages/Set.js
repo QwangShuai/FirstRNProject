@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {AppRegistry,View,Text,Image} from 'react-native';
+import ToolBar from '../components/ToolBar';
 const Stylecss = require('../common/Stylecss');
 export default class Set extends   Component{
     static navigationOptions = {
@@ -8,13 +9,13 @@ export default class Set extends   Component{
     constructor(props){
         super(props);
     }
+    backClick(){
+        this.props.navigation.navigate('Register');
+    }
     render(){
         return(
             <View style={Stylecss.styles.container}>
-                <View style={Stylecss.styles.top_title_view}>
-                    <Image source={require('../../asstes/chevron-left.png')} style={Stylecss.styles.top_title_back}></Image>
-                    <Text style={Stylecss.styles.top_title_text}>设置</Text>
-                </View>
+                <ToolBar  title={'设置'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>检查更新</Text>
                     <Image source={require('../../asstes/chevron-left2.png')} style={Stylecss.styles.set_label_enter}/>
