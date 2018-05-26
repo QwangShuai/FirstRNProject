@@ -4,7 +4,7 @@ import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen'
 import PersonalInfoItem from '../components/PersonalInfoItem';
 import PersonalInfoHead from '../components/PersonalInfoHead';
-
+import SelectYesOrNo from '../components/SelectYesOrNo';
 export default class PersonalInfo extends Component {
     constructor(props) {
         super(props);
@@ -19,7 +19,8 @@ export default class PersonalInfo extends Component {
                 {key: 6, imageURL: require('../res/images/person_real_name.png'), lTitle: '实名认证', rValue: '身份证上传',},
                 {key: 7, imageURL: require('../res/images/person_is_single.png'), lTitle: '是否单身', rValue: '是',},
                 {key: 8, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV13',}
-            ]
+            ],
+            isSelectYesOrNo:false,
 
         }
 
@@ -37,9 +38,18 @@ export default class PersonalInfo extends Component {
     }
 
     itemClick(item) {
-        //alert(item.lTitle);
+        this.setState({
+            isSelectYesOrNo:!this.state.isSelectYesOrNo,
+        });
     }
-
+    yesOrNo(type){
+        this.state.itemInfo[7].rValue=type===1?'是':'否';
+        let data=this.state.itemInfo.concat();
+        this.setState({
+            isSelectYesOrNo:false,
+            itemInfo:data,
+        });
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -50,16 +60,17 @@ export default class PersonalInfo extends Component {
                     renderItem={({item}) => {
                         return (
                             <View>
-                            <TouchableHighlight style={styles.lightitem}
-                                                underlayColor={'#f8f8f8'}
-                                                onPress={this.itemClick.bind(this, item)}>
-                                <PersonalInfoItem itemInfo={item}/></TouchableHighlight>
+                                <TouchableHighlight style={styles.lightitem}
+                                                    underlayColor={'#f8f8f8'}
+                                                    onPress={this.itemClick.bind(this, item)}>
+                                    <PersonalInfoItem itemInfo={item}/></TouchableHighlight>
                                 <View style={styles.line}/>
                             </View>
                         );
                     }}
                     keyExtractor={item => item.key.toString()}
                 ></FlatList>
+                <SelectYesOrNo yesOrNo={this.yesOrNo.bind(this)} isShow={this.state.isSelectYesOrNo}/>
             </View>
         );
     }

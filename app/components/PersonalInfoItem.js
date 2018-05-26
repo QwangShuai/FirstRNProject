@@ -22,8 +22,9 @@ export default class PersonalInfoItem extends Component {
             <View style={styles.container}>
                 <View style={styles.itemLeft}>
                     <Image
+                        style={styles.itemImage}
                         source={this.props.itemInfo.imageURL}
-                        resizeMode='stretch'
+                        resizeMode='contain'
                     />
                     <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
                 </View>
