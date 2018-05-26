@@ -6,10 +6,11 @@ import Registered from '../pages/Registered';
 import Set from '../pages/Set';
 import PersonalInfo from '../pages/PersonalInfo';
 const RouterConfig = StackNavigator({
-    PersonalInfo:{screen:PersonalInfo},
     Home: { screen: LoginLeaf },
     Wait: { screen: WaitingLeaf },
     Register:{screen:Registered},
     Set:{screen:Set},
+    PersonalInfo:{screen:PersonalInfo},
+
 });
 export default RouterConfig;
