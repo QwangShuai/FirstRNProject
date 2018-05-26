@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        height: UtilScree.getHeight(140),
+        height: UtilScree.getHeight(88),
         backgroundColor: '#000'
     },
     back: {
