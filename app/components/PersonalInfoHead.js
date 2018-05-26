@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {AppRegistry,View, StyleSheet,ImageBackground} from 'react-native';
+import {Text, StyleSheet, ImageBackground, Image} from 'react-native';
 import UtilScree from '../util/UtilScreen';
 
 export default class PersonalInfoHead extends Component {
@@ -13,7 +13,12 @@ export default class PersonalInfoHead extends Component {
                              source={require('../res/images/head_background.png')}
                              resizeMode='stretch'
             >
-
+                <Text style={styles.head_title}>头像</Text>
+                <Image
+                    style={styles.head_image}
+                    source={require('../res/images/head_image.png')}
+                    resizeMode='stretch'
+                />
             </ImageBackground>
         );
     }
@@ -21,8 +26,22 @@ export default class PersonalInfoHead extends Component {
 const styles = StyleSheet.create({
     container: {
         width: '100%',
-        height:UtilScree.getHeight(200) ,
-        backgroundColor:'red'
+        height: UtilScree.getHeight(160),
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: "space-between",
+        flexDirection: 'row'
+    },
+    head_title: {
+        fontSize: 15,
+        fontWeight: '800',
+        color: '#000',
+        marginLeft: UtilScree.getWidth(40),
+    },
+    head_image: {
+        width: UtilScree.getWidth(120),
+        height: UtilScree.getWidth(120),
+        marginRight: UtilScree.getWidth(20),
+        borderRadius: UtilScree.getWidth(120),
     }
 });
-// AppRegistry.registerComponent('FirstRNProject', () => PersonalInfoHead);
