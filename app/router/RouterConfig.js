@@ -9,13 +9,16 @@ import Registered from '../pages/Registered';
 import Set from '../pages/Set';
 import PersonalInfoHead from '../components/PersonalInfoHead';
 import PersonalInfor from '../pages/PersonalInfor';
+import Update from '../pages/Update';
 const RouterConfig = StackNavigator({
+    Update:{screen:Update},
     Home: { screen: LoginLeaf },
     Wait: { screen: WaitingLeaf },
     Register:{screen:Registered},
     Set:{screen:Set},
     PersonalInfoHead:{screen:PersonalInfoHead},
     PersonalInfor:{screen:PersonalInfor},
+
 });
 export default RouterConfig;
 // AppRegistry.registerComponent('LearnRN', () => SimpleApp);

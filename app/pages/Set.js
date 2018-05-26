@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {AppRegistry,View,Text,Image} from 'react-native';
+import {AppRegistry,View,Text,Image,TouchableHighlight} from 'react-native';
 import ToolBar from '../components/ToolBar';
 const Stylecss = require('../common/Stylecss');
 export default class Set extends   Component{
@@ -12,17 +12,22 @@ export default class Set extends   Component{
     backClick(){
         this.props.navigation.navigate('Register');
     }
+    jumpToUpdate(){
+        this.props.navigation.navigate('Update');
+    }
     render(){
         return(
             <View style={Stylecss.styles.container}>
                 <ToolBar  title={'设置'} isShowBack={true} backClick={this.backClick.bind(this)}/>
-                <View style={Stylecss.styles.set_label_view}>
+                <View style={Stylecss.styles.set_label_view} >
                     <Text style={Stylecss.styles.set_label_text}>检查更新</Text>
-                    <Image source={require('../../asstes/chevron-left2.png')} style={Stylecss.styles.set_label_enter}/>
+                    <TouchableHighlight onPress={this.jumpToUpdate.bind(this)} style={Stylecss.styles.set_label_enter}>
+                        <Image source={require('../../asstes/chevron-left2.png')}/>
+                    </TouchableHighlight>
                 </View>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>意见反馈</Text>
-                    <Image source={require('../../asstes/chevron-left2.png')} style={Stylecss.styles.set_label_enter}/>
+                    <Image source={require('../../asstes/chevron-left2.png')} style={Stylecss.styles.set_label_enter} />
                 </View>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>清除缓存</Text>
@@ -37,4 +42,3 @@ export default class Set extends   Component{
         )
     }
 };
- AppRegistry.registerComponent('FirstRNProject', () => Set);

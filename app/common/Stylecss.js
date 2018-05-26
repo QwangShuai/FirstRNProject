@@ -6,6 +6,7 @@ import {
     StyleSheet,
     Image,
 } from 'react-native';
+import UtilScreen from "../util/UtilScreen";
 
 const Dimensions = require('Dimensions');
 const {
@@ -17,6 +18,7 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#F5FCFF',
+        // backgroundColor:'white',
     },
     other_view:{
         marginTop:11,
@@ -156,6 +158,15 @@ export const styles = StyleSheet.create({
         lineHeight:49,
     },
     update_message:{
-
+        alignItems:'center',
+        marginTop:UtilScreen.getHeight(40),
+        marginLeft:UtilScreen.getWidth(25),
+        marginRight:UtilScreen.getWidth(25),
+        height:UtilScreen.getHeight(80),
+    },
+    update_message_text:{
+        lineHeight:UtilScreen.getHeight(80),
+        fontSize:14,
+        color:'#333333',
     }
 });
