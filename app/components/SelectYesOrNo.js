@@ -39,11 +39,7 @@ export default class SelectYesOrNo extends Component {
                    animationType={"slide"}
                    transparent={true}
                    visible={this.state.isShow}
-                   onRequestClose={() => {
-                       this.setState({
-                           isShow: false,
-                       });
-                   }}
+                   onRequestClose={this.btClick.bind(this)}
             >
                 <View style={styles.mark}>
                     <View style={styles.content}>

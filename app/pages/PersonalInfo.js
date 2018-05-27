@@ -5,6 +5,9 @@ import UtilScreen from '../util/UtilScreen'
 import PersonalInfoItem from '../components/PersonalInfoItem';
 import PersonalInfoHead from '../components/PersonalInfoHead';
 import SelectYesOrNo from '../components/SelectYesOrNo';
+import PickerData from "../components/PickerData";
+import DatePicker from '../components/DatePicker';
+
 export default class PersonalInfo extends Component {
     constructor(props) {
         super(props);
@@ -15,13 +18,19 @@ export default class PersonalInfo extends Component {
                 {key: 2, imageURL: require('../res/images/person_location.png'), lTitle: '所在地', rValue: '黑龙江',},
                 {key: 3, imageURL: require('../res/images/person_sign.png'), lTitle: '签名', rValue: '世界那么大，我要去看看',},
                 {key: 4, imageURL: require('../res/images/person_birthday.png'), lTitle: '生日', rValue: '1996-07-07',},
-                {key: 5, imageURL: require('../res/images/person_register_time.png'), lTitle: '注册时间', rValue: '2018-05-26',},
+                {
+                    key: 5,
+                    imageURL: require('../res/images/person_register_time.png'),
+                    lTitle: '注册时间',
+                    rValue: '2018-05-26',
+                },
                 {key: 6, imageURL: require('../res/images/person_real_name.png'), lTitle: '实名认证', rValue: '身份证上传',},
                 {key: 7, imageURL: require('../res/images/person_is_single.png'), lTitle: '是否单身', rValue: '是',},
                 {key: 8, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV13',}
             ],
-            isSelectYesOrNo:false,
-
+            isSelectYesOrNo: false,
+            isSelectDate: false,
+            selectItemDate: {key: 4, title: '选择您的出生日期'},
         }
 
     }
@@ -37,19 +46,54 @@ export default class PersonalInfo extends Component {
     backClick() {
     }
 
+
     itemClick(item) {
+        switch (item.key) {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                this.setState({
+                    isSelectDate: !this.state.isSelectDate,
+                    selectItemDate: {key: 4, title: '选择您的出生日期'},
+                });
+                break;
+            case 5:
+                this.setState({
+                    isSelectDate: !this.state.isSelectDate,
+                    selectItemDate: {key: 5, title: '注册时间'},
+                });
+                break;
+            case 6:
+                break;
+            case 7:
+                this.setState({isSelectYesOrNo: !this.state.isSelectYesOrNo,});
+                break;
+            case 8:
+                break;
+        }
+    }
+
+    yesOrNo(type) {
+        this.state.itemInfo[7].rValue = type === 1 ? '是' : '否';
+        let data = this.state.itemInfo.concat();
         this.setState({
-            isSelectYesOrNo:!this.state.isSelectYesOrNo,
+            isSelectYesOrNo: false,
+            itemInfo: data,
         });
     }
-    yesOrNo(type){
-        this.state.itemInfo[7].rValue=type===1?'是':'否';
-        let data=this.state.itemInfo.concat();
-        this.setState({
-            isSelectYesOrNo:false,
-            itemInfo:data,
-        });
+
+    selectDate(date) {
+        this.state.itemInfo[this.state.selectItemDate.key].rValue = date;
+        let data = this.state.itemInfo.concat();
+        this.setState({isSelectDate: false, itemInfo: data});
     }
+
     render() {
         return (
             <View style={styles.container}>
@@ -71,6 +115,9 @@ export default class PersonalInfo extends Component {
                     keyExtractor={item => item.key.toString()}
                 ></FlatList>
                 <SelectYesOrNo yesOrNo={this.yesOrNo.bind(this)} isShow={this.state.isSelectYesOrNo}/>
+                <PickerData title={this.state.selectItemDate.title} type={'date'} isShow={this.state.isSelectDate}
+                            selectDate={this.selectDate.bind(this)}/>
+                <DatePicker type={'date'}/>
             </View>
         );
     }
@@ -85,9 +132,9 @@ const
         lightitem: {
             backgroundColor: '#fff'
         },
-        line:{
-            width:'100%',
-            height:UtilScreen.getHeight(15),
-            backgroundColor:'#f8f8f8',
+        line: {
+            width: '100%',
+            height: UtilScreen.getHeight(15),
+            backgroundColor: '#f8f8f8',
         }
     });
