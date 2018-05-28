@@ -3,6 +3,7 @@ import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,FlatList, TouchableHi
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
 import ApplyInfoItem from '../components/ApplyInfoItem';
+import ApplyItem from '../components/ApplyItem';
 export default class Apply extends Component {
     static navigationOptions = {
         headerStyle:{height:0},
@@ -11,8 +12,16 @@ export default class Apply extends Component {
         super(props);
         this.state = {
             itemInfo1: [
-                {key: 0, lTitle: '姓  名', rHint: '请输入姓名',},
-                {key: 1, lTitle: '联系方式', rHint: '请输入手机号',},
+                {key: 0, lTitle:`姓        名:`, rHint: '请输入姓名',},
+                {key: 1, lTitle: '联系方式:', rHint: '请输入手机号',},
+                {key: 2, lTitle:`性        别:`, rHint: '请输入性别',},
+                {key: 3, lTitle:`年        龄:`, rHint: '请输入年龄',},
+                {key: 4, lTitle: '婚姻状况:', rHint: '请输入婚姻状况',},
+            ],
+            itemInfo2:[
+                {key:0,lTitle:'活动标题:',rHint:'上海7日行',},
+                {key:1,lTitle:'出发时间:',rHint:'2018-05-28',},
+                {key:2,lTitle:`费        用:`,rHint:'￥888.00',},
             ],
         }
     }
@@ -23,6 +32,21 @@ export default class Apply extends Component {
         return(
             <View style={styles.container}>
                 <ToolBar title={'报名'} isShowBack={true} backClick={this.backClick.bind(this)}/>
+                <FlatList
+                    data={this.state.itemInfo2}
+                    renderItem={({item}) => {
+                        return (
+                            <View>
+                                <TouchableHighlight style={styles.lightitem}
+                                                    underlayColor={'#f8f8f8'}
+                                >
+                                    <ApplyItem itemInfo={item}/></TouchableHighlight>
+                                <View style={styles.line}/>
+                            </View>
+                        );
+                    }}
+                    keyExtractor={item => item.key.toString()}
+                ></FlatList>
                 <FlatList
                     data={this.state.itemInfo1}
                     renderItem={({item}) => {
@@ -38,6 +62,7 @@ export default class Apply extends Component {
                     }}
                     keyExtractor={item => item.key.toString()}
                 ></FlatList>
+                <Text></Text>
             </View>
         );
     };

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 
-import {View, StyleSheet, TextInput, Text} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
 
-export default class ApplyInfoItem extends Component {
+export default class ApplyItem extends Component {
     constructor(props) {
         super(props);
     }
@@ -18,7 +18,7 @@ export default class ApplyInfoItem extends Component {
         return(
             <View style={styles.container}>
                 <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
-                <TextInput style={styles.rightHint} placeholder={this.props.itemInfo.rHint} underlineColorAndroid={'transparent'}/>
+                <Text style={styles.rightHint}>{this.props.itemInfo.rHint}</Text>
             </View>
         )
     }
@@ -42,10 +42,10 @@ const styles = StyleSheet.create({
 
     },
     rightHint:{
-      fontSize:14,
+        fontSize:14,
         width:'100%',
-      alignSelf:'center',
-        color:'#cacaca',
+        alignSelf:'center',
+        color:'#333',
         lineHeight:UtilScreen.getHeight(86),
     },
 })
