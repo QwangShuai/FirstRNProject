@@ -44,6 +44,10 @@ export default class Apply extends Component {
                     }}
                     keyExtractor={item => item.key.toString()}
                 ></FlatList>
+                <View style={styles.paymentView}>
+                    <Text style={styles.paymentText}>支付</Text>
+                </View>
+
             </View>
         );
     };
@@ -61,5 +65,22 @@ const
             width: '100%',
             height: UtilScreen.getHeight(15),
             backgroundColor: '#f8f8f8',
-        }
+        },
+        paymentView:{
+            width:UtilScreen.getWidth(700),
+            marginLeft:UtilScreen.getWidth(24),
+            marginRight:UtilScreen.getWidth(24),
+            height:UtilScreen.getHeight(88),
+            position:'absolute',
+            bottom:UtilScreen.getHeight(40),
+            backgroundColor:'#ff9d00',
+            borderRadius:UtilScreen.getWidth(12),
+            justifyContent:'center',
+            alignItems:'center',
+        },
+        paymentText:{
+            alignSelf:'center',
+            color:'#ffffff',
+            fontSize:18,
+        },
     });

@@ -15,20 +15,34 @@ export default class ApplyInfoItem extends Component {
     }
 
     render(){
-        if(this.props.itemInfo.key>=0&&this.props.itemInfo.key<3){
+        if(this.props.itemInfo.key>=0&&this.props.itemInfo.key<3||this.props.itemInfo.key==8){
             return(
                 <View style={styles.container}>
                     <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
                     <Text style={styles.rightTitle}>{this.props.itemInfo.rHint}</Text>
                 </View>
             )
-        } else {
+        } else if(this.props.itemInfo.key>=3&&this.props.itemInfo.key<8){
             return(
                 <View style={styles.container}>
                     <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
                     <TextInput style={styles.rightHint} placeholder={this.props.itemInfo.rHint} underlineColorAndroid={'transparent'}/>
                 </View>
             )
+        } else {
+            <View>
+                <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
+                <View>
+                    <Image></Image>
+                    <Text></Text>
+                    <Image></Image>
+                </View>
+                <View>
+                    <Image></Image>
+                    <Text></Text>
+                    <Image></Image>
+                </View>
+            </View>
         }
 
     }
@@ -42,7 +56,6 @@ const styles = StyleSheet.create({
 
     },
     leftText: {
-        // lineHeight:UtilScreen.getHeight(86),
         alignSelf:'center',
         color: '#333',
         fontSize: 14,

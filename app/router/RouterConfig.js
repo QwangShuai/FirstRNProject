@@ -12,6 +12,7 @@ import PersonalInfoHead from '../components/PersonalInfoHead';
 import Update from '../pages/Update';
 import Apply from  '../pages/Apply';
 const RouterConfig = StackNavigator({
+
     Apply:{screen:Apply},
     Home: {screen: LoginLeaf},
     PersonalInfo: {screen: PersonalInfo},
