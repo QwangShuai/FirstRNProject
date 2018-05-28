@@ -45,13 +45,13 @@ export default class SelectYesOrNo extends Component {
                     <View style={styles.content}>
                         <Text
                             onPress={this.itemClick.bind(this, 1)}
-                            style={[styles.text, {color: this.state.selectIndex === 1 ? '#f71f1f' : '#333333'}]}>是</Text>
+                            style={[styles.text, {color: this.state.selectIndex === 1 ? '#f71f1f' : '#333333'}]}>{this.props.topTitle}</Text>
                         <Text
                             onPress={this.itemClick.bind(this, 2)}
                             style={[styles.text, {
                                 color: this.state.selectIndex === 2 ? '#f71f1f' : '#333333',
                                 marginTop: 1
-                            }]}>否</Text>
+                            }]}>{this.props.bottomTitle}</Text>
                         <Text style={styles.submitBt} onPress={this.btClick.bind(this)}
                         >确定</Text>
                     </View>
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         height: UtilScreen.getHeight(315),
-        backgroundColor: '#f8f8f8'
+        backgroundColor: '#e5e5e5'
     },
     text: {
         fontSize: 15,

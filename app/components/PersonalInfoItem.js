@@ -18,19 +18,19 @@ export default class PersonalInfoItem extends Component {
     }
 
     render() {
-        return (
-            <View style={styles.container}>
-                <View style={styles.itemLeft}>
-                    <Image
-                        style={styles.itemImage}
-                        source={this.props.itemInfo.imageURL}
-                        resizeMode='contain'
-                    />
-                    <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
+            return (
+                <View style={styles.container}>
+                    <View style={styles.itemLeft}>
+                        <Image
+                            style={styles.itemImage}
+                            source={this.props.itemInfo.imageURL}
+                            resizeMode='contain'
+                        />
+                        <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
+                    </View>
+                    <Text style={styles.rightValue}>{this.props.itemInfo.rValue}</Text>
                 </View>
-                <Text style={styles.rightValue}>{this.props.itemInfo.rValue}</Text>
-            </View>
-        );
+            );
     }
 }
 const styles = StyleSheet.create({

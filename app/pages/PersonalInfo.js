@@ -5,7 +5,7 @@ import UtilScreen from '../util/UtilScreen'
 import PersonalInfoItem from '../components/PersonalInfoItem';
 import PersonalInfoHead from '../components/PersonalInfoHead';
 import SelectYesOrNo from '../components/SelectYesOrNo';
-
+import MyDatePicker from '../components/MyDatePicker';
 export default class PersonalInfo extends Component {
     constructor(props) {
         super(props);
@@ -28,9 +28,8 @@ export default class PersonalInfo extends Component {
             ],
             isSelectYesOrNo: false,
             isSelectDate: false,
-            selectItemDate: {key: 4, title: '选择您的出生日期'},
         }
-
+        this.selectItemDate={key: 4, title: '选择您的出生日期'};
     }
 
     static navigationOptions = {
@@ -57,15 +56,15 @@ export default class PersonalInfo extends Component {
                 break;
             case 4:
                 this.setState({
-                    isSelectDate: !this.state.isSelectDate,
-                    selectItemDate: {key: 4, title: '选择您的出生日期'},
+                    isSelectDate: true,
                 });
+                this.selectItemDate={key: 4, title: '选择您的出生日期'};
                 break;
             case 5:
                 this.setState({
-                    isSelectDate: !this.state.isSelectDate,
-                    selectItemDate: {key: 5, title: '注册时间'},
+                    isSelectDate:true,
                 });
+                this.selectItemDate={key: 5, title: '注册时间'};
                 break;
             case 6:
                 break;
@@ -87,7 +86,8 @@ export default class PersonalInfo extends Component {
     }
 
     selectDate(date) {
-        this.state.itemInfo[this.state.selectItemDate.key].rValue = date;
+        let d=date.concat();
+        this.state.itemInfo[this.selectItemDate.key].rValue = d;
         let data = this.state.itemInfo.concat();
         this.setState({isSelectDate: false, itemInfo: data});
     }
@@ -112,7 +112,8 @@ export default class PersonalInfo extends Component {
                     }}
                     keyExtractor={item => item.key.toString()}
                 ></FlatList>
-                <SelectYesOrNo yesOrNo={this.yesOrNo.bind(this)} isShow={this.state.isSelectYesOrNo}/>
+                <SelectYesOrNo yesOrNo={this.yesOrNo.bind(this)} isShow={this.state.isSelectYesOrNo} topTitle={'是'} bottomTitle={'否'}/>
+                <MyDatePicker isShow={this.state.isSelectDate} callBack={this.selectDate.bind(this)}  ref={ref => this.MyDatePicker = ref}/>
             </View>
         );
     }
