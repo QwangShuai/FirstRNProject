@@ -3,7 +3,6 @@ import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,FlatList, TouchableHi
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
 import ApplyInfoItem from '../components/ApplyInfoItem';
-import ApplyItem from '../components/ApplyItem';
 export default class Apply extends Component {
     static navigationOptions = {
         headerStyle:{height:0},
