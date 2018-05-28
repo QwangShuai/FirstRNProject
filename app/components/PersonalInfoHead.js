@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, ImageBackground, Image} from 'react-native';
+import {Text, StyleSheet, ImageBackground, Image, TouchableHighlight} from 'react-native';
 import UtilScree from '../util/UtilScreen';
 
 export default class PersonalInfoHead extends Component {
@@ -14,11 +14,16 @@ export default class PersonalInfoHead extends Component {
                              resizeMode='stretch'
             >
                 <Text style={styles.head_title}>头像</Text>
-                <Image
+                <TouchableHighlight
                     style={styles.head_image}
-                    source={require('../res/images/head_image.png')}
-                    resizeMode='stretch'
-                />
+                    onPress={this.props.clickCallBack}
+                >
+                    <Image
+                        style={styles.head_image}
+                        source={Object.keys(this.props.imageSource).length > 0 ? this.props.imageSource : require('../res/images/head_image.png')}
+                        resizeMode='stretch'
+                    />
+                </TouchableHighlight>
             </ImageBackground>
         );
     }
@@ -43,5 +48,6 @@ const styles = StyleSheet.create({
         height: UtilScree.getWidth(120),
         marginRight: UtilScree.getWidth(20),
         borderRadius: UtilScree.getWidth(120),
+        overflow: 'hidden'
     }
 });

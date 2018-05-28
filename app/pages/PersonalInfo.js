@@ -6,6 +6,30 @@ import PersonalInfoItem from '../components/PersonalInfoItem';
 import PersonalInfoHead from '../components/PersonalInfoHead';
 import SelectYesOrNo from '../components/SelectYesOrNo';
 import MyDatePicker from '../components/MyDatePicker';
+
+const ImagePicker = require('react-native-image-picker');
+const options = {
+    title: '选择图片',
+    cancelButtonTitle: '取消',
+    takePhotoButtonTitle: '拍照',
+    chooseFromLibraryButtonTitle: '图片库',
+    cameraType: 'back',
+    mediaType: 'photo',
+    videoQuality: 'high',
+    durationLimit: 10,
+    maxWidth: 600,
+    maxHeight: 600,
+    aspectX: 2,
+    aspectY: 1,
+    quality: 0.8,
+    angle: 0,
+    allowsEditing: false,
+    noData: false,
+    storageOptions: {
+        skipBackup: true,
+        path: 'images'
+    }
+};
 export default class PersonalInfo extends Component {
     constructor(props) {
         super(props);
@@ -28,8 +52,10 @@ export default class PersonalInfo extends Component {
             ],
             isSelectYesOrNo: false,
             isSelectDate: false,
+            isShowSelectPhoto: false,
+            headImageSource: {},
         }
-        this.selectItemDate={key: 4, title: '选择您的出生日期'};
+        this.selectItemDate = {key: 4, title: '选择您的出生日期'};
     }
 
     static navigationOptions = {
@@ -58,13 +84,13 @@ export default class PersonalInfo extends Component {
                 this.setState({
                     isSelectDate: true,
                 });
-                this.selectItemDate={key: 4, title: '选择您的出生日期'};
+                this.selectItemDate = {key: 4, title: '选择您的出生日期'};
                 break;
             case 5:
                 this.setState({
-                    isSelectDate:true,
+                    isSelectDate: true,
                 });
-                this.selectItemDate={key: 5, title: '注册时间'};
+                this.selectItemDate = {key: 5, title: '注册时间'};
                 break;
             case 6:
                 break;
@@ -86,17 +112,74 @@ export default class PersonalInfo extends Component {
     }
 
     selectDate(date) {
-        let d=date.concat();
+        let d = date.concat();
         this.state.itemInfo[this.selectItemDate.key].rValue = d;
         let data = this.state.itemInfo.concat();
         this.setState({isSelectDate: false, itemInfo: data});
+    }
+
+    /**
+     * 点击头像回掉
+     */
+    clickHeadImage() {
+        this.setState({isShowSelectPhoto: !this.state.isShowSelectPhoto,});
+    }
+
+    /**
+     * 选择拍照或者从相册选择回掉
+     */
+    takerPhotoOrSelect(type) {
+        this.setState({
+            isShowSelectPhoto: false,
+        });
+        if (type === 1) {
+            ImagePicker.launchCamera({}, (response) => {
+                // Same code as in above section!
+                if (response.didCancel) {
+                    console.log('User cancelled image picker');
+                }
+                else if (response.error) {
+                    console.log('ImagePicker Error: ', response.error);
+                }
+                else if (response.customButton) {
+                    console.log('User tapped custom button: ', response.customButton);
+                }
+                else {
+                    let source = {uri: response.data};
+                    this.setState({
+                        headImageSource: source
+                    });
+                }
+            });
+        } else {
+            ImagePicker.launchImageLibrary(options, (response) => {
+                if (response.didCancel) {
+                    console.log('User cancelled image picker');
+                }
+                else if (response.error) {
+                    console.log('ImagePicker Error: ', response.error);
+                }
+                else if (response.customButton) {
+                    console.log('User tapped custom button: ', response.customButton);
+                }
+                else {
+                    let source = {uri: response.uri};
+                    alert(response.uri)
+                    this.setState({
+                        headImageSource: source
+                    });
+                }
+            });
+
+        }
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <ToolBar title={'个人中心'} isShowBack={true} backClick={this.backClick.bind(this)}/>
-                <PersonalInfoHead/>
+                <PersonalInfoHead clickCallBack={this.clickHeadImage.bind(this)}
+                                  imageSource={this.state.headImageSource}/>
                 <FlatList
                     data={this.state.itemInfo}
                     renderItem={({item}) => {
@@ -112,8 +195,12 @@ export default class PersonalInfo extends Component {
                     }}
                     keyExtractor={item => item.key.toString()}
                 ></FlatList>
-                <SelectYesOrNo yesOrNo={this.yesOrNo.bind(this)} isShow={this.state.isSelectYesOrNo} topTitle={'是'} bottomTitle={'否'}/>
-                <MyDatePicker isShow={this.state.isSelectDate} callBack={this.selectDate.bind(this)}  ref={ref => this.MyDatePicker = ref}/>
+                <SelectYesOrNo yesOrNo={this.yesOrNo.bind(this)} isShow={this.state.isSelectYesOrNo} topTitle={'是'}
+                               bottomTitle={'否'}/>
+                <SelectYesOrNo yesOrNo={this.takerPhotoOrSelect.bind(this)} isShow={this.state.isShowSelectPhoto}
+                               topTitle={'拍照'} bottomTitle={'从相册中选择'}/>
+                <MyDatePicker isShow={this.state.isSelectDate} callBack={this.selectDate.bind(this)}
+                              ref={ref => this.MyDatePicker = ref}/>
             </View>
         );
     }
