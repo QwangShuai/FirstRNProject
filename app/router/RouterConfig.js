@@ -10,10 +10,12 @@ import Set from '../pages/Set';
 import PersonalInfo from '../pages/PersonalInfo';
 import PersonalInfoHead from '../components/PersonalInfoHead';
 import Update from '../pages/Update';
-
+import Apply from  '../pages/Apply';
 const RouterConfig = StackNavigator({
-    PersonalInfo: {screen: PersonalInfo},
+    Apply:{screen:Apply},
     Home: {screen: LoginLeaf},
+    PersonalInfo: {screen: PersonalInfo},
+
     Wait: {screen: WaitingLeaf},
     Register: {screen: Registered},
     Set: {screen: Set},

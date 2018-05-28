@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
-import { AppRegistry ,View,Text,Image,StyleSheet,Dimensions,PixelRatio,TextInput,Alert} from 'react-native';
+import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,Alert} from 'react-native';
 // import App from './App';
 import {StackNavigator} from 'react-navigation';
 import Registered from './Registered';
 import ToolBar from '../components/ToolBar';
 const Stylecss = require('../common/Stylecss');
-let widthOfMargin = Dimensions.get('window').width * 0.05;
-const {height,width} = Dimensions.get('window');
-const pixelRatio = PixelRatio.get();
 import UtilScree from '../util/UtilScreen'
 export default class LoginLeaf extends Component {
     static navigationOptions = {
-        // title:'登录',
         headerStyle:{height:0},
     };
     constructor(props){
@@ -46,7 +42,7 @@ export default class LoginLeaf extends Component {
         const navigate = this.props.navigation;
         return (
             <View style={Stylecss.styles.container}>
-                <ToolBar  title={'注册'} isShowBack={true} backClick={this.backClick.bind(this)}/>
+                    <ToolBar  123333344/>
                 <Image source={require('../../asstes/head.png')} style={Stylecss.styles.login_head_image}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入手机号'} onChangeText={this.updateNum}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入你的密码'} secureTextEntry={true}/>
