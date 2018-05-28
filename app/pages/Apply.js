@@ -11,17 +11,15 @@ export default class Apply extends Component {
     constructor(props){
         super(props);
         this.state = {
-            itemInfo1: [
-                {key: 0, lTitle:`姓        名:`, rHint: '请输入姓名',},
-                {key: 1, lTitle: '联系方式:', rHint: '请输入手机号',},
-                {key: 2, lTitle:`性        别:`, rHint: '请输入性别',},
-                {key: 3, lTitle:`年        龄:`, rHint: '请输入年龄',},
-                {key: 4, lTitle: '婚姻状况:', rHint: '请输入婚姻状况',},
-            ],
-            itemInfo2:[
+            itemInfo: [
                 {key:0,lTitle:'活动标题:',rHint:'上海7日行',},
                 {key:1,lTitle:'出发时间:',rHint:'2018-05-28',},
                 {key:2,lTitle:`费        用:`,rHint:'￥888.00',},
+                {key: 3, lTitle:`姓        名:`, rHint: '请输入姓名',},
+                {key: 4, lTitle: '联系方式:', rHint: '请输入手机号',},
+                {key: 5, lTitle:`性        别:`, rHint: '请输入性别',},
+                {key: 6, lTitle:`年        龄:`, rHint: '请输入年龄',},
+                {key: 7, lTitle: '婚姻状况:', rHint: '请输入婚姻状况',},
             ],
         }
     }
@@ -33,28 +31,13 @@ export default class Apply extends Component {
             <View style={styles.container}>
                 <ToolBar title={'报名'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <FlatList
-                    data={this.state.itemInfo2}
+                    data={this.state.itemInfo}
                     renderItem={({item}) => {
                         return (
                             <View>
                                 <TouchableHighlight style={styles.lightitem}
                                                     underlayColor={'#f8f8f8'}
                                 >
-                                    <ApplyItem itemInfo={item}/></TouchableHighlight>
-                                <View style={styles.line}/>
-                            </View>
-                        );
-                    }}
-                    keyExtractor={item => item.key.toString()}
-                ></FlatList>
-                <FlatList
-                    data={this.state.itemInfo1}
-                    renderItem={({item}) => {
-                        return (
-                            <View>
-                                <TouchableHighlight style={styles.lightitem}
-                                                    underlayColor={'#f8f8f8'}
-                                                   >
                                     <ApplyInfoItem itemInfo={item}/></TouchableHighlight>
                                 <View style={styles.line}/>
                             </View>
@@ -62,7 +45,6 @@ export default class Apply extends Component {
                     }}
                     keyExtractor={item => item.key.toString()}
                 ></FlatList>
-                <Text></Text>
             </View>
         );
     };
