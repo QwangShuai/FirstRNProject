@@ -18,7 +18,7 @@ export default class ApplyInfoItem extends Component {
         return(
             <View style={styles.container}>
                 <Text style={styles.leftText}>{this.props.lTitle}</Text>
-                <TextInput style={styles.rightHint} placeholder={this.props.rHint}/>
+                <TextInput style={styles.rightHint} placeholder={this.props.rHint} underlineColorAndroid={'transparent'}/>
             </View>
         )
     }
@@ -36,11 +36,15 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         color: '#333',
         fontSize: 14,
+        width:UtilScreen.getWidth(140),
         marginLeft: UtilScreen.getWidth(38),
     },
     rightHint:{
       // lineHeight:UtilScreen.getHeight(86),
       fontSize:14,
+        width:'100%',
       alignSelf:'center',
+        // borderBottomColor:'#fff',
+
     },
 })
