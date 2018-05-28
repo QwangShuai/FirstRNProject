@@ -12,11 +12,12 @@ import PersonalInfoHead from '../components/PersonalInfoHead';
 import Update from '../pages/Update';
 
 const RouterConfig = StackNavigator({
+    PersonalInfo: {screen: PersonalInfo},
     Home: {screen: LoginLeaf},
     Wait: {screen: WaitingLeaf},
     Register: {screen: Registered},
     Set: {screen: Set},
-    PersonalInfo: {screen: PersonalInfo},
+
     PersonalInfoHead: {screen: PersonalInfoHead},
     Update: {screen: Update},
 });

@@ -9,7 +9,6 @@
   "dependencies": {
     "react": "16.3.1",
     "react-native": "0.55.4",
-    "react-native-picker": "^4.3.7",
     "react-navigation": "^2.0.1"
   },
   "devDependencies": {

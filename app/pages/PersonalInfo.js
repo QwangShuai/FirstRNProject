@@ -5,8 +5,6 @@ import UtilScreen from '../util/UtilScreen'
 import PersonalInfoItem from '../components/PersonalInfoItem';
 import PersonalInfoHead from '../components/PersonalInfoHead';
 import SelectYesOrNo from '../components/SelectYesOrNo';
-import PickerData from "../components/PickerData";
-import DatePicker from '../components/DatePicker';
 
 export default class PersonalInfo extends Component {
     constructor(props) {
@@ -115,9 +113,6 @@ export default class PersonalInfo extends Component {
                     keyExtractor={item => item.key.toString()}
                 ></FlatList>
                 <SelectYesOrNo yesOrNo={this.yesOrNo.bind(this)} isShow={this.state.isSelectYesOrNo}/>
-                <PickerData title={this.state.selectItemDate.title} type={'date'} isShow={this.state.isSelectDate}
-                            selectDate={this.selectDate.bind(this)}/>
-                <DatePicker type={'date'}/>
             </View>
         );
     }
