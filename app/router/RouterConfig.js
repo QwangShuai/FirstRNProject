@@ -14,14 +14,13 @@ import Update from '../pages/Update';
 import PickerViewDemo from '../components/PickerViewDemo';
 import Apply from  '../pages/Apply';
 const RouterConfig = StackNavigator({
-    PersonalInfo: {screen: PersonalInfo},
     Apply:{screen:Apply},
     Home: {screen: LoginLeaf},
     PersonalInfo: {screen: PersonalInfo},
     Wait: {screen: WaitingLeaf},
     Register: {screen: Registered},
     Set: {screen: Set},
-
+    PersonalInfo: {screen: PersonalInfo},
     PersonalInfoHead: {screen: PersonalInfoHead},
     Update: {screen: Update},
     PickerViewDemo:{screen:PickerViewDemo},

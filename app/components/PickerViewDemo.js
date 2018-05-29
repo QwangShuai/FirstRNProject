@@ -6,21 +6,19 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-import {
-    BaseComponent,
-    BaseDialog,
-    AreaPicker,
-    CustomPicker,
-    DatePicker,
-    InputDialog,
-    PickerView,
-    SimpleChooseDialog,
-    SimpleItemsDialog,
-    AlertDialog,
-    DownloadDialog,
-    ToastComponent
-} from 'react-native-pickers';
 
+import BaseDialog from './pickerview/view/BaseDialog';
+import BaseComponent from './pickerview/view/BaseComponent';
+import AreaPicker from './pickerview/view/AreaPicker';
+import CustomPicker from './pickerview/view/CustomPicker';
+import DatePicker from './pickerview/view/DatePicker';
+import PickerView from './pickerview/view/PickerView';
+import SimpleChooseDialog from './pickerview/view/SimpleChooseDialog';
+import SimpleItemsDialog from './pickerview/view/SimpleItemsDialog';
+import AlertDialog from './pickerview/view/AlertDialog';
+import DownloadDialog from './pickerview/view/DownloadDialog';
+import ToastComponent from './pickerview/view/ToastComponent';
+import InputDialog from './pickerview/view/InputDialog';
 import AreaJson from './Area.json';
 
 export default class PickerViewDemo extends BaseComponent {
@@ -106,6 +104,7 @@ export default class PickerViewDemo extends BaseComponent {
                              onSubmit={(text) => { alert(text) }} />
                 <CustomPicker ref={ref => this.CustomPicker = ref} />
                 <AreaPicker
+                    style={{height:500}}
                     areaJson={AreaJson}
                     onPickerCancel={() => { }}
                     onPickerConfirm={(value) => {

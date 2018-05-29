@@ -6,30 +6,9 @@ import PersonalInfoItem from '../components/PersonalInfoItem';
 import PersonalInfoHead from '../components/PersonalInfoHead';
 import SelectYesOrNo from '../components/SelectYesOrNo';
 import MyDatePicker from '../components/MyDatePicker';
+import GetPhotoFromPhone from '../util/GetPhotoFromPhone';
+import SelectArea from "../components/SelectArea";
 
-const ImagePicker = require('react-native-image-picker');
-const options = {
-    title: '选择图片',
-    cancelButtonTitle: '取消',
-    takePhotoButtonTitle: '拍照',
-    chooseFromLibraryButtonTitle: '图片库',
-    cameraType: 'back',
-    mediaType: 'photo',
-    videoQuality: 'high',
-    durationLimit: 10,
-    maxWidth: 600,
-    maxHeight: 600,
-    aspectX: 2,
-    aspectY: 1,
-    quality: 0.8,
-    angle: 0,
-    allowsEditing: false,
-    noData: false,
-    storageOptions: {
-        skipBackup: true,
-        path: 'images'
-    }
-};
 export default class PersonalInfo extends Component {
     constructor(props) {
         super(props);
@@ -53,6 +32,8 @@ export default class PersonalInfo extends Component {
             isSelectYesOrNo: false,
             isSelectDate: false,
             isShowSelectPhoto: false,
+            isSelectSex: false,
+            isShowSelectArea: false,
             headImageSource: {},
         }
         this.selectItemDate = {key: 4, title: '选择您的出生日期'};
@@ -75,8 +56,12 @@ export default class PersonalInfo extends Component {
             case 0:
                 break;
             case 1:
+                this.setState({isSelectSex: !this.state.isSelectSex,});
                 break;
             case 2:
+                this.setState({
+                    isShowSelectArea: true,
+                });
                 break;
             case 3:
                 break;
@@ -102,11 +87,28 @@ export default class PersonalInfo extends Component {
         }
     }
 
+    /**
+     * 选择是否单身
+     * @param type
+     */
     yesOrNo(type) {
         this.state.itemInfo[7].rValue = type === 1 ? '是' : '否';
         let data = this.state.itemInfo.concat();
         this.setState({
             isSelectYesOrNo: false,
+            itemInfo: data,
+        });
+    }
+
+    /**
+     * 选择性别回调
+     * @param type
+     */
+    selectSex(type) {
+        this.state.itemInfo[1].rValue = type === 1 ? '男' : 'nv';
+        let data = this.state.itemInfo.concat();
+        this.setState({
+            isSelectSex: false,
             itemInfo: data,
         });
     }
@@ -132,46 +134,29 @@ export default class PersonalInfo extends Component {
         this.setState({
             isShowSelectPhoto: false,
         });
+        let getPhoto = new GetPhotoFromPhone(this);
         if (type === 1) {
-            ImagePicker.launchCamera({}, (response) => {
-                // Same code as in above section!
-                if (response.didCancel) {
-                    console.log('User cancelled image picker');
-                }
-                else if (response.error) {
-                    console.log('ImagePicker Error: ', response.error);
-                }
-                else if (response.customButton) {
-                    console.log('User tapped custom button: ', response.customButton);
-                }
-                else {
-                    let source = {uri: response.data};
-                    this.setState({
-                        headImageSource: source
-                    });
-                }
-            });
+            getPhoto.takerPhoto();
         } else {
-            ImagePicker.launchImageLibrary(options, (response) => {
-                if (response.didCancel) {
-                    console.log('User cancelled image picker');
-                }
-                else if (response.error) {
-                    console.log('ImagePicker Error: ', response.error);
-                }
-                else if (response.customButton) {
-                    console.log('User tapped custom button: ', response.customButton);
-                }
-                else {
-                    let source = {uri: response.uri};
-                    alert(response.uri)
-                    this.setState({
-                        headImageSource: source
-                    });
-                }
-            });
-
+            getPhoto.selectPhoto();
         }
+    }
+
+    /**
+     * 拍照或者选择照片回调，返回链接对象
+     * @param obj
+     */
+    photoResult(obj) {
+        this.setState({
+            headImageSource: obj
+        });
+    }
+
+    selectAreaResult(area) {
+        let [province,city,street]=area;
+        this.state.itemInfo[2].rValue = province+'-'+city+'-'+street;
+        let data = this.state.itemInfo.concat();
+        this.setState({isShowSelectArea: false, itemInfo: data});
     }
 
     render() {
@@ -197,10 +182,13 @@ export default class PersonalInfo extends Component {
                 ></FlatList>
                 <SelectYesOrNo yesOrNo={this.yesOrNo.bind(this)} isShow={this.state.isSelectYesOrNo} topTitle={'是'}
                                bottomTitle={'否'}/>
+                <SelectYesOrNo yesOrNo={this.selectSex.bind(this)} isShow={this.state.isSelectSex} topTitle={'男'}
+                               bottomTitle={'女'}/>
                 <SelectYesOrNo yesOrNo={this.takerPhotoOrSelect.bind(this)} isShow={this.state.isShowSelectPhoto}
                                topTitle={'拍照'} bottomTitle={'从相册中选择'}/>
                 <MyDatePicker isShow={this.state.isSelectDate} callBack={this.selectDate.bind(this)}
                               ref={ref => this.MyDatePicker = ref}/>
+                <SelectArea isShow={this.state.isShowSelectArea} callBack={this.selectAreaResult.bind(this)}/>
             </View>
         );
     }
