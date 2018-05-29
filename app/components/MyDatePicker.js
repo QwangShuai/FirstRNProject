@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {DatePicker} from 'react-native-pickers';
+import DatePicker from './pickerview/view/DatePicker';
 
 export default class MyDatePicker extends Component {
     constructor(props) {
@@ -8,7 +8,7 @@ export default class MyDatePicker extends Component {
         this.state = {
             unit: ['年', '月', '日'],
             startYear: 1900,
-            endYear:2050,
+            endYear: 2050,
         }
     }
 

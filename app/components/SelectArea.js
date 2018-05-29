@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {AreaPicker} from 'react-native-pickers';
+import AreaPicker from './pickerview/view/AreaPicker';
 import AreaJson from './Area.json';
+
 export default class SelectArea extends Component {
     constructor(props) {
         super(props);
@@ -20,12 +21,13 @@ export default class SelectArea extends Component {
         return (
             <AreaPicker
                 areaJson={AreaJson}
-                selectedValue={['北京市','北京市','东城区']}
-                onPickerCancel={() => { }}
+                selectedValue={['北京市', '北京市', '东城区']}
+                onPickerCancel={() => {
+                }}
                 onPickerConfirm={(value) => {
                     this.props.callBack(value);
                 }}
-                ref={ref => this.AreaPicker = ref} />
+                ref={ref => this.AreaPicker = ref}/>
         );
     }
 }

@@ -1,5 +1,4 @@
-
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import {
     View,
@@ -28,19 +27,23 @@ class InputDialog extends BaseDialog {
         btnTextColor: '#ffffff',
         btnBgColor: '#1097D5',
         placeholder: '请尽量说明问题，我们将尽快处理...',
-        onSubmit: null
+        onSubmit: null,
+        maxSize: 20
     }
 
     constructor(props) {
         super(props);
+        this.state = {
+            inputText: '',
+        }
     }
 
     _getContentPosition() {
-        return { justifyContent: 'flex-end', alignItems: 'center' }
+        return {justifyContent: 'flex-end', alignItems: 'center'}
     }
 
     show(text) {
-        super.show(null, { text: text });
+        super.show(null, {text: text});
         this.textInput.focus();
     }
 
@@ -50,45 +53,75 @@ class InputDialog extends BaseDialog {
     }
 
     renderContent() {
-        return <View style={{ width: this.mScreenWidth, backgroundColor: '#f8f8f8' }}>
+        return <View style={{width: this.mScreenWidth, backgroundColor: '#f8f8f8', marginBottom: this.getSize(0)}}>
             <View style={{
                 width: this.mScreenWidth, height: this.getSize(50),
                 flexDirection: 'row', paddingLeft: this.getSize(10),
                 justifyContent: 'center', alignItems: 'center'
             }}>
                 <TouchableOpacity
-                    onPress={() => this.dismiss()}
+                    onPress={() => this.dismiss(this.props.onCoverPress)}
                     style={{
                         position: 'absolute', left: this.getSize(10),
                         height: this.getSize(40), flexDirection: 'row',
                         justifyContent: 'center', alignItems: 'center', marginLeft: this.getSize(5)
                     }}>
-                    <Text style={{ fontSize: this.props.cancelSize, color: this.props.cancelColor, marginLeft: this.getSize(5) }}>{this.props.cancelText}</Text>
+                    <Text style={{
+                        fontSize: this.props.cancelSize,
+                        color: this.props.cancelColor,
+                        marginLeft: this.getSize(5)
+                    }}>{this.props.cancelText}</Text>
                 </TouchableOpacity>
-                <Text style={{ position: 'absolute', fontSize: this.props.titleSize, color: this.props.titleColor, fontWeight: '600' }}>{this.props.title}</Text>
+                <Text style={{
+                    position: 'absolute',
+                    fontSize: this.props.titleSize,
+                    color: this.props.titleColor,
+                    fontWeight: '600'
+                }}>{this.props.title}</Text>
             </View>
             <TextInput ref={ref => this.textInput = ref}
-                style={{
-                    width: this.getSize(345), marginLeft: this.getSize(15),
-                    height: this.getSize(100), color: '#333333', fontSize: this.getSize(14),
-                    borderWidth: 1, borderColor: '#E8EEF0', backgroundColor: '#ffffff', borderRadius: this.getSize(4),
-                    paddingLeft: this.getSize(15), paddingRight: this.getSize(15), paddingTop: this.getSize(10)
-                }}
-                numberOfLines={4}
-                multiline={true}
-                value={this.state.text}
-                underlineColorAndroid={'transparent'}
-                placeholder={this.props.placeholder}
-                placeholderTextColor='#999999'
-                onChangeText={(text) => {
-                    this.inputText = text;
-                }} />
+                       style={{
+                           width: this.getSize(345),
+                           marginLeft: this.getSize(15),
+                           height: this.getSize(100),
+                           color: '#333333',
+                           fontSize: this.getSize(14),
+                           borderWidth: 1,
+                           borderColor: '#E8EEF0',
+                           backgroundColor: '#ffffff',
+                           borderRadius: this.getSize(4),
+                           paddingLeft: this.getSize(15),
+                           paddingRight: this.getSize(15),
+                           paddingTop: this.getSize(10)
+                       }}
+                       numberOfLines={4}
+                       multiline={true}
+                       value={this.state.text}
+                       underlineColorAndroid={'transparent'}
+                       placeholder={this.props.placeholder}
+                       placeholderTextColor='#999999'
+                       onChangeText={(text) => {
+                           this.inputText = text;
+                           this.setState({
+                               inputText: text,
+                           });
+                       }}/>
             <View style={{
-                width: this.mScreenWidth, height: this.getSize(48), paddingRight: this.getSize(15),
-                justifyContent: 'center', alignItems: 'flex-end'
+                flexDirection: 'row',
+                width: this.mScreenWidth,
+                height: this.getSize(48),
+                paddingRight: this.getSize(15),
+                paddingLeft: this.getSize(15),
+                marginBottom: this.getSize(30),
+                justifyContent: 'space-between',
+                alignItems: 'center'
             }}>
+                <Text style={{
+                    color: this.state.inputText.length > this.props.maxSize ? 'red' : '#999999',
+                    fontSize: 14
+                }}>{this.state.inputText.length}/{this.props.maxSize}{this.state.inputText.length > this.props.maxSize ? '  最多输入' + this.props.maxSize + '个字符' : ''}</Text>
                 <TouchableOpacity
-                    onPress={() => this.dismiss(() => {
+                    onPress={() => this.state.inputText.length <= this.props.maxSize && this.dismiss(() => {
                         this.props.onSubmit && this.props.onSubmit(this.inputText);
                     })}
                     style={{
@@ -96,11 +129,14 @@ class InputDialog extends BaseDialog {
                         justifyContent: 'center', alignItems: 'center',
                         backgroundColor: this.props.btnBgColor, borderRadius: this.getSize(4)
                     }}>
-                    <Text style={{ fontSize: this.props.btnTextSize, color: this.props.btnTextColor }}>{this.props.btnText}</Text>
+                    <Text style={{
+                        fontSize: this.props.btnTextSize,
+                        color: this.props.btnTextColor
+                    }}>{this.props.btnText}</Text>
                 </TouchableOpacity>
             </View>
-            <KeyboardSpacer />
-        </View >
+            <KeyboardSpacer/>
+        </View>
     }
 
 }

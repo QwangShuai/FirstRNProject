@@ -1,5 +1,4 @@
-
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import {
     Animated,
@@ -33,13 +32,13 @@ export default class BaseDialog extends BaseComponent {
     }
 
     show(callback, state = {}) {
-        this.setState({ _isShow: true, ...state }, () => {
+        this.setState({_isShow: true, ...state}, () => {
             if (!this.props.showAnimationType || this.props.showAnimationType == 'spring') {
-                Animated.spring(this._path, { toValue: 1 }).start(() => {
+                Animated.spring(this._path, {toValue: 1}).start(() => {
                     callback && callback();
                 });
             } else {
-                Animated.timing(this._path, { toValue: 1 }).start(() => {
+                Animated.timing(this._path, {toValue: 1}).start(() => {
                     callback && callback();
                 });
             }
@@ -47,8 +46,8 @@ export default class BaseDialog extends BaseComponent {
     }
 
     dismiss(callback) {
-        Animated.timing(this._path, { toValue: 0, duration: 200 }).start(() => {
-            this.setState({ _isShow: false }, () => {
+        Animated.timing(this._path, {toValue: 0, duration: 200}).start(() => {
+            this.setState({_isShow: false}, () => {
                 callback && callback();
             });
         });
@@ -56,7 +55,7 @@ export default class BaseDialog extends BaseComponent {
 
     /**
      * 重写前景动画效果
-     * @param {*} path 
+     * @param {*} path
      */
     _getContentInterpolate(path) {
         return [
@@ -76,7 +75,7 @@ export default class BaseDialog extends BaseComponent {
      * 前景位置
      */
     _getContentPosition() {
-        return { justifyContent: 'center', alignItems: 'center' }
+        return {justifyContent: 'center', alignItems: 'center'}
     }
 
     /**
@@ -110,12 +109,13 @@ export default class BaseDialog extends BaseComponent {
                     onPress={() => {
                         if (!this.props || (this.props.coverClickable || this.props.coverClickable == null)) {
                             this.dismiss(this.props.onCoverPress);
+                            console.log(this.props.onCoverPress);
                         }
                     }}
-                    style={{ position: 'absolute', width: this.mScreenWidth, height: this.mScreenHeight }} />
+                    style={{position: 'absolute', width: this.mScreenWidth, height: this.mScreenHeight}}/>
 
                 <Animated.View style={{
-                    opacity: this._path.interpolate({ inputRange: [0, 0.5, 1], outputRange: [0, 0, 1] }),
+                    opacity: this._path.interpolate({inputRange: [0, 0.5, 1], outputRange: [0, 0, 1]}),
                     transform: this._getContentInterpolate(this._path),
                 }}>
                     {this.renderContent()}

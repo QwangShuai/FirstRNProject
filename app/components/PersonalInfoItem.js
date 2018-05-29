@@ -18,19 +18,21 @@ export default class PersonalInfoItem extends Component {
     }
 
     render() {
-            return (
-                <View style={styles.container}>
-                    <View style={styles.itemLeft}>
-                        <Image
-                            style={styles.itemImage}
-                            source={this.props.itemInfo.imageURL}
-                            resizeMode='contain'
-                        />
-                        <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
-                    </View>
-                    <Text style={styles.rightValue}>{this.props.itemInfo.rValue}</Text>
+        return (
+            <View style={styles.container}>
+                <View style={styles.itemLeft}>
+                    <Image
+                        style={styles.itemImage}
+                        source={this.props.itemInfo.imageURL}
+                        resizeMode='contain'
+                    />
+                    <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
                 </View>
-            );
+                <Text numberOfLines={2}
+                      style={styles.rightValue}>{this.props.itemInfo.rValue}
+                </Text>
+            </View>
+        );
     }
 }
 const styles = StyleSheet.create({
@@ -38,7 +40,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: UtilScreen.getHeight(86),
         flexDirection: 'row',
-        justifyContent: "space-between",
+        alignItems: 'center',
     },
     itemLeft: {
         height: '100%',
@@ -56,9 +58,14 @@ const styles = StyleSheet.create({
         height: UtilScreen.getWidth(52),
     },
     rightValue: {
-        lineHeight: UtilScreen.getHeight(86),
+        position: 'absolute',
+        textAlign: 'right',
+        width: UtilScreen.getWidth(490),
         color: '#333',
         fontSize: 14,
         marginRight: UtilScreen.getWidth(40),
+        right: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });

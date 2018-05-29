@@ -8,6 +8,7 @@ import SelectYesOrNo from '../components/SelectYesOrNo';
 import MyDatePicker from '../components/MyDatePicker';
 import GetPhotoFromPhone from '../util/GetPhotoFromPhone';
 import SelectArea from "../components/SelectArea";
+import MyInputDialog from "../components/MyInputDialog";
 
 export default class PersonalInfo extends Component {
     constructor(props) {
@@ -34,6 +35,16 @@ export default class PersonalInfo extends Component {
             isShowSelectPhoto: false,
             isSelectSex: false,
             isShowSelectArea: false,
+            isShowInputName: false,
+            isShowInputSign: false,
+            inputNameProps: {
+                title: '请输入昵称',
+                placeholder: '20个字符以内，仅可以输入汉字、字母、数字或下划线',
+            },
+            inputSignProps: {
+                title: '签名',
+                placeholder: '20个字符以内，仅可以输入汉字、字母、数字或下划线',
+            },
             headImageSource: {},
         }
         this.selectItemDate = {key: 4, title: '选择您的出生日期'};
@@ -54,6 +65,9 @@ export default class PersonalInfo extends Component {
     itemClick(item) {
         switch (item.key) {
             case 0:
+                this.setState({
+                    isShowInputName: true,
+                });
                 break;
             case 1:
                 this.setState({isSelectSex: !this.state.isSelectSex,});
@@ -64,6 +78,9 @@ export default class PersonalInfo extends Component {
                 });
                 break;
             case 3:
+                this.setState({
+                    isShowInputSign: true,
+                });
                 break;
             case 4:
                 this.setState({
@@ -152,11 +169,41 @@ export default class PersonalInfo extends Component {
         });
     }
 
+    /**
+     * 选择所在地回调
+     * @param area
+     */
     selectAreaResult(area) {
-        let [province,city,street]=area;
-        this.state.itemInfo[2].rValue = province+'-'+city+'-'+street;
+        let [province, city, street] = area;
+        this.state.itemInfo[2].rValue = province + '-' + city + '-' + street;
         let data = this.state.itemInfo.concat();
         this.setState({isShowSelectArea: false, itemInfo: data});
+    }
+
+    /**
+     * 输入名字回调
+     */
+    inputNameResult(name) {
+        this.state.itemInfo[0].rValue = name;
+        let data = this.state.itemInfo.concat();
+        this.setState({isShowInputName: false, itemInfo: data});
+    }
+
+    /**
+     * 输入签名回调
+     */
+    inputSignResult(sign) {
+        this.state.itemInfo[3].rValue = sign;
+        let data = this.state.itemInfo.concat();
+        this.setState({isShowInputSign: false, itemInfo: data});
+    }
+
+    /**
+     * InputDialog调用dismiss的时候回调
+     * @constructor
+     */
+    inputDialogDismissBack() {
+        this.setState({isShowInputName: false, isShowInputSign: false});
     }
 
     render() {
@@ -189,6 +236,12 @@ export default class PersonalInfo extends Component {
                 <MyDatePicker isShow={this.state.isSelectDate} callBack={this.selectDate.bind(this)}
                               ref={ref => this.MyDatePicker = ref}/>
                 <SelectArea isShow={this.state.isShowSelectArea} callBack={this.selectAreaResult.bind(this)}/>
+                <MyInputDialog isShow={this.state.isShowInputName} callBack={this.inputNameResult.bind(this)}
+                               onCoverPress={this.inputDialogDismissBack.bind(this)}
+                               inputProps={this.state.inputNameProps}/>
+                <MyInputDialog isShow={this.state.isShowInputSign} callBack={this.inputSignResult.bind(this)}
+                               onCoverPress={this.inputDialogDismissBack.bind(this)}
+                               inputProps={this.state.inputSignProps}/>
             </View>
         );
     }
@@ -197,8 +250,9 @@ export default class PersonalInfo extends Component {
 const
     styles = StyleSheet.create({
         container: {
-            flex: 1,
-            backgroundColor: '#fff'
+            width: UtilScreen.getWidth(750),
+            height: UtilScreen.getHeight(1334),
+            backgroundColor: '#fff',
         },
         lightitem: {
             backgroundColor: '#fff'
