@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,FlatList, TouchableHighlight} from 'react-native';
+import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,FlatList, TouchableHighlight,Modal} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
 import ApplyInfoItem from '../components/ApplyInfoItem';
+const Stylecss = require('../common/Stylecss');
 export default class Apply extends Component {
     static navigationOptions = {
         headerStyle:{height:0},
@@ -20,10 +21,14 @@ export default class Apply extends Component {
                 {key: 6, lTitle:`年        龄:`, rHint: '请输入年龄',},
                 {key: 7, lTitle: '婚姻状况:', rHint: '请输入婚姻状况',},
             ],
+            modalVisible: true,
         }
     }
     backClick(){
 
+    }
+    setModalVisible(visible) {
+        this.setState({modalVisible: visible});
     }
     render(){
         return(
@@ -34,18 +39,31 @@ export default class Apply extends Component {
                     renderItem={({item}) => {
                         return (
                             <View>
-                                <TouchableHighlight style={styles.lightitem}
+                                <TouchableHighlight style={Stylecss.styles.lightitem}
                                                     underlayColor={'#f8f8f8'}
                                 >
                                     <ApplyInfoItem itemInfo={item}/></TouchableHighlight>
-                                <View style={styles.line}/>
+                                <View style={Stylecss.styles.line}/>
                             </View>
                         );
                     }}
                     keyExtractor={item => item.key.toString()}
                 ></FlatList>
-                <View style={styles.paymentView}>
-                    <Text style={styles.paymentText}>支付</Text>
+                <View style={Stylecss.styles.payView}>
+                    <Text style={Stylecss.styles.leftText}>支付方式:</Text>
+                    <View style={Stylecss.styles.selectView}>
+                        <Image style={Stylecss.styles.payImage} source={require('../res/images/apply_wechat.png')}/>
+                        <Text style={Stylecss.styles.payText}>微信支付</Text>
+                        <Image style={Stylecss.styles.selectImage} source={require('../res/images/apply_true.png')}/>
+                    </View>
+                    <View style={Stylecss.styles.selectView}>
+                        <Image style={Stylecss.styles.payImage} source={require('../res/images/apply_alipay.png')}/>
+                        <Text style={Stylecss.styles.payText}>支付宝</Text>
+                        <Image style={Stylecss.styles.selectImage} source={require('../res/images/apply_false.png')}/>
+                    </View>
+                </View>
+                <View style={Stylecss.styles.paymentView}>
+                    <Text style={Stylecss.styles.paymentText}>支付</Text>
                 </View>
 
             </View>
@@ -57,30 +75,5 @@ const
         container: {
             flex: 1,
             backgroundColor: '#fff'
-        },
-        lightitem: {
-            backgroundColor: '#fff'
-        },
-        line: {
-            width: '100%',
-            height: UtilScreen.getHeight(15),
-            backgroundColor: '#f8f8f8',
-        },
-        paymentView:{
-            width:UtilScreen.getWidth(700),
-            marginLeft:UtilScreen.getWidth(24),
-            marginRight:UtilScreen.getWidth(24),
-            height:UtilScreen.getHeight(88),
-            position:'absolute',
-            bottom:UtilScreen.getHeight(40),
-            backgroundColor:'#ff9d00',
-            borderRadius:UtilScreen.getWidth(12),
-            justifyContent:'center',
-            alignItems:'center',
-        },
-        paymentText:{
-            alignSelf:'center',
-            color:'#ffffff',
-            fontSize:18,
         },
     });

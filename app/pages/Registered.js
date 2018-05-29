@@ -41,7 +41,7 @@ export default class Registered extends   Component {
         return (
             <View style={Stylecss.styles.container}>
                 <ToolBar  title={'注册'} isShowBack={true} backClick={this.backClick.bind(this)}/>
-                <Image source={require('../../asstes/head.png')} style={Stylecss.styles.login_head_image}/>
+                <Image source={require('../res/images/head.png')} style={Stylecss.styles.login_head_image}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入手机号'} onChangeText={this.updateNum} keybordType={'number-pad'}/>
                 <View style={Stylecss.styles.other_view}>
                     <TextInput style={Stylecss.styles.register_getcode} />

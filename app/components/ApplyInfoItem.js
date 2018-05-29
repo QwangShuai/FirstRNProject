@@ -29,22 +29,7 @@ export default class ApplyInfoItem extends Component {
                     <TextInput style={styles.rightHint} placeholder={this.props.itemInfo.rHint} underlineColorAndroid={'transparent'}/>
                 </View>
             )
-        } else {
-            <View>
-                <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
-                <View>
-                    <Image style={styles.leftImage} source={require('../res/images/wechat.png')}></Image>
-                    <Text></Text>
-                    <Image></Image>
-                </View>
-                <View>
-                    <Image></Image>
-                    <Text></Text>
-                    <Image></Image>
-                </View>
-            </View>
         }
-
     }
 }
 
@@ -77,12 +62,5 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         color:'#333',
         lineHeight:UtilScreen.getHeight(86),
-    },
-    leftImage:{
-        marginLeft:UtilScreen.getWidth(38),
-        width:UtilScreen.getWidth(30),
-    },
-    leftPayment:{
-
     },
 })
