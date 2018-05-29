@@ -44,6 +44,19 @@ export default class Apply extends Component {
                     }}
                     keyExtractor={item => item.key.toString()}
                 ></FlatList>
+                <View style={styles.payView}>
+                    <Text style={styles.leftText}>支付方式:</Text>
+                    <View style={styles.selectView}>
+                        <Image style={styles.payImage} source={require('../res/images/apply_wechat.png')}/>
+                        <Text style={styles.payText}>微信支付</Text>
+                        <Image style={styles.selectImage} source={require('../res/images/apply_true.png')}/>
+                    </View>
+                    <View style={styles.selectView}>
+                        <Image style={styles.payImage} source={require('../res/images/apply_alipay.png')}/>
+                        <Text style={styles.payText}>支付宝</Text>
+                        <Image style={styles.selectImage} source={require('../res/images/apply_false.png')}/>
+                    </View>
+                </View>
                 <View style={styles.paymentView}>
                     <Text style={styles.paymentText}>支付</Text>
                 </View>
@@ -82,5 +95,40 @@ const
             alignSelf:'center',
             color:'#ffffff',
             fontSize:18,
+        },
+        payView:{
+            position:'absolute',
+            bottom:UtilScreen.getHeight(200),
+          height:UtilScreen.getHeight(242),
+          flexDirection:'column',
+        },
+        payImage:{
+            alignSelf:'center',
+            width:UtilScreen.getWidth(38),
+            marginLeft:UtilScreen.getWidth(40),
+
+        },
+        payText:{
+            lineHeight:UtilScreen.getHeight(88),
+            marginLeft:UtilScreen.getWidth(10),
+            fontSize:14,
+            color:'#333333',
+        },
+        selectImage:{
+            position:'absolute',
+            right:UtilScreen.getWidth(46),
+        },
+        selectView:{
+            flex:1,
+          flexDirection:'row',
+            height:UtilScreen.getHeight(76),
+        },
+        leftText: {
+            alignSelf:'center',
+            color: '#333',
+            fontSize: 14,
+            width:UtilScreen.getWidth(140),
+            marginLeft: UtilScreen.getWidth(38),
+            textAlign:'justify',
         },
     });
