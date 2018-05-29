@@ -168,5 +168,65 @@ export const styles = StyleSheet.create({
         lineHeight:UtilScreen.getHeight(80),
         fontSize:14,
         color:'#333333',
-    }
+    },
+    lightitem: {
+        backgroundColor: '#fff'
+    },
+    line: {
+        width: '100%',
+        height: UtilScreen.getHeight(15),
+        backgroundColor: '#f8f8f8',
+    },
+    paymentView:{
+        width:UtilScreen.getWidth(700),
+        marginLeft:UtilScreen.getWidth(24),
+        marginRight:UtilScreen.getWidth(24),
+        height:UtilScreen.getHeight(88),
+        position:'absolute',
+        bottom:UtilScreen.getHeight(40),
+        backgroundColor:'#ff9d00',
+        borderRadius:UtilScreen.getWidth(12),
+        justifyContent:'center',
+        alignItems:'center',
+    },
+    paymentText:{
+        alignSelf:'center',
+        color:'#ffffff',
+        fontSize:18,
+    },
+    payView:{
+        position:'absolute',
+        bottom:UtilScreen.getHeight(200),
+        height:UtilScreen.getHeight(242),
+        flexDirection:'column',
+    },
+    payImage:{
+        alignSelf:'center',
+        width:UtilScreen.getWidth(38),
+        marginLeft:UtilScreen.getWidth(40),
+
+    },
+    payText:{
+        lineHeight:UtilScreen.getHeight(88),
+        marginLeft:UtilScreen.getWidth(10),
+        fontSize:14,
+        color:'#333333',
+    },
+    selectImage:{
+        position:'absolute',
+        right:UtilScreen.getWidth(46),
+    },
+    selectView:{
+        flex:1,
+        flexDirection:'row',
+        height:UtilScreen.getHeight(76),
+    },
+    leftText: {
+        alignSelf:'center',
+        color: '#333',
+        fontSize: 14,
+        width:UtilScreen.getWidth(140),
+        marginLeft: UtilScreen.getWidth(38),
+        textAlign:'justify',
+    },
 });
