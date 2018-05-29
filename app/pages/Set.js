@@ -22,12 +22,12 @@ export default class Set extends   Component{
                 <View style={Stylecss.styles.set_label_view} >
                     <Text style={Stylecss.styles.set_label_text}>检查更新</Text>
                     <TouchableHighlight onPress={this.jumpToUpdate.bind(this)} style={Stylecss.styles.set_label_enter}>
-                        <Image source={require('../../asstes/chevron-left2.png')}/>
+                        <Image source={require('../res/images/chevron-left2.png')}/>
                     </TouchableHighlight>
                 </View>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>意见反馈</Text>
-                    <Image source={require('../../asstes/chevron-left2.png')} style={Stylecss.styles.set_label_enter} />
+                    <Image source={require('../res/images/chevron-left2.png')} style={Stylecss.styles.set_label_enter} />
                 </View>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>清除缓存</Text>
@@ -35,7 +35,7 @@ export default class Set extends   Component{
                 </View>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>用户协议</Text>
-                    <Image source={require('../../asstes/chevron-left2.png')} style={Stylecss.styles.set_label_enter}/>
+                    <Image source={require('../res/images/chevron-left2.png')} style={Stylecss.styles.set_label_enter}/>
                 </View>
                 <Text style={Stylecss.styles.set_logout}>注销登录</Text>
             </View>

@@ -37,7 +37,7 @@ export default class ToolBar extends Component {
                 <TouchableHighlight onPress={this.props.backClick && this.props.backClick}
                                     underlayColor={'#333333'}
                                     style={[styles.back, {height: this.state.backH, width: this.state.backW}]}>
-                    <Image source={require('../../asstes/chevron-left.png')}
+                    <Image source={require('../res/images/chevron-left.png')}
                     ></Image>
                 </TouchableHighlight>
                 <Text style={styles.text}>{this.props.title}</Text>
