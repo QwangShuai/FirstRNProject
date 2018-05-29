@@ -33,7 +33,7 @@ export default class ApplyInfoItem extends Component {
             <View>
                 <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
                 <View>
-                    <Image></Image>
+                    <Image style={styles.leftImage} source={require('../res/images/wechat.png')}></Image>
                     <Text></Text>
                     <Image></Image>
                 </View>
@@ -77,5 +77,12 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         color:'#333',
         lineHeight:UtilScreen.getHeight(86),
+    },
+    leftImage:{
+        marginLeft:UtilScreen.getWidth(38),
+        width:UtilScreen.getWidth(30),
+    },
+    leftPayment:{
+
     },
 })
