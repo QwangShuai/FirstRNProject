@@ -233,7 +233,7 @@ export default class PersonalInfo extends Component {
                                bottomTitle={'女'}/>
                 <SelectYesOrNo yesOrNo={this.takerPhotoOrSelect.bind(this)} isShow={this.state.isShowSelectPhoto}
                                topTitle={'拍照'} bottomTitle={'从相册中选择'}/>
-                <MyDatePicker isShow={this.state.isSelectDate} callBack={this.selectDate.bind(this)}
+                <MyDatePicker isShow={this.state.isSelectDate} callBack={this.selectDate.bind(this)} title={this.selectItemDate.title}
                               ref={ref => this.MyDatePicker = ref}/>
                 <SelectArea isShow={this.state.isShowSelectArea} callBack={this.selectAreaResult.bind(this)}/>
                 <MyInputDialog isShow={this.state.isShowInputName} callBack={this.inputNameResult.bind(this)}
