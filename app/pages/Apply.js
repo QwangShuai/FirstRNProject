@@ -59,7 +59,7 @@ export default class Apply extends Component {
                     <View style={Stylecss.styles.selectView}>
                         <Image style={Stylecss.styles.payImage} source={require('../res/images/apply_alipay.png')}/>
                         <Text style={Stylecss.styles.payText}>支付宝</Text>
-                        <Image style={Stylecss.styles.selectImage} source={require('../res/images/apply_false.png')}/>
+                        <Image style={Stylecss.styles.selectImage} source={require('../res/images/apply_true.png')}/>
                     </View>
                 </View>
                 <View style={Stylecss.styles.paymentView}>

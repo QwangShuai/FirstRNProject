@@ -23,6 +23,7 @@ export default class MyDatePicker extends Component {
     render() {
         return (
             <DatePicker
+                title={this.props.title}
                 cancelText={''}
                 confirmTextSize={15}
                 HH={false}

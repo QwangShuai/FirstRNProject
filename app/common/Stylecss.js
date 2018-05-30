@@ -195,15 +195,19 @@ export const styles = StyleSheet.create({
         fontSize:18,
     },
     payView:{
+        width:'100%',
+        left:UtilScreen.getWidth(38),
         position:'absolute',
-        bottom:UtilScreen.getHeight(200),
+        bottom:UtilScreen.getHeight(140),
         height:UtilScreen.getHeight(242),
         flexDirection:'column',
     },
     payImage:{
-        alignSelf:'center',
+        backgroundColor:'#fff',
+        resizeMode:'stretch',
         width:UtilScreen.getWidth(38),
-        marginLeft:UtilScreen.getWidth(40),
+        height:UtilScreen.getWidth(38),
+        alignSelf:'center',
 
     },
     payText:{
@@ -213,20 +217,18 @@ export const styles = StyleSheet.create({
         color:'#333333',
     },
     selectImage:{
+        alignSelf:'center',
         position:'absolute',
-        right:UtilScreen.getWidth(46),
+        right:UtilScreen.getWidth(80),
     },
     selectView:{
-        flex:1,
         flexDirection:'row',
         height:UtilScreen.getHeight(76),
     },
     leftText: {
-        alignSelf:'center',
         color: '#333',
         fontSize: 14,
         width:UtilScreen.getWidth(140),
-        marginLeft: UtilScreen.getWidth(38),
         textAlign:'justify',
     },
 });
