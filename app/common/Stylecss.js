@@ -204,19 +204,21 @@ export const styles = StyleSheet.create({
     },
     payImage:{
         backgroundColor:'#fff',
-        resizeMode:'stretch',
-        width:UtilScreen.getWidth(38),
-        height:UtilScreen.getWidth(38),
+        resizeMode:'contain',
+        width:UtilScreen.getWidth(36),
+        height:UtilScreen.getWidth(36),
         alignSelf:'center',
-
     },
     payText:{
         lineHeight:UtilScreen.getHeight(88),
         marginLeft:UtilScreen.getWidth(10),
         fontSize:14,
         color:'#333333',
+        alignSelf:'center',
     },
     selectImage:{
+        width:UtilScreen.getWidth(30),
+        resizeMode:'contain',
         alignSelf:'center',
         position:'absolute',
         right:UtilScreen.getWidth(80),
