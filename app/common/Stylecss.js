@@ -123,21 +123,21 @@ export const styles = StyleSheet.create({
         color:'#333333',
         marginLeft:20,
         fontSize:14,
-        lineHeight:44,
+        lineHeight:UtilScreen.getHeight(88),
         alignItems:'center',
     },
     set_label_view:{
         justifyContent:'center',
         alignItems:'center',
-        marginTop:6,
+        marginTop:UtilScreen.getHeight(12),
         flexDirection:'row',
-        height:44,
+        height:UtilScreen.getHeight(88),
         backgroundColor:'#fff',
     },
     set_label_enter:{
         position:'absolute',
         right:0,
-        marginRight:21,
+        marginRight:UtilScreen.getWidth(40),
     },
     set_cache_text:{
         position:'absolute',
@@ -150,12 +150,12 @@ export const styles = StyleSheet.create({
         textAlign:'center',
         position:'absolute',
         bottom:0,
-        height:49,
+        height:UtilScreen.getHeight(98),
         fontSize:15,
         backgroundColor:'#ff9d00',
         color:'#ffffff',
         width:width,
-        lineHeight:49,
+        lineHeight:UtilScreen.getHeight(98),
     },
     update_message:{
         alignItems:'center',
@@ -229,4 +229,11 @@ export const styles = StyleSheet.create({
         marginLeft: UtilScreen.getWidth(38),
         textAlign:'justify',
     },
+    rightText:{
+        position:'absolute',
+        right:0,
+        marginRight:UtilScreen.getWidth(64),
+        color:'#333333',
+    }
+
 });

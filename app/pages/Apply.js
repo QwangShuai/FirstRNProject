@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,FlatList, TouchableHighlight,Modal} from 'react-native';
+import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,FlatList, TouchableHighlight} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
 import ApplyInfoItem from '../components/ApplyInfoItem';

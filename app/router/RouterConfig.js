@@ -15,6 +15,7 @@ import ApplyRealName from  '../components/ApplyRealName';
 import PickerViewDemo from '../components/PickerViewDemo';
 import Apply from  '../pages/Apply';
 import ApplyPaymentSuccess from '../components/ApplyPaymentSuccess';
+import CreateActivities from '../pages/CreateActivities';
 const RouterConfig = StackNavigator({
     PersonalInfo: {screen: PersonalInfo},
     ApplyPaymentSuccess:{screen:ApplyPaymentSuccess},
@@ -25,6 +26,7 @@ const RouterConfig = StackNavigator({
     Wait: {screen: WaitingLeaf},
     Register: {screen: Registered},
     Set: {screen: Set},
+    CreateActivities:{screen:CreateActivities},
 
     PersonalInfoHead: {screen: PersonalInfoHead},
     Update: {screen: Update},
