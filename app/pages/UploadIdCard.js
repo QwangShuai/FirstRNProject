@@ -4,6 +4,7 @@ import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
 import SelectYesOrNo from '../components/SelectYesOrNo';
 import GetPhotoFromPhone from '../util/GetPhotoFromPhone';
+import UploadSuccess from '../components/UploadSuccess';
 
 export default class UploadIdCard extends Component {
     constructor(props) {
@@ -14,6 +15,7 @@ export default class UploadIdCard extends Component {
             idCardTop: {},
             idCardBottom: {},
             uploadType: 1,
+            isShowSuccess:false,
         }
     }
 
@@ -69,7 +71,10 @@ export default class UploadIdCard extends Component {
             });
         }
     }
-
+    uploadSuccess(){
+        this.props.navigation.state.params.callBack();
+        this.props.navigation.navigate('PersonalInfo');
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -128,9 +133,15 @@ export default class UploadIdCard extends Component {
                 <View style={{flexDirection: 'row', alignSelf: 'center', marginTop: UtilScreen.getHeight(10)}}><Text
                     style={{color: 'red', fontSize: 14}}>*</Text><Text
                     style={{color: '#999999', fontSize: 14}}>个人私密信息不对外公开</Text></View>
-                <Text style={styles.submitBt}>提交</Text>
+                <Text style={styles.submitBt} onPress={()=>{
+                    this.setState({
+                        isShowSuccess:true,
+                    });
+
+                }}>提交</Text>
                 <SelectYesOrNo yesOrNo={this.takerPhotoOrSelect.bind(this)} isShow={this.state.isShowSelectPhoto}
                                topTitle={'拍照'} bottomTitle={'从相册中选择'}/>
+                <UploadSuccess isShow={this.state.isShowSuccess} callBack={this.uploadSuccess.bind(this)}/>
             </View>
         );
     }
