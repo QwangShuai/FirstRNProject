@@ -35,6 +35,8 @@ const styles = StyleSheet.create({
     },
     infoText:{
         padding:UtilScreen.getWidth(32),
+        paddingTop:0,
+        textAlignVertical:'top',
         fontSize:13,
         width:'100%',
         height: UtilScreen.getHeight(180),
