@@ -51,16 +51,20 @@ export default class Apply extends Component {
                 ></FlatList>
                 <View style={Stylecss.styles.payView}>
                     <Text style={Stylecss.styles.leftText}>支付方式:</Text>
+                    <View style={{height:UtilScreen.getHeight(2),width:'100%',backgroundColor:'#e5e5e5',marginTop:UtilScreen.getHeight(24),
+                                                    marginLeft:UtilScreen.getWidth(38),marginRight:UtilScreen.getWidth(40),}} />
                     <View style={Stylecss.styles.selectView}>
                         <Image style={Stylecss.styles.payImage} source={require('../res/images/apply_wechat.png')}/>
                         <Text style={Stylecss.styles.payText}>微信支付</Text>
                         <Image style={Stylecss.styles.selectImage} source={require('../res/images/apply_true.png')}/>
                     </View>
+
                     <View style={Stylecss.styles.selectView}>
                         <Image style={Stylecss.styles.payImage} source={require('../res/images/apply_alipay.png')}/>
                         <Text style={Stylecss.styles.payText}>支付宝</Text>
                         <Image style={Stylecss.styles.selectImage} source={require('../res/images/apply_false.png')}/>
                     </View>
+                    <View style={{height:UtilScreen.getHeight(12),width:'100%',backgroundColor:'#f8f8f8',}} />
                 </View>
                 <View style={Stylecss.styles.paymentView}>
                     <Text style={Stylecss.styles.paymentText}>支付</Text>

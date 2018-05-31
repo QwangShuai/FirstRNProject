@@ -19,15 +19,17 @@ import CreateActivities from '../pages/CreateActivities';
 import SetModal from '../components/SetModal';
 import Feedback from '../pages/Feedback';
 import Agreement from '../pages/Agreement';
+import FeedbackItem from '../components/FeedbackItem';
 const RouterConfig = StackNavigator({
-    Agreement:{screen:Agreement},
+    // FeedbackItem:{screen:FeedbackItem},
+    // Agreement:{screen:Agreement},
     Feedback:{screen:Feedback},
-    SetModal:{screen:SetModal},
+    // SetModal:{screen:SetModal},
     CreateActivities:{screen:CreateActivities},
     PersonalInfo: {screen: PersonalInfo},
-    ApplyPaymentSuccess:{screen:ApplyPaymentSuccess},
-    ApplyRealName:{screen:ApplyRealName},
-    ApplyPaymentState:{screen:ApplyPaymentState},
+    // ApplyPaymentSuccess:{screen:ApplyPaymentSuccess},
+    // ApplyRealName:{screen:ApplyRealName},
+    // ApplyPaymentState:{screen:ApplyPaymentState},
     Apply:{screen:Apply},
     Home: {screen: LoginLeaf},
     Wait: {screen: WaitingLeaf},
