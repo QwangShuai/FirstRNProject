@@ -54,13 +54,13 @@ const styles = StyleSheet.create({
         width:'100%',
       alignSelf:'center',
         color:'#cacaca',
-        lineHeight:UtilScreen.getHeight(86),
+        // lineHeight:UtilScreen.getHeight(86),
     },
     rightTitle:{
         fontSize:14,
         width:'100%',
         alignSelf:'center',
         color:'#333',
-        lineHeight:UtilScreen.getHeight(86),
+        // lineHeight:UtilScreen.getHeight(86),
     },
 })
