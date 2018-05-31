@@ -18,7 +18,9 @@ import ApplyPaymentSuccess from '../components/ApplyPaymentSuccess';
 import CreateActivities from '../pages/CreateActivities';
 import SetModal from '../components/SetModal';
 import Feedback from '../pages/Feedback';
+import Agreement from '../pages/Agreement';
 const RouterConfig = StackNavigator({
+    Agreement:{screen:Agreement},
     Feedback:{screen:Feedback},
     SetModal:{screen:SetModal},
     CreateActivities:{screen:CreateActivities},
