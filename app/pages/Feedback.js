@@ -18,7 +18,7 @@ export default class Feedback extends Component {
     }
 
     backClick(){
-
+        this.props.navigation.navigate('Set');
     };
 
     render(){

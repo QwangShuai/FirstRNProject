@@ -22,7 +22,7 @@ import Agreement from '../pages/Agreement';
 import FeedbackItem from '../components/FeedbackItem';
 const RouterConfig = StackNavigator({
     // FeedbackItem:{screen:FeedbackItem},
-    // Agreement:{screen:Agreement},
+    Agreement:{screen:Agreement},
     Feedback:{screen:Feedback},
     // SetModal:{screen:SetModal},
     // CreateActivities:{screen:CreateActivities},

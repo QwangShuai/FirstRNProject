@@ -15,6 +15,12 @@ export default class Set extends   Component{
     jumpToUpdate(){
         this.props.navigation.navigate('Update');
     }
+    jumpToAgreement(){
+        this.props.navigation.navigate('Agreement');
+    }
+    jumpToFeedback(){
+        this.props.navigation.navigate('Feedback');
+    }
     render(){
         return(
             <View style={Stylecss.styles.container}>
@@ -27,7 +33,9 @@ export default class Set extends   Component{
                 </View>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>意见反馈</Text>
-                    <Image source={require('../res/images/chevron-left2.png')} style={Stylecss.styles.set_label_enter} />
+                    <TouchableHighlight onPress={this.jumpToFeedback.bind(this)} style={Stylecss.styles.set_label_enter}>
+                        <Image source={require('../res/images/chevron-left2.png')}/>
+                    </TouchableHighlight>
                 </View>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>清除缓存</Text>
@@ -35,7 +43,9 @@ export default class Set extends   Component{
                 </View>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>用户协议</Text>
-                    <Image source={require('../res/images/chevron-left2.png')} style={Stylecss.styles.set_label_enter}/>
+                    <TouchableHighlight onPress={this.jumpToAgreement.bind(this)} style={Stylecss.styles.set_label_enter}>
+                        <Image source={require('../res/images/chevron-left2.png')}/>
+                    </TouchableHighlight>
                 </View>
                 <Text style={Stylecss.styles.set_logout}>注销登录</Text>
             </View>
