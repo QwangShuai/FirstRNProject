@@ -20,7 +20,7 @@ export default class FeedbackItem extends Component {
                 <Text style={styles.itemTextr}>{this.props.itemInfo.tText}</Text>
                 <View style={styles.bottomView}>
                     <Text style={styles.btnText}>回复</Text>
-                    <Text style={styles.repayText}>{this.props.itemInfo.bText}</Text>
+                    <Text style={styles.replyText}>{this.props.itemInfo.bText}</Text>
                 </View>
 
             </View>
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         lineHeight:UtilScreen.getHeight(60),
     },
     replyText:{
-       // marginLeft:UtilScreen.getWidth(196),
+       marginLeft:UtilScreen.getWidth(25),
         fontSize:13,
         color:'#626262',
         // alignSelf:'center',
