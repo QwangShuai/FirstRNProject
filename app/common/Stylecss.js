@@ -17,8 +17,8 @@ const {
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#F5FCFF',
-        // backgroundColor:'white',
+        // backgroundColor: '#F5FCFF',
+        backgroundColor:'white',
     },
     other_view:{
         marginTop:11,
@@ -195,13 +195,13 @@ export const styles = StyleSheet.create({
     },
     payView:{
         width:'100%',
-        left:UtilScreen.getWidth(38),
         position:'absolute',
         bottom:UtilScreen.getHeight(140),
         height:UtilScreen.getHeight(242),
         flexDirection:'column',
     },
     payImage:{
+        left:UtilScreen.getWidth(38),
         backgroundColor:'#fff',
         resizeMode:'contain',
         width:UtilScreen.getWidth(36),
@@ -209,6 +209,7 @@ export const styles = StyleSheet.create({
         alignSelf:'center',
     },
     payText:{
+        left:UtilScreen.getWidth(38),
         lineHeight:UtilScreen.getHeight(88),
         marginLeft:UtilScreen.getWidth(10),
         fontSize:14,
@@ -220,13 +221,15 @@ export const styles = StyleSheet.create({
         resizeMode:'contain',
         alignSelf:'center',
         position:'absolute',
-        right:UtilScreen.getWidth(80),
+        right:UtilScreen.getWidth(40),
     },
     selectView:{
         flexDirection:'row',
         height:UtilScreen.getHeight(76),
     },
     leftText: {
+        marginTop:UtilScreen.getHeight(24),
+        left:UtilScreen.getWidth(38),
         color: '#333',
         fontSize: 14,
         width:UtilScreen.getWidth(140),

@@ -18,22 +18,24 @@ import ApplyPaymentSuccess from '../components/ApplyPaymentSuccess';
 import CreateActivities from '../pages/CreateActivities';
 import SetModal from '../components/SetModal';
 import Feedback from '../pages/Feedback';
-import UploadIdCard from "../pages/UploadIdCard";
+import Agreement from '../pages/Agreement';
+import FeedbackItem from '../components/FeedbackItem';
 const RouterConfig = StackNavigator({
-    PersonalInfo: {screen: PersonalInfo},
+    // FeedbackItem:{screen:FeedbackItem},
+    // Agreement:{screen:Agreement},
     Feedback:{screen:Feedback},
-    SetModal:{screen:SetModal},
+    // SetModal:{screen:SetModal},
     CreateActivities:{screen:CreateActivities},
-
-    ApplyPaymentSuccess:{screen:ApplyPaymentSuccess},
-    ApplyRealName:{screen:ApplyRealName},
-    ApplyPaymentState:{screen:ApplyPaymentState},
+    PersonalInfo: {screen: PersonalInfo},
+    // ApplyPaymentSuccess:{screen:ApplyPaymentSuccess},
+    // ApplyRealName:{screen:ApplyRealName},
+    // ApplyPaymentState:{screen:ApplyPaymentState},
     Apply:{screen:Apply},
     Home: {screen: LoginLeaf},
     Wait: {screen: WaitingLeaf},
     Register: {screen: Registered},
     Set: {screen: Set},
-    UploadIdCard:{screen:UploadIdCard},
+
     PersonalInfoHead: {screen: PersonalInfoHead},
     Update: {screen: Update},
     PickerViewDemo:{screen:PickerViewDemo},
