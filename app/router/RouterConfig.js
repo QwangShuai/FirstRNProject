@@ -16,7 +16,12 @@ import PickerViewDemo from '../components/PickerViewDemo';
 import Apply from  '../pages/Apply';
 import ApplyPaymentSuccess from '../components/ApplyPaymentSuccess';
 import CreateActivities from '../pages/CreateActivities';
+import SetModal from '../components/SetModal';
+import Feedback from '../pages/Feedback';
 const RouterConfig = StackNavigator({
+    Feedback:{screen:Feedback},
+    SetModal:{screen:SetModal},
+    CreateActivities:{screen:CreateActivities},
     PersonalInfo: {screen: PersonalInfo},
     ApplyPaymentSuccess:{screen:ApplyPaymentSuccess},
     ApplyRealName:{screen:ApplyRealName},
@@ -26,7 +31,6 @@ const RouterConfig = StackNavigator({
     Wait: {screen: WaitingLeaf},
     Register: {screen: Registered},
     Set: {screen: Set},
-    CreateActivities:{screen:CreateActivities},
 
     PersonalInfoHead: {screen: PersonalInfoHead},
     Update: {screen: Update},

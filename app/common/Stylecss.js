@@ -94,7 +94,6 @@ export const styles = StyleSheet.create({
         fontSize:14,
         alignSelf:'center',
         color:'#cacaca',
-        alignSelf:'center',
     },
     login_otherlogin_view:{
         height:102,
