@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Modal, Text} from 'react-native';
+import {View, StyleSheet, Modal, Text, TouchableHighlight} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
 
 export default class SelectYesOrNo extends Component {
@@ -27,12 +27,18 @@ export default class SelectYesOrNo extends Component {
             selectIndex: type,
         });
     }
-    btClick(){
-        this.props.yesOrNo && this.props.yesOrNo(this.state.selectIndex);
+
+    /**
+     * 0回调不需要更新数据1需要更新数据
+     * @param type
+     */
+    btClick(type) {
+        this.props.yesOrNo && this.props.yesOrNo(type === 0 ? 0 : this.state.selectIndex);
         this.setState({
-            isShow:false,
+            isShow: false,
         });
     }
+
     render() {
         return (
             <Modal style={styles.container}
@@ -41,7 +47,10 @@ export default class SelectYesOrNo extends Component {
                    visible={this.state.isShow}
                    onRequestClose={this.btClick.bind(this)}
             >
-                <View style={styles.mark}>
+                <TouchableHighlight style={styles.mark}
+                                    underlayColor='rgba(52, 52, 52, 0.5)'
+                                    onPress={this.btClick.bind(this, 0)}
+                >
                     <View style={styles.content}>
                         <Text
                             onPress={this.itemClick.bind(this, 1)}
@@ -52,10 +61,10 @@ export default class SelectYesOrNo extends Component {
                                 color: this.state.selectIndex === 2 ? '#f71f1f' : '#333333',
                                 marginTop: 1
                             }]}>{this.props.bottomTitle}</Text>
-                        <Text style={styles.submitBt} onPress={this.btClick.bind(this)}
+                        <Text style={styles.submitBt} onPress={this.btClick.bind(this, 1)}
                         >确定</Text>
                     </View>
-                </View>
+                </TouchableHighlight>
             </Modal>
         );
     }
