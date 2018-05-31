@@ -110,12 +110,20 @@ export default class PersonalInfo extends Component {
      * @param type
      */
     yesOrNo(type) {
-        this.state.itemInfo[7].rValue = type === 1 ? '是' : '否';
-        let data = this.state.itemInfo.concat();
-        this.setState({
-            isSelectYesOrNo: false,
-            itemInfo: data,
-        });
+        //type 为0说明用户点击取消了弹框，所以不需要更新数据
+        if (type===0){
+            this.setState({
+                isSelectYesOrNo: false,
+            });
+        }else {
+            this.state.itemInfo[7].rValue = type === 1 ? '是' : '否';
+            let data = this.state.itemInfo.concat();
+            this.setState({
+                isSelectYesOrNo: false,
+                itemInfo: data,
+            });
+        }
+
     }
 
     /**
@@ -123,12 +131,19 @@ export default class PersonalInfo extends Component {
      * @param type
      */
     selectSex(type) {
-        this.state.itemInfo[1].rValue = type === 1 ? '男' : 'nv';
-        let data = this.state.itemInfo.concat();
-        this.setState({
-            isSelectSex: false,
-            itemInfo: data,
-        });
+        //type 为0说明用户点击取消了弹框，所以不需要更新数据
+        if (type===0){
+            this.setState({
+                isSelectSex: false,
+            });
+        }else {
+            this.state.itemInfo[1].rValue = type === 1 ? '男' : '女';
+            let data = this.state.itemInfo.concat();
+            this.setState({
+                isSelectSex: false,
+                itemInfo: data,
+            });
+        }
     }
 
     selectDate(date) {
@@ -152,11 +167,13 @@ export default class PersonalInfo extends Component {
         this.setState({
             isShowSelectPhoto: false,
         });
-        let getPhoto = new GetPhotoFromPhone(this);
-        if (type === 1) {
-            getPhoto.takerPhoto();
-        } else {
-            getPhoto.selectPhoto();
+        if (type!=0) {
+            let getPhoto = new GetPhotoFromPhone(this);
+            if (type === 1) {
+                getPhoto.takerPhoto();
+            } else {
+                getPhoto.selectPhoto();
+            }
         }
     }
 
