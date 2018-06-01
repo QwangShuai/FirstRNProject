@@ -137,6 +137,10 @@ export const styles = StyleSheet.create({
         position:'absolute',
         right:0,
         marginRight:UtilScreen.getWidth(40),
+        backgroundColor:'#ffffff',
+        // width:UtilScreen.getWidth(50),
+        // height:UtilScreen.getHeight(50),
+        // borderRadius:UtilScreen.getHeight(80),
     },
     set_cache_text:{
         position:'absolute',

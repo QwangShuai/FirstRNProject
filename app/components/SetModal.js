@@ -6,21 +6,29 @@ export default class SetModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            modalVisible: true,
+            isShow: props.isShow,
         }
     }
 
     setModalVisible() {
-        this.setState({modalVisible: false});
+        this.setState({isShow: false});
+    }
+    sureBtn(){
+        this.setState({isShow: false});
     }
 
     render(){
         return(
-            <Modal style={styles.container}>
+            <Modal style={styles.container}
+                   animationType={"slide"}
+                   transparent={true}
+                   visible={this.state.isShow}
+                   onRequestClose={this.setModalVisible.bind(this)}
+                    >
                 <Text style={styles.titleText}>确定要清楚缓存吗？</Text>
                 <View style={styles.btnView}>
-                    <Text style={styles.cancelText}>取消</Text>
-                    <Text style={styles.sureText}>确认</Text>
+                    <Text style={styles.cancelText} onPress={this.setModalVisible.bind(this)}>取消</Text>
+                    <Text style={styles.sureText} onPress={this.sureBtn.bind(this)}>确认</Text>
                     <Text style={styles.dividerText}>|</Text>
                 </View>
             </Modal>

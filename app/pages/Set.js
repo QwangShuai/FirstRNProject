@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {AppRegistry,View,Text,Image,TouchableHighlight} from 'react-native';
 import ToolBar from '../components/ToolBar';
+import SetModal from '../components/SetModal';
 const Stylecss = require('../common/Stylecss');
 export default class Set extends   Component{
     static navigationOptions = {
@@ -8,6 +9,10 @@ export default class Set extends   Component{
     };
     constructor(props){
         super(props);
+        this. state = {
+            isShowClearCache:false,
+        }
+
     }
     backClick(){
         this.props.navigation.navigate('Register');
@@ -20,6 +25,12 @@ export default class Set extends   Component{
     }
     jumpToFeedback(){
         this.props.navigation.navigate('Feedback');
+    }
+
+    clearCache(){
+        this. state = {
+            isShowClearCache:true,
+        }
     }
     render(){
         return(
@@ -39,7 +50,7 @@ export default class Set extends   Component{
                 </View>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>清除缓存</Text>
-                    <Text style={Stylecss.styles.set_cache_text}>236MB</Text>
+                    <Text style={Stylecss.styles.set_cache_text} onPress={this.clearCache.bind(this)}>236MB</Text>
                 </View>
                 <View style={Stylecss.styles.set_label_view}>
                     <Text style={Stylecss.styles.set_label_text}>用户协议</Text>
@@ -48,6 +59,7 @@ export default class Set extends   Component{
                     </TouchableHighlight>
                 </View>
                 <Text style={Stylecss.styles.set_logout}>注销登录</Text>
+                <SetModal isShow={this.state.isShowClearCache}/>
             </View>
         )
     }
