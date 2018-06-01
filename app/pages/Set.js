@@ -28,9 +28,9 @@ export default class Set extends   Component{
     }
 
     clearCache(){
-        this. setState = {
+        this. setState({
             isShowClearCache:true,
-        }
+        });
     }
     render(){
         return(
