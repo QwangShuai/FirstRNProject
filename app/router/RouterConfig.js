@@ -21,7 +21,7 @@ import Feedback from '../pages/Feedback';
 import Agreement from '../pages/Agreement';
 import FeedbackItem from '../components/FeedbackItem';
 const RouterConfig = StackNavigator({
-    Set: {screen: Set},
+    Home: {screen: LoginLeaf},
     // FeedbackItem:{screen:FeedbackItem},
     Agreement:{screen:Agreement},
     Feedback:{screen:Feedback},
@@ -31,9 +31,9 @@ const RouterConfig = StackNavigator({
     // ApplyPaymentSuccess:{screen:ApplyPaymentSuccess},
     // ApplyRealName:{screen:ApplyRealName},
     // ApplyPaymentState:{screen:ApplyPaymentState},
-    
+    Set: {screen: Set},
     Apply:{screen:Apply},
-    Home: {screen: LoginLeaf},
+
     Wait: {screen: WaitingLeaf},
     Register: {screen: Registered},
 

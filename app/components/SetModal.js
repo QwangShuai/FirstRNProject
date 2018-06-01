@@ -14,9 +14,14 @@ export default class SetModal extends Component {
         this.setState({isShow: false});
     }
     sureBtn(){
+        // alert('nanguo ','nanguo',),
         this.setState({isShow: false});
     }
-
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            isShow: nextProps.isShow,
+        });
+    }
     render(){
         return(
             <Modal style={styles.container}
@@ -37,11 +42,16 @@ export default class SetModal extends Component {
 }
 
 const styles = StyleSheet.create({
+    viewStyle:{
+
+    },
     container:{
-      width:UtilScreen.getWidth(460),
+        backgroundColor:'red',
+        width:UtilScreen.getWidth(460),
         height:UtilScreen.getHeight(350),
         borderRadius:UtilScreen.getWidth(10),
         flexDirection:'row',
+        alignItems:'center',
     },
     titleText:{
         marginTop:UtilScreen.getHeight(123),
@@ -53,9 +63,9 @@ const styles = StyleSheet.create({
         alignItems:'center',
         flexDirection:'row',
         height:UtilScreen.getHeight(60),
-      marginTop:UtilScreen.getHeight(114),
+        marginTop:UtilScreen.getHeight(114),
         borderTopColor:'#e5e5e5',
-        width:'100%',
+        width:UtilScreen.getWidth(460),
         borderTopWidth:UtilScreen.getHeight(1),
         justifyContent:'center',
     },
