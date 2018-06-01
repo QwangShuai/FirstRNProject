@@ -95,7 +95,13 @@ export default class PersonalInfo extends Component {
                 this.selectItemDate = {key: 5, title: '注册时间'};
                 break;
             case 6:
-                this.props.navigation.navigate('UploadIdCard');
+                this.props.navigation.navigate('UploadIdCard',{callBack:()=>{
+                    this.state.itemInfo[6].rValue ='已上传';
+                    let data = this.state.itemInfo.concat();
+                    this.setState({
+                        itemInfo: data,
+                    });
+            }});
                 break;
             case 7:
                 this.setState({isSelectYesOrNo: !this.state.isSelectYesOrNo,});

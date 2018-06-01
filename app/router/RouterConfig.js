@@ -31,6 +31,7 @@ const RouterConfig = StackNavigator({
     // ApplyPaymentSuccess:{screen:ApplyPaymentSuccess},
     // ApplyRealName:{screen:ApplyRealName},
     // ApplyPaymentState:{screen:ApplyPaymentState},
+    
     Apply:{screen:Apply},
     Home: {screen: LoginLeaf},
     Wait: {screen: WaitingLeaf},
