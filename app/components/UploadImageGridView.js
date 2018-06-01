@@ -45,6 +45,7 @@ export default class UploadImageGridView extends Component<Props> {
         },()=>{
             this.state.images.splice(this.state.images.length - 1, 1);
             this.props.selectImages && this.props.selectImages(this.state.images.concat());
+            this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});
         });
     }
 
