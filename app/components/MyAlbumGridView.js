@@ -73,9 +73,11 @@ export default class MyAlbumGridView extends Component {
         }
       //  this.state.images.splice(this.state.images.length - 1, 1);
         this.state.images.push(item);
-        this.props.selectImages && this.props.selectImages(this.state.images.concat().slice(0,1));
        // this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});
         let data = this.state.images.concat();
+        let backData=this.state.images.concat();
+        backData.splice(0,1);
+        this.props.selectImages && this.props.selectImages(backData);
         this.setState({
             images: data
         });
@@ -131,7 +133,6 @@ export default class MyAlbumGridView extends Component {
 
 const styles = StyleSheet.create({
     container:{
-        flex: 1,
         backgroundColor: '#fff'
     },
     imageStyle:{
