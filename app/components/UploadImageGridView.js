@@ -144,7 +144,6 @@ export default class UploadImageGridView extends Component<Props> {
 
 const styles = StyleSheet.create({
         container: {
-            flex: 1,
             backgroundColor: '#fff'
         },
         add_item_container: {
