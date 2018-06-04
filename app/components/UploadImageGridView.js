@@ -18,7 +18,6 @@ export default class UploadImageGridView extends Component<Props> {
         this.state = {
             images: [
                 {key: 0, url: require('../res/images/add_image.png')},
-
             ],
             isShowSelectImage: false,
         }

@@ -12,7 +12,7 @@ import PersonalInfoHead from '../components/PersonalInfoHead';
 import Update from '../pages/Update';
 import ApplyPaymentState from '../components/ApplyPaymentState';
 import ApplyRealName from  '../components/ApplyRealName';
-import MyAlbumitem from  '../components/MyAlbumitem';
+import MyAlbumitem from '../components/MyAlbumGridView';
 import PickerViewDemo from '../components/PickerViewDemo';
 import Apply from  '../pages/Apply';
 import ApplyPaymentSuccess from '../components/ApplyPaymentSuccess';
@@ -23,7 +23,6 @@ import Agreement from '../pages/Agreement';
 import FeedbackItem from '../components/FeedbackItem';
 import UploadImageGridView from '../components/UploadImageGridView';
 const RouterConfig = StackNavigator({
-    MyAlbumitem:{screen:MyAlbumitem},
     Agreement:{screen:Agreement},
     Home: {screen: LoginLeaf},
     // FeedbackItem:{screen:FeedbackItem},

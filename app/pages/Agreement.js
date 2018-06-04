@@ -3,7 +3,7 @@ import {View,Text,StyleSheet} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
 import UploadImageGridView from "../components/UploadImageGridView";
-
+import MyAlbumGridView from '../components/MyAlbumGridView';
 const Stylecss = require('../common/Stylecss');
 
 
@@ -31,7 +31,7 @@ export default class Agreement extends Component {
                 <Text style={styles.agreementText}>友来友约用户协议</Text>
                 <Text style={styles.infoText}>友来友约用户协议友来友约用户协议</Text>
                 {/*maxNumber限制最大张数，selectImages图片选择后回调，返回图片路径数组*/}
-                <UploadImageGridView maxNumber={6} selectImages={this.selectImages.bind(this)}/>
+                <MyAlbumGridView selectImages={this.selectImages.bind(this)}/>
             </View>
         )
     }

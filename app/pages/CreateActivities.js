@@ -6,6 +6,7 @@ import CreateActicitiesItem from '../components/CreateActicitiesItem';
 import SelectYesOrNo from '../components/SelectYesOrNo';
 import MyDatePicker from '../components/MyDatePicker';
 import GetPhotoFromPhone from '../util/GetPhotoFromPhone';
+import UploadImageGridView from '../components/UploadImageGridView';
 const Stylecss = require('../common/Stylecss');
 export default class CreateActivities extends Component {
     static navigationOptions = {
@@ -107,9 +108,10 @@ export default class CreateActivities extends Component {
         return(
             <View style={Stylecss.styles.container}>
                 <ToolBar title={'创建活动'} isShowBack={true} backClick={this.backClick.bind(this)}/>
-                <TouchableHighlight onPress={this.clickImage.bind(this)}>
-                    <Image style={styles.showImage} source={this.state.ImageSource}/>
-                </TouchableHighlight>
+                {/*<TouchableHighlight onPress={this.clickImage.bind(this)}>*/}
+                    {/*<Image style={styles.showImage} source={this.state.ImageSource}/>*/}
+                {/*</TouchableHighlight>*/}
+                <UploadImageGridView/>
                     <View style={styles.itemView}></View>
                 <FlatList
                     data={this.state.itemInfo}
