@@ -5,7 +5,6 @@ import UtilScreen from '../util/UtilScreen';
 import UploadImageGridView from '../components/UploadImageGridView';
 const Stylecss = require('../common/Stylecss');
 
-const count = 0;
 
 export default class AddContent extends Component {
     static navigationOptions = {
@@ -14,7 +13,7 @@ export default class AddContent extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            textCount:0
         }
     }
 
@@ -25,8 +24,11 @@ export default class AddContent extends Component {
         console.log(images)
     }
 
-    changeText(){
-        count++;
+    inputTextChange(){
+        let x=this.state.textCount+1;
+        this.setState({
+            textCount:x
+        });
     }
 
     render(){
@@ -37,9 +39,9 @@ export default class AddContent extends Component {
                 <View style={Stylecss.styles.light_F8F8F8} />
                 <View style={styles.contentView}>
                     <Text style={styles.titleContext}>具体内容</Text>
-                    <Text style={styles.promptText}>{count}/2000</Text>
+                    <Text style={styles.promptText}>{this.state.textCount}/2000</Text>
                     <TextInput style={styles.inputStyle} maxLengh={2000} placeholder={'请输入内容'} underlineColorAndroid="transparent"
-                           changeText={this.changeText.bind(this)} />
+                               onChange={this.inputTextChange.bind(this)} />
                 </View>
                 <UploadImageGridView maxNumber={9} selectImages={this.selectImages.bind(this)}/>
                 <View style={Stylecss.styles.light_F8F8F8} />
