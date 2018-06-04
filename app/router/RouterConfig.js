@@ -21,8 +21,10 @@ import SetModal from '../components/SetModal';
 import Feedback from '../pages/Feedback';
 import Agreement from '../pages/Agreement';
 import FeedbackItem from '../components/FeedbackItem';
+import UploadImageGridView from '../components/UploadImageGridView';
 const RouterConfig = StackNavigator({
     MyAlbumitem:{screen:MyAlbumitem},
+    Agreement:{screen:Agreement},
     Home: {screen: LoginLeaf},
     // FeedbackItem:{screen:FeedbackItem},
     Agreement:{screen:Agreement},
