@@ -105,7 +105,7 @@ export default class MyAlbumGridView extends Component {
                                    source={require('../res/images/delete.png')} resizeMode='stretch'/>
                         </TouchableHighlight>
                     </View>
-                    <Text style={styles.dataStyle}>{this.props.itemInfo.data}</Text>
+                    <Text style={styles.dataStyle}>{this.props.itemInfo.date}</Text>
                 </View>
             )
         }
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
     imageStyle:{
-        margin:UtilScreen.getWidth(30),
+        margin:UtilScreen.getWidth(25),
         alignItems:'center',
         justifyContent:'center',
         width:UtilScreen.getWidth(300),
@@ -144,6 +144,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#f9f9f9',
     },
     dataStyle:{
+        marginLeft:UtilScreen.getWidth(40),
         marginTop:UtilScreen.getHeight(15),
         fontSize:12,
         color:'#333333',
@@ -154,5 +155,5 @@ const styles = StyleSheet.create({
         top:UtilScreen.getHeight(16),
         width:UtilScreen.getWidth(30),
         height:UtilScreen.getHeight(30),
-    }
+    },
 })

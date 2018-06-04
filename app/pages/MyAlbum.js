@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import {View,Text,StyleSheet} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
-import UploadImageGridView from "../components/UploadImageGridView";
 import MyAlbumGridView from '../components/MyAlbumGridView';
 const Stylecss = require('../common/Stylecss');
 
-export default class Agreement extends Component {
+
+export default class MyAlbum extends Component {
     static navigationOptions = {
         headerStyle: {height: 0},
     };
@@ -26,9 +26,8 @@ export default class Agreement extends Component {
     render(){
         return(
             <View style={Stylecss.styles.container}>
-                <ToolBar title={'用户协议'} isShowBack={true} backClick={this.backClick.bind(this)}/>
-                <Text style={styles.agreementText}>友来友约用户协议</Text>
-                <Text style={styles.infoText}>友来友约用户协议友来友约用户协议</Text>
+                <ToolBar title={'我的相册'} isShowBack={true} backClick={this.backClick.bind(this)}/>
+                <MyAlbumGridView selectImages={this.selectImages.bind(this)}/>
             </View>
         )
     }

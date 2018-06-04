@@ -22,7 +22,11 @@ import Feedback from '../pages/Feedback';
 import Agreement from '../pages/Agreement';
 import FeedbackItem from '../components/FeedbackItem';
 import UploadImageGridView from '../components/UploadImageGridView';
+import MyAlbum from '../pages/MyAlbum';
+import AddContent from '../pages/AddContent';
 const RouterConfig = StackNavigator({
+    AddContent:{screen:AddContent},
+    MyAlbum:{screen:MyAlbum},
     Agreement:{screen:Agreement},
     Home: {screen: LoginLeaf},
     // FeedbackItem:{screen:FeedbackItem},

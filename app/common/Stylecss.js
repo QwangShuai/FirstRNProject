@@ -265,6 +265,13 @@ export const styles = StyleSheet.create({
         right:0,
         marginRight:UtilScreen.getWidth(64),
         color:'#333333',
-    }
+    },
+    light_F8F8F8:{
+        marginTop:UtilScreen.getHeight(24),
+        marginBottom:UtilScreen.getHeight(24),
+      backgroundColor:'#f8f8f8',
+      width:'100%',
+      height:UtilScreen.getHeight(12),
+    },
 
 });
