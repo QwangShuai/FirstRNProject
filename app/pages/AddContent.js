@@ -24,7 +24,6 @@ export default class AddContent extends Component {
         console.log(images)
     }
 
-
     render(){
         return(
             <View style={Stylecss.styles.container}>
