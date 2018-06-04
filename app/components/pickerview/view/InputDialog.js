@@ -92,7 +92,7 @@ class InputDialog extends BaseDialog {
                            borderRadius: this.getSize(4),
                            paddingLeft: this.getSize(15),
                            paddingRight: this.getSize(15),
-                           paddingTop: this.getSize(10)
+                           paddingTop: this.getSize(10),
                        }}
                        numberOfLines={4}
                        multiline={true}

@@ -17,6 +17,11 @@ export default class SetModal extends Component {
         this.setState({isShow: false});
     }
 
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            isShow: nextProps.isShow,
+        });
+    }
     render(){
         return(
             <Modal style={styles.container}

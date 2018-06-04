@@ -21,13 +21,14 @@ import Feedback from '../pages/Feedback';
 import Agreement from '../pages/Agreement';
 import FeedbackItem from '../components/FeedbackItem';
 const RouterConfig = StackNavigator({
+    PersonalInfo: {screen: PersonalInfo},
     Set: {screen: Set},
     // FeedbackItem:{screen:FeedbackItem},
     Agreement:{screen:Agreement},
     Feedback:{screen:Feedback},
     // SetModal:{screen:SetModal},
     CreateActivities:{screen:CreateActivities},
-    PersonalInfo: {screen: PersonalInfo},
+
     // ApplyPaymentSuccess:{screen:ApplyPaymentSuccess},
     // ApplyRealName:{screen:ApplyRealName},
     // ApplyPaymentState:{screen:ApplyPaymentState},
