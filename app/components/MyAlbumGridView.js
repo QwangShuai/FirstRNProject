@@ -68,13 +68,13 @@ export default class MyAlbumGridView extends Component {
      */
     photoResult(obj) {
         let item = {
-            key: this.state.images.length - 1,
+            key: this.state.images.length,
             url: obj,
         }
-        this.state.images.splice(this.state.images.length - 1, 1);
+      //  this.state.images.splice(this.state.images.length - 1, 1);
         this.state.images.push(item);
-        this.props.selectImages && this.props.selectImages(this.state.images.concat());
-        this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});
+        this.props.selectImages && this.props.selectImages(this.state.images.concat().slice(0,1));
+       // this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});
         let data = this.state.images.concat();
         this.setState({
             images: data
