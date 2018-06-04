@@ -24,12 +24,6 @@ export default class AddContent extends Component {
         console.log(images)
     }
 
-    inputTextChange(){
-        let x=this.state.textCount+1;
-        this.setState({
-            textCount:x
-        });
-    }
 
     render(){
         return(
@@ -41,7 +35,11 @@ export default class AddContent extends Component {
                     <Text style={styles.titleContext}>具体内容</Text>
                     <Text style={styles.promptText}>{this.state.textCount}/2000</Text>
                     <TextInput style={styles.inputStyle} maxLengh={2000} placeholder={'请输入内容'} underlineColorAndroid="transparent"
-                               onChange={this.inputTextChange.bind(this)} />
+                               onChangeText={(text)=>{
+                                   this.setState({
+                                       textCount:text.length,
+                                   });
+                               }} />
                 </View>
                 <UploadImageGridView maxNumber={9} selectImages={this.selectImages.bind(this)}/>
                 <View style={Stylecss.styles.light_F8F8F8} />
