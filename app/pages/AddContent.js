@@ -38,7 +38,8 @@ export default class AddContent extends Component {
                                    this.setState({
                                        textCount:text.length,
                                    });
-                               }} />
+                               }}
+                               multiline={true} />
                 </View>
                 <UploadImageGridView maxNumber={9} selectImages={this.selectImages.bind(this)}/>
                 <View style={Stylecss.styles.light_F8F8F8} />
