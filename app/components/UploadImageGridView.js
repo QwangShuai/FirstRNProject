@@ -41,7 +41,7 @@ export default class UploadImageGridView extends Component<Props> {
         let data = this.state.images.concat();
         this.setState({
             images: data,
-        },()=>{
+        }, () => {
             this.state.images.splice(this.state.images.length - 1, 1);
             this.props.selectImages && this.props.selectImages(this.state.images.concat());
             this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});
@@ -70,6 +70,8 @@ export default class UploadImageGridView extends Component<Props> {
         let item = {
             key: this.state.images.length - 1,
             url: obj,
+            desc: "编辑图片描述",
+            isDesc:false,
         }
         this.state.images.splice(this.state.images.length - 1, 1);
         this.state.images.push(item);
@@ -80,6 +82,19 @@ export default class UploadImageGridView extends Component<Props> {
             images: data
         });
     }
+
+    /**
+     * 设置图片描述
+     */
+    setImageDesc(index,desc){
+        this.state.images[index].desc=desc;
+        this.state.images[index].isDesc=true;
+        let data=this.state.images.concat();
+        this.setState({
+            images:data,
+        });
+    }
+
 
     setItemView(item, index) {
         if (this.state.images.length === (index + 1) && index != this.props.maxNumber) {
@@ -104,6 +119,7 @@ export default class UploadImageGridView extends Component<Props> {
                     <View style={styles.item_container}>
                         <Image style={styles.itemImage} source={item.url} resizeMode='stretch'
                         />
+                        <Text style={[styles.imageDesc,{backgroundColor:item.isDesc?'rgba(68,156,250,0.5)':'#449cfa'}]} onPress={this.props.editImage.bind(this,index)}>{item.desc}</Text>
                     </View>
                     <TouchableHighlight
                         style={styles.itemDeleteContainer}
@@ -191,7 +207,18 @@ const styles = StyleSheet.create({
         itemDelete: {
             width: UtilScreen.getWidth(40),
             height: UtilScreen.getWidth(40),
+        },
+        imageDesc: {
+            backgroundColor:'#449cfa',
+            position:'absolute',
+            left:0,
+            bottom:0,
+            color:"#fff",
+            fontSize:12,
+            textAlign:'center',
+            lineHeight:UtilScreen.getHeight(40),
+            width: UtilScreen.getWidth(180),
+            height:UtilScreen.getHeight(40),
         }
-
     })
 ;

@@ -17,6 +17,7 @@ export default class MyInputDialog extends Component {
             <InputDialog ref={ref => this.InputDialog = ref}
                          title={this.props.inputProps.title}
                          placeholder={this.props.inputProps.placeholder}
+                         maxSize={this.props.inputProps.maxSize}
                          onCoverPress={this.props.onCoverPress.bind(this)}
                          onSubmit={(text) => {
                              this.props.callBack(text);
