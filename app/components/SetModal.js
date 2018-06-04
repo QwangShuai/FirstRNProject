@@ -14,9 +14,9 @@ export default class SetModal extends Component {
         this.setState({isShow: false});
     }
     sureBtn(){
+        // alert('nanguo ','nanguo',),
         this.setState({isShow: false});
     }
-
     componentWillReceiveProps(nextProps) {
         this.setState({
             isShow: nextProps.isShow,
@@ -29,7 +29,7 @@ export default class SetModal extends Component {
                    transparent={true}
                    visible={this.state.isShow}
                    onRequestClose={this.setModalVisible.bind(this)}
-                    >
+            >
                 <Text style={styles.titleText}>确定要清楚缓存吗？</Text>
                 <View style={styles.btnView}>
                     <Text style={styles.cancelText} onPress={this.setModalVisible.bind(this)}>取消</Text>
@@ -42,11 +42,16 @@ export default class SetModal extends Component {
 }
 
 const styles = StyleSheet.create({
+    viewStyle:{
+
+    },
     container:{
-      width:UtilScreen.getWidth(460),
+        backgroundColor:'red',
+        width:UtilScreen.getWidth(460),
         height:UtilScreen.getHeight(350),
         borderRadius:UtilScreen.getWidth(10),
         flexDirection:'row',
+        alignItems:'center',
     },
     titleText:{
         marginTop:UtilScreen.getHeight(123),
@@ -58,9 +63,9 @@ const styles = StyleSheet.create({
         alignItems:'center',
         flexDirection:'row',
         height:UtilScreen.getHeight(60),
-      marginTop:UtilScreen.getHeight(114),
+        marginTop:UtilScreen.getHeight(114),
         borderTopColor:'#e5e5e5',
-        width:'100%',
+        width:UtilScreen.getWidth(460),
         borderTopWidth:UtilScreen.getHeight(1),
         justifyContent:'center',
     },
@@ -83,7 +88,7 @@ const styles = StyleSheet.create({
         alignSelf:'center',
     },
     dividerText:{
-      fontSize:28,
+        fontSize:28,
         color:'#979797',
     },
 })

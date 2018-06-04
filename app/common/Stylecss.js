@@ -96,10 +96,31 @@ export const styles = StyleSheet.create({
         color:'#cacaca',
     },
     login_otherlogin_view:{
-        height:102,
+        height:UtilScreen.getHeight(40),
         position:'absolute',
-        bottom:0,
+        bottom:UtilScreen.getHeight(176),
         alignSelf:'center',
+    },
+    login_otherlogin_background:{
+        backgroundColor:'#cacaca',
+        // backgroundColor:'red',
+        height:UtilScreen.getHeight(2),
+        position:'absolute',
+        bottom:UtilScreen.getHeight(190),
+        width:'100%',
+    },
+    login_otherlogin_wx:{
+        height:UtilScreen.getHeight(45),
+        position:'absolute',
+        bottom:UtilScreen.getHeight(92),
+        width:UtilScreen.getWidth(45),
+        alignSelf:'center',
+    },
+    login_wx_btn:{
+        backgroundColor:'#ffffff',
+        fontSize:14,
+        color:'#cacaca',
+        textAlign:'center',
     },
     register_getcode:{
         flex:2,

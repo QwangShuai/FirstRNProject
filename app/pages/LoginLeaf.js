@@ -44,7 +44,8 @@ export default class LoginLeaf extends Component {
             <View style={Stylecss.styles.container}>
                     <ToolBar  title={'登录'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <Image source={require('../res/images/head.png')} style={Stylecss.styles.login_head_image}/>
-                <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入手机号'} onChangeText={this.updateNum}/>
+                <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入手机号'} onChangeText={this.updateNum}
+                        maxLengh='11' keybordType={'numeric'}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入你的密码'} secureTextEntry={true}/>
                 <Text style={Stylecss.styles.bigTextPrompt} onPress={this.userPressConfirm.bind(this)}>确定</Text>
                 <View style={Stylecss.styles.other_view}>
@@ -52,7 +53,11 @@ export default class LoginLeaf extends Component {
                     <Image source={require('../res/images/80.png')} style={Stylecss.styles.login_divider}/>
                     <Text style={Stylecss.styles.login_get_pw}>忘记密码</Text>
                 </View>
-                    <Text style={Stylecss.styles.login_otherlogin_view}>常用第三方登录</Text>
+                <View style={Stylecss.styles.login_otherlogin_background}/>
+                <View style={Stylecss.styles.login_otherlogin_view}>
+                    <Text style={Stylecss.styles.login_wx_btn}>常用第三方登录</Text>
+                </View>
+                <Image source={require('../res/images/apply_wechat.png')} style={Stylecss.styles.login_otherlogin_wx}/>
 
             </View>
         )
