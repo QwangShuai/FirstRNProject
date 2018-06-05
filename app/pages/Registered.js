@@ -70,26 +70,27 @@ export default class Registered extends Component {
         if(isDisabled){
             isDisabled = false;
             this.jishi(60)
-            // let formData = new FormData();
-            // formData.append("phone", "13029852605");
-            // let param=md5.hex_md5('http://47.92.136.19/index.php/action/ac_login/SendCode');
-            // let params=md5.hex_md5(param);
-            // formData.append('app_key',params);
-            // fetch('http://47.92.136.19/index.php/action/ac_login/SendCode', {
-            //     method: 'POST',
-            //     body:formData,
-            //
-            // }).then(response => response.text())
-            //     .then(responseStr => {
-            //         var bf = new Buffer(responseStr , 'base64')
-            //         var  str= b.toString();
-            //         let result=JSON.parse(str);
-            //         console.log(result);
-            //     })
-            //     .catch(e => {
-            //         console.log(e);
-            //     })
-            //     .done();
+            let formData = new FormData();
+            let phone = this.state.inputedNum;
+            formData.append("phone", phone);
+            let param=md5.hex_md5('http://47.92.136.19/index.php/action/ac_login/SendCode');
+            let params=md5.hex_md5(param);
+            formData.append('app_key',params);
+            fetch('http://47.92.136.19/index.php/action/ac_login/SendCode', {
+                method: 'POST',
+                body:formData,
+
+            }).then(response => response.text())
+                .then(responseStr => {
+                    var bf = new Buffer(responseStr , 'base64')
+                    var  str= b.toString();
+                    let result=JSON.parse(str);
+                    console.log(result);
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+                .done();
         }
 
     }
