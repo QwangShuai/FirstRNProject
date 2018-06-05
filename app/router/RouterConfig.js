@@ -24,7 +24,11 @@ import FeedbackItem from '../components/FeedbackItem';
 import UploadImageGridView from '../components/UploadImageGridView';
 import MyAlbum from '../pages/MyAlbum';
 import AddContent from '../pages/AddContent';
+import FocusOnActivities from '../pages/FocusOnActivities';
+import FocusOnActivitiesItem from '../components/FocusOnActivitiesItem';
 const RouterConfig = StackNavigator({
+    // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
+    FocusOnActivities:{screen:FocusOnActivities},
     AddContent:{screen:AddContent},
     MyAlbum:{screen:MyAlbum},
     Agreement:{screen:Agreement},

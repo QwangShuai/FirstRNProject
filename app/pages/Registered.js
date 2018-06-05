@@ -36,7 +36,19 @@ export default class Registered extends   Component {
     updatePW(inputedPW){
         this.setState({inputedNum});
     }
-
+    getCode(){
+        alert('13029852605'),
+        fetch('http://47.92.136.19/index.php/action/ac_login/SendCode/',{
+            method:'POST',
+            body:'phone=13029852605',
+        }).then(
+            (result) =>{
+                alert(result.json().then((responsejson)=>{
+                    return responsejson.obj;
+                }));
+            }
+        );
+    }
     render() {
         return (
             <View style={Stylecss.styles.container}>
@@ -45,7 +57,7 @@ export default class Registered extends   Component {
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入手机号'} onChangeText={this.updateNum} keybordType={'number-pad'}/>
                 <View style={Stylecss.styles.other_view}>
                     <TextInput style={Stylecss.styles.register_getcode} />
-                    <Text style={Stylecss.styles.register_getcode_text}>获取验证码</Text>
+                    <Text style={Stylecss.styles.register_getcode_text} onPress={this.getCode.bind(this)}>获取验证码</Text>
                 </View>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'设置密码'} secureTextEntry={true}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'确认密码'} secureTextEntry={true}/>
