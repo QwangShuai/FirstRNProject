@@ -130,7 +130,6 @@ export const styles = StyleSheet.create({
         marginLeft:35,
     },
     register_getcode_text:{
-        flex:1,
         fontSize:16,
         color:'#ff9d00',
         textAlign:'right',

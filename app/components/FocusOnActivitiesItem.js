@@ -10,7 +10,7 @@ export default class FocusOnActivitiesItem extends Component {
     static defaultProps = {
         itemInfo: {
             title: '云南旅游活动云南旅游活动云南旅游活动云 南旅游活动云南旅游活动云南旅游活动',
-            imageUrl: '图片路径',
+            imageUrl: {uri:'http://img.51tietu.net/upload/www.51tietu.net/2014-8/201408240241206330.jpg'},
             startTime:'开始时间',
             views:'浏览量',
             participants:'参加人数',
@@ -20,7 +20,9 @@ export default class FocusOnActivitiesItem extends Component {
     render(){
         return(
             <View>
-                <Text style={styles.titleStyle}>云南旅游活动云南旅游活动云南旅游活动云 南旅游活动云南旅游活动云南旅游活动</Text>
+                <Text style={styles.titleStyle}>{this.props.itemInfo.title}</Text>
+                <Image style={styles.imageStyle} source={require('../res/images/delete.png')}/>
+                <Text>开始时间：2018-1-1</Text>
             </View>
         )
     }
@@ -35,5 +37,14 @@ const styles = StyleSheet.create({
         textAlign:'left',
         fontSize:16,
         color:'#333333',
+    },
+    imageStyle:{
+        marginTop:UtilScreen.getHeight(24),
+        marginLeft:UtilScreen.getWidth(40),
+        width:UtilScreen.getWidth(300),
+        height:UtilScreen.getHeight(200),
+    },
+    startTime:{
+
     },
 })

@@ -8,6 +8,7 @@ const {height, width} = Dimensions.get('window');
 const Stylecss = require('../common/Stylecss');
 const pixelRatio = PixelRatio.get();
 const Buffer = require('buffer').Buffer;
+const isDisabled = true;
 export default class Registered extends Component {
     static navigationOptions = {
         headerStyle: {height: 0},
@@ -18,6 +19,9 @@ export default class Registered extends Component {
         this.state = {
             inputedNum: '',
             inputedPW: '',
+            idenCode: '获取验证码',
+            isDisabled:true,
+            timer:60,
         };
         this.updatePW = this.updatePW.bind(this);
         this.updateNum = this.updateNum.bind(this);
@@ -41,28 +45,53 @@ export default class Registered extends Component {
     updatePW(inputedPW) {
         this.setState({inputedNum});
     }
-
+    //计时器
+    jishi(time) {
+        if (time > 0) {
+            this.setState({
+                idenCode: '重新获取（'+ time + "s）"
+            });
+            time--;
+            setTimeout(
+                () => {
+                    this.jishi(time);
+                },
+                1000
+            );
+        } else {
+            this.setState({
+                timer: 60,
+                idenCode: "重新获取",
+            });
+            isDisabled = true;
+        }
+    }
     getCode() {
-        let formData = new FormData();
-        formData.append("phone", "13029852605");
-        let param=md5.hex_md5('http://47.92.136.19/index.php/action/ac_login/SendCode');
-        let params=md5.hex_md5(param);
-        formData.append('app_key',params);
-        fetch('http://47.92.136.19/index.php/action/ac_login/SendCode', {
-            method: 'POST',
-            body:formData,
+        if(isDisabled){
+            isDisabled = false;
+            this.jishi(60)
+            // let formData = new FormData();
+            // formData.append("phone", "13029852605");
+            // let param=md5.hex_md5('http://47.92.136.19/index.php/action/ac_login/SendCode');
+            // let params=md5.hex_md5(param);
+            // formData.append('app_key',params);
+            // fetch('http://47.92.136.19/index.php/action/ac_login/SendCode', {
+            //     method: 'POST',
+            //     body:formData,
+            //
+            // }).then(response => response.text())
+            //     .then(responseStr => {
+            //         var bf = new Buffer(responseStr , 'base64')
+            //         var  str= b.toString();
+            //         let result=JSON.parse(str);
+            //         console.log(result);
+            //     })
+            //     .catch(e => {
+            //         console.log(e);
+            //     })
+            //     .done();
+        }
 
-        }).then(response => response.text())
-            .then(responseStr => {
-                var bf = new Buffer(responseStr , 'base64')
-                var  str= b.toString();
-                let result=JSON.parse(str);
-                console.log(result);
-            })
-            .catch(e => {
-                console.log(e);
-            })
-            .done();
     }
 
     render() {
@@ -74,7 +103,7 @@ export default class Registered extends Component {
                            keybordType={'number-pad'}/>
                 <View style={Stylecss.styles.other_view}>
                     <TextInput style={Stylecss.styles.register_getcode}/>
-                    <Text style={Stylecss.styles.register_getcode_text} onPress={this.getCode.bind(this)}>获取验证码</Text>
+                    <Text style={[Stylecss.styles.register_getcode_text,{color:isDisabled?'#FF9D00':'#5FABFC'}]} onPress={this.getCode.bind(this)}>{this.state.idenCode}</Text>
                 </View>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'设置密码'} secureTextEntry={true}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'确认密码'} secureTextEntry={true}/>
