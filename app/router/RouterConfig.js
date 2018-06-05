@@ -27,6 +27,7 @@ import AddContent from '../pages/AddContent';
 import FocusOnActivities from '../pages/FocusOnActivities';
 import FocusOnActivitiesItem from '../components/FocusOnActivitiesItem';
 const RouterConfig = StackNavigator({
+    Register: {screen: Registered},
     // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
     FocusOnActivities:{screen:FocusOnActivities},
     AddContent:{screen:AddContent},
@@ -46,7 +47,7 @@ const RouterConfig = StackNavigator({
     Apply:{screen:Apply},
 
     Wait: {screen: WaitingLeaf},
-    Register: {screen: Registered},
+
 
 
     PersonalInfoHead: {screen: PersonalInfoHead},
