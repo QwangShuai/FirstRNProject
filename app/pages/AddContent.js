@@ -6,7 +6,8 @@ import UploadImageGridView from '../components/UploadImageGridView';
 import MyInputDialog from '../components/MyInputDialog';
 
 const Stylecss = require('../common/Stylecss');
-
+var Dimensions = require('Dimensions');
+var height = Dimensions.get('window').height;
 
 export default class AddContent extends Component {
     static navigationOptions = {
@@ -89,6 +90,7 @@ export default class AddContent extends Component {
                 {/*start 上传图片编辑描述用到------------*/}
                 <UploadImageGridView maxNumber={9} selectImages={this.selectImages.bind(this)}
                                      editImage={this.editImage.bind(this)}
+                                     isShowFirstLarge={true}
                                      ref={ref => this.UploadImageGridView = ref}
                 />
                 <MyInputDialog isShow={this.state.isShowInputImageDesc} callBack={this.inputImageDescResult.bind(this)}
