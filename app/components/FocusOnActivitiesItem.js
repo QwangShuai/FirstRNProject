@@ -23,7 +23,7 @@ export default class FocusOnActivitiesItem extends Component {
             <View style={{backgroundColor:'#ffffff'}}>
                 <Text style={styles.titleStyle}>{this.props.itemInfo.title}</Text>
                 <View style={styles.viewStyle}>
-                    <Image style={styles.imageStyle} source={require('../res/images/delete.png')}/>
+                    <Image style={styles.imageStyle} source={this.props.itemInfo.imageUrl}/>
                     <View style={styles.rightView}>
                         <Text style={[styles.startTime,{marginTop:UtilScreen.getHeight(20)}]}>开始时间：2018-1-1</Text>
                         <View style={styles.textView}>
