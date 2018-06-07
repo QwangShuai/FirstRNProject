@@ -27,8 +27,8 @@ import AddContent from '../pages/AddContent';
 import FocusOnActivities from '../pages/FocusOnActivities';
 import FocusOnActivitiesItem from '../components/FocusOnActivitiesItem';
 const RouterConfig = StackNavigator({
-    Register: {screen: Registered},
-    // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
+    // Register: {screen: Registered},
+    FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
     FocusOnActivities:{screen:FocusOnActivities},
     AddContent:{screen:AddContent},
     MyAlbum:{screen:MyAlbum},

@@ -94,7 +94,9 @@ export default class Registered extends Component {
         }
 
     }
+    register(){
 
+    }
     render() {
         return (
             <View style={Stylecss.styles.container}>
@@ -103,7 +105,7 @@ export default class Registered extends Component {
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入手机号'} onChangeText={this.updateNum}
                            keybordType={'number-pad'}/>
                 <View style={Stylecss.styles.other_view}>
-                    <TextInput style={Stylecss.styles.register_getcode}/>
+                    <TextInput style={Stylecss.styles.register_getcode} maxLength={11}/>
                     <Text style={[Stylecss.styles.register_getcode_text,{color:isDisabled?'#FF9D00':'#5FABFC'}]} onPress={this.getCode.bind(this)}>{this.state.idenCode}</Text>
                 </View>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'设置密码'} secureTextEntry={true}/>
