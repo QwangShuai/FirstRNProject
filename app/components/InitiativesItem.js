@@ -52,8 +52,8 @@ export default class InitiativesItem extends Component {
                         <Text style={[styles.startTime,{marginLeft:UtilScreen.getWidth(4)}]}>咨询领队</Text>
                     </View>
                     <View style={styles.itemView}>
-                        <Image style={styles.imageItem} source={require('../res/images/heart-fill2.png')} resizeMode='contain'/>
-                        <Text style={[styles.startTime,{marginLeft:UtilScreen.getWidth(4)}]}>取消关注</Text>
+                        <Image style={styles.imageItem} source={require('../res/images/delete.png')} resizeMode='contain'/>
+                        <Text style={[styles.startTime,{marginLeft:UtilScreen.getWidth(4)}]}>取消活动</Text>
                     </View>
                 </View>
                 <View style={[Styless.styles.light_F8F8F8,{height:UtilScreen.getHeight(20)}]}/>
