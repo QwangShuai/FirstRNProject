@@ -26,9 +26,11 @@ import MyAlbum from '../pages/MyAlbum';
 import AddContent from '../pages/AddContent';
 import FocusOnActivities from '../pages/FocusOnActivities';
 import FocusOnActivitiesItem from '../components/FocusOnActivitiesItem';
+import SlideDelete from '../pages/SlideDelete';
 const RouterConfig = StackNavigator({
     // Register: {screen: Registered},
     // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
+    SlideDelete:{screen:SlideDelete},
     FocusOnActivities:{screen:FocusOnActivities},
     AddContent:{screen:AddContent},
     MyAlbum:{screen:MyAlbum},
