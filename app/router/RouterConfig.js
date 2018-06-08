@@ -26,7 +26,11 @@ import MyAlbum from '../pages/MyAlbum';
 import AddContent from '../pages/AddContent';
 import FocusOnActivities from '../pages/FocusOnActivities';
 import FocusOnActivitiesItem from '../components/FocusOnActivitiesItem';
+import InitiativesItem from '../components/InitiativesItem';
+import Initiatives from '../pages/Initiatives';
 const RouterConfig = StackNavigator({
+    Initiatives:{screen:Initiatives},
+    InitiativesItem:{screen:InitiativesItem},
     // Register: {screen: Registered},
     // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
     FocusOnActivities:{screen:FocusOnActivities},
