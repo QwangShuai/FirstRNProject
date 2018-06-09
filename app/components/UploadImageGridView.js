@@ -6,6 +6,7 @@ import {
     FlatList,
     Image,
     TouchableHighlight,
+    ImageBackground,
 } from 'react-native';
 import UtilScreen from '../util/UtilScreen';
 import SelectYesOrNo from '../components/SelectYesOrNo';
@@ -25,6 +26,7 @@ export default class UploadImageGridView extends Component<Props> {
 
     static defaultProps = {
         maxNumber: 3,
+        isShowFirstLarge: true,
     }
     static navigationOptions = {
         headerStyle: {height: 0},
@@ -71,7 +73,7 @@ export default class UploadImageGridView extends Component<Props> {
             key: this.state.images.length - 1,
             url: obj,
             desc: "编辑图片描述",
-            isDesc:false,
+            isDesc: false,
         }
         this.state.images.splice(this.state.images.length - 1, 1);
         this.state.images.push(item);
@@ -86,12 +88,12 @@ export default class UploadImageGridView extends Component<Props> {
     /**
      * 设置图片描述
      */
-    setImageDesc(index,desc){
-        this.state.images[index].desc=desc;
-        this.state.images[index].isDesc=true;
-        let data=this.state.images.concat();
+    setImageDesc(index, desc) {
+        this.state.images[index].desc = desc;
+        this.state.images[index].isDesc = true;
+        let data = this.state.images.concat();
         this.setState({
-            images:data,
+            images: data,
         });
     }
 
@@ -119,7 +121,9 @@ export default class UploadImageGridView extends Component<Props> {
                     <View style={styles.item_container}>
                         <Image style={styles.itemImage} source={item.url} resizeMode='stretch'
                         />
-                        <Text style={[styles.imageDesc,{backgroundColor:item.isDesc?'rgba(68,156,250,0.5)':'#449cfa'}]} onPress={this.props.editImage.bind(this,index)}>{item.desc}</Text>
+                        <Text
+                            style={[styles.imageDesc, {backgroundColor: item.isDesc ? 'rgba(68,156,250,0.5)' : '#449cfa'}]}
+                            onPress={this.props.editImage.bind(this, index)}>{item.desc}</Text>
                     </View>
                     <TouchableHighlight
                         style={styles.itemDeleteContainer}
@@ -140,6 +144,34 @@ export default class UploadImageGridView extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
+                <View style={{
+                    backgroundColor:'#fff',
+                    width: '100%',
+                    justifyContent:'center',
+                    alignItems:'center',
+                    height: this.props.isShowFirstLarge && this.state.images.length > 1 ? UtilScreen.getHeight(380) : 0
+                }}>
+                    <ImageBackground
+                        style={{
+                            width: UtilScreen.getWidth(692),
+                            height: this.props.isShowFirstLarge && this.state.images.length > 1 ? UtilScreen.getHeight(335) : 0
+                        }}
+                        source={this.state.images[0].url}
+                    >
+                        <Text
+                            style={[styles.imageDesc, {backgroundColor: this.state.images[0].isDesc ? 'rgba(68,156,250,0.5)' : '#449cfa'}]}
+                            onPress={this.props.editImage.bind(this, 0)}>{this.state.images[0].desc}</Text>
+                        <TouchableHighlight
+                            style={[styles.firstDeleteContainer, {height: this.props.isShowFirstLarge && this.state.images.length > 1 ? UtilScreen.getWidth(40) : 0}]}
+                            onPress={this.deleteImage.bind(this, this.state.images[0], 0)}
+                            underlayColor={'#f8f8f8'}
+                        >
+                            <Image style={styles.itemDelete} source={require('../res/images/delete.png')}
+                                   resizeMode='stretch'
+                            />
+                        </TouchableHighlight>
+                    </ImageBackground>
+                </View>
                 <FlatList
                     columnWrapperStyle={styles.flatliststyle}
                     numColumns={3}
@@ -204,21 +236,29 @@ const styles = StyleSheet.create({
             width: UtilScreen.getWidth(40),
             height: UtilScreen.getWidth(40),
         },
+        firstDeleteContainer: {
+            top: 0,
+            right: UtilScreen.getWidth(-20),
+            top: UtilScreen.getWidth(-20),
+            position: 'absolute',
+            width: UtilScreen.getWidth(40),
+            height: UtilScreen.getWidth(40),
+        },
         itemDelete: {
             width: UtilScreen.getWidth(40),
             height: UtilScreen.getWidth(40),
         },
         imageDesc: {
-            backgroundColor:'#449cfa',
-            position:'absolute',
-            left:0,
-            bottom:0,
-            color:"#fff",
-            fontSize:12,
-            textAlign:'center',
-            lineHeight:UtilScreen.getHeight(40),
-            width: UtilScreen.getWidth(180),
-            height:UtilScreen.getHeight(40),
-        }
+            backgroundColor: '#449cfa',
+            position: 'absolute',
+            left: 0,
+            bottom: 0,
+            color: "#fff",
+            fontSize: 12,
+            textAlign: 'center',
+            lineHeight: UtilScreen.getHeight(40),
+            width: '100%',
+            height: UtilScreen.getHeight(40),
+        },
     })
 ;

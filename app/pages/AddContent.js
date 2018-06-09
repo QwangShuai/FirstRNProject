@@ -4,9 +4,11 @@ import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
 import UploadImageGridView from '../components/UploadImageGridView';
 import MyInputDialog from '../components/MyInputDialog';
+const GlobalParams =require('../util/GlobalParams');
 
 const Stylecss = require('../common/Stylecss');
-
+var Dimensions = require('Dimensions');
+var height = Dimensions.get('window').height;
 
 export default class AddContent extends Component {
     static navigationOptions = {
@@ -25,10 +27,27 @@ export default class AddContent extends Component {
                 maxSize: 30,
             },
             index: 0,
+            screenHeight:UtilScreen.getHeight(1334)
             //end----------------
+
+        }
+        this.isFirstCome=true;
+
+
+
+
+    }
+    componentDidMount(){
+        if (this.isFirstCome){
+            this.isFirstCome=false;
+            setTimeout(()=>{
+                //alert(GlobalParams.screenHeight);
+                this.setState({
+                    screenHeight:GlobalParams.screenHeight,
+                });
+            },50);
         }
     }
-
     backClick() {
         this.props.navigation.navigate('Set');
     }
@@ -69,7 +88,7 @@ export default class AddContent extends Component {
     //end------------
     render() {
         return (
-            <View style={styles.container}>
+            <View style={[styles.container,{height:this.state.screenHeight}]}>
                 <ToolBar title={'补充内容'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <Text style={styles.titleText}>标题标题标题标题标题标题标题标题标题标题标题标 题标题标题标题</Text>
                 <View style={Stylecss.styles.light_F8F8F8}/>
@@ -89,6 +108,7 @@ export default class AddContent extends Component {
                 {/*start 上传图片编辑描述用到------------*/}
                 <UploadImageGridView maxNumber={9} selectImages={this.selectImages.bind(this)}
                                      editImage={this.editImage.bind(this)}
+                                     isShowFirstLarge={true}
                                      ref={ref => this.UploadImageGridView = ref}
                 />
                 <MyInputDialog isShow={this.state.isShowInputImageDesc} callBack={this.inputImageDescResult.bind(this)}
@@ -109,7 +129,7 @@ export default class AddContent extends Component {
 const styles = StyleSheet.create({
     container: {
         width: UtilScreen.getWidth(750),
-        height: UtilScreen.getHeight(1334),
+        height:UtilScreen.getHeight(1334),
         backgroundColor: '#fff',
     },
     agreementText: {

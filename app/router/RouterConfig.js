@@ -24,7 +24,18 @@ import FeedbackItem from '../components/FeedbackItem';
 import UploadImageGridView from '../components/UploadImageGridView';
 import MyAlbum from '../pages/MyAlbum';
 import AddContent from '../pages/AddContent';
+import FocusOnActivities from '../pages/FocusOnActivities';
+import FocusOnActivitiesItem from '../components/FocusOnActivitiesItem';
+import InitiativesItem from '../components/InitiativesItem';
+import Initiatives from '../pages/Initiatives';
+import SlideDelete from '../pages/SlideDelete';
 const RouterConfig = StackNavigator({
+    Initiatives:{screen:Initiatives},
+    InitiativesItem:{screen:InitiativesItem},
+    // Register: {screen: Registered},
+    // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
+    SlideDelete:{screen:SlideDelete},
+    FocusOnActivities:{screen:FocusOnActivities},
     AddContent:{screen:AddContent},
     MyAlbum:{screen:MyAlbum},
     Agreement:{screen:Agreement},
@@ -42,7 +53,7 @@ const RouterConfig = StackNavigator({
     Apply:{screen:Apply},
 
     Wait: {screen: WaitingLeaf},
-    Register: {screen: Registered},
+
 
 
     PersonalInfoHead: {screen: PersonalInfoHead},
