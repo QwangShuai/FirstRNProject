@@ -97,7 +97,7 @@ export default class AddContent extends Component {
 
                 {/*start 上传图片编辑描述用到------------*/}
 
-                
+
                 <View style={Stylecss.styles.light_F8F8F8}/>
                 <Text style={Stylecss.styles.set_logout}>确认提交</Text>
 
