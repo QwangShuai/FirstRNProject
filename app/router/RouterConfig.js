@@ -28,7 +28,9 @@ import FocusOnActivities from '../pages/FocusOnActivities';
 import FocusOnActivitiesItem from '../components/FocusOnActivitiesItem';
 import InitiativesItem from '../components/InitiativesItem';
 import Initiatives from '../pages/Initiatives';
+import ActivitiesAttended from '../pages/ActivitiesAttended';
 const RouterConfig = StackNavigator({
+    ActivitiesAttended:{screen:ActivitiesAttended},
     Initiatives:{screen:Initiatives},
     InitiativesItem:{screen:InitiativesItem},
     // Register: {screen: Registered},
