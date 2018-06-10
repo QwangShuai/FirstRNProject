@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text} from 'react-native';
+import {View, StyleSheet, Text,ScrollView} from 'react-native';
 import SlideDeleteListItem from '../components/SlideDeleteListItem';
 import UtilScreen from '../util/UtilScreen';
 
@@ -14,10 +14,13 @@ export default class SlideDelete extends Component {
 
     editData() {
         console.log('edit');
+        alert('edit');
     }
 
     deleteData() {
         console.log('deleteData');
+        alert('edit');
+
     }
 
     render() {

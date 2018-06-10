@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, FlatList, TouchableHighlight} from 'react-native';
+import {View, StyleSheet, FlatList, Text, PanResponder, TouchableHighlight} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen'
 import PersonalInfoItem from '../components/PersonalInfoItem';
@@ -10,8 +10,9 @@ import GetPhotoFromPhone from '../util/GetPhotoFromPhone';
 import SelectArea from "../components/SelectArea";
 import MyInputDialog from "../components/MyInputDialog";
 import SlideDeleteListItem from '../components/SlideDeleteListItem';
+import moment from "moment/moment";
 
-export default class PersonalInfo extends Component {
+export default class PersonalInfoDemo2 extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -30,7 +31,18 @@ export default class PersonalInfo extends Component {
                 {key: 6, imageURL: require('../res/images/person_real_name.png'), lTitle: '实名认证', rValue: '身份证上传',},
                 {key: 7, imageURL: require('../res/images/person_is_single.png'), lTitle: '是否单身', rValue: '是',},
                 {key: 8, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV13',},
+                {key: 9, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV13',},
+                {key: 10, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV13',},
+                {key: 11, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV13',},
+                {key: 12, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV13',},
+                {key: 13, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV13',},
+                {key: 14, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV13',},
+                {key: 15, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV13',},
+
             ],
+            left: -0,
+            editWidth: 100,
+            deleteWidth: 100,
             isSelectYesOrNo: false,
             isSelectDate: false,
             isShowSelectPhoto: false,
@@ -49,6 +61,76 @@ export default class PersonalInfo extends Component {
             headImageSource: {},
         }
         this.selectItemDate = {key: 4, title: '选择您的出生日期'};
+
+
+        this.startLeft = 0;
+
+        this._panResponder = PanResponder.create({
+            onStartShouldSetResponderCapture: () => this._handleMoveShouldSetPanResponderCapture(),
+            // onMoveShouldSetResponderCapture: () => true,
+            //  onStartShouldSetPanResponder: () => this._handleMoveShouldSetPanResponderCapture(),
+            //  onMoveShouldSetPanResponder: () => true,
+            onPanResponderGrant: (evt, gs) => {
+                this.startTouchTime = moment().valueOf();
+                this.onlyTouch = true;
+            },
+            onPanResponderMove: (evt, gs) => {
+                let dTime = moment().valueOf() - this.startTouchTime;
+                //  if (dTime > 200 && dTime < 300 && this.onlyTouch && Math.abs(gs.dx) < UtilScreen.getWidth(5) && Math.abs(gs.dy) < UtilScreen.getWidth(5)) {
+                //   this.onlyTouch = false;
+                //    alert('09')
+                // } else
+                if (Math.abs(gs.dy) < UtilScreen.getWidth(5)) {
+                    let left = this.startLeft + gs.dx;
+                    if (left >= -UtilScreen.getWidth(300) && left <= 0) {
+                        if (gs.dx < 0 && (left < -UtilScreen.getWidth(280) && left >= -UtilScreen.getWidth(300))) {
+                            left = -UtilScreen.getWidth(300);
+                        }
+                        if (gs.dx > 0 && (left <= -UtilScreen.getWidth(0) && left >= -UtilScreen.getWidth(20))) {
+                            left = 0;
+                        }
+                        this.setState({
+                            left: left,
+                        });
+                    }
+                    if (left >= -UtilScreen.getWidth(150) && left <= 0) {
+                        this.setState({
+                            deleteWidth: -left,
+                            editWidth: 0,
+                        });
+                    } else if (left >= -UtilScreen.getWidth(300)) {
+                        this.setState({
+                            editWidth: -left - UtilScreen.getWidth(150),
+                            deleteWidth: UtilScreen.getWidth(150),
+                        });
+                    }
+                }
+            },
+            onPanResponderRelease: (evt, gs) => {
+                if (this.state.left >= -UtilScreen.getWidth(150) && this.state.left <= 0) {
+                    this.setState({
+                        left: 0,
+                        editWidth: 0,
+                        deleteWidth: 0,
+                    });
+                    this.startLeft = 0;
+                } else if (this.state.left <= -UtilScreen.getWidth(150)) {
+                    this.setState({
+                        left: -UtilScreen.getWidth(300),
+                        editWidth: UtilScreen.getWidth(150),
+                        deleteWidth: UtilScreen.getWidth(150),
+                    });
+                    this.startLeft = -UtilScreen.getWidth(300);
+                }
+            }
+        })
+    }
+
+    _handleMoveShouldSetPanResponderCapture(event: Object, gestureState: Object,) {
+        //当垂直滑动的距离<10 水平滑动的距离>10的时候才让捕获事件
+        alert('opoo');
+        console.log('_handleMoveShouldSetPanResponderCapture');
+        return Math.abs(gestureState.dy) < 10 && Math.abs(gestureState.dx) > 10;
     }
 
     static navigationOptions = {
@@ -56,63 +138,6 @@ export default class PersonalInfo extends Component {
         headerStyle: {height: 0},
     };
 
-    /**
-     * ToolBar 点击按钮回调
-     */
-    backClick() {
-    }
-
-
-    itemClick(item) {
-        switch (item.key) {
-            case 0:
-                this.setState({
-                    isShowInputName: true,
-                });
-                break;
-            case 1:
-                this.setState({isSelectSex: !this.state.isSelectSex,});
-                break;
-            case 2:
-                this.setState({
-                    isShowSelectArea: true,
-                });
-                break;
-            case 3:
-                this.setState({
-                    isShowInputSign: true,
-                });
-                break;
-            case 4:
-                this.setState({
-                    isSelectDate: true,
-                });
-                this.selectItemDate = {key: 4, title: '选择您的出生日期'};
-                break;
-            case 5:
-                this.setState({
-                    isSelectDate: true,
-                });
-                this.selectItemDate = {key: 5, title: '注册时间'};
-                break;
-            case 6:
-                this.props.navigation.navigate('UploadIdCard', {
-                    callBack: () => {
-                        this.state.itemInfo[6].rValue = '已上传';
-                        let data = this.state.itemInfo.concat();
-                        this.setState({
-                            itemInfo: data,
-                        });
-                    }
-                });
-                break;
-            case 7:
-                this.setState({isSelectYesOrNo: !this.state.isSelectYesOrNo,});
-                break;
-            case 8:
-                break;
-        }
-    }
 
     /**
      * 选择是否单身
@@ -235,42 +260,31 @@ export default class PersonalInfo extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
-                <ToolBar title={'个人中心'} isShowBack={true} backClick={this.backClick.bind(this)}/>
-                <PersonalInfoHead clickCallBack={this.clickHeadImage.bind(this)}
-                                  imageSource={this.state.headImageSource}/>
+            <View style={{flex: 1}}>
+                <ToolBar title={'个人中心2'} isShowBack={true}/>
+                <PersonalInfoHead
+                    imageSource={this.state.headImageSource}/>
                 <FlatList
+                    style={{flex: 1}}
                     data={this.state.itemInfo}
                     renderItem={({item}) => {
                         return (
-                                <View>
-                                    <TouchableHighlight style={styles.lightitem}
-                                                        underlayColor={'#f8f8f8'}
-                                                        onPress={this.itemClick.bind(this, item)}>
-                                        <PersonalInfoItem itemInfo={item}/>
-                                    </TouchableHighlight>
-                                    <View style={styles.line}/>
+                            <SlideDeleteListItem>
+                                <View style={styles.item}>
+                                    <View>
+                                        <TouchableHighlight style={styles.lightitem}
+                                                            underlayColor={'#f8f8f8'}
+                                        >
+                                            <PersonalInfoItem itemInfo={item}/>
+                                        </TouchableHighlight>
+                                    </View>
                                 </View>
+                                <View style={{width: '100%', height: 2, backgroundColor: '#fff'}}/>
+                            </SlideDeleteListItem>
                         );
                     }}
                     keyExtractor={item => item.key.toString()}
                 ></FlatList>
-                <SelectYesOrNo yesOrNo={this.yesOrNo.bind(this)} isShow={this.state.isSelectYesOrNo} topTitle={'是'}
-                               bottomTitle={'否'}/>
-                <SelectYesOrNo yesOrNo={this.selectSex.bind(this)} isShow={this.state.isSelectSex} topTitle={'男'}
-                               bottomTitle={'女'}/>
-                <SelectYesOrNo yesOrNo={this.takerPhotoOrSelect.bind(this)} isShow={this.state.isShowSelectPhoto}
-                               topTitle={'拍照'} bottomTitle={'从相册中选择'}/>
-                <MyDatePicker isShow={this.state.isSelectDate} callBack={this.selectDate.bind(this)}
-                              title={this.selectItemDate.title}
-                              ref={ref => this.MyDatePicker = ref}/>
-                <SelectArea isShow={this.state.isShowSelectArea} callBack={this.selectAreaResult.bind(this)}/>
-                <MyInputDialog isShow={this.state.isShowInputName} callBack={this.inputNameResult.bind(this)}
-                               onCoverPress={this.inputDialogDismissBack.bind(this)}
-                               inputProps={this.state.inputNameProps}/>
-                <MyInputDialog isShow={this.state.isShowInputSign} callBack={this.inputSignResult.bind(this)}
-                               onCoverPress={this.inputDialogDismissBack.bind(this)}
-                               inputProps={this.state.inputSignProps}/>
             </View>
         );
     }
@@ -278,18 +292,39 @@ export default class PersonalInfo extends Component {
 
 const
     styles = StyleSheet.create({
-        container: {
+        item: {
+            height: UtilScreen.getHeight(200),
             width: UtilScreen.getWidth(750),
-            height: UtilScreen.getHeight(1334),
-            backgroundColor: '#fff',
-        },
-        lightitem: {
             backgroundColor: '#fff'
+        },
+        mcontainer: {
+            height: UtilScreen.getHeight(200),
+            flexDirection: 'row',
+            width: UtilScreen.getWidth(750),
+        },
+        right: {
+            height: '100%',
+            flexDirection: 'row',
+            position: 'absolute',
+            right: 0,
+        },
+        edit: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+            backgroundColor: '#F71F1F',
+            width: UtilScreen.getWidth(150)
+        },
+        delete: {
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '100%',
+            backgroundColor: '#CACACA',
+            width: UtilScreen.getWidth(150)
         },
         line: {
             width: '100%',
             height: UtilScreen.getHeight(15),
             backgroundColor: '#f8f8f8',
         },
-
     });
