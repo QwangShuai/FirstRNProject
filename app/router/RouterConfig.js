@@ -26,13 +26,6 @@ import MyAlbum from '../pages/MyAlbum';
 import AddContent from '../pages/AddContent';
 import FocusOnActivities from '../pages/FocusOnActivities';
 import FocusOnActivitiesItem from '../components/FocusOnActivitiesItem';
-<<<<<<< HEAD
-import InfoCenter from '../pages/InfoCenter';
-import InfoSpeific from '../pages/InfoSpeific';
-const RouterConfig = StackNavigator({
-    InfoSpeific:{screen:InfoSpeific},
-    InfoCenter:{screen:InfoCenter},
-=======
 import InitiativesItem from '../components/InitiativesItem';
 import Initiatives from '../pages/Initiatives';
 import ActivitiesAttended from '../pages/ActivitiesAttended';
@@ -46,7 +39,8 @@ const RouterConfig = StackNavigator({
     ActivitiesAttended:{screen:ActivitiesAttended},
     Initiatives:{screen:Initiatives},
     InitiativesItem:{screen:InitiativesItem},
->>>>>>> 0a5c11f27f6e0a0e89641457c2628c95de84adfe
+    InfoSpeific:{screen:InfoSpeific},
+    InfoCenter:{screen:InfoCenter},
     // Register: {screen: Registered},
     // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
     FocusOnActivities:{screen:FocusOnActivities},
