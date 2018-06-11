@@ -30,7 +30,9 @@ import InitiativesItem from '../components/InitiativesItem';
 import Initiatives from '../pages/Initiatives';
 import ActivitiesAttended from '../pages/ActivitiesAttended';
 import MyPublished from '../pages/MyPublished';
+import MyInsertText from '../pages/MyInsertText';
 const RouterConfig = StackNavigator({
+    MyInsertText:{screen:MyInsertText},
     MyPublished:{screen:MyPublished},
     ActivitiesAttended:{screen:ActivitiesAttended},
     Initiatives:{screen:Initiatives},

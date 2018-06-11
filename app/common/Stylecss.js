@@ -272,5 +272,12 @@ export const styles = StyleSheet.create({
       width:'100%',
       height:UtilScreen.getHeight(12),
     },
-
+    light_E5E5E5:{
+        marginTop:UtilScreen.getHeight(30),
+        marginBottom:UtilScreen.getHeight(30),
+        backgroundColor:'#e5e5e5',
+        width:UtilScreen.getWidth(680),
+        height:UtilScreen.getHeight(2),
+        alignSelf:'center',
+    },
 });
