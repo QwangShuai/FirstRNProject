@@ -9,7 +9,7 @@ import MyDatePicker from '../components/MyDatePicker';
 import GetPhotoFromPhone from '../util/GetPhotoFromPhone';
 import SelectArea from "../components/SelectArea";
 import MyInputDialog from "../components/MyInputDialog";
-import SlideDeleteListItem from '../components/SlideDeleteListItem';
+import SlideDeleteListItem from '../components/SlideDeleteEditListItem';
 
 export default class PersonalInfo extends Component {
     constructor(props) {

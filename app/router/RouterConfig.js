@@ -30,7 +30,14 @@ import InitiativesItem from '../components/InitiativesItem';
 import Initiatives from '../pages/Initiatives';
 import ActivitiesAttended from '../pages/ActivitiesAttended';
 import MyPublished from '../pages/MyPublished';
+import MyInsertText from '../pages/MyInsertText';
+import TeamInsertText from '../pages/TeamInsertText';
+import PersonalInfoDemo2 from '../pages/PersonalInfoDemo2';
+import MyDraftList from '../pages/MyDraftList';
+import MyCollectionList from '../pages/MyCollectionList';
 const RouterConfig = StackNavigator({
+    TeamInsertText:{screen:TeamInsertText},
+    MyInsertText:{screen:MyInsertText},
     MyPublished:{screen:MyPublished},
     ActivitiesAttended:{screen:ActivitiesAttended},
     Initiatives:{screen:Initiatives},
@@ -61,5 +68,8 @@ const RouterConfig = StackNavigator({
     PersonalInfoHead: {screen: PersonalInfoHead},
     Update: {screen: Update},
     PickerViewDemo:{screen:PickerViewDemo},
+    MyCollectionList:{screen:MyCollectionList},
+    MyDraftList:{screen:MyDraftList},
+    PersonalInfoDemo2: {screen: PersonalInfoDemo2},
 });
 export default RouterConfig;

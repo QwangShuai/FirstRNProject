@@ -9,7 +9,7 @@ import MyDatePicker from '../components/MyDatePicker';
 import GetPhotoFromPhone from '../util/GetPhotoFromPhone';
 import SelectArea from "../components/SelectArea";
 import MyInputDialog from "../components/MyInputDialog";
-import SlideDeleteListItem from '../components/SlideDeleteListItem';
+import SlideDeleteListItem from '../components/SlideDeleteEditListItem';
 import moment from "moment/moment";
 
 export default class PersonalInfoDemo2 extends Component {
@@ -257,7 +257,12 @@ export default class PersonalInfoDemo2 extends Component {
     inputDialogDismissBack() {
         this.setState({isShowInputName: false, isShowInputSign: false});
     }
-
+    itemEdit(position){
+        alert('编辑'+position+'=this='+this.state.editWidth);
+    }
+    itemDelete(position){
+        alert('删除'+position);
+    }
     render() {
         return (
             <View style={{flex: 1}}>
@@ -267,9 +272,9 @@ export default class PersonalInfoDemo2 extends Component {
                 <FlatList
                     style={{flex: 1}}
                     data={this.state.itemInfo}
-                    renderItem={({item}) => {
+                    renderItem={({item,index}) => {
                         return (
-                            <SlideDeleteListItem>
+                            <SlideDeleteListItem editCallBack={this.itemEdit.bind(this)} deleteCallBack={this.itemDelete.bind(this)} position={index}>
                                 <View style={styles.item}>
                                     <View>
                                         <TouchableHighlight style={styles.lightitem}
@@ -293,7 +298,7 @@ export default class PersonalInfoDemo2 extends Component {
 const
     styles = StyleSheet.create({
         item: {
-            height: UtilScreen.getHeight(200),
+            height: UtilScreen.getHeight(100),
             width: UtilScreen.getWidth(750),
             backgroundColor: '#fff'
         },

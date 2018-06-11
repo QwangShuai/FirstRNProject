@@ -9,9 +9,11 @@ export default class SlideDeleteListItem extends View {
         super(props);
         this.state = {
             left: 0,
+            editWidth: 0,
             deleteWidth: 0,
         }
         this.startLeft = 0;
+        this.firstApplyFn = true;
         this._panResponder = PanResponder.create({
             onMoveShouldSetPanResponderCapture: this._handleMoveShouldSetPanResponderCapture.bind(this),
             //onPanResponderTerminate: this._handlePanResponderEnd.bind(this),
@@ -23,9 +25,9 @@ export default class SlideDeleteListItem extends View {
             },
             onPanResponderMove: (evt, gs) => {
                 let left = this.startLeft + gs.dx;
-                if (left >= -UtilScreen.getWidth(150) && left <= 0) {
-                    if (gs.dx < 0 && (left < -UtilScreen.getWidth(130) && left >= -UtilScreen.getWidth(150))) {
-                        left = -UtilScreen.getWidth(150);
+                if (left >= -UtilScreen.getWidth(300) && left <= 0) {
+                    if (gs.dx < 0 && (left < -UtilScreen.getWidth(280) && left >= -UtilScreen.getWidth(300))) {
+                        left = -UtilScreen.getWidth(300);
                     }
                     if (gs.dx > 0 && (left <= -UtilScreen.getWidth(0) && left >= -UtilScreen.getWidth(20))) {
                         left = 0;
@@ -37,22 +39,30 @@ export default class SlideDeleteListItem extends View {
                 if (left >= -UtilScreen.getWidth(150) && left <= 0) {
                     this.setState({
                         deleteWidth: -left,
+                        editWidth: 0,
+                    });
+                } else if (left >= -UtilScreen.getWidth(300)) {
+                    this.setState({
+                        editWidth: -left - UtilScreen.getWidth(150),
+                        deleteWidth: UtilScreen.getWidth(150),
                     });
                 }
             },
             onPanResponderRelease: (evt, gs) => {
-                if (this.state.left >= -UtilScreen.getWidth(75) && this.state.left <= 0) {
+                if (this.state.left >= -UtilScreen.getWidth(150) && this.state.left <= 0) {
                     this.setState({
                         left: 0,
+                        editWidth: 0,
                         deleteWidth: 0,
                     });
                     this.startLeft = 0;
-                } else if (this.state.left <= -UtilScreen.getWidth(75)) {
+                } else if (this.state.left <= -UtilScreen.getWidth(150)) {
                     this.setState({
-                        left: -UtilScreen.getWidth(150),
+                        left: -UtilScreen.getWidth(300),
+                        editWidth: UtilScreen.getWidth(150),
                         deleteWidth: UtilScreen.getWidth(150),
                     });
-                    this.startLeft = -UtilScreen.getWidth(150);
+                    this.startLeft = -UtilScreen.getWidth(300);
                 }
             }
         })
@@ -69,9 +79,9 @@ export default class SlideDeleteListItem extends View {
             <View>
                 <View style={styles.right}>
                     <TouchableHighlight
-                        onPress={() => {
+                        onPress={()=>{
                             this.setState({
-                                left: 0,
+                                left:0,
                             });
                             this.props.editCallBack.call(this, this.props.position)
                         }}
@@ -84,9 +94,9 @@ export default class SlideDeleteListItem extends View {
                         }}>编辑</Text>
                     </TouchableHighlight>
                     <TouchableHighlight
-                        onPress={() => {
+                        onPress={()=>{
                             this.setState({
-                                left: 0,
+                                left:0,
                             });
                             this.props.deleteCallBack.call(this, this.props.position)
                         }}
