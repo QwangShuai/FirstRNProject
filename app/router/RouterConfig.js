@@ -32,6 +32,8 @@ import ActivitiesAttended from '../pages/ActivitiesAttended';
 import MyPublished from '../pages/MyPublished';
 import MyInsertText from '../pages/MyInsertText';
 import TeamInsertText from '../pages/TeamInsertText';
+import InfoSpeific from '../pages/InfoSpeific';
+import InfoCenter from '../pages/InfoCenter';
 import PersonalInfoDemo2 from '../pages/PersonalInfoDemo2';
 import MyDraftList from '../pages/MyDraftList';
 import MyCollectionList from '../pages/MyCollectionList';
