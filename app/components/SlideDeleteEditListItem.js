@@ -82,7 +82,10 @@ export default class SlideDeleteListItem extends View {
                         onPress={()=>{
                             this.setState({
                                 left:0,
+                                editWidth: 0,
+                                deleteWidth: 0,
                             });
+                            this.startLeft = 0;
                             this.props.editCallBack.call(this, this.props.position)
                         }}
                         style={[styles.edit, {width: this.state.editWidth}]}>

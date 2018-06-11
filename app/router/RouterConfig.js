@@ -38,6 +38,7 @@ import PersonalInfoDemo2 from '../pages/PersonalInfoDemo2';
 import MyDraftList from '../pages/MyDraftList';
 import MyCollectionList from '../pages/MyCollectionList';
 const RouterConfig = StackNavigator({
+    MyDraftList:{screen:MyDraftList},
     TeamInsertText:{screen:TeamInsertText},
     MyInsertText:{screen:MyInsertText},
     MyPublished:{screen:MyPublished},
@@ -73,7 +74,7 @@ const RouterConfig = StackNavigator({
     Update: {screen: Update},
     PickerViewDemo:{screen:PickerViewDemo},
     MyCollectionList:{screen:MyCollectionList},
-    MyDraftList:{screen:MyDraftList},
+
     PersonalInfoDemo2: {screen: PersonalInfoDemo2},
 });
 export default RouterConfig;
