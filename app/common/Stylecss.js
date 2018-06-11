@@ -272,5 +272,47 @@ export const styles = StyleSheet.create({
       width:'100%',
       height:UtilScreen.getHeight(12),
     },
-
+    light_E5E5E5:{
+        marginTop:UtilScreen.getHeight(30),
+        marginBottom:UtilScreen.getHeight(30),
+        backgroundColor:'#e5e5e5',
+        width:UtilScreen.getWidth(680),
+        height:UtilScreen.getHeight(2),
+        alignSelf:'center',
+    },
+    it_insertTextStyle:{
+        fontSize:16,
+        marginTop:UtilScreen.getHeight(40),
+        marginLeft:UtilScreen.getWidth(40),
+        color:'#333333',
+    },
+    it_stateStyle:{
+        fontSize:14,
+        marginTop:UtilScreen.getHeight(10),
+        marginLeft:UtilScreen.getWidth(40),
+        color:'#333333',
+    },
+    it_imageStyle:{
+        alignSelf:'center',
+        marginTop:UtilScreen.getHeight(20),
+        width:UtilScreen.getWidth(680),
+        height:UtilScreen.getHeight(453),
+    },
+    it_myView:{
+        height:UtilScreen.getHeight(28),
+        width:UtilScreen.getWidth(680),
+        alignSelf:'center',
+        flexDirection:'row',
+    },
+    it_smallImageStyle:{
+        width:UtilScreen.getWidth(28),
+        height:UtilScreen.getHeight(28),
+        position:'absolute',
+    },
+    it_textStyle:{
+        fontSize:12,
+        color:'#333333',
+        alignSelf:'center',
+        position:'absolute',
+    },
 });
