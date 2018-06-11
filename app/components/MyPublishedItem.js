@@ -64,9 +64,9 @@ export default class MyPublishedItem extends Component {
 
 const styles = StyleSheet.create({
     titleStyle:{
-        marginLeft:UtilScreen.getWidth(40),
         marginTop:UtilScreen.getHeight(24),
-        width:UtilScreen.getWidth(608),
+        alignSelf:'center',
+        width:UtilScreen.getWidth(670),
         height:UtilScreen.getHeight(90),
         textAlign:'left',
         fontSize:16,
@@ -83,11 +83,9 @@ const styles = StyleSheet.create({
     viewStyle:{
         flexDirection:'row',
         marginTop:UtilScreen.getHeight(24),
-        marginLeft:UtilScreen.getWidth(40),
-        width:'100%',
+        alignSelf:'center',
+        width:UtilScreen.getWidth(670),
         height:UtilScreen.getHeight(200),
-        // borderBottomWidth:UtilScreen.getHeight(2),
-        // borderBottomColor:'#e5e5e5',
     },
     rightView:{
         flex:1,

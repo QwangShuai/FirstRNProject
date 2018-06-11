@@ -31,7 +31,9 @@ import Initiatives from '../pages/Initiatives';
 import ActivitiesAttended from '../pages/ActivitiesAttended';
 import MyPublished from '../pages/MyPublished';
 import MyInsertText from '../pages/MyInsertText';
+import TeamInsertText from '../pages/TeamInsertText';
 const RouterConfig = StackNavigator({
+    TeamInsertText:{screen:TeamInsertText},
     MyInsertText:{screen:MyInsertText},
     MyPublished:{screen:MyPublished},
     ActivitiesAttended:{screen:ActivitiesAttended},
