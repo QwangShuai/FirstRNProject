@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,FlatList, TouchableHighlight} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
-import InfoItem from '../components/InfoItem';
+import InfoSpeificItem from '../components/InfoSpeificItem';
 const Stylecss = require('../common/Stylecss');
 export default class InfoCenter extends Component {
     static navigationOptions = {
@@ -11,9 +11,9 @@ export default class InfoCenter extends Component {
     constructor(props){
         super(props);
         this.state = {
-            InfoItem: [
-                {key: 0,lImg:require('../res/images/user-1.png'),rTitie:'热门消息',rContent:'内容', rTime:'04月03日',rPice:'4',},
-                {key: 1,lImg:require('../res/images/user-1.png'),rTitie:'系统消息',rContent:'内内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容容', rTime:'04月03日',rPice:'0',},
+            InfoSpeificItem: [
+                {key: 0,rTitie:'热门消息',lImg:require('../res/images/user-1.png'),rMore:'时间', rArrow:require('../res/images/user-1.png'),},
+                {key: 1,rTitie:'热门消息',lImg:require('../res/images/user-1.png'),rMore:'时间', rArrow:require('../res/images/user-1.png'),},
             ],
             modalVisible: true,
         }
@@ -29,14 +29,14 @@ export default class InfoCenter extends Component {
             <View style={styles.container}>
                 <ToolBar title={'消息中心'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <FlatList
-                    data={this.state.InfoItem}
+                    data={this.state.InfoSpeificItem}
                     renderItem={({item}) => {
                         return (
                             <View>
                                 <TouchableHighlight style={Stylecss.styles.lightitem}
                                                     underlayColor={'#f8f8f8'}
                                 >
-                                    <InfoItem InfoItem={item}/></TouchableHighlight>
+                                    <InfoSpeificItem InfoItem={item}/></TouchableHighlight>
                                 <View style={Stylecss.styles.line}/>
                             </View>
                         );

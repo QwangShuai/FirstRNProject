@@ -26,7 +26,11 @@ import MyAlbum from '../pages/MyAlbum';
 import AddContent from '../pages/AddContent';
 import FocusOnActivities from '../pages/FocusOnActivities';
 import FocusOnActivitiesItem from '../components/FocusOnActivitiesItem';
+import InfoCenter from '../pages/InfoCenter';
+import InfoSpeific from '../pages/InfoSpeific';
 const RouterConfig = StackNavigator({
+    InfoSpeific:{screen:InfoSpeific},
+    InfoCenter:{screen:InfoCenter},
     // Register: {screen: Registered},
     // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
     FocusOnActivities:{screen:FocusOnActivities},
