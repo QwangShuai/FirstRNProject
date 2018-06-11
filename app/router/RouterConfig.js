@@ -42,6 +42,8 @@ const RouterConfig = StackNavigator({
     ActivitiesAttended:{screen:ActivitiesAttended},
     Initiatives:{screen:Initiatives},
     InitiativesItem:{screen:InitiativesItem},
+    InfoSpeific:{screen:InfoSpeific},
+    InfoCenter:{screen:InfoCenter},
     // Register: {screen: Registered},
     // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
     FocusOnActivities:{screen:FocusOnActivities},

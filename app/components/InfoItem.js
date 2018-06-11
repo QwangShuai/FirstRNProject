@@ -8,7 +8,7 @@ export default class InfoItem extends Component {
         super(props);
     }
     static defaultProps = {
-        itemInfo: {
+        InfoItem: {
             lImg: require('../res/images/user-1.png'),
             rTitie: '消息标题',
             rContent:'内容',
@@ -19,30 +19,30 @@ export default class InfoItem extends Component {
     }
 
     render(){
-        if(this.props.itemInfo.rPice!=0) {
+        if(this.props.InfoItem.rPice!=0) {
             return (
                 <View style={styles.container}>
-                    <Image resizeMode='contain' style={styles.lImg} source={this.props.itemInfo.lImg}></Image>
+                    <Image resizeMode='contain' style={styles.lImg} source={this.props.InfoItem.lImg}></Image>
                     <View style={styles.rContainer}>
-                        <Text style={styles.leftText}>{this.props.itemInfo.rTitie}</Text>
-                        <Text style={styles.rContent}>{this.props.itemInfo.rContent}</Text>
+                        <Text style={styles.leftText}>{this.props.InfoItem.rTitie}</Text>
+                        <Text style={styles.rContent}>{this.props.InfoItem.rContent}</Text>
                     </View>
                     <View style={styles.lContainer}>
-                        <Text style={styles.rTime}>{this.props.itemInfo.rTime}</Text>
-                        <Text style={styles.rPice}>{this.props.itemInfo.rPice}</Text>
+                        <Text style={styles.rTime}>{this.props.InfoItem.rTime}</Text>
+                        <Text style={styles.rPice}>{this.props.InfoItem.rPice}</Text>
                     </View>
                 </View>
             )
-        }else if(this.props.itemInfo.rPice==0){
+        }else if(this.props.InfoItem.rPice==0){
             return (
                 <View style={styles.container}>
-                    <Image resizeMode='contain' style={styles.lImg} source={this.props.itemInfo.lImg}></Image>
+                    <Image resizeMode='contain' style={styles.lImg} source={this.props.InfoItem.lImg}></Image>
                     <View style={styles.rContainer}>
-                        <Text style={styles.leftText}>{this.props.itemInfo.rTitie}</Text>
-                        <Text numberOfLines={1} style={styles.rContent}>{this.props.itemInfo.rContent}</Text>
+                        <Text style={styles.leftText}>{this.props.InfoItem.rTitie}</Text>
+                        <Text numberOfLines={1} style={styles.rContent}>{this.props.InfoItem.rContent}</Text>
                     </View>
                     <View style={styles.lContainer}>
-                        <Text style={styles.rTime}>{this.props.itemInfo.rTime}</Text>
+                        <Text style={styles.rTime}>{this.props.InfoItem.rTime}</Text>
                         <Text style={styles.rPiceOne}></Text>
                     </View>
                 </View>
