@@ -35,6 +35,7 @@ export default class Apply extends Component {
             <View style={styles.container}>
                 <ToolBar title={'报名'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <FlatList
+                    style={{flex:1,backgroundColor:'red'}}
                     data={this.state.itemInfo}
                     renderItem={({item}) => {
                         return (
@@ -78,6 +79,7 @@ const
     styles = StyleSheet.create({
         container: {
             flex: 1,
+            height:UtilScreen.getHeight(1334),
             backgroundColor: '#fff'
         },
     });
