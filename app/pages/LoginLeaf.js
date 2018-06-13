@@ -63,6 +63,7 @@ export default class LoginLeaf extends Component {
         )
     }
     userPressConfirm(){
+        console.log('tiaoshi');
         Alert.alert(
             '提示',
             '确定使用'+this.state.inputedNum+'号码登录嘛',
@@ -74,7 +75,7 @@ export default class LoginLeaf extends Component {
         );
     }
     register(){
-        this.props.navigation.navigate('Register');
+        this.props.navigation.navigate('Registered');
     }
     jumpToWaiting(){
         this.props.navigation.navigate({
