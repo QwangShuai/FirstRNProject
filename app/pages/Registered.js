@@ -86,9 +86,9 @@ export default class Registered extends Component {
             }).then(response => response.text())
                 .then(responseStr => {
                     var bf = new Buffer(responseStr , 'base64')
-                    // var  str= bf.toString();
-                    // let result=JSON.parse(str);
-                    console.log(JSON.parse(responseStr));
+                    var  str= bf.toString();
+                    let result=JSON.parse(str);
+                    console.log(JSON.parse(result));
                 })
                 .catch(e => {
                     console.log(e);
