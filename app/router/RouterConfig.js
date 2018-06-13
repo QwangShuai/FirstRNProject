@@ -53,7 +53,7 @@ const RouterConfig = StackNavigator({
     InitiativesItem: {screen: InitiativesItem},
     InfoSpeific: {screen: InfoSpeific},
     InfoCenter: {screen: InfoCenter},
-    Register: {screen: Registered},
+    Registered: {screen: Registered},
     // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
     FocusOnActivities: {screen: FocusOnActivities},
     AddContent: {screen: AddContent},
