@@ -40,7 +40,6 @@ import MyCollectionList from '../pages/MyCollectionList';
 import MainTabPage from '../pages/MainTabPage';
 
 const RouterConfig = StackNavigator({
-    Registered: {screen: Registered},
     MainTabPage: {screen: MainTabPage,
         navigationOptions:{
             headerStyle: {height: 0,backgroundColor:'#FFBB00'},

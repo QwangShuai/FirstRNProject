@@ -25,7 +25,6 @@ export default class LoginLeaf extends Component {
         UtilScree.getHeight(10);
     }
     backClick(){
-
         this.props.navigation.navigate('PersonalInfoHead');
     }
 
@@ -57,8 +56,8 @@ export default class LoginLeaf extends Component {
                     <Image source={require('../res/images/80.png')} style={Stylecss.styles.login_divider}/>
                     <Text style={Stylecss.styles.login_get_pw}>忘记密码</Text>
                 </View>
-                <View style={Stylecss.styles.login_otherlogin_background}/>
                 <View style={Stylecss.styles.login_otherlogin_view}>
+                    <View style={Stylecss.styles.login_otherlogin_background}/>
                     <Text style={Stylecss.styles.login_wx_btn}>常用第三方登录</Text>
                 </View>
                 <Image source={require('../res/images/apply_wechat.png')} style={Stylecss.styles.login_otherlogin_wx}/>
@@ -84,7 +83,10 @@ export default class LoginLeaf extends Component {
 
     }
     register(){
-        this.props.navigation.navigate('Register');
+        this.props.navigation.navigate('Registered',{mytitle:'注册'});
+    }
+    getPW(){
+        this.props.navigation.navigate('Registered',{mytitle:'密码重置'});
     }
     jumpToWaiting(){
         let formData = new FormData();
