@@ -22,9 +22,14 @@ export default class Registered extends Component {
             isDisabled:true,
             timer:60,
         };
+        this.CodeID = '',
+        this.code = '',
+            this.confirmPW = '',
         this.updatePW = this.updatePW.bind(this);
         this.updateNum = this.updateNum.bind(this);
         this.jumpToWaiting = this.jumpToWaiting.bind(this);
+        this.updateCode = this.updateCode.bind(this);
+        this.updateConfirmPW = this.updateConfirmPW.bind(this);
     }
 
     backClick() {
@@ -42,7 +47,13 @@ export default class Registered extends Component {
     }
 
     updatePW(inputedPW) {
-        this.setState({inputedNum});
+        this.setState({inputedPW});
+    }
+    updateCode(code){
+        this.code = code;
+    }
+    updateConfirmPW(confirmPW){
+        this.confirmPW = confirmPW;
     }
     //计时器
     jishi(time) {
@@ -88,6 +99,7 @@ export default class Registered extends Component {
                     var bf = new Buffer(responseStr , 'base64')
                     var  str= bf.toString();
                     let result=JSON.parse(str);
+                    this.CodeID = result.obj.CodeID;
                     console.log(result);
                 })
                 .catch(e => {
@@ -98,7 +110,35 @@ export default class Registered extends Component {
 
     }
     register(){
+        let formData = new FormData();
+        let phone = this.state.inputedNum;
+        let password = this.state.inputedPW;
+        let code = this.code;
+        let confirmPW = this.confirmPW;
+        formData.append("phone", phone);
+        formData.append("password", password);
+        formData.append("code", code);
+        let CodeID = this.CodeID;
+        console.log(this.CodeID);
+        formData.append("CodeID",CodeID);
+        let param=md5.hex_md5('http://47.92.136.19/index.php/action/ac_login/UseRregister');
+        let params=md5.hex_md5(param);
+        formData.append('app_key',params);
+        fetch('http://47.92.136.19/index.php/action/ac_login/UseRregister', {
+            method: 'POST',
+            body:formData,
 
+        }).then(response => response.text())
+            .then(responseStr => {
+                var bf = new Buffer(responseStr , 'base64')
+                var  str= bf.toString();
+                let result=JSON.parse(str);
+                console.log(result);
+            })
+            .catch(e => {
+                console.log(e);
+            })
+            .done();
     }
     render() {
         return (
@@ -108,12 +148,12 @@ export default class Registered extends Component {
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入手机号'} onChangeText={this.updateNum}
                            keybordType={'number-pad'}/>
                 <View style={Stylecss.styles.other_view}>
-                    <TextInput style={Stylecss.styles.register_getcode} maxLength={11}/>
+                    <TextInput style={Stylecss.styles.register_getcode} maxLength={11} onChangeText={this.updateCode}/>
                     <Text style={[Stylecss.styles.register_getcode_text,{color:this.state.isDisabled?'#FF9D00':'#5FABFC'}]} onPress={this.getCode.bind(this)}>{this.state.idenCode}</Text>
                 </View>
-                <TextInput style={Stylecss.styles.textInputStyle} placeholder={'设置密码'} secureTextEntry={true}/>
-                <TextInput style={Stylecss.styles.textInputStyle} placeholder={'确认密码'} secureTextEntry={true}/>
-                <Text style={Stylecss.styles.bigTextPrompt} onPress={this.userPressConfirm.bind(this)}>注册</Text>
+                <TextInput style={Stylecss.styles.textInputStyle} placeholder={'设置密码'} secureTextEntry={true} onChangeText={this.updatePW}/>
+                <TextInput style={Stylecss.styles.textInputStyle} placeholder={'确认密码'} secureTextEntry={true} onChangeText={this.updateConfirmPW}/>
+                <Text style={Stylecss.styles.bigTextPrompt} onPress={this.register.bind(this)}>注册</Text>
             </View>
         )
     }
