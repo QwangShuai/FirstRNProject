@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image,TouchableHighlight} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
 const Styless = require('../common/Stylecss');
 
@@ -19,7 +19,13 @@ export default class TeamInsertTextItem extends Component {
             releaseTime:'发布时间：2018-03-30',
         }
     }
+    isShow(){
 
+    }
+
+    isShield(){
+
+    }
     render(){
         return(
             <View style={Styless.styles.container}>
@@ -36,10 +42,14 @@ export default class TeamInsertTextItem extends Component {
                 </View>
                 <Text style={styles.stateStyle}>{this.props.itemInfo.state}</Text>
                 <View style={styles.tit_myView}>
-                    <Image style={[Styless.styles.it_smallImageStyle,{right:UtilScreen.getWidth(235)}]} source={require('../res/images/show.png')} resizeMode='contain'/>
-                    <Text style={[Styless.styles.it_textStyle,{right:UtilScreen.getWidth(130)}]}>允许展示</Text>
-                    <Image style={[Styless.styles.it_smallImageStyle,{right:UtilScreen.getWidth(52)}]} source={require('../res/images/shield.png')} resizeMode='contain'/>
-                    <Text style={[Styless.styles.it_textStyle,{right:0}]}>屏蔽</Text>
+                    <TouchableHighlight style={[Styless.styles.it_smallImageStyle,{right:UtilScreen.getWidth(235)}]} onPress={this.isShow.bind(this)}>
+                        <Image style={Styless.styles.it_smallImageStyle} source={require('../res/images/show.png')} resizeMode='contain'/>
+                    </TouchableHighlight>
+                    <Text style={[Styless.styles.it_textStyle,{right:UtilScreen.getWidth(130)}]} onPress={this.isShow.bind(this)}>允许展示</Text>
+                    <TouchableHighlight style={[Styless.styles.it_smallImageStyle,{right:UtilScreen.getWidth(52)}]} onPress={this.isShield.bind(this)}>
+                        <Image style={Styless.styles.it_smallImageStyle} source={require('../res/images/shield.png')} resizeMode='contain'/>
+                    </TouchableHighlight>
+                    <Text style={[Styless.styles.it_textStyle,{right:0}]} onPress={this.isShield.bind(this)}>屏蔽</Text>
                 </View>
                 <View style={Styless.styles.light_F8F8F8} />
             </View>

@@ -143,7 +143,7 @@ export default class Registered extends Component {
     render() {
         return (
             <View style={Stylecss.styles.container}>
-                <ToolBar title={'注册'} isShowBack={true} backClick={this.backClick.bind(this)}/>
+                <ToolBar title={this.props.navigation.state.params.mytitle} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <Image source={require('../res/images/head.png')} style={Stylecss.styles.login_head_image}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'请输入手机号'} onChangeText={this.updateNum}
                            keybordType={'number-pad'}/>
@@ -153,7 +153,7 @@ export default class Registered extends Component {
                 </View>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'设置密码'} secureTextEntry={true} onChangeText={this.updatePW}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'确认密码'} secureTextEntry={true} onChangeText={this.updateConfirmPW}/>
-                <Text style={Stylecss.styles.bigTextPrompt} onPress={this.register.bind(this)}>注册</Text>
+                <Text style={Stylecss.styles.bigTextPrompt} onPress={this.register.bind(this)}>{this.props.navigation.state.params.btn}</Text>
             </View>
         )
     }
