@@ -8,7 +8,6 @@ const {height, width} = Dimensions.get('window');
 const Stylecss = require('../common/Stylecss');
 const pixelRatio = PixelRatio.get();
 const Buffer = require('buffer').Buffer;
-const isDisabled = true;
 export default class Registered extends Component {
     static navigationOptions = {
         headerStyle: {height: 0},
@@ -63,12 +62,16 @@ export default class Registered extends Component {
                 timer: 60,
                 idenCode: "重新获取",
             });
-            isDisabled = true;
+            this.setState({
+                isDisabled:true,
+            });
         }
     }
     getCode() {
-        if(isDisabled){
-            isDisabled = false;
+        if(this.state.isDisabled){
+            this.setState({
+                isDisabled:false,
+            });
             this.jishi(60)
             let formData = new FormData();
             let phone = this.state.inputedNum;
@@ -83,9 +86,9 @@ export default class Registered extends Component {
             }).then(response => response.text())
                 .then(responseStr => {
                     var bf = new Buffer(responseStr , 'base64')
-                    var  str= b.toString();
-                    let result=JSON.parse(str);
-                    console.log(result);
+                    // var  str= bf.toString();
+                    // let result=JSON.parse(str);
+                    console.log(JSON.parse(responseStr));
                 })
                 .catch(e => {
                     console.log(e);
@@ -106,7 +109,7 @@ export default class Registered extends Component {
                            keybordType={'number-pad'}/>
                 <View style={Stylecss.styles.other_view}>
                     <TextInput style={Stylecss.styles.register_getcode} maxLength={11}/>
-                    <Text style={[Stylecss.styles.register_getcode_text,{color:isDisabled?'#FF9D00':'#5FABFC'}]} onPress={this.getCode.bind(this)}>{this.state.idenCode}</Text>
+                    <Text style={[Stylecss.styles.register_getcode_text,{color:this.state.isDisabled?'#FF9D00':'#5FABFC'}]} onPress={this.getCode.bind(this)}>{this.state.idenCode}</Text>
                 </View>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'设置密码'} secureTextEntry={true}/>
                 <TextInput style={Stylecss.styles.textInputStyle} placeholder={'确认密码'} secureTextEntry={true}/>

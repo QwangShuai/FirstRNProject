@@ -11,10 +11,10 @@ import PersonalInfo from '../pages/PersonalInfo';
 import PersonalInfoHead from '../components/PersonalInfoHead';
 import Update from '../pages/Update';
 import ApplyPaymentState from '../components/ApplyPaymentState';
-import ApplyRealName from  '../components/ApplyRealName';
+import ApplyRealName from '../components/ApplyRealName';
 import MyAlbumitem from '../components/MyAlbumGridView';
 import PickerViewDemo from '../components/PickerViewDemo';
-import Apply from  '../pages/Apply';
+import Apply from '../pages/Apply';
 import ApplyPaymentSuccess from '../components/ApplyPaymentSuccess';
 import CreateActivities from '../pages/CreateActivities';
 import SetModal from '../components/SetModal';
@@ -37,43 +37,43 @@ import InfoCenter from '../pages/InfoCenter';
 import PersonalInfoDemo2 from '../pages/PersonalInfoDemo2';
 import MyDraftList from '../pages/MyDraftList';
 import MyCollectionList from '../pages/MyCollectionList';
+
 const RouterConfig = StackNavigator({
-    TeamInsertText:{screen:TeamInsertText},
-    MyInsertText:{screen:MyInsertText},
-    MyPublished:{screen:MyPublished},
-    ActivitiesAttended:{screen:ActivitiesAttended},
-    Initiatives:{screen:Initiatives},
-    InitiativesItem:{screen:InitiativesItem},
-    InfoSpeific:{screen:InfoSpeific},
-    InfoCenter:{screen:InfoCenter},
-    // Register: {screen: Registered},
+    TeamInsertText: {screen: TeamInsertText},
+    MyInsertText: {screen: MyInsertText},
+    MyPublished: {screen: MyPublished},
+    ActivitiesAttended: {screen: ActivitiesAttended},
+    Initiatives: {screen: Initiatives},
+    InitiativesItem: {screen: InitiativesItem},
+    InfoSpeific: {screen: InfoSpeific},
+    InfoCenter: {screen: InfoCenter},
+    Register: {screen: Registered},
     // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
-    FocusOnActivities:{screen:FocusOnActivities},
-    AddContent:{screen:AddContent},
-    MyAlbum:{screen:MyAlbum},
-    Agreement:{screen:Agreement},
+    FocusOnActivities: {screen: FocusOnActivities},
+    AddContent: {screen: AddContent},
+    MyAlbum: {screen: MyAlbum},
+    Agreement: {screen: Agreement},
     Home: {screen: LoginLeaf},
     // FeedbackItem:{screen:FeedbackItem},
-    Agreement:{screen:Agreement},
-    Feedback:{screen:Feedback},
+    Agreement: {screen: Agreement},
+    Feedback: {screen: Feedback},
     // SetModal:{screen:SetModal},
-    CreateActivities:{screen:CreateActivities},
+    CreateActivities: {screen: CreateActivities},
     PersonalInfo: {screen: PersonalInfo},
     // ApplyPaymentSuccess:{screen:ApplyPaymentSuccess},
     // ApplyRealName:{screen:ApplyRealName},
     // ApplyPaymentState:{screen:ApplyPaymentState},
     Set: {screen: Set},
-    Apply:{screen:Apply},
+    Apply: {screen: Apply},
 
     Wait: {screen: WaitingLeaf},
 
 
-
     PersonalInfoHead: {screen: PersonalInfoHead},
     Update: {screen: Update},
-    PickerViewDemo:{screen:PickerViewDemo},
-    MyCollectionList:{screen:MyCollectionList},
-    MyDraftList:{screen:MyDraftList},
+    PickerViewDemo: {screen: PickerViewDemo},
+    MyCollectionList: {screen: MyCollectionList},
+    MyDraftList: {screen: MyDraftList},
     PersonalInfoDemo2: {screen: PersonalInfoDemo2},
 });
 export default RouterConfig;
