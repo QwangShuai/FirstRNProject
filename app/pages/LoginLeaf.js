@@ -54,7 +54,7 @@ export default class LoginLeaf extends Component {
                 <View style={Stylecss.styles.other_view}>
                     <Text style={Stylecss.styles.login_register} onPress={this.register.bind(this)}>注册</Text>
                     <Image source={require('../res/images/80.png')} style={Stylecss.styles.login_divider}/>
-                    <Text style={Stylecss.styles.login_get_pw}>忘记密码</Text>
+                    <Text style={Stylecss.styles.login_get_pw} onPress={this.getPW.bind(this)}>忘记密码</Text>
                 </View>
                 <View style={Stylecss.styles.login_otherlogin_view}>
                     <View style={Stylecss.styles.login_otherlogin_background}/>
@@ -83,10 +83,10 @@ export default class LoginLeaf extends Component {
 
     }
     register(){
-        this.props.navigation.navigate('Registered',{mytitle:'注册'});
+        this.props.navigation.navigate('Registered',{mytitle:'注册',btn:'注册'});
     }
     getPW(){
-        this.props.navigation.navigate('Registered',{mytitle:'密码重置'});
+        this.props.navigation.navigate('Registered',{mytitle:'找回密码',btn:'完成'});
     }
     jumpToWaiting(){
         let formData = new FormData();
