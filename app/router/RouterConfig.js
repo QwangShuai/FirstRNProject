@@ -40,6 +40,7 @@ import MyCollectionList from '../pages/MyCollectionList';
 import MainTabPage from '../pages/MainTabPage';
 
 const RouterConfig = StackNavigator({
+    Registered: {screen: Registered},
     MainTabPage: {screen: MainTabPage,
         navigationOptions:{
             headerStyle: {height: 0,backgroundColor:'#FFBB00'},
@@ -53,7 +54,7 @@ const RouterConfig = StackNavigator({
     InitiativesItem: {screen: InitiativesItem},
     InfoSpeific: {screen: InfoSpeific},
     InfoCenter: {screen: InfoCenter},
-    Registered: {screen: Registered},
+    //?
     // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
     FocusOnActivities: {screen: FocusOnActivities},
     AddContent: {screen: AddContent},

@@ -83,7 +83,7 @@ const MainTabPage = TabNavigator({
         //按 back 键是否跳转到第一个Tab(首页)， none 为不跳转
         backBehavior: "none",
         //设置Tab标签的属性
-        lazy: true, // 是否懒加载  
+        lazy: true, // 是否懒加载
         tabBarOptions: {
             //Android属性
             upperCaseLabel: false,//是否使标签大写，默认为true

@@ -99,7 +99,7 @@ export default class Registered extends Component {
                     var bf = new Buffer(responseStr , 'base64')
                     var  str= bf.toString();
                     let result=JSON.parse(str);
-                    this.CodeID = result.obj.CodeID;
+                    this.CodeID = result.obj.codeID;
                     console.log(result);
                 })
                 .catch(e => {
@@ -119,8 +119,8 @@ export default class Registered extends Component {
         formData.append("password", password);
         formData.append("code", code);
         let CodeID = this.CodeID;
-        console.log(this.CodeID);
-        formData.append("CodeID",CodeID);
+        formData.append("CodeId",CodeID);
+        console.log(formData);
         let param=md5.hex_md5('http://47.92.136.19/index.php/action/ac_login/UseRregister');
         let params=md5.hex_md5(param);
         formData.append('app_key',params);
