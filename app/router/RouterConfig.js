@@ -37,8 +37,14 @@ import InfoCenter from '../pages/InfoCenter';
 import PersonalInfoDemo2 from '../pages/PersonalInfoDemo2';
 import MyDraftList from '../pages/MyDraftList';
 import MyCollectionList from '../pages/MyCollectionList';
+import MainTabPage from '../pages/MainTabPage';
 
 const RouterConfig = StackNavigator({
+    MainTabPage: {screen: MainTabPage,
+        navigationOptions:{
+            headerStyle: {height: 0,backgroundColor:'#FFBB00'},
+        }
+    },
     TeamInsertText: {screen: TeamInsertText},
     MyInsertText: {screen: MyInsertText},
     MyPublished: {screen: MyPublished},
