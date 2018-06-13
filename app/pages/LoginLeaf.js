@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,Alert,AsyncStorage} from 'react-native';
+import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,Alert,AsyncStorage,TouchableHighlight} from 'react-native';
 // import App from './App';
 import {StackNavigator} from 'react-navigation';
 import Registered from './Registered';
@@ -8,6 +8,7 @@ const Stylecss = require('../common/Stylecss');
 import UtilScree from '../util/UtilScreen';
 import md5 from "react-native-md5";
 import ComMon from '../util/ComMon';
+import UtilScreen from '../util/UtilScreen';
 const Buffer = require('buffer').Buffer;
 export default class LoginLeaf extends Component {
     static navigationOptions = {
@@ -60,8 +61,10 @@ export default class LoginLeaf extends Component {
                     <View style={Stylecss.styles.login_otherlogin_background}/>
                     <Text style={Stylecss.styles.login_wx_btn}>常用第三方登录</Text>
                 </View>
-                <Image source={require('../res/images/apply_wechat.png')} style={Stylecss.styles.login_otherlogin_wx}/>
-
+                <TouchableHighlight style={[Stylecss.styles.login_otherlogin_wx,{marginTop:UtilScreen.getHeight(43)}]}
+                                    onPress={this.wx_login.bind(this)}>
+                    <Image source={require('../res/images/apply_wechat.png')} style={Stylecss.styles.login_otherlogin_wx}/>
+                </TouchableHighlight>
             </View>
         )
     }
@@ -88,6 +91,10 @@ export default class LoginLeaf extends Component {
     getPW(){
         this.props.navigation.navigate('Registered',{mytitle:'找回密码',btn:'完成'});
     }
+    wx_login(){
+
+    }
+
     jumpToWaiting(){
         let formData = new FormData();
         let phone = this.state.inputedNum;

@@ -110,7 +110,7 @@ export const styles = StyleSheet.create({
         width:'100%',
     },
     login_otherlogin_wx:{
-        marginTop:UtilScreen.getHeight(43),
+        backgroundColor:'#ffffff',
         height:UtilScreen.getHeight(45),
         width:UtilScreen.getWidth(45),
         alignSelf:'center',
@@ -308,6 +308,7 @@ export const styles = StyleSheet.create({
         flexDirection:'row',
     },
     it_smallImageStyle:{
+        backgroundColor:'#ffffff',
         width:UtilScreen.getWidth(28),
         height:UtilScreen.getHeight(28),
         position:'absolute',

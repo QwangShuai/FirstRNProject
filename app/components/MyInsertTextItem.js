@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, StyleSheet, Image,TouchableHighlight} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
 const Styless = require('../common/Stylecss');
 
@@ -20,6 +20,14 @@ export default class MyInsertTextItem extends Component {
         }
     }
 
+    editor(){
+
+    }
+
+    delete(){
+
+    }
+
     render(){
         return(
             <View style={Styless.styles.container}>
@@ -31,10 +39,15 @@ export default class MyInsertTextItem extends Component {
                 <Text style={Styless.styles.it_stateStyle}>{this.props.itemInfo.lastTime}</Text>
                 <View style={Styless.styles.light_E5E5E5} />
                 <View style={Styless.styles.it_myView}>
-                    <Image style={[Styless.styles.it_smallImageStyle,{right:UtilScreen.getWidth(188)}]} source={require('../res/images/editor-b.png')} resizeMode='contain'/>
-                    <Text style={[Styless.styles.it_textStyle,{right:UtilScreen.getWidth(130)}]}>编辑</Text>
-                    <Image style={[Styless.styles.it_smallImageStyle,{right:UtilScreen.getWidth(52)}]} source={require('../res/images/delete-b.png')} resizeMode='contain'/>
-                    <Text style={[Styless.styles.it_textStyle,{right:0}]}>删除</Text>
+                    <TouchableHighlight style={[Styless.styles.it_smallImageStyle,{right:UtilScreen.getWidth(188)}]} onPress={this.editor.bind(this)}>
+                        <Image style={Styless.styles.it_smallImageStyle} source={require('../res/images/editor-b.png')} resizeMode='contain'/>
+                    </TouchableHighlight>
+                    <Text style={[Styless.styles.it_textStyle,{right:UtilScreen.getWidth(130)}]} onPress={this.editor.bind(this)}>编辑</Text>
+                    <TouchableHighlight style={[Styless.styles.it_smallImageStyle,{right:UtilScreen.getWidth(52)}]} onPress={this.delete.bind(this)}>
+                        <Image style={Styless.styles.it_smallImageStyle} source={require('../res/images/delete-b.png')} resizeMode='contain'/>
+                    </TouchableHighlight>
+
+                    <Text style={[Styless.styles.it_textStyle,{right:0}]} onPress={this.delete.bind(this)}>删除</Text>
                 </View>
                 <View style={Styless.styles.light_F8F8F8} />
             </View>
