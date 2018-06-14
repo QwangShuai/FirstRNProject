@@ -3,6 +3,7 @@ import {AppRegistry,View,Text,Image,TouchableHighlight} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import SetModal from '../components/SetModal';
 const Stylecss = require('../common/Stylecss');
+import ToastComponent from '../components/pickerview/view/ToastComponent';
 export default class Set extends   Component{
     static navigationOptions = {
         headerStyle:{height:0},
@@ -27,6 +28,9 @@ export default class Set extends   Component{
         this.props.navigation.navigate('Feedback');
     }
 
+    updateToast(){
+        this.ToastComponent.show('已是最新版本，暂无更新！~')
+    }
     clearCache(){
         this. setState({
             isShowClearCache:true,
@@ -60,6 +64,7 @@ export default class Set extends   Component{
                 </View>
                 <Text style={Stylecss.styles.set_logout}>注销登录</Text>
                 <SetModal isShow={this.state.isShowClearCache}/>
+                <ToastComponent ref={ref => this.ToastComponent = ref} />
             </View>
         )
     }
