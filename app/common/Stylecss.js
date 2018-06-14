@@ -244,8 +244,8 @@ export const styles = StyleSheet.create({
         alignSelf:'center',
     },
     selectImage:{
+        backgroundColor:'#ffffff',
         width:UtilScreen.getWidth(30),
-        resizeMode:'contain',
         alignSelf:'center',
         position:'absolute',
         right:UtilScreen.getWidth(40),
