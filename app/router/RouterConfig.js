@@ -38,6 +38,7 @@ import PersonalInfoDemo2 from '../pages/PersonalInfoDemo2';
 import MyDraftList from '../pages/MyDraftList';
 import MyCollectionList from '../pages/MyCollectionList';
 import MainTabPage from '../pages/MainTabPage';
+import MyPage from '../pages/MyPage';
 
 const RouterConfig = StackNavigator({
     Home: {screen: LoginLeaf},

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet, Modal, Text,Image} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
 
-export default class ApplyRealName extends Component {
+export default class ApplyPaymentSuccess extends Component {
     constructor(props){
         super(props);
         this.state ={

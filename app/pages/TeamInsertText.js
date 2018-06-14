@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, Image,FlatList,TouchableHighlight} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import TeamInsertTextItem from '../components/TeamInsertTextItem';
-
+import ToastComponent from '../components/pickerview/view/ToastComponent';
 const Stylecss = require('../common/Stylecss');
 
 export default class TeamInsertText extends Component {
@@ -26,6 +26,10 @@ export default class TeamInsertText extends Component {
             ],
         };
     }
+    toastResult(){
+        this.ToastComponent.show('显示个锤子呦~')
+    }
+
     backClick() {
         this.props.navigation.navigate('Set');
     }
@@ -48,12 +52,13 @@ export default class TeamInsertText extends Component {
                                 <TouchableHighlight style={Stylecss.styles.lightitem}
                                                     underlayColor={'#f8f8f8'}
                                                     onPress={this.itemClick.bind(this, item)}>
-                                    <TeamInsertTextItem itemInfo={item}/></TouchableHighlight>
+                                    <TeamInsertTextItem toastResult={this.toastResult.bind(this)} itemInfo={item}/></TouchableHighlight>
                             </View>
                         );
                     }}
                     keyExtractor={item => item.key.toString()}
                 ></FlatList>
+                <ToastComponent ref={ref => this.ToastComponent = ref} />
             </View>
         )
     }
