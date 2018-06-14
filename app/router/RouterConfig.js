@@ -41,6 +41,7 @@ import MainTabPage from '../pages/MainTabPage';
 import MyPage from '../pages/MyPage';
 
 const RouterConfig = StackNavigator({
+    PersonalInfo: {screen: PersonalInfo},
     Home: {screen: LoginLeaf},
     Registered:{screen:Registered},
     MainTabPage: {screen: MainTabPage,
@@ -68,7 +69,7 @@ const RouterConfig = StackNavigator({
     Feedback: {screen: Feedback},
     // SetModal:{screen:SetModal},
     CreateActivities: {screen: CreateActivities},
-    PersonalInfo: {screen: PersonalInfo},
+   //?
     // ApplyPaymentSuccess:{screen:ApplyPaymentSuccess},
     // ApplyRealName:{screen:ApplyRealName},
     // ApplyPaymentState:{screen:ApplyPaymentState},
