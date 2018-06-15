@@ -39,7 +39,7 @@ import MyDraftList from '../pages/MyDraftList';
 import MyCollectionList from '../pages/MyCollectionList';
 import MainTabPage from '../pages/MainTabPage';
 import MyPage from '../pages/MyPage';
-
+import Search from '../pages/Search';
 const RouterConfig = StackNavigator({
     Home: {screen: LoginLeaf},
     Registered:{screen:Registered},

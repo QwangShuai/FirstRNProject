@@ -23,6 +23,7 @@ export default class LoginLeaf extends Component {
         this.updatePW = this.updatePW.bind(this);
         this.updateNum = this.updateNum.bind(this);
         this.jumpToWaiting = this.jumpToWaiting.bind(this);
+        this.asQuery = this.asQuery.bind(this);
         UtilScree.getHeight(10);
     }
     backClick(){
@@ -92,7 +93,7 @@ export default class LoginLeaf extends Component {
         this.props.navigation.navigate('Registered',{mytitle:'找回密码',btn:'完成'});
     }
     wx_login(){
-
+        this.asQuery();
     }
 
     jumpToWaiting(){
@@ -132,7 +133,7 @@ export default class LoginLeaf extends Component {
             });
 
     }
-    /*asQuery() {
+    asQuery() {
         AsyncStorage.getItem('uid', (error, result) => {
             if (!error) {
                 if (result !== '' && result !== null) {
@@ -144,7 +145,7 @@ export default class LoginLeaf extends Component {
                 alert('查询数据失败');
             }
         })
-    }*/
+    }
     asSave(uid) {
         AsyncStorage.setItem('uid',uid, (error) => {
             if (!error) {
