@@ -23,15 +23,10 @@ export default class FriendRemember extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            banners: [
-                {key: 0, imageURL: require('../res/images/1.jpg')},
-                {key: 1, imageURL: require('../res/images/2.jpg')},
-                {key: 2, imageURL: require('../res/images/3.jpg')},
-            ],
             items: [
                 {
                     key: 0,
-                    imageURL: require('../res/images/4.jpg'),
+                    imageURL: require('../res/images/guangzhou.jpg'),
                     article: {
                         title: '标题',
                         content: '当地时间12日上午，朝鲜最高领导人金正恩与美国总统特朗普在新加坡嘉佩乐酒店举行首次会晤，双方握手致意。这是在任的朝美领导人数十年来首次会晤及握手。',
@@ -47,8 +42,24 @@ export default class FriendRemember extends Component {
                     }
                 },
                 {
-                    key: 0,
+                    key: 1,
                     imageURL: require('../res/images/4.jpg'),
+                    article: {
+                        title: '标题',
+                        content: '当地时间12日上午，朝鲜最高领导人金正恩与美国总统特朗普在新加坡嘉佩乐酒店举行首次会晤，双方握手致意。这是在任的朝美领导人数十年来首次会晤及握手。',
+                        date: '2018-6-14',
+                        visitorsNum: 15600,
+                        messageNum: 1200,
+                    },
+                    userInfo: {
+                        userName: '爱吃土豆的西瓜',
+                        userLevel: 'LV 1',
+                        headImagePath: require('../res/images/head_image.png'),
+                        isAttention:false,
+                    }
+                },{
+                    key: 2,
+                    imageURL: require('../res/images/shanghai.jpg'),
                     article: {
                         title: '标题',
                         content: '当地时间12日上午，朝鲜最高领导人金正恩与美国总统特朗普在新加坡嘉佩乐酒店举行首次会晤，双方握手致意。这是在任的朝美领导人数十年来首次会晤及握手。',
