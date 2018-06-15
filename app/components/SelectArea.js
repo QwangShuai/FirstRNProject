@@ -22,10 +22,12 @@ export default class SelectArea extends Component {
             <AreaPicker
                 areaJson={AreaJson}
                 selectedValue={['北京市', '北京市', '东城区']}
+                onCoverPress={()=>{ this.props.callBack('',0)}}
                 onPickerCancel={() => {
+                    this.props.callBack('',0);
                 }}
                 onPickerConfirm={(value) => {
-                    this.props.callBack(value);
+                    this.props.callBack(value,1);
                 }}
                 ref={ref => this.AreaPicker = ref}/>
         );

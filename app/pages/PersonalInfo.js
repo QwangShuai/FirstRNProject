@@ -155,11 +155,21 @@ export default class PersonalInfo extends Component {
         }
     }
 
-    selectDate(date) {
-        let d = date.concat();
-        this.state.itemInfo[this.selectItemDate.key].rValue = d;
-        let data = this.state.itemInfo.concat();
-        this.setState({isSelectDate: false, itemInfo: data});
+    /**
+     * type0 取消 1确定
+     * @param date
+     * @param type
+     */
+    selectDate(date,type) {
+        if (type===1){
+            let d = date.concat();
+            this.state.itemInfo[this.selectItemDate.key].rValue = d;
+            let data = this.state.itemInfo.concat();
+            this.setState({isSelectDate: false, itemInfo: data});
+        }else {
+            this.setState({isSelectDate: false});
+        }
+
     }
 
     /**
@@ -199,12 +209,19 @@ export default class PersonalInfo extends Component {
     /**
      * 选择所在地回调
      * @param area
+     * 0取消
+     * 1确定
      */
-    selectAreaResult(area) {
-        let [province, city, street] = area;
-        this.state.itemInfo[2].rValue = province + '-' + city + '-' + street;
-        let data = this.state.itemInfo.concat();
-        this.setState({isShowSelectArea: false, itemInfo: data});
+    selectAreaResult(area,type) {
+        if (type===1){
+            let [province, city, street] = area;
+            this.state.itemInfo[2].rValue = province + '-' + city + '-' + street;
+            let data = this.state.itemInfo.concat();
+            this.setState({isShowSelectArea: false, itemInfo: data});
+        }else {
+            this.setState({isShowSelectArea: false});
+        }
+
     }
 
     /**

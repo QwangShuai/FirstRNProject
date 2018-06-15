@@ -35,8 +35,9 @@ export default class MyDatePicker extends Component {
                 itemSelectedColor={0x000000ff}
                 unit={this.state.unit}
                 startYear={this.state.startYear}
+                onCoverPress={()=>{this.props.callBack('',0)}}
                 onPickerConfirm={(value) => {
-                    this.props.callBack(value);
+                    this.props.callBack(value,1);
                 }}
                 onPickerCancel={() => {
                     alert('cancel')
