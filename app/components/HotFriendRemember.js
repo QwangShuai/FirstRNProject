@@ -103,7 +103,7 @@ export default class HotFriendRemember extends Component {
                         marginLeft: UtilScreen.getWidth(20),
                         marginTop: UtilScreen.getHeight(10)
                     }}>
-                        <Text style={{color: '#333', fontSize: 12}}>{this.props.item.article.date}</Text>
+                        <Text style={{color: '#333', fontSize: 12}}>{this.state.hotFriendRemeber.article.date}</Text>
                         <Image
                             style={{marginLeft: UtilScreen.getWidth(20), marginTop: UtilScreen.getHeight(8)}}
                             source={require('../res/images/visitors_num_icon.png')}
@@ -112,7 +112,7 @@ export default class HotFriendRemember extends Component {
                             color: '#ff9d00',
                             fontSize: 12,
                             marginLeft: UtilScreen.getWidth(10)
-                        }}>{this.props.item.article.visitorsNum}</Text>
+                        }}>{this.state.hotFriendRemeber.article.visitorsNum}</Text>
                         <Image
                             style={{marginLeft: UtilScreen.getWidth(20), marginTop: UtilScreen.getHeight(8)}}
                             source={require('../res/images/message_num_icon.png')}
@@ -121,7 +121,7 @@ export default class HotFriendRemember extends Component {
                             color: '#ff9d00',
                             fontSize: 12,
                             marginLeft: UtilScreen.getWidth(10)
-                        }}>{this.props.item.article.messageNum}</Text>
+                        }}>{this.state.hotFriendRemeber.article.messageNum}</Text>
                     </View>
                 </View>
             </View>
