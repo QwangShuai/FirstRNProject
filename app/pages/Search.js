@@ -15,8 +15,9 @@ export default class Search extends Component {
     render(){
         return(
             <View style={Stylecss.styles.container}>
-                <View style={{height:UtilScreen.getHeight(134)}}>
-                    <TextInput style={styles.searchStyle} placeholder='搜索文章/景点' underlineColorAndroid='transparent'/>
+                <View style={styles.searchStyle}>
+                    <Image style={styles.imageStyle} source={require('../res/images/6F.png')} resizeMode='contain'/>
+                    <TextInput style={{flex:1,fontSize:14,padding:0}} placeholder='搜索文章/景点' underlineColorAndroid='transparent'/>
                 </View>
             </View>
         )
@@ -24,13 +25,21 @@ export default class Search extends Component {
 }
 const styles = StyleSheet.create({
     searchStyle:{
+        flexDirection:'row',
         margin:UtilScreen.getWidth(20),
         fontSize:14,
-        borderRadius:UtilScreen.getWidth(57),
+        borderRadius:UtilScreen.getWidth(34),
         width:UtilScreen.getWidth(634),
+        height:UtilScreen.getHeight(64),
         borderWidth:UtilScreen.getWidth(2),
         borderColor:'#FEA81F',
         alignSelf:'center',
-        textAlign:'left',
-    }
+        justifyContent:'center',
+    },
+    imageStyle:{
+        margin:UtilScreen.getWidth(24),
+        alignSelf:'center',
+        width:UtilScreen.getWidth(24),
+        height:UtilScreen.getHeight(24),
+    },
 })
