@@ -128,7 +128,6 @@ export default class FriendPartyItem extends Component {
                     width: '100%',
                     height: UtilScreen.getHeight(20),
                     backgroundColor: '#efeff4',
-                    marginTop: UtilScreen.getHeight(20)
                 }}/>
             </View>
         );

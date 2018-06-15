@@ -10,7 +10,7 @@ export default class HotFriendRemember extends Component {
                 key: 0,
                 imageURL: require('../res/images/guangzhou.jpg'),
                 article: {
-                    title: '标题',
+                    title: '朝美首脑首次会晤 金正恩特朗普历史性握手',
                     content: '当地时间12日上午，朝鲜最高领导人金正恩与美国总统特朗普在新加坡嘉佩乐酒店举行首次会晤，双方握手致意。这是在任的朝美领导人数十年来首次会晤及握手。',
                     date: '2018-6-14',
                     visitorsNum: 15600,
@@ -27,7 +27,7 @@ export default class HotFriendRemember extends Component {
 
     render() {
         return (
-            <View>
+            <View style={{backgroundColor: '#fff'}}>
                 <View style={{
                     backgroundColor: '#fff',
                     width: '100%',
@@ -86,22 +86,52 @@ export default class HotFriendRemember extends Component {
                     </View>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                    <Text>{this.state.hotFriendRemeber.article.content}</Text>
+                    <Text numberOfLines={4} style={{
+                        textAlign: 'justify',
+                        backgroundColor: '#fff',
+                        fontSize: 14,
+                        color: '#333',
+                        padding: UtilScreen.getWidth(20),
+                        width: UtilScreen.getWidth(460),
+                        height: UtilScreen.getHeight(190)
+                    }}>{this.state.hotFriendRemeber.article.content}</Text>
                     <Image
+                        style={{width: UtilScreen.getWidth(265), height: UtilScreen.getHeight(190)}}
                         source={this.state.hotFriendRemeber.imageURL}
+                        resizeMode='stretch'
                     />
                 </View>
-                <View style={{flexDirection:'row'}}>
-                    <View>
+                <View style={{
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    paddingTop: UtilScreen.getHeight(30),
+                    paddingBottom: UtilScreen.getHeight(30)
+                }}>
+                    <View style={{
+                        flex: 1,
+                        backgroundColor: '#fff',
+                        flexDirection: 'row',
+                        marginLeft: UtilScreen.getWidth(20)
+                    }}>
                         <Image
+                            style={{
+                                width: UtilScreen.getWidth(50),
+                                height: UtilScreen.getWidth(50),
+                                borderRadius: UtilScreen.getWidth(25)
+                            }}
+                            resizeMode='stretch'
                             source={this.state.hotFriendRemeber.userInfo.headImagePath}
                         />
-                        <Text>{this.state.hotFriendRemeber.userInfo.userName}</Text>
+                        <Text numberOfLines={1} style={{
+                            lineHeight: UtilScreen.getWidth(50),
+                            marginLeft: UtilScreen.getWidth(10),
+                            color: '#333',
+                            fontSize: 12
+                        }}>{this.state.hotFriendRemeber.userInfo.userName}</Text>
                     </View>
                     <View style={{
                         flexDirection: 'row',
-                        marginLeft: UtilScreen.getWidth(20),
-                        marginTop: UtilScreen.getHeight(10)
+                        marginRight: UtilScreen.getWidth(20),
                     }}>
                         <Text style={{color: '#333', fontSize: 12}}>{this.state.hotFriendRemeber.article.date}</Text>
                         <Image

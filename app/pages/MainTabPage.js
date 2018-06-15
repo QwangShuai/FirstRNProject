@@ -77,7 +77,7 @@ const MainTabPage = TabNavigator({
         //设置TabNavigator的位置
         tabBarPosition: 'bottom',
         //是否在更改标签时显示动画
-        animationEnabled: true,
+        animationEnabled: false,
         //是否允许在标签之间进行滑动
         swipeEnabled: false,
         //按 back 键是否跳转到第一个Tab(首页)， none 为不跳转
@@ -107,7 +107,7 @@ const MainTabPage = TabNavigator({
             },
             iconStyle: {//图标的样式
                 marginBottom: UtilScreen.getHeight(8),
-                marginTop:-UtilScreen.getHeight(15),
+                marginTop:-UtilScreen.getHeight(5),
             }
         },
 

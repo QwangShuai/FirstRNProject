@@ -45,7 +45,7 @@ export default class IndexSerach extends Component {
                 </TouchableHighlight>
                 <TouchableHighlight>
                     <Image
-                        style={{marginLeft: UtilScreen.getWidth(20)}}
+                        style={{marginLeft: UtilScreen.getWidth(40)}}
                         source={require('../res/images/index_message.png')}
                     />
                 </TouchableHighlight>
