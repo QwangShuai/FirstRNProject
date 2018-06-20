@@ -85,7 +85,6 @@ const styles = StyleSheet.create({
     },
     lContainer:{
         width: UtilScreen.getWidth(106),
-        textAlign:'right',
 
     },
     rTime:{
