@@ -90,11 +90,17 @@ export default class IndexPage extends Component {
     queryDate() {
 
     }
+    jumpToSearch(){
+        this.props.navigation.navigate('Search');
+    }
+    jumpToMessage(){
+        this.props.navigation.navigate('InfoCenter');
+    }
     _renderHeader() {
         return(
             <View>
             <IndexPageBanner/>
-            <IndexSerach/>
+            <IndexSerach backClick={this.jumpToSearch.bind(this)} jumpToMessage={this.jumpToMessage.bind(this)}/>
             <HotFriendRemember/>
                 <View style={{width:'100%',height:UtilScreen.getHeight(20),backgroundColor:'#efeff4'}}/>
                 <View style={{flexDirection:'row',justifyContent:'center',paddingTop:UtilScreen.getHeight(20)}}>
