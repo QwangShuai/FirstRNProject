@@ -24,7 +24,7 @@ var totalheight = [];//每个字母对应的城市和字母的总高度
 const {width, height} = Dimensions.get('window');
 // const URL = 'http://xxxxxxxxx.com/api/city/list';
 
-import DATA_JSON from './city-list.json'
+import DATA_JSON from '../components/city-list.json'
 
 
 var that;

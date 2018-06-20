@@ -20,10 +20,10 @@ export default  class Header extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar
-                    backgroundColor="#e75404"
-                    barStyle="light-content"
-                />
+                {/*<StatusBar*/}
+                    {/*backgroundColor="#ff9d00"*/}
+                    {/*barStyle="light-content"*/}
+                {/*/>*/}
                 <View style={[styles.cellfixed]}>
                     <TouchableOpacity onPress={e=>this._onBackBtn(e)}>
                         <FontAwesomeIcon name="chevron-left" color="#ffffff" size={20}/>
@@ -42,7 +42,7 @@ export default  class Header extends Component {
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        backgroundColor: '#e75404',
+        backgroundColor: '#ff9d00',
         paddingTop: Platform.OS === 'ios' ? 20 : 0,  // 处理iOS状态栏
         height: Platform.OS === 'ios' ? 50 : 35,   // 处理iOS状态栏
         paddingLeft: 5,
