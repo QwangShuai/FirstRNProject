@@ -12,6 +12,7 @@ import {
     StatusBar,
 }from 'react-native';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import ToolBar from '../components/ToolBar';
 
 export default  class Header extends Component {
     _onBackBtn(e) {
@@ -20,15 +21,12 @@ export default  class Header extends Component {
     render() {
         return (
             <View style={styles.container}>
-                {/*<StatusBar*/}
-                    {/*backgroundColor="#ff9d00"*/}
-                    {/*barStyle="light-content"*/}
-                {/*/>*/}
                 <View style={[styles.cellfixed]}>
                     <TouchableOpacity onPress={e=>this._onBackBtn(e)}>
                         <FontAwesomeIcon name="chevron-left" color="#ffffff" size={20}/>
                     </TouchableOpacity>
                 </View>
+                {/*<ToolBar title={'哈尔滨'} isShowBack={true} backClick={e=>this._onBackBtn(e)}/>*/}
                 <View style={styles.cell}>
                     <Text style={[styles.title]}>{this.props.title}</Text>
                 </View>

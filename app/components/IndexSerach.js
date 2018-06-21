@@ -19,7 +19,7 @@ export default class IndexSerach extends Component {
                     style={{marginLeft: UtilScreen.getWidth(20)}}
                     source={require('../res/images/index_location.png')}
                 />
-                <Text style={{marginLeft: UtilScreen.getWidth(10), color: '#333', fontSize: 15}}>北京</Text>
+                <Text style={{marginLeft: UtilScreen.getWidth(10), color: '#333', fontSize: 15}} onPress={this.props.jumpToSelectCity}>哈尔滨</Text>
                 <TouchableHighlight onPress={this.props.backClick}>
                     <View style={{
                         marginLeft: UtilScreen.getWidth(10),

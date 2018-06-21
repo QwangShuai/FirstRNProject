@@ -96,11 +96,14 @@ export default class IndexPage extends Component {
     jumpToMessage(){
         this.props.navigation.navigate('InfoCenter');
     }
+    jumpToSelectCity(){
+        this.props.navigation.navigate('SimpleSelectCity');
+    }
     _renderHeader() {
         return(
             <View>
             <IndexPageBanner/>
-            <IndexSerach backClick={this.jumpToSearch.bind(this)} jumpToMessage={this.jumpToMessage.bind(this)}/>
+            <IndexSerach jumpToSelectCity={this.jumpToSelectCity.bind(this)} backClick={this.jumpToSearch.bind(this)} jumpToMessage={this.jumpToMessage.bind(this)}/>
             <HotFriendRemember/>
                 <View style={{width:'100%',height:UtilScreen.getHeight(20),backgroundColor:'#efeff4'}}/>
                 <View style={{flexDirection:'row',justifyContent:'center',paddingTop:UtilScreen.getHeight(20)}}>
