@@ -4,6 +4,9 @@ import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
 import ApplyInfoItem from '../components/ApplyInfoItem';
 const Stylecss = require('../common/Stylecss');
+import ApplyRealName from '../components/ApplyRealName';
+import ApplyPaymentSuccess from '../components/ApplyPaymentSuccess';
+import ApplyPaymentState from '../components/ApplyPaymentState';
 export default class Apply extends Component {
     static navigationOptions = {
         headerStyle:{height:0},
@@ -21,17 +24,31 @@ export default class Apply extends Component {
                 {key: 6, lTitle:`年        龄:`, rHint: '请输入年龄',},
                 {key: 7, lTitle: '婚姻状况:', rHint: '请输入婚姻状况',},
             ],
-            modalVisible: true,
+            modalVisible: false,
             wxImage:require('../res/images/apply_true.png'),
             alipayImage:require('../res/images/apply_false.png'),
             isPay:true,
+            isState:false,
+            isFailure:false,
         }
     }
     backClick(){
-
+        this.props.navigation.goBack();
     }
-    setModalVisible(visible) {
-        this.setState({modalVisible: visible});
+    setModalVisible() {
+            this.setState({
+                modalVisible:false,
+                isState:false,
+                isFailure:false,
+            });
+    }
+    jumpToCard(){
+        this.props.navigation.navigate('UploadIdCard');
+        this.setState({modalVisible: false});
+    }
+    jumpToOrder(){
+        this.props.navigation.navigate('Order');
+        this.setState({isFailure: false});
     }
     wx_pay(){
         this.setState({
@@ -48,6 +65,7 @@ export default class Apply extends Component {
         });
     }
     myPay(){
+        this.setState({isFailure: true});
         if(this.state.isPay){//微信支付
 
         } else {//支付宝支付
@@ -88,7 +106,7 @@ export default class Apply extends Component {
                     <View style={Stylecss.styles.selectView}>
                         <Image style={Stylecss.styles.payImage} source={require('../res/images/apply_alipay.png')}/>
                         <Text style={Stylecss.styles.payText}>支付宝</Text>
-                        <TouchableHighlight style={Stylecss.styles.selectImage}onPress={this.alipay_pay.bind(this)} >
+                        <TouchableHighlight style={Stylecss.styles.selectImage} onPress={this.alipay_pay.bind(this)} >
                             <Image style={{width:UtilScreen.getWidth(30),}} source={this.state.alipayImage} resizeMode='contain'/>
                         </TouchableHighlight>
                     </View>
@@ -97,7 +115,9 @@ export default class Apply extends Component {
                 <View style={Stylecss.styles.paymentView}>
                     <Text style={Stylecss.styles.paymentText} onPress={this.myPay.bind(this)}>支付</Text>
                 </View>
-
+                {/*<ApplyRealName modalVisible={this.state.modalVisible} setModalVisible={this.setModalVisible.bind(this)} jump={this.jumpToCard.bind(this)} />*/}
+                {/*<ApplyPaymentSuccess modalVisible={this.state.isState} setModalVisible={this.setModalVisible.bind(this)} jump={()=>this.setState({isState:false})} />*/}
+                <ApplyPaymentState modalVisible={this.state.isFailure} setModalVisible={()=>this.setState({isFailure:false})} jump={this.jumpToOrder.bind(this)} />
             </View>
         );
     };

@@ -5,26 +5,22 @@ import UtilScreen from '../util/UtilScreen';
 export default class ApplyPaymentSuccess extends Component {
     constructor(props){
         super(props);
-        this.state ={
-            modalVisible: true,
-        }
-    }
-    setModalVisible() {
-        this.setState({modalVisible: false});
     }
 
     render(){
         return(
             <Modal style={styles.container}
                    animationType={"slide"}
-                   transparent={false}
-                   visible={this.state.modalVisible}
-                   onRequestClose={this.setModalVisible.bind(this)}>
-                <Image style={styles.failureImage} source={require('../res/images/apply_pay_true.png')} resizeMode='contain'/>
-                <Text style={styles.successText}>支付成功</Text>
-                <Text style={styles.promptText}>订单号:123456789012</Text>
-                <Text style={styles.paymentText}>支付方式:微信支付</Text>
-                <Text style={styles.btnText}>完成</Text>
+                   transparent={true}
+                   visible={this.props.modalVisible}
+                   onRequestClose={this.props.setModalVisible}>
+                <View style={styles.content}>
+                    <Image style={styles.failureImage} source={require('../res/images/apply_pay_true.png')} resizeMode='contain'/>
+                    <Text style={styles.successText}>支付成功</Text>
+                    <Text style={styles.promptText}>订单号:123456789012</Text>
+                    <Text style={styles.paymentText}>支付方式:微信支付</Text>
+                    <Text style={styles.btnText} onPress={this.props.jump}>完成</Text>
+                </View>
             </Modal>
         )
     }
@@ -32,10 +28,14 @@ export default class ApplyPaymentSuccess extends Component {
 const
     styles = StyleSheet.create({
         container: {
-            height:UtilScreen.getHeight(589),
-            position:'absolute',
-            bottom:0,
-            flexDirection:'row',
+            flex:1,
+        },
+        content: {
+            marginTop:UtilScreen.getHeight(88),
+            // width:'100%',
+            // height:UtilScreen.getHeight(589),
+            flex:1,
+            backgroundColor:'#ffffff',
         },
         payfailureText:{
             marginTop:UtilScreen.getHeight(30),

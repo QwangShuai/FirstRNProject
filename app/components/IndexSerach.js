@@ -6,7 +6,6 @@ export default class IndexSerach extends Component {
     constructor(props) {
         super(props)
     }
-
     render() {
         return (
             <View style={{
@@ -20,8 +19,8 @@ export default class IndexSerach extends Component {
                     style={{marginLeft: UtilScreen.getWidth(20)}}
                     source={require('../res/images/index_location.png')}
                 />
-                <Text style={{marginLeft: UtilScreen.getWidth(10), color: '#333', fontSize: 15}}>北京</Text>
-                <TouchableHighlight>
+                <Text style={{marginLeft: UtilScreen.getWidth(10), color: '#333', fontSize: 15}} onPress={this.props.jumpToSelectCity}>哈尔滨</Text>
+                <TouchableHighlight onPress={this.props.backClick}>
                     <View style={{
                         marginLeft: UtilScreen.getWidth(10),
                         alignItems: 'center',
@@ -43,7 +42,7 @@ export default class IndexSerach extends Component {
                         }}>搜索目的地/景点/酒店等</Text>
                     </View>
                 </TouchableHighlight>
-                <TouchableHighlight>
+                <TouchableHighlight onPress={this.props.jumpToMessage}>
                     <Image
                         style={{marginLeft: UtilScreen.getWidth(40)}}
                         source={require('../res/images/index_message.png')}

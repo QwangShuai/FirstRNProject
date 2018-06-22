@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
 
     },
     rightHint:{
+        padding:0,
       fontSize:14,
         width:'100%',
       alignSelf:'center',

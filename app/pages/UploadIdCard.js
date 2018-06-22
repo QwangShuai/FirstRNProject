@@ -81,15 +81,15 @@ export default class UploadIdCard extends Component {
                 <ToolBar title={'实名认证'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <View style={[styles.inputContainer, {marginTop: UtilScreen.getHeight(15)}]}>
                     <Text style={styles.inputTitle}>姓名:</Text>
-                    <TextInput style={styles.textInput}></TextInput>
+                    <TextInput style={styles.textInput} underlineColorAndroid="transparent"></TextInput>
                 </View>
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputTitle}>手机号:</Text>
-                    <TextInput style={[styles.textInput, {paddingLeft: UtilScreen.getWidth(110)}]}></TextInput>
+                    <TextInput style={[styles.textInput, {paddingLeft: UtilScreen.getWidth(110)}]} underlineColorAndroid="transparent"></TextInput>
                 </View>
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputTitle}>身份证号:</Text>
-                    <TextInput style={[styles.textInput, {paddingLeft: UtilScreen.getWidth(140)}]}></TextInput>
+                    <TextInput style={[styles.textInput, {paddingLeft: UtilScreen.getWidth(140)}]} underlineColorAndroid="transparent"></TextInput>
                 </View>
                 <Text style={styles.takerPhotoTitle}>拍摄/上传您的身份证</Text>
                 <ImageBackground style={styles.idCardContainer}

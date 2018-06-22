@@ -29,22 +29,24 @@ export default class MyPage extends Component {
                 {key: 3, imageURL: require('../res/images/star.png'), title: '我的收藏'},
                 {key: 4, imageURL: require('../res/images/comment.png'), title: '我的评论'},
                 {key: 5, imageURL: require('../res/images/flag.png'), title: '参加活动',},
-                {key: 6, imageURL: require('../res/images/basket.png'), title: '发起行程'},
+                {key: 6, imageURL: require('../res/images/basket.png'), title: '创建活动'},
                 {key: 7, imageURL: require('../res/images/browse_records.png'), title: '浏览历史'},
             ],
         }
-
+        this.jumpToOrder = this.jumpToOrder.bind(this);
     }
 
     itemClick() {
 
     }
-
+    jumpToOrder(){
+        this.props.navigation.navigate('Order')
+    }
     header() {
         return (
             <View>
                 <MyPageHead imageSource={{}}></MyPageHead>
-                <MyPageMenu></MyPageMenu>
+                <MyPageMenu jump={this.jumpToOrder}></MyPageMenu>
             </View>
         );
     }

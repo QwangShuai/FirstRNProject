@@ -19,10 +19,13 @@ export default class InfoCenter extends Component {
         }
     }
     backClick(){
-
+        this.props.navigation.navigate('MainTabPage');
     }
     setModalVisible(visible) {
         this.setState({modalVisible: visible});
+    }
+    jumpToInfoSpeific(){
+        this.props.navigation.navigate('InfoSpeific');
     }
     render(){
         return(

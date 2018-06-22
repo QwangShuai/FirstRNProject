@@ -1,32 +1,30 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Modal, Text,Image} from 'react-native';
+import {View, StyleSheet, Modal, Text,Image,TouchableHighlight} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
 
 export default class ApplyRealName extends Component {
     constructor(props){
         super(props);
-        this.state ={
-            modalVisible: true,
-        }
     }
-    setModalVisible() {
-        this.setState({modalVisible: false});
-    }
-
     render(){
         return(
             <Modal style={styles.container}
                    animationType={"slide"}
-                   transparent={false}
-                   visible={this.state.modalVisible}
-                   onRequestClose={this.setModalVisible.bind(this)}>
-                <Text style={styles.payfailureText}>支付失败</Text>
-                <Image style={styles.clossImage} source={require('../res/images/closs_pay.png')}/>
-                <Image style={styles.failureImage} source={require('../res/images/apply_pay_false.png')} resizeMode='contain'/>
-                <Text style={styles.promptText}>余额不足了!</Text>
-                <Text style={styles.promptText}>订单号:123456789012</Text>
-                <Text style={styles.paymentText}>支付方式:微信支付</Text>
-                <Text style={styles.btnText}>实名设置</Text>
+                   transparent={true}
+                   visible={this.props.modalVisible}
+                   onRequestClose={this.props.setModalVisible}>
+                <View style={styles.content}>
+                    <Text style={styles.payfailureText}>支付失败</Text>
+                    <TouchableHighlight style={styles.clossImage} onPress={this.props.setModalVisible}>
+                        <Image source={require('../res/images/closs_pay.png')}/>
+                    </TouchableHighlight>
+                    <Image style={styles.failureImage} source={require('../res/images/apply_pay_false.png')} resizeMode='contain'/>
+                    <Text style={styles.promptText}>余额不足了!</Text>
+                    <Text style={styles.promptText}>订单号:123456789012</Text>
+                    <Text style={styles.paymentText}>支付方式:微信支付</Text>
+                    <Text style={styles.btnText} onPress={this.props.jump}>实名设置</Text>
+                </View>
+
             </Modal>
         )
     }
@@ -34,10 +32,14 @@ export default class ApplyRealName extends Component {
 const
     styles = StyleSheet.create({
         container: {
+            flex:1,
+        },
+        content: {
+            width:'100%',
+            backgroundColor:'#ffffff',
             height:UtilScreen.getHeight(589),
             position:'absolute',
             bottom:0,
-            flexDirection:'row',
         },
         payfailureText:{
             marginTop:UtilScreen.getHeight(30),

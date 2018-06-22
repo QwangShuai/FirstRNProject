@@ -17,7 +17,7 @@ export default class Search extends Component {
                 {key: 2, title:'搜索搜索搜索大萨达撒多撒多撒多撒多撒多',},
                 {key: 3, title:'搜索搜索搜索',},
             ],
-            searchTitle:'搜索',
+            searchTitle:'取消',
             inputText:'',
             isState:true,
             historyTitle:'历史记录',
@@ -28,13 +28,13 @@ export default class Search extends Component {
     }
 
     backClick(){
-
+        this.props.navigation.navigate('MainTabPage');
     }
     updateState(inputText){
         if(inputText.length===0){
             this.setState(
                 {
-                    searchTitle:'搜索',
+                    // searchTitle:'搜索',
                     titleTopHeight:UtilScreen.getWidth(50),
                     titleBottomHeight:UtilScreen.getWidth(28),
                     titleHeight:UtilScreen.getHeight(40),
@@ -44,7 +44,7 @@ export default class Search extends Component {
         } else{
             this.setState(
                 {
-                    searchTitle:'取消',
+                    // searchTitle:'取消',
                     inputText:inputText,
                     titleTopHeight:0,
                     titleBottomHeight:0,
@@ -79,9 +79,10 @@ export default class Search extends Component {
                         <View style={styles.searchStyle}>
                             <Image style={styles.imageStyle} source={require('../res/images/6F.png')} resizeMode='contain'/>
                             <TextInput style={{flex:1,fontSize:14,padding:0}} placeholder='搜索文章/景点' underlineColorAndroid='transparent'
-                                       onChangeText={this.updateState.bind(this)} value={this.state.inputText} onSubmitEditing={this.submit.bind(this)}/>
+                                       onChangeText={this.updateState.bind(this)} onSubmitEditing={this.submit.bind(this)}
+                                        ref='myInput'/>
                         </View>
-                        <Text style={styles.cancelStyle} onPress={this.search.bind(this)}>{this.state.searchTitle}</Text>
+                        <Text style={styles.cancelStyle} onPress={this.backClick.bind(this)}>{this.state.searchTitle}</Text>
                     </View>
                     <Text style={[styles.historyTitle,{marginTop:this.state.titleTopHeight,marginBottom:this.state.titleBottomHeight,height:this.state.titleHeight}]}>历史记录</Text>
                     <FlatList
@@ -106,7 +107,7 @@ export default class Search extends Component {
                                             numColumns={2}
                                             underlayColor={'#f8f8f8'}
                                             onPress={this.itemClick.bind(this, item)}>
-                                            <Text style={styles.itemStyle}>{item.title}</Text>
+                                            <Text>{item.title}</Text>
                                         </TouchableHighlight>
                                         <View style={styles.line}/>
                                     </View>
