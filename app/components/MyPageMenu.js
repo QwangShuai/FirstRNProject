@@ -11,9 +11,9 @@ export default class MyPageMenu extends Component {
             <View style={styles.container}>
                 <View style={{width:'100%',height:UtilScreen.getHeight(105),backgroundColor:'#fff'}}>
                     <Text style={{position:'absolute',fontSize:15,color:'#333',left:UtilScreen.getWidth(40),bottom:UtilScreen.getHeight(25)}}>我的订单</Text>
-                    <Text style={{position:'absolute',fontSize:15,color:'#333',right:UtilScreen.getWidth(65),bottom:UtilScreen.getHeight(25)}} onPress={this.props.jump}>查看更多订单</Text>
-                    <TouchableHighlight style={{position:'absolute',bottom:UtilScreen.getHeight(40),right:UtilScreen.getWidth(35)}} onPress={this.props.jump}>
-                    <Image style={{alignSelf:'center',}}
+                    <Text style={{position:'absolute',fontSize:12,color:'#333',right:UtilScreen.getWidth(60),bottom:UtilScreen.getHeight(25)}} onPress={this.props.jump}>查看更多订单</Text>
+                    <TouchableHighlight style={{position:'absolute',bottom:UtilScreen.getHeight(31),right:UtilScreen.getWidth(40)}} onPress={this.props.jump}>
+                    <Image style={{alignSelf:'center',flex:1}}
                         source={require('../res/images/chevron-left2.png')}
                         resizeMode='contain'
                     />
@@ -37,11 +37,11 @@ export default class MyPageMenu extends Component {
                         <View style={{alignItems:'center'}}>
                             <Image
                                 style={{width:UtilScreen.getWidth(50),height:UtilScreen.getHeight(50)}}
-                                source={require('../res/images/unfinished.png')}
+                                source={require('../res/images/travl.png')}
                                 resizeMode='contain'
                             />
                             <Text style={{color:'#333',fontSize:14,marginTop:UtilScreen.getHeight(15)}}>
-                                未完成
+                                待行程
                             </Text>
                         </View>
                     </TouchableHighlight>
@@ -49,11 +49,11 @@ export default class MyPageMenu extends Component {
                         <View style={{alignItems:'center'}}>
                             <Image
                                 style={{width:UtilScreen.getWidth(50),height:UtilScreen.getHeight(50)}}
-                                source={require('../res/images/finished.png')}
+                                source={require('../res/images/evaluation.png')}
                                 resizeMode='contain'
                             />
                             <Text style={{color:'#333',fontSize:14,marginTop:UtilScreen.getHeight(15)}}>
-                                已完成
+                                待评价
                             </Text>
                         </View>
                     </TouchableHighlight>

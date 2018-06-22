@@ -32,7 +32,15 @@ export default class MyPage extends Component {
                 {key: 6, imageURL: require('../res/images/basket.png'), title: '创建活动'},
                 {key: 7, imageURL: require('../res/images/browse_records.png'), title: '浏览历史'},
             ],
+            myInfo:{
+                headUrl:require('../res/images/head.png'),
+                nickname:'',
+                sex:'',
+                imageLevel:require('../res/images/level-1.png'),
+                textLevel:'',
+            }
         }
+
         this.jumpToOrder = this.jumpToOrder.bind(this);
     }
 
@@ -40,12 +48,14 @@ export default class MyPage extends Component {
 
     }
     jumpToOrder(){
+        console('点击了'),
+        alert('点击了'),
         this.props.navigation.navigate('Order')
     }
-    header() {
+    header(myInfo) {
         return (
             <View>
-                <MyPageHead imageSource={{}}></MyPageHead>
+                <MyPageHead imageSource={{}} imageLevel={myInfo.imageLevel}></MyPageHead>
                 <MyPageMenu jump={this.jumpToOrder}></MyPageMenu>
             </View>
         );
@@ -56,7 +66,7 @@ export default class MyPage extends Component {
             <View style={styles.container}>
                 <ToolBar title={'我的'} isShowBack={false}/>
                 <FlatList
-                    ListHeaderComponent={this.header}//header头部组件
+                    ListHeaderComponent={this.header(this.state.myInfo)}//header头部组件
                     style={{flex: 1}}
                     data={this.state.itemInfo}
                     renderItem={({item}) => {

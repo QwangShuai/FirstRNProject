@@ -11,9 +11,16 @@ export default class TravelItem extends Component {
     static defaultProps = {
         itemInfo: {
             title:'云南旅游',
+            state:'待行程',
+            imageTitile:'云南旅游活动云南旅游活 动云南旅游活动云南',
+            content:'行程时间：2018.1.3-2018.1.5',
+            peoples:'参加人数：122',
+            payState:'自费',
         }
     }
+    bottomView(){
 
+    }
     render(){
         return(
             <View style={{backgroundColor:'#f1f1f1'}}>

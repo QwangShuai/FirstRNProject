@@ -37,7 +37,10 @@ export default class MyPageHead extends Component {
                                 resizeMode='stretch'
                             />
                         </View>
-                        <Text style={[styles.user_type,{height:this.state.isLogin?UtilScreen.getHeight(55):0}]}>签约艺人</Text>
+                        <ImageBackground source={this.props.imageLevel}>
+                            <Text style={[styles.user_type,{height:this.state.isLogin?UtilScreen.getHeight(55):0}]}>{this.props.textLevel}</Text>
+                        </ImageBackground>
+
                     </View>
                 </View>
             </ImageBackground>
