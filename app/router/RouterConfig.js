@@ -4,24 +4,16 @@ import {
 } from 'react-native';
 import {StackNavigator} from 'react-navigation';
 import LoginLeaf from '../pages/LoginLeaf';
-import WaitingLeaf from '../components/WaitingLeaf';
 import Registered from '../pages/Registered';
 import Set from '../pages/Set';
 import PersonalInfo from '../pages/PersonalInfo';
-import PersonalInfoHead from '../components/PersonalInfoHead';
 import Update from '../pages/Update';
 import ApplyPaymentState from '../components/ApplyPaymentState';
-import ApplyRealName from '../components/ApplyRealName';
-import MyAlbumitem from '../components/MyAlbumGridView';
 import PickerViewDemo from '../components/PickerViewDemo';
 import Apply from '../pages/Apply';
-import ApplyPaymentSuccess from '../components/ApplyPaymentSuccess';
 import CreateActivities from '../pages/CreateActivities';
-import SetModal from '../components/SetModal';
 import Feedback from '../pages/Feedback';
 import Agreement from '../pages/Agreement';
-import FeedbackItem from '../components/FeedbackItem';
-import UploadImageGridView from '../components/UploadImageGridView';
 import MyAlbum from '../pages/MyAlbum';
 import AddContent from '../pages/AddContent';
 import FocusOnActivities from '../pages/FocusOnActivities';
@@ -39,8 +31,18 @@ import MyDraftList from '../pages/MyDraftList';
 import MyCollectionList from '../pages/MyCollectionList';
 import MainTabPage from '../pages/MainTabPage';
 import MyPage from '../pages/MyPage';
+import CheckOrder from '../pages/CheckOrder';
 import Search from '../pages/Search';
+import Order from '../pages/Order';
+import PersonalInformation from '../pages/PersonalInformation';
+import SimpleSelectCity from '../pages/SimpleSelectCity';
+import UploadIdCard from '../pages/UploadIdCard';
 const RouterConfig = StackNavigator({
+
+    // Apply: {screen: Apply},
+    // UploadIdCard: {screen: UploadIdCard},
+    // PersonalInformation:{screen:PersonalInformation},
+
     MainTabPage: {screen: MainTabPage,
         navigationOptions:{
             headerStyle: {height: 0},
@@ -75,15 +77,14 @@ const RouterConfig = StackNavigator({
     // ApplyPaymentState:{screen:ApplyPaymentState},
     Set: {screen: Set},
     Apply: {screen: Apply},
-
-    Wait: {screen: WaitingLeaf},
-
-
-    PersonalInfoHead: {screen: PersonalInfoHead},
     Update: {screen: Update},
     PickerViewDemo: {screen: PickerViewDemo},
     MyCollectionList: {screen: MyCollectionList},
     MyDraftList: {screen: MyDraftList},
     PersonalInfoDemo2: {screen: PersonalInfoDemo2},
+    SimpleSelectCity:{screen:SimpleSelectCity},
+    Search:{screen:Search},
+    Order: {screen: Order},
+    CheckOrder: {screen: CheckOrder},
 });
 export default RouterConfig;

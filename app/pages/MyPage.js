@@ -33,18 +33,20 @@ export default class MyPage extends Component {
                 {key: 7, imageURL: require('../res/images/browse_records.png'), title: '浏览历史'},
             ],
         }
-
+        this.jumpToOrder = this.jumpToOrder.bind(this);
     }
 
     itemClick() {
 
     }
-
+    jumpToOrder(){
+        this.props.navigation.navigate('Order')
+    }
     header() {
         return (
             <View>
                 <MyPageHead imageSource={{}}></MyPageHead>
-                <MyPageMenu></MyPageMenu>
+                <MyPageMenu jump={this.jumpToOrder}></MyPageMenu>
             </View>
         );
     }

@@ -18,7 +18,7 @@ export default class Order extends Component {
     }
 
     backClick(){
-        this.props.navigation.navigate('Set');
+        this.props.navigation.goBack();
     }
     selectImages(images){
         console.log(images)
@@ -27,7 +27,7 @@ export default class Order extends Component {
         return(
             <View style={Stylecss.styles.container}>
                 <ToolBar title={'查看订单'} isShowBack={true} backClick={this.backClick.bind(this)}/>
-                <CheckOrder/>
+                <CheckOrder routeName={this.props.navigation.state.params.routeName}/>
             </View>
         )
     }

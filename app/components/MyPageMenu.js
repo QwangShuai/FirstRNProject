@@ -11,12 +11,13 @@ export default class MyPageMenu extends Component {
             <View style={styles.container}>
                 <View style={{width:'100%',height:UtilScreen.getHeight(105),backgroundColor:'#fff'}}>
                     <Text style={{position:'absolute',fontSize:15,color:'#333',left:UtilScreen.getWidth(40),bottom:UtilScreen.getHeight(25)}}>我的订单</Text>
-                    <Text style={{position:'absolute',fontSize:15,color:'#333',right:UtilScreen.getWidth(65),bottom:UtilScreen.getHeight(25)}}>查看更多订单</Text>
-                    <Image
-                        style={{position:'absolute',bottom:UtilScreen.getHeight(40),right:UtilScreen.getWidth(35)}}
+                    <Text style={{position:'absolute',fontSize:15,color:'#333',right:UtilScreen.getWidth(65),bottom:UtilScreen.getHeight(25)}} onPress={this.props.jump}>查看更多订单</Text>
+                    <TouchableHighlight style={{position:'absolute',bottom:UtilScreen.getHeight(40),right:UtilScreen.getWidth(35)}} onPress={this.props.jump}>
+                    <Image style={{alignSelf:'center',}}
                         source={require('../res/images/chevron-left2.png')}
                         resizeMode='contain'
                     />
+                    </TouchableHighlight>
                 </View>
                 <View style={{width:'100%',height:1,backgroundColor:'#efeff4'}}/>
                 <View style={{width:'100%',height:UtilScreen.getHeight(165),backgroundColor:'#fff',alignItems:'center',justifyContent:'space-around',flexDirection:'row'}}>
