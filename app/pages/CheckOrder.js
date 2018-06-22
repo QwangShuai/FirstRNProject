@@ -6,49 +6,42 @@ import {Image} from 'react-native';
 import {TabNavigator} from 'react-navigation';
 
 //展示的页面
-import IndexPage from './IndexPage';
-import FriendParty from './FriendParty';
-import FriendRemember from './FriendRemember';
-import MainChatPage from './MainChatPage';
-import MyPage from './MyPage';
-import MyAlbum from './MyAlbum';
+import TravelItem from '../components/TravelItem';
+import OrderAllItem from '../components/OrderAllItem';
+import UnpaidItem from '../components/UnpaidItem';
+import EvaluateItem from '../components/EvaluateItem';
+import RefundItem from '../components/RefundItem';
 import UtilScreen from '../util/UtilScreen';
 
 //Tab
 const CheckOrder = TabNavigator({
         //每一个页面的配置
-        IndexPage: {
-            screen: IndexPage,
+        OrderAllItem: {
+            screen: OrderAllItem,
             navigationOptions: {
                 tabBarLabel: '全部',
             },
         },
-        FriendParty: {
-            screen: FriendParty,
+        UnpaidItem: {
+            screen: UnpaidItem,
             navigationOptions: {
                 tabBarLabel: '待支付',
             }
         },
-        FriendRemember: {
-            screen: FriendRemember,
+        TravelItem: {
+            screen: TravelItem,
             navigationOptions: {
-                tabBarLabel: '进行中',
+                tabBarLabel: '待行程',
             }
         },
-        MainChatPage: {
-            screen: MainChatPage,
-            navigationOptions: {
-                tabBarLabel: '已完成',
-            }
-        },
-        MyAlbum: {
-            screen: MyAlbum,
+        EvaluateItem: {
+            screen: EvaluateItem,
             navigationOptions: {
                 tabBarLabel: '待评价',
             }
         },
-        MyPage: {
-            screen: MyPage,
+        RefundItem: {
+            screen: RefundItem,
             navigationOptions: {
                 tabBarLabel: '退款',
             }
@@ -57,7 +50,7 @@ const CheckOrder = TabNavigator({
     },
     {
         //设置初始化显示界面
-        initialRouteName:'MyPage',
+        // initialRouteName:'MyPage',
         //设置TabNavigator的位置
         tabBarPosition: 'top',
         //是否在更改标签时显示动画
@@ -87,7 +80,7 @@ const CheckOrder = TabNavigator({
             labelStyle: {//文字的样式
                 alignSelf:'center',
                 fontSize: 16,
-                marginTop: -UtilScreen.getHeight(12),
+                marginTop: -UtilScreen.getHeight(6),
                 marginBottom: UtilScreen.getHeight(10),
                 width:UtilScreen.getWidth(150),
             },

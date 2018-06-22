@@ -338,4 +338,9 @@ export const styles = StyleSheet.create({
         fontSize:12,
         color:'#fff',
     },
+    order_line: {
+        width: '100%',
+        height: UtilScreen.getHeight(10),
+        backgroundColor: '#f1f1f1',
+    },
 });

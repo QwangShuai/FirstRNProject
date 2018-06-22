@@ -3,7 +3,7 @@ import {View, Text, StyleSheet, FlatList,TouchableHighlight} from 'react-native'
 import UtilScreen from '../util/UtilScreen';
 const Styless = require('../common/Stylecss');
 import OrderItem from '../components/OrderItem';
-export default class TravelItem extends Component {
+export default class RefundItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,7 +11,7 @@ export default class TravelItem extends Component {
                 {
                     key:0,
                     title: '云南旅游',
-                    state: '待行程',
+                    state: '退款',
                     imageTitile: '云南旅游活动云南旅游活 动云南旅游活动云南',
                     imageUrl: require('../res/images/1.jpg'),
                     content: '行程时间：2018.1.3-2018.1.5',
@@ -22,7 +22,7 @@ export default class TravelItem extends Component {
                 {
                     key:1,
                     title: '云南旅游',
-                    state: '待行程',
+                    state: '退款',
                     imageTitile: '云南旅游活动云南旅游活 动云南旅游活动云南',
                     imageUrl: require('../res/images/1.jpg'),
                     content: '行程时间：2018.1.3-2018.1.5',
@@ -42,9 +42,9 @@ export default class TravelItem extends Component {
                     return (
                         <View>
                             <TouchableHighlight
-                                                underlayColor={'#f8f8f8'}
-                                                ItemSeparatorComponent={() => <View
-                                style={{height: UtilScreen.getHeight(10), backgroundColor: '#f1f1f1',}}/>}>
+                                underlayColor={'#f8f8f8'}
+                                ItemSeparatorComponent={() => <View
+                                    style={{height: UtilScreen.getHeight(10), backgroundColor: '#f1f1f1',}}/>}>
                                 <OrderItem itemInfo={item}/>
                             </TouchableHighlight>
                             <View style={Styless.styles.order_line}/>
