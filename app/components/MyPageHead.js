@@ -30,15 +30,15 @@ export default class MyPageHead extends Component {
                     <Text style={{color: '#333', fontSize: 15, fontWeight: '800', height: this.state.isLogin?0:UtilScreen.getHeight(50)}}>未登录</Text>
                     <View style={{height:this.state.isLogin?UtilScreen.getHeight(245):0,overflow:'hidden',justifyContent:'center'}}>
                         <View style={{flexDirection: 'row',overflow:'hidden'}}>
-                            <Text style={{fontSize: 14, color: '#333'}}>昵称：爱吃土豆的西瓜</Text>
+                            <Text style={{fontSize: 14, color: '#333'}}>{this.props.itemInfo.nickname}</Text>
                             <Image
                                 style={{marginLeft: UtilScreen.getWidth(70),width:UtilScreen.getWidth(50),height:this.state.isLogin?UtilScreen.getWidth(50):0}}
                                 source={require('../res/images/nan.png')}
                                 resizeMode='stretch'
                             />
                         </View>
-                        <ImageBackground source={this.props.imageLevel}>
-                            <Text style={[styles.user_type,{height:this.state.isLogin?UtilScreen.getHeight(55):0}]}>{this.props.textLevel}</Text>
+                        <ImageBackground style={styles.levelImage} source={this.props.itemInfo.imageLevel}>
+                            <Text style={[styles.user_type,{height:this.state.isLogin?UtilScreen.getHeight(55):0}]}>{this.props.itemInfo.textLevel}</Text>
                         </ImageBackground>
 
                     </View>
@@ -63,14 +63,14 @@ const styles = StyleSheet.create({
     },
     user_type: {
         fontSize: 14,
-        marginTop:UtilScreen.getHeight(10),
         color: '#fff',
-        textAlign:'center',
-        backgroundColor: '#1ba297',
-        alignSelf:'flex-start',
-        borderRadius:5,
-        paddingLeft:UtilScreen.getWidth(5),
-        paddingRight:UtilScreen.getWidth(5),
+        alignSelf:'center',
+    },
+    levelImage:{
+        marginTop: UtilScreen.getHeight(14),
+        width: UtilScreen.getWidth(179),
+        height: UtilScreen.getHeight(66),
+        alignItems: 'center',
+        justifyContent: 'center',
     }
-
 });

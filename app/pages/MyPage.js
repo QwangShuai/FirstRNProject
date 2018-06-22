@@ -34,10 +34,10 @@ export default class MyPage extends Component {
             ],
             myInfo:{
                 headUrl:require('../res/images/head.png'),
-                nickname:'',
-                sex:'',
+                nickname:'帅气的小迷糊',
+                sex:require('../res/images/nan.png'),
                 imageLevel:require('../res/images/level-1.png'),
-                textLevel:'',
+                textLevel:'签约艺人',
             }
         }
 
@@ -48,14 +48,12 @@ export default class MyPage extends Component {
 
     }
     jumpToOrder(){
-        console('点击了'),
-        alert('点击了'),
-        this.props.navigation.navigate('Order')
+        this.props.navigation.navigate('Order',{routeName:'IndexPage'})
     }
     header(myInfo) {
         return (
             <View>
-                <MyPageHead imageSource={{}} imageLevel={myInfo.imageLevel}></MyPageHead>
+                <MyPageHead imageSource={{}} itemInfo={this.state.myInfo}></MyPageHead>
                 <MyPageMenu jump={this.jumpToOrder}></MyPageMenu>
             </View>
         );

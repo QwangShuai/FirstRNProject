@@ -319,4 +319,23 @@ export const styles = StyleSheet.create({
         alignSelf:'center',
         position:'absolute',
     },
+    travel_textView:{
+        width:UtilScreen.getWidth(120),
+        textAlign:'center',
+        color:'#333333',
+        borderRadius:UtilScreen.getHeight(22),
+        lineHeight:UtilScreen.getHeight(42),
+        fontSize:12,
+        borderColor:'#333333',
+        borderWidth:UtilScreen.getWidth(1),
+    },
+    travel_textStyle:{
+        width:UtilScreen.getWidth(120),
+        textAlign:'center',
+        backgroundColor:'#ff9d00',
+        borderRadius:UtilScreen.getHeight(22),
+        lineHeight:UtilScreen.getHeight(44),
+        fontSize:12,
+        color:'#fff',
+    },
 });
