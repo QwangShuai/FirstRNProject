@@ -402,4 +402,15 @@ export const styles = StyleSheet.create({
         color: '#f71f1f',
         fontSize: 8,
     },
+    order_Text:{
+        color:'#626262',
+        fontSize:14,
+        marginTop:UtilScreen.getHeight(14),
+        marginLeft:UtilScreen.getWidth(40),
+    },
+    order_light_F1F1F1: {
+        marginTop:UtilScreen.getHeight(20),
+        backgroundColor: '#f1f1f1',
+        height: UtilScreen.getHeight(20),
+    },
 });

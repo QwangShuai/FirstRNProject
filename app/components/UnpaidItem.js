@@ -74,6 +74,10 @@ export default class UnpaidItem extends Component {
     pay(){
 
     }
+    itemClick(item){
+        this.props.navigation.navigate('UnpaidDetails');
+        alert('老哥跳转一下好不好')
+    }
     uploadSuccess(){
         this.setState({
             isShowSuccess:false,
@@ -89,6 +93,7 @@ export default class UnpaidItem extends Component {
                         <View>
                             <TouchableHighlight
                                 underlayColor={'#f8f8f8'}
+                                onPress={this.itemClick.bind(this,item)}
                                 ItemSeparatorComponent={() => <View
                                     style={{height: UtilScreen.getHeight(10), backgroundColor: '#f1f1f1',}}/>}>
                                 <OrderItem payShow={this.payShow.bind(this,item)} cancleShow={this.cancleShow.bind(this,item)} inviteShow={this.inviteShow.bind(this,item)} itemInfo={item}/>

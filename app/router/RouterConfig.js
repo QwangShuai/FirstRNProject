@@ -37,8 +37,12 @@ import Order from '../pages/Order';
 import PersonalInformation from '../pages/PersonalInformation';
 import SimpleSelectCity from '../pages/SimpleSelectCity';
 import UploadIdCard from '../pages/UploadIdCard';
+import UnpaidDetails from '../components/UnpaidDetails';
 const RouterConfig = StackNavigator({
 
+    // UnpaidDetails: {screen: UnpaidDetails},
+    Order: {screen: Order},
+    // TravelItem: {screen: TravelItem},
     // Apply: {screen: Apply},
     // UploadIdCard: {screen: UploadIdCard},
     // PersonalInformation:{screen:PersonalInformation},
@@ -86,5 +90,6 @@ const RouterConfig = StackNavigator({
     Search:{screen:Search},
     Order: {screen: Order},
     CheckOrder: {screen: CheckOrder},
+    UnpaidDetails: {screen: UnpaidDetails},
 });
 export default RouterConfig;
