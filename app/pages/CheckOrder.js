@@ -50,7 +50,7 @@ const CheckOrder = TabNavigator({
     },
     {
         //设置初始化显示界面
-        // initialRouteName:'MyPage',
+        initialRouteName:'UnpaidItem',
         //设置TabNavigator的位置
         tabBarPosition: 'top',
         //是否在更改标签时显示动画

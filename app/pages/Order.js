@@ -27,7 +27,9 @@ export default class Order extends Component {
         return(
             <View style={Stylecss.styles.container}>
                 <ToolBar title={'查看订单'} isShowBack={true} backClick={this.backClick.bind(this)}/>
-                <CheckOrder routeName={this.props.navigation.state.params.routeName}/>
+                <CheckOrder
+                    // routeName={this.props.navigation.state.params.routeName}
+                />
             </View>
         )
     }

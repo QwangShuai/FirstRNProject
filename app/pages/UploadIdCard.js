@@ -141,7 +141,7 @@ export default class UploadIdCard extends Component {
                 }}>提交</Text>
                 <SelectYesOrNo yesOrNo={this.takerPhotoOrSelect.bind(this)} isShow={this.state.isShowSelectPhoto}
                                topTitle={'拍照'} bottomTitle={'从相册中选择'}/>
-                <UploadSuccess isShow={this.state.isShowSuccess} callBack={this.uploadSuccess.bind(this)}/>
+                <UploadSuccess isShow={this.state.isShowSuccess} callBack={this.uploadSuccess.bind(this)} title='提交成功'/>
             </View>
         );
     }

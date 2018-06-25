@@ -43,7 +43,7 @@ export default class UploadSuccess extends Component {
                             resizeMode='stretch'
                             source={require('../res/images/apply_pay_true.png')}
                         />
-                        <Text style={styles.text} onPress={this.btClick.bind(this)}>提交成功</Text>
+                        <Text style={styles.text} onPress={this.btClick.bind(this)}>{this.props.title}</Text>
                     </View>
                 </View>
             </Modal>
