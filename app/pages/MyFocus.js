@@ -29,4 +29,11 @@ export default class PersonalInfo extends Component {
             ],
         }
     }
+    render() {
+        return (
+            <View style={styles.container}>
+                <ToolBar title={'我的关注'} isShowBack={true} backClick={this.backClick.bind(this)}/>
+            </View>
+        )
+    }
 }
