@@ -75,7 +75,7 @@ export default class UnpaidItem extends Component {
 
     }
     itemClick(item){
-      this.props.screenProps.rootNavigation.navigate('PersonalInfo',{});
+      this.props.screenProps.rootNavigation.navigate('UnpaidDetails',{});
     }
     uploadSuccess(){
         this.setState({
