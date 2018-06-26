@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,FlatList, TouchableHighlight} from 'react-native';
+import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,FlatList, TouchableHighlight,ScrollView} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
 import CreateActicitiesItem from '../components/CreateActicitiesItem';
@@ -8,6 +8,7 @@ import MyDatePicker from '../components/MyDatePicker';
 import GetPhotoFromPhone from '../util/GetPhotoFromPhone';
 import UploadImageGridView from '../components/UploadImageGridView';
 const Stylecss = require('../common/Stylecss');
+import MyInputDialog from '../components/MyInputDialog';
 export default class CreateActivities extends Component {
     static navigationOptions = {
         headerStyle: {height: 0},
@@ -27,8 +28,19 @@ export default class CreateActivities extends Component {
             isShowSelectPhoto: false,
             isSelectDate:false,
             ImageSource: {uri:'http://img.51tietu.net/upload/www.51tietu.net/2014-8/201408240241206330.jpg'},
+            textCount: 0,
+            //start 上传图片编辑描述用到------------
+            isShowInputImageDesc: false,
+            inputImageDescProps: {
+                title: '请输入图片描述',
+                placeholder: '30个字符以内，仅可以输入汉字、字母、数字或下划线',
+                maxSize: 30,
+            },
+            index: 0,
+            screenHeight:UtilScreen.getHeight(1334)
         };
         this.selectDate = {key: 1, title: '0'};
+
     }
     /**
      * 选择拍照或者从相册选择回掉
@@ -63,7 +75,9 @@ export default class CreateActivities extends Component {
     backClick(){
 
     }
-
+    selectImages(images) {
+        console.log(images)
+    }
     itemClick(item){
         switch (item.key){
             case 0:
@@ -92,7 +106,16 @@ export default class CreateActivities extends Component {
                 break;
         }
     }
-
+    //start 上传图片编辑描述用到------------
+    /**
+     * 编辑图片描述
+     */
+    editImage(index) {
+        this.setState({
+            isShowInputImageDesc: true,
+            index: index,
+        });
+    }
     /**
      * 选择日期
      * @param date
@@ -103,6 +126,20 @@ export default class CreateActivities extends Component {
         let data = this.state.itemInfo.concat();
         this.setState({isSelectDate: false, itemInfo: data});
     }
+    inputDialogDismissBack() {
+        this.setState({isShowInputImageDesc: false});
+    }
+    /**
+     * 输入图片描述回调
+     */
+    inputImageDescResult(str) {
+        // this.state.itemInfo[0].rValue = name;
+        // let data = this.state.itemInfo.concat();
+        this.setState({
+            isShowInputImageDesc: false,
+        });
+        this.UploadImageGridView.setImageDesc(this.state.index,str);
+    }
 
     render(){
         return(
@@ -111,7 +148,11 @@ export default class CreateActivities extends Component {
                 {/*<TouchableHighlight onPress={this.clickImage.bind(this)}>*/}
                     {/*<Image style={styles.showImage} source={this.state.ImageSource}/>*/}
                 {/*</TouchableHighlight>*/}
-                <UploadImageGridView/>
+                <ScrollView>
+                <UploadImageGridView selectImages={this.selectImages.bind(this)}
+                                     editImage={this.editImage.bind(this)}
+                                     isShowFirstLarge={true}
+                                     ref={ref => this.UploadImageGridView = ref} />
                     <View style={styles.itemView}></View>
                 <FlatList
                     data={this.state.itemInfo}
@@ -129,9 +170,13 @@ export default class CreateActivities extends Component {
                     keyExtractor={item => item.key.toString()}
                 ></FlatList>
                 <Text style={Stylecss.styles.set_logout}>下一步</Text>
+                </ScrollView>
                 <SelectYesOrNo yesOrNo={this.takerPhotoOrSelect.bind(this)} isShow={this.state.isShowSelectPhoto}
                                topTitle={'拍照'} bottomTitle={'从相册中选择'}/>
                 <MyDatePicker isShow={this.state.isSelectDate} callBack={this.selectData.bind(this)} title={this.selectDate.title}/>
+                <MyInputDialog isShow={this.state.isShowInputImageDesc} callBack={this.inputImageDescResult.bind(this)}
+                               onCoverPress={this.inputDialogDismissBack.bind(this)}
+                               inputProps={this.state.inputImageDescProps}/>
             </View>)
     }
 }
