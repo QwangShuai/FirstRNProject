@@ -60,6 +60,7 @@ export default class PersonalInfo extends Component {
      * ToolBar 点击按钮回调
      */
     backClick() {
+        this.props.navigation.goBack()
     }
 
 

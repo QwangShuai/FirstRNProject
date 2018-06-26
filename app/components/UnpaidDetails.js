@@ -84,6 +84,11 @@ export default class UnpaidDetails extends Component {
                 <Text style={Styless.styles.order_Text}>{this.props.orderInfo.payTime}</Text>
                 <Text style={Styless.styles.order_Text}>{this.props.orderInfo.successTime}</Text>
                 <View style={Styless.styles.order_light_F1F1F1} />
+                <View style={{height:UtilScreen.getHeight(98),position:'absolute',bottom:0,flexDirection:'row',width:'100%',borderColor:'#e5e5e5',borderTopWidth:UtilScreen.getHeight(2)}}>
+                    <Text style={[Styless.styles.travel_textView,{alignSelf:'center',position:'absolute',right:UtilScreen.getWidth(340)}]} onPress={this.inviteShow.bind(this)}>邀请</Text>
+                    <Text style={[Styless.styles.travel_textView,{alignSelf:'center',position:'absolute',right:UtilScreen.getWidth(190)}]} onPress={this.cancleShow.bind(this)}>取消行程</Text>
+                    <Text style={[Styless.styles.travel_textStyle,{alignSelf:'center',position:'absolute',right:UtilScreen.getWidth(40)}]} onPress={this.payShow.bind(this)}>支付</Text>
+                </View>
                 <PaymentMethodModal isPaymentMethod={this.state.isPaymentMethod} isPay={this.state.isPay} clossModal={this.clossModal.bind(this)}
                                     payShow={this.payShow.bind(this)} wx_pay={this.wx_pay.bind(this)} alipay_pay={this.alipay_pay.bind(this)}
                                     pay={this.pay.bind(this)}/>
