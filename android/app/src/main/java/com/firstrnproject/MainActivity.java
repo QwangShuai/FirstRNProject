@@ -1,6 +1,9 @@
 package com.firstrnproject;
 
 import com.facebook.react.ReactActivity;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.horcrux.svg.SvgPackage;
+import com.imagepicker.ImagePickerPackage;
 
 public class MainActivity extends ReactActivity {
 
