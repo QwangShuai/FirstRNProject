@@ -75,8 +75,7 @@ export default class UnpaidItem extends Component {
 
     }
     itemClick(item){
-        this.props.navigation.navigate('UnpaidDetails');
-        alert('老哥跳转一下好不好')
+      this.props.screenProps.rootNavigation.navigate('PersonalInfo',{});
     }
     uploadSuccess(){
         this.setState({
