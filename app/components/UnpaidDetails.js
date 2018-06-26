@@ -71,7 +71,7 @@ export default class UnpaidDetails extends Component {
         })
     }
     backClick(){
-        this.props.navigation.navigate.goBack();
+        this.props.navigation.goBack();
     }
     render(){
         return(
