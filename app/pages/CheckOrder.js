@@ -12,6 +12,7 @@ import UnpaidItem from '../components/UnpaidItem';
 import EvaluateItem from '../components/EvaluateItem';
 import RefundItem from '../components/RefundItem';
 import UtilScreen from '../util/UtilScreen';
+import Order from "./Order";
 
 //Tab
 const CheckOrder = TabNavigator({
@@ -87,4 +88,5 @@ const CheckOrder = TabNavigator({
         },
 
     });
+CheckOrder.test='mytest'
 export default CheckOrder;
