@@ -40,7 +40,6 @@ import UploadIdCard from '../pages/UploadIdCard';
 import UnpaidDetails from '../components/UnpaidDetails';
 const RouterConfig = StackNavigator({
 
-    // UnpaidDetails: {screen: UnpaidDetails},
     Order: {screen: Order},
     // TravelItem: {screen: TravelItem},
     // Apply: {screen: Apply},

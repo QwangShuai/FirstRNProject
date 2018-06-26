@@ -30,18 +30,18 @@ export default class FriendRememberItem extends Component {
                                 source={require('../res/images/message_num_icon.png')}
                             />
                             <Text style={{color:'#ff9d00',fontSize:12,marginLeft:UtilScreen.getWidth(10)}}>{this.props.item.article.messageNum}</Text>
+                            <TouchableHighlight  underlayColor={'#fff'} onPress={this.props.clickAttention.bind(this,this.props.index)} style={{marginLeft:UtilScreen.getWidth(20),marginTop:UtilScreen.getHeight(0)}}>
+                                <View style={{flexDirection:'row'}}
+                                >
+                                    <Image
+                                        style={{width:UtilScreen.getWidth(24)}} source={this.props.item.isAttention?require('../res/images/unattentioned.png'):require('../res/images/attentioned.png')} resizeMode='contain'
+                                    />
+                                    <Text style={{color:'#333',fontSize:12,marginLeft:UtilScreen.getWidth(10)}}>{this.props.item.isAttention?'取关':'关注'}</Text>
+                                </View>
+                            </TouchableHighlight>
                         </View>
                     </View>
                     <View style={{flex:1,backgroundColor:'#fff',height:UtilScreen.getHeight(320)}}>
-                        <TouchableHighlight  underlayColor={'#fff'} onPress={this.props.clickAttention.bind(this,this.props.index)} style={{height:UtilScreen.getHeight(70),justifyContent:'center',alignItems:'center',width:'100%'}}>
-                        <View style={{flexDirection:'row'}}
-                        >
-                            <Image
-                                source={this.props.item.isAttention?require('../res/images/unattentioned.png'):require('../res/images/attentioned.png')}
-                            />
-                            <Text style={{color:'#333',fontSize:15,height:UtilScreen.getHeight(40),lineHeight:UtilScreen.getHeight(40)}}>{this.props.item.isAttention?'取关':'关注'}</Text>
-                        </View>
-                        </TouchableHighlight>
                         <Image
                             style={{width:UtilScreen.getWidth(120),height:UtilScreen.getWidth(120),alignSelf:'center',marginTop:UtilScreen.getHeight(20),borderRadius:UtilScreen.getWidth(60)}}
                             source={this.props.item.userInfo.headImagePath}
