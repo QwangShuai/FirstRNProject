@@ -30,8 +30,6 @@ export default class Order extends Component {
                 <ToolBar title={'查看订单'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <CheckOrder
                     screenProps={{ rootNavigation: this.props.navigation }}
-                   //navigation={this.props.navigation}
-                   // routeName={this.props.navigation.state.params.routeName}
                 />
             </View>
         )

@@ -17,7 +17,7 @@ export default class MyPageHead extends Component {
                              resizeMode='stretch'
             >
                 <TouchableHighlight
-                    style={styles.head_image}
+                    style={[styles.head_image,{marginLeft:UtilScreen.getWidth(15)}]}
                     onPress={this.props.clickCallBack}
                 >
                     <Image
@@ -64,7 +64,9 @@ const styles = StyleSheet.create({
     user_type: {
         fontSize: 14,
         color: '#fff',
-        alignSelf:'center',
+        textAlign:'right',
+        width: UtilScreen.getWidth(170),
+        lineHeight:UtilScreen.getHeight(60)
     },
     levelImage:{
         marginTop: UtilScreen.getHeight(14),
@@ -72,5 +74,11 @@ const styles = StyleSheet.create({
         height: UtilScreen.getHeight(66),
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    head_image: {
+        width: UtilScreen.getWidth(120),
+        height: UtilScreen.getWidth(120),
+        borderRadius: UtilScreen.getWidth(120),
+        overflow: 'hidden'
     }
 });
