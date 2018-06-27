@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, TextInput, Text, ImageBackground, Image, TouchableHighlight} from 'react-native';
+import {View, StyleSheet, TextInput, Text, ImageBackground, Image, TouchableHighlight,AsyncStorage,Alert} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
 import SelectYesOrNo from '../components/SelectYesOrNo';
 import GetPhotoFromPhone from '../util/GetPhotoFromPhone';
 import UploadSuccess from '../components/UploadSuccess';
-
+const Buffer = require('buffer').Buffer;
+import md5 from "react-native-md5";
 export default class UploadIdCard extends Component {
     constructor(props) {
         super(props);
+        this._onChangeName = this._onChangeName.bind(this);
+        this._onChangeTel = this._onChangeTel.bind(this);
+        this._onChangeIdCard = this._onChangeIdCard.bind(this);
         this.state = {
             type: 1,
             isShowSelectPhoto: false,
@@ -16,9 +20,23 @@ export default class UploadIdCard extends Component {
             idCardBottom: {},
             uploadType: 1,
             isShowSuccess:false,
+            UserName:"",
+            UserTel:"",
+            IdCard:"",
         }
     }
-
+    _onChangeName(inputData){
+        //把获取到的内容，设置给showValue
+        this.setState({UserName:inputData});
+    }
+    _onChangeTel(inputData){
+        //把获取到的内容，设置给showValue
+        this.setState({UserTel:inputData});
+    }
+    _onChangeIdCard(inputData){
+        //把获取到的内容，设置给showValue
+        this.setState({IdCard:inputData});
+    }
     static navigationOptions = {
         // title:'登录',
         headerStyle: {height: 0},
@@ -63,13 +81,16 @@ export default class UploadIdCard extends Component {
     photoResult(obj) {
         if (this.state.uploadType === 1) {
             this.setState({
-                idCardTop: obj
+                idCardTop: {uri: obj}
             });
+            console.log('responseData',this.state.idCardTop);
         } else {
             this.setState({
-                idCardBottom: obj
+                idCardBottom: {uri: obj}
             });
+            console.log('responseData',this.state.idCardBottom);
         }
+
     }
     uploadSuccess(){
         this.props.navigation.state.params.callBack();
@@ -81,15 +102,15 @@ export default class UploadIdCard extends Component {
                 <ToolBar title={'实名认证'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <View style={[styles.inputContainer, {marginTop: UtilScreen.getHeight(15)}]}>
                     <Text style={styles.inputTitle}>姓名:</Text>
-                    <TextInput style={styles.textInput} underlineColorAndroid="transparent"></TextInput>
+                    <TextInput style={styles.textInput} underlineColorAndroid="transparent" onChangeText={this._onChangeName}></TextInput>
                 </View>
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputTitle}>手机号:</Text>
-                    <TextInput style={[styles.textInput, {paddingLeft: UtilScreen.getWidth(110)}]} underlineColorAndroid="transparent"></TextInput>
+                    <TextInput style={[styles.textInput, {paddingLeft: UtilScreen.getWidth(110)}]} underlineColorAndroid="transparent" onChangeText={this._onChangeTel}></TextInput>
                 </View>
                 <View style={styles.inputContainer}>
                     <Text style={styles.inputTitle}>身份证号:</Text>
-                    <TextInput style={[styles.textInput, {paddingLeft: UtilScreen.getWidth(140)}]} underlineColorAndroid="transparent"></TextInput>
+                    <TextInput style={[styles.textInput, {paddingLeft: UtilScreen.getWidth(140)}]} underlineColorAndroid="transparent" onChangeText={this._onChangeIdCard}></TextInput>
                 </View>
                 <Text style={styles.takerPhotoTitle}>拍摄/上传您的身份证</Text>
                 <ImageBackground style={styles.idCardContainer}
@@ -106,7 +127,7 @@ export default class UploadIdCard extends Component {
                                 source={require('../res/images/taker_photo.png')}
                                 resizeMode='stretch'
                             />
-                            <Text style={styles.photoText}>拍摄信息页</Text>
+                            <Text style={styles.photoText}>请上传你的身份证正面</Text>
                         </View>
                     </TouchableHighlight>
                 </ImageBackground>
@@ -126,7 +147,7 @@ export default class UploadIdCard extends Component {
                                 source={require('../res/images/taker_photo.png')}
                                 resizeMode='stretch'
                             />
-                            <Text style={styles.photoText}>拍摄信息页</Text>
+                            <Text style={styles.photoText}>请上传你的身份证背面</Text>
                         </View>
                     </TouchableHighlight>
                 </ImageBackground>
@@ -134,9 +155,69 @@ export default class UploadIdCard extends Component {
                     style={{color: 'red', fontSize: 14}}>*</Text><Text
                     style={{color: '#999999', fontSize: 14}}>个人私密信息不对外公开</Text></View>
                 <Text style={styles.submitBt} onPress={()=>{
-                    this.setState({
-                        isShowSuccess:true,
-                    });
+                    if(this.state.UserName===''){
+                        alert('请输入你的姓名');
+                        return false;
+                    }else if(this.state.UserTel===''){
+                        alert('请输入你的电话号码');
+                        return false;
+                    }else if(this.state.IdCard===''){
+                        alert('请输入你的身份证号码');
+                        return false;
+                    }else if(this.state.idCardTop===''){
+                        alert('请选择照片一');
+                        return false;
+                    }else if(this.state.idCardBottom===''){
+                        alert('请选择照片二');
+                        return false;
+                    }else{
+                        let imgArr = new Array(this.state.idCardTop.uri,this.state.idCardBottom.uri);
+                        let idCardTop = {uri: this.state.idCardTop.uri, type:'multipart/form-data', name: 'a.jpg'};
+                        let idCardBottom = {uri: this.state.idCardBottom.uri,type:'multipart/form-data', name: 'b.jpg'};
+                        let formData = new FormData();
+                        let param=md5.hex_md5(global.commons.baseurl+'action/ac_user/Realnameauthentication');
+                        let params=md5.hex_md5(param);
+                        formData.append('app_key',params);
+                        formData.append("usercode",idCardTop);
+                        formData.append("usercodeback",idCardBottom);
+                        formData.append("name",this.state.UserName);
+                        formData.append("code",this.state.IdCard);
+                        formData.append("tel",this.state.UserTel);
+                        AsyncStorage.getItem('uid', (error, result) => {
+                            if (!error) {
+                                if (result !== '' && result !== null) {
+                                    formData.append("uid", result);
+                                    fetch(global.commons.baseurl+'action/ac_user/Realnameauthentication',{
+                                        method:'POST',
+                                        headers:{
+                                            'Content-Type':'multipart/form-data',
+                                        },
+                                        body:formData,
+                                    })
+                                        .then((response) => response.text() )
+                                        .then((responseData)=>{
+                                            var bf = new Buffer(responseData , 'base64')
+                                            var  str= bf.toString();
+                                            let result=JSON.parse(str);
+                                            if (result.code===200){
+                                                this.setState({
+                                                    isShowSuccess:true,
+                                                });
+                                            }
+                                            console.log('responseData',result);
+                                        })
+                                        .catch((error)=>{console.error('error',error)});
+                                } else {
+                                    this.login();
+                                }
+                            } else {
+                                //this.toast.show('查询数据失败', DURATION.LENGTH_SHORT);
+                            }
+                        })
+                    }
+                    /* this.setState({
+                         isShowSuccess:true,
+                     });*/
 
                 }}>提交</Text>
                 <SelectYesOrNo yesOrNo={this.takerPhotoOrSelect.bind(this)} isShow={this.state.isShowSelectPhoto}

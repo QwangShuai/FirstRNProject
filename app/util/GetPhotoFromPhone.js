@@ -37,7 +37,7 @@ export default class GetPhotoFromPhone{
             }
             else {
                 let source = {uri: response.uri};
-                this.mContext.photoResult(source);
+                this.mContext.photoResult(response.uri);
             }
         });
     }
@@ -55,7 +55,7 @@ export default class GetPhotoFromPhone{
             }
             else {
                 let source = {uri: response.uri};
-                this.mContext.photoResult(source);
+                this.mContext.photoResult(response.uri);
             }
         });
     }

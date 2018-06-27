@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, FlatList, TouchableHighlight} from 'react-native';
+import {View, StyleSheet, FlatList, TouchableHighlight,AsyncStorage,Alert} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen'
 import PersonalInfoItem from '../components/PersonalInfoItem';
@@ -9,6 +9,9 @@ import MyDatePicker from '../components/MyDatePicker';
 import GetPhotoFromPhone from '../util/GetPhotoFromPhone';
 import SelectArea from "../components/SelectArea";
 import MyInputDialog from "../components/MyInputDialog";
+const Buffer = require('buffer').Buffer;
+import md5 from "react-native-md5";
+import ComMon from '../util/ComMon';
 import SlideDeleteListItem from '../components/SlideDeleteEditListItem';
 
 export default class PersonalInfo extends Component {
@@ -31,7 +34,9 @@ export default class PersonalInfo extends Component {
                 {key: 7, imageURL: require('../res/images/person_is_single.png'), lTitle: '是否单身', rValue: '是',},
                 {key: 8, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV13',},
             ],
+            headepics:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529467063703&di=728741c3be89d01ff6e63d13eab380e0&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01460b57e4a6fa0000012e7ed75e83.png',
             isSelectYesOrNo: false,
+            nickName: '测试用户',
             isSelectDate: false,
             isShowSelectPhoto: false,
             isSelectSex: false,
@@ -49,6 +54,78 @@ export default class PersonalInfo extends Component {
             headImageSource: {},
         }
         this.selectItemDate = {key: 4, title: '选择您的出生日期'};
+    }
+    login(){
+        this.props.navigation.navigate('Home',{position:'PersonalInfo'});
+    }
+    asQuery() {
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    console.log(result);
+                    this.UserInfo(result);
+                } else {
+                    this.login();
+                }
+            } else {
+                //this.toast.show('查询数据失败', DURATION.LENGTH_SHORT);
+            }
+        })
+    }
+    componentWillMount() {
+        this.asQuery();
+    }
+    //根据服务端获取用户信息
+    UserInfo(uid){
+        let formData = new FormData();
+        formData.append("uid", uid);
+        let param=md5.hex_md5(global.commons.baseurl+'action/ac_user/UserInformation');
+        let params=md5.hex_md5(param);
+        formData.append('app_key',params);
+        fetch(global.commons.baseurl+'action/ac_user/UserInformation', {
+            method: "POST",
+            body: formData
+        }).then(response => response.text())
+            .then(responseJson => {
+                var bf = new Buffer(responseJson , 'base64')
+                var  str= bf.toString();
+                let result=JSON.parse(str);
+                this.setState({
+                        nickName:result.obj.username,
+                    }
+                );
+                if (result.obj.headeimg===null){
+                    this.setState({
+                            headepics:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529467063703&di=728741c3be89d01ff6e63d13eab380e0&imgtype=0&src=http%3A%2F%2Fimg.zcool.cn%2Fcommunity%2F01460b57e4a6fa0000012e7ed75e83.png',
+                        }
+                    );
+                }else{
+                    this.setState({
+                            headepics:result.obj.headeimg,
+                        }
+                    );
+                }
+                this.setState({
+                    itemInfo:[{key: 0, imageURL: require('../res/images/user-1.png'), lTitle: '昵称', rValue: result.obj.username,},
+                        {key: 1, imageURL: require('../res/images/sex.png'), lTitle: '性别', rValue: result.obj.sex,},
+                        {key: 2, imageURL: require('../res/images/person_location.png'), lTitle: '所在地', rValue: result.obj.useraddress,},
+                        {key: 3, imageURL: require('../res/images/person_sign.png'), lTitle: '签名', rValue: result.obj.userautograph,},
+                        {key: 4, imageURL: require('../res/images/person_birthday.png'), lTitle: '生日', rValue: result.obj.userbirthday,},
+                        {
+                            key: 5,
+                            imageURL: require('../res/images/person_register_time.png'),
+                            lTitle: '注册时间',
+                            rValue: result.obj.usertime,
+                        },
+                        {key: 6, imageURL: require('../res/images/person_real_name.png'), lTitle: '实名认证', rValue: result.obj.usercodeok,},
+                        {key: 7, imageURL: require('../res/images/person_is_single.png'), lTitle: '是否单身', rValue:result.obj.usermarry,},
+                        {key: 8, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV1',},],
+                });
+                console.log(result);
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
     static navigationOptions = {
@@ -97,15 +174,22 @@ export default class PersonalInfo extends Component {
                 this.selectItemDate = {key: 5, title: '注册时间'};
                 break;
             case 6:
-                this.props.navigation.navigate('UploadIdCard', {
-                    callBack: () => {
-                        this.state.itemInfo[6].rValue = '已上传';
-                        let data = this.state.itemInfo.concat();
-                        this.setState({
-                            itemInfo: data,
-                        });
-                    }
-                });
+                if(this.state.itemInfo[6].rValue==='未认证'){
+                    this.props.navigation.navigate('UploadIdCard', {
+                        callBack: () => {
+                            this.state.itemInfo[6].rValue = '已上传';
+                            let data = this.state.itemInfo.concat();
+                            this.setState({
+                                itemInfo: data,
+                            });
+                        }
+                    });
+                }else if(this.state.itemInfo[6].rValue==='已认证'){
+                    alert('您已经认证过了');
+                    return false;
+                }else if(this.state.itemInfo[6].rValue==='待审核'){
+                    alert('正在审核中');
+                }
                 break;
             case 7:
                 this.setState({isSelectYesOrNo: !this.state.isSelectYesOrNo,});
@@ -127,6 +211,54 @@ export default class PersonalInfo extends Component {
             });
         } else {
             this.state.itemInfo[7].rValue = type === 1 ? '是' : '否';
+            let formData = new FormData();
+            let param=md5.hex_md5(global.commons.baseurl+'action/ac_user/saveUserinfo');
+            let params=md5.hex_md5(param);
+            formData.append('app_key',params);
+            formData.append("type",'Single');
+            formData.append("list",type);
+            AsyncStorage.getItem('uid', (error, result) => {
+                if (!error) {
+                    if (result !== '' && result !== null) {
+                        formData.append("uid", result);
+                        fetch(global.commons.baseurl+'action/ac_user/saveUserinfo',{
+                            method:'POST',
+                            body:formData,
+                        })
+                            .then((response) => response.text() )
+                            .then((responseData)=>{
+                                var bf = new Buffer(responseData , 'base64')
+                                var  str= bf.toString();
+                                let result=JSON.parse(str);
+                                if (result.code===200){
+                                    Alert.alert(
+                                        '提示',
+                                        ''+result.message+'',
+                                        [
+                                            {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                        ]
+
+                                    );
+                                }else{
+                                    Alert.alert(
+                                        '提示',
+                                        '操作失败',
+                                        [
+                                            {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                        ]
+
+                                    );
+                                }
+                                console.log('responseData',result);
+                            })
+                            .catch((error)=>{console.error('error',error)});
+                    } else {
+                        this.login();
+                    }
+                } else {
+                    this.login();
+                }
+            })
             let data = this.state.itemInfo.concat();
             this.setState({
                 isSelectYesOrNo: false,
@@ -148,6 +280,54 @@ export default class PersonalInfo extends Component {
             });
         } else {
             this.state.itemInfo[1].rValue = type === 1 ? '男' : '女';
+            let formData = new FormData();
+            let param=md5.hex_md5(global.commons.baseurl+'action/ac_user/saveUserinfo');
+            let params=md5.hex_md5(param);
+            formData.append('app_key',params);
+            formData.append("type",'sex');
+            formData.append("list",type);
+            AsyncStorage.getItem('uid', (error, result) => {
+                if (!error) {
+                    if (result !== '' && result !== null) {
+                        formData.append("uid", result);
+                        fetch(global.commons.baseurl+'action/ac_user/saveUserinfo',{
+                            method:'POST',
+                            body:formData,
+                        })
+                            .then((response) => response.text() )
+                            .then((responseData)=>{
+                                var bf = new Buffer(responseData , 'base64')
+                                var  str= bf.toString();
+                                let result=JSON.parse(str);
+                                if (result.code===200){
+                                    Alert.alert(
+                                        '提示',
+                                        ''+result.message+'',
+                                        [
+                                            {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                        ]
+
+                                    );
+                                }else{
+                                    Alert.alert(
+                                        '提示',
+                                        '操作失败',
+                                        [
+                                            {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                        ]
+
+                                    );
+                                }
+                                console.log('responseData',result);
+                            })
+                            .catch((error)=>{console.error('error',error)});
+                    } else {
+                        this.login();
+                    }
+                } else {
+                    this.login();
+                }
+            })
             let data = this.state.itemInfo.concat();
             this.setState({
                 isSelectSex: false,
@@ -165,6 +345,58 @@ export default class PersonalInfo extends Component {
         if (type===1){
             let d = date.concat();
             this.state.itemInfo[this.selectItemDate.key].rValue = d;
+            let formData = new FormData();
+            let param=md5.hex_md5(global.commons.baseurl+'action/ac_user/saveUserinfo');
+            let params=md5.hex_md5(param);
+            formData.append('app_key',params);
+            if(this.selectItemDate.key===4){//生日
+                formData.append("type",'Birthday');
+            }else if(this.selectItemDate.key===5){//注册时间
+                formData.append("type",'Registration');
+            }
+            formData.append("list",date[0]+'-'+date[1]+'-'+date[2]);
+            AsyncStorage.getItem('uid', (error, result) => {
+                if (!error) {
+                    if (result !== '' && result !== null) {
+                        formData.append("uid", result);
+                        fetch(global.commons.baseurl+'action/ac_user/saveUserinfo',{
+                            method:'POST',
+                            body:formData,
+                        })
+                            .then((response) => response.text() )
+                            .then((responseData)=>{
+                                var bf = new Buffer(responseData , 'base64')
+                                var  str= bf.toString();
+                                let result=JSON.parse(str);
+                                if (result.code===200){
+                                    Alert.alert(
+                                        '提示',
+                                        ''+result.message+'',
+                                        [
+                                            {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                        ]
+
+                                    );
+                                }else{
+                                    Alert.alert(
+                                        '提示',
+                                        '操作失败',
+                                        [
+                                            {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                        ]
+
+                                    );
+                                }
+                                console.log('responseData',result);
+                            })
+                            .catch((error)=>{console.error('error',error)});
+                    } else {
+                        this.login();
+                    }
+                } else {
+                    this.login();
+                }
+            })
             let data = this.state.itemInfo.concat();
             this.setState({isSelectDate: false, itemInfo: data});
         }else {
@@ -202,9 +434,45 @@ export default class PersonalInfo extends Component {
      * @param obj
      */
     photoResult(obj) {
-        this.setState({
-            headImageSource: obj
-        });
+        let source = {uri: obj,type: 'multipart/form-data', name: 'a.jpg'};
+        let formData = new FormData();
+        let param=md5.hex_md5(global.commons.baseurl+'action/ac_user/UploadSheader');
+        let params=md5.hex_md5(param);
+        formData.append('app_key',params);
+        formData.append("images",source);
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    formData.append("uid", result);
+                    fetch(global.commons.baseurl+'action/ac_user/UploadSheader',{
+                        method:'POST',
+                        headers:{
+                            'Content-Type':'multipart/form-data',
+                        },
+                        body:formData,
+                    })
+                        .then((response) => response.text() )
+                        .then((responseData)=>{
+                            var bf = new Buffer(responseData , 'base64')
+                            var  str= bf.toString();
+                            let result=JSON.parse(str);
+                            this.setState({
+                                    headepics:result.obj.headimg,
+                                }
+                            );
+                            console.log('responseData',responseData);
+                        })
+                        .catch((error)=>{console.error('error',error)});
+                } else {
+                    this.login();
+                }
+            } else {
+                //this.toast.show('查询数据失败', DURATION.LENGTH_SHORT);
+            }
+        })
+        /* this.setState({
+             headImageSource: obj
+         });*/
     }
 
     /**
@@ -217,6 +485,54 @@ export default class PersonalInfo extends Component {
         if (type===1){
             let [province, city, street] = area;
             this.state.itemInfo[2].rValue = province + '-' + city + '-' + street;
+            let formData = new FormData();
+            let param=md5.hex_md5(global.commons.baseurl+'action/ac_user/saveUserinfo');
+            let params=md5.hex_md5(param);
+            formData.append('app_key',params);
+            formData.append("type",'city');
+            formData.append("list",province + '-' + city + '-' + street);
+            AsyncStorage.getItem('uid', (error, result) => {
+                if (!error) {
+                    if (result !== '' && result !== null) {
+                        formData.append("uid", result);
+                        fetch(global.commons.baseurl+'action/ac_user/saveUserinfo',{
+                            method:'POST',
+                            body:formData,
+                        })
+                            .then((response) => response.text() )
+                            .then((responseData)=>{
+                                var bf = new Buffer(responseData , 'base64')
+                                var  str= bf.toString();
+                                let result=JSON.parse(str);
+                                if (result.code===200){
+                                    Alert.alert(
+                                        '提示',
+                                        ''+result.message+'',
+                                        [
+                                            {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                        ]
+
+                                    );
+                                }else{
+                                    Alert.alert(
+                                        '提示',
+                                        '操作失败',
+                                        [
+                                            {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                        ]
+
+                                    );
+                                }
+                                console.log('responseData',result);
+                            })
+                            .catch((error)=>{console.error('error',error)});
+                    } else {
+                        this.login();
+                    }
+                } else {
+                    this.login();
+                }
+            })
             let data = this.state.itemInfo.concat();
             this.setState({isShowSelectArea: false, itemInfo: data});
         }else {
@@ -230,6 +546,54 @@ export default class PersonalInfo extends Component {
      */
     inputNameResult(name) {
         this.state.itemInfo[0].rValue = name;
+        let formData = new FormData();
+        let param=md5.hex_md5(global.commons.baseurl+'action/ac_user/saveUserinfo');
+        let params=md5.hex_md5(param);
+        formData.append('app_key',params);
+        formData.append("type",'nickname');
+        formData.append("list",name);
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    formData.append("uid", result);
+                    fetch(global.commons.baseurl+'action/ac_user/saveUserinfo',{
+                        method:'POST',
+                        body:formData,
+                    })
+                        .then((response) => response.text() )
+                        .then((responseData)=>{
+                            var bf = new Buffer(responseData , 'base64')
+                            var  str= bf.toString();
+                            let result=JSON.parse(str);
+                            if (result.code===200){
+                                Alert.alert(
+                                    '提示',
+                                    ''+result.message+'',
+                                    [
+                                        {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                    ]
+
+                                );
+                            }else{
+                                Alert.alert(
+                                    '提示',
+                                    '操作失败',
+                                    [
+                                        {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                    ]
+
+                                );
+                            }
+                            console.log('responseData',result);
+                        })
+                        .catch((error)=>{console.error('error',error)});
+                } else {
+                    this.login();
+                }
+            } else {
+                this.login();
+            }
+        })
         let data = this.state.itemInfo.concat();
         this.setState({isShowInputName: false, itemInfo: data});
     }
@@ -239,6 +603,54 @@ export default class PersonalInfo extends Component {
      */
     inputSignResult(sign) {
         this.state.itemInfo[3].rValue = sign;
+        let formData = new FormData();
+        let param=md5.hex_md5(global.commons.baseurl+'action/ac_user/saveUserinfo');
+        let params=md5.hex_md5(param);
+        formData.append('app_key',params);
+        formData.append("type",'autograph');
+        formData.append("list",sign);
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    formData.append("uid", result);
+                    fetch(global.commons.baseurl+'action/ac_user/saveUserinfo',{
+                        method:'POST',
+                        body:formData,
+                    })
+                        .then((response) => response.text() )
+                        .then((responseData)=>{
+                            var bf = new Buffer(responseData , 'base64')
+                            var  str= bf.toString();
+                            let result=JSON.parse(str);
+                            if (result.code===200){
+                                Alert.alert(
+                                    '提示',
+                                    ''+result.message+'',
+                                    [
+                                        {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                    ]
+
+                                );
+                            }else{
+                                Alert.alert(
+                                    '提示',
+                                    '操作失败',
+                                    [
+                                        {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                    ]
+
+                                );
+                            }
+                            console.log('responseData',result);
+                        })
+                        .catch((error)=>{console.error('error',error)});
+                } else {
+                    this.login();
+                }
+            } else {
+                this.login();
+            }
+        })
         let data = this.state.itemInfo.concat();
         this.setState({isShowInputSign: false, itemInfo: data});
     }
@@ -256,19 +668,19 @@ export default class PersonalInfo extends Component {
             <View style={styles.container}>
                 <ToolBar title={'个人中心'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <PersonalInfoHead clickCallBack={this.clickHeadImage.bind(this)}
-                                  imageSource={this.state.headImageSource}/>
+                                  imageSource={this.state.headepics} nickname={this.state.nickName} />
                 <FlatList
                     data={this.state.itemInfo}
                     renderItem={({item}) => {
                         return (
-                                <View>
-                                    <TouchableHighlight style={styles.lightitem}
-                                                        underlayColor={'#f8f8f8'}
-                                                        onPress={this.itemClick.bind(this, item)}>
-                                        <PersonalInfoItem itemInfo={item}/>
-                                    </TouchableHighlight>
-                                    <View style={styles.line}/>
-                                </View>
+                            <View>
+                                <TouchableHighlight style={styles.lightitem}
+                                                    underlayColor={'#f8f8f8'}
+                                                    onPress={this.itemClick.bind(this, item)}>
+                                    <PersonalInfoItem itemInfo={item}/>
+                                </TouchableHighlight>
+                                <View style={styles.line}/>
+                            </View>
                         );
                     }}
                     keyExtractor={item => item.key.toString()}

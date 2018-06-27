@@ -13,14 +13,14 @@ export default class PersonalInfoHead extends Component {
                              source={require('../res/images/head_background.png')}
                              resizeMode='stretch'
             >
-                <Text style={styles.head_title}>头像</Text>
+                <Text style={styles.head_title}>{this.props.nickname}</Text>
                 <TouchableHighlight
                     style={styles.head_image}
                     onPress={this.props.clickCallBack}
                 >
                     <Image
                         style={styles.head_image}
-                        source={Object.keys(this.props.imageSource).length > 0 ? this.props.imageSource : require('../res/images/head_image.png')}
+                        source={{uri: this.props.imageSource}}
                         resizeMode='stretch'
                     />
                 </TouchableHighlight>

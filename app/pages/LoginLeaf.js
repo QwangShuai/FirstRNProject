@@ -27,7 +27,7 @@ export default class LoginLeaf extends Component {
         UtilScree.getHeight(10);
     }
     backClick(){
-        this.props.navigation.navigate('PersonalInfoHead');
+        this.props.navigation.goBack();
     }
 
     shouldCompontUpdate(){
@@ -153,7 +153,7 @@ export default class LoginLeaf extends Component {
                     '提示',
                     '登录成功',
                     [
-                        {text:'确定',onPress:(()=>{}),style:'cancel'}
+                        {text:'确定',onPress:this.backClick()}
                     ]
                 );
             } else {
