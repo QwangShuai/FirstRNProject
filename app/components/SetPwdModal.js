@@ -23,7 +23,7 @@ export default class SetPwdModal extends Component {
     }
     render() {
         return (
-            <Modal style={styles.container}
+            <Modal style={Stylecss.styles.modal_container}
                    animationType={"slide"}
                    transparent={true}
                    visible={this.props.modalVisible}
@@ -36,7 +36,7 @@ export default class SetPwdModal extends Component {
                     <Text style={{color:'#333333',fontSize:10,marginTop:UtilScreen.getHeight(20),marginLeft:UtilScreen.getWidth(20)}}>分享、邀请好友加入活动时，会直接附上密码</Text>
                     <Text style={[styles.titleStyle,{marginLeft:UtilScreen.getWidth(20),marginTop:UtilScreen.getHeight(30)}]}>输入密码</Text>
                     <View style={{height:UtilScreen.getHeight(60),flexDirection:'row',}}>
-                        <TextInput style={styles.textStyle} placeholder='  请输入密码' secureTextEntry={this.state.isState} underlineColorAndroid='transparent'/>
+                        <TextInput style={Stylecss.styles.modal_textStyle} placeholder='  请输入密码' secureTextEntry={this.state.isState} underlineColorAndroid='transparent'/>
                         <Image style={{width:UtilScreen.getWidth(32),height:UtilScreen.getHeight(30),alignSelf:'center',marginLeft:UtilScreen.getWidth(12)}}
                                source={this.state.isState?require('../res/images/eye-b-false.png'):require('../res/images/eye-b-true.png')} onPress={this.props.pwShow}/>
                     </View>
@@ -50,9 +50,6 @@ export default class SetPwdModal extends Component {
 
 const
     styles = StyleSheet.create({
-        container: {
-            flex: 1,
-        },
         content: {
             paddingTop: UtilScreen.getHeight(20),
             paddingLeft: UtilScreen.getWidth(40),
@@ -72,16 +69,5 @@ const
             marginTop:UtilScreen.getHeight(20),
             width:UtilScreen.getWidth(20),
         },
-        textStyle:{
-            padding:0,
-            marginLeft:UtilScreen.getWidth(20),
-            marginTop:UtilScreen.getHeight(10),
-            width:UtilScreen.getWidth(398),
-            height:UtilScreen.getHeight(58),
-            borderWidth:UtilScreen.getHeight(1),
-            borderColor:'#888888',
-            borderRadius:UtilScreen.getHeight(10),
-            color:'#cacaca',
-            fontSize:12,
-        },
+
     })

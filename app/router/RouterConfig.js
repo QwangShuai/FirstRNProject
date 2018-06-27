@@ -38,9 +38,9 @@ import PersonalInformation from '../pages/PersonalInformation';
 import SimpleSelectCity from '../pages/SimpleSelectCity';
 import UploadIdCard from '../pages/UploadIdCard';
 import UnpaidDetails from '../components/UnpaidDetails';
-import SetPwdModal from '../components/SetPwdModal';
+import PersonsModal from '../components/PersonsModal';
 const RouterConfig = StackNavigator({
-    SetPwdModal: {screen: SetPwdModal},
+    PersonsModal: {screen: PersonsModal},
     Order: {screen: Order},
     // TravelItem: {screen: TravelItem},
     // Apply: {screen: Apply},
