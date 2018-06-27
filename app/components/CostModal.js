@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Modal, Text,Image,TouchableHighlight,TextInput} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
-
+const Stylecss = require('../common/Stylecss');
 export default class CostModal extends Component {
     constructor(props) {
         super(props);
@@ -47,7 +47,7 @@ export default class CostModal extends Component {
                     <View style={styles.viewStyle}>
                         <TextInput placeholder='请输入说明(选填)' underlineColorAndroid='transparent' style={{padding:0,fontSize:12,lineHeight:UtilScreen.getHeight(54),width:UtilScreen.getWidth(400),marginLeft:UtilScreen.getWidth(40)}}/>
                     </View>
-                    <Text style={styles.btnStyle}>确定</Text>
+                    <Text style={Stylecss.styles.btnStyle}>确定</Text>
                 </View>
             </Modal>
         )
@@ -95,17 +95,5 @@ const
             borderColor:'#888888',
             borderRadius:UtilScreen.getHeight(6),
             flexDirection:'row',
-        },
-        btnStyle:{
-            marginTop:UtilScreen.getHeight(50),
-            width:UtilScreen.getWidth(260),
-            height:UtilScreen.getHeight(56),
-            color:'#ffffff',
-            backgroundColor:'#ff9d00',
-            lineHeight:UtilScreen.getHeight(56),
-            textAlign:'center',
-            alignSelf:'center',
-            borderRadius:UtilScreen.getHeight(6),
-            fontSize:12,
         },
     })

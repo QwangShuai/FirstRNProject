@@ -413,4 +413,17 @@ export const styles = StyleSheet.create({
         backgroundColor: '#f1f1f1',
         height: UtilScreen.getHeight(20),
     },
+    modal_btnStyle:{
+        marginTop:UtilScreen.getHeight(50),
+        width:UtilScreen.getWidth(260),
+        height:UtilScreen.getHeight(56),
+        color:'#ffffff',
+        backgroundColor:'#ff9d00',
+        lineHeight:UtilScreen.getHeight(56),
+        textAlign:'center',
+        alignSelf:'center',
+        borderRadius:UtilScreen.getHeight(6),
+        fontSize:12,
+        marginLeft:UtilScreen.getWidth(-40),
+    },
 });
