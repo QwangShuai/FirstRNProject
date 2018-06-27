@@ -38,8 +38,10 @@ import PersonalInformation from '../pages/PersonalInformation';
 import SimpleSelectCity from '../pages/SimpleSelectCity';
 import UploadIdCard from '../pages/UploadIdCard';
 import UnpaidDetails from '../components/UnpaidDetails';
+import CostModal from '../components/CostModal';
 const RouterConfig = StackNavigator({
-
+    PersonalInfo: {screen: PersonalInfo},
+    CostModal: {screen: CostModal},
     Order: {screen: Order},
     // TravelItem: {screen: TravelItem},
     // Apply: {screen: Apply},
@@ -90,5 +92,6 @@ const RouterConfig = StackNavigator({
     Order: {screen: Order},
     CheckOrder: {screen: CheckOrder},
     UnpaidDetails: {screen: UnpaidDetails},
+    UploadIdCard: {screen: UploadIdCard},
 });
 export default RouterConfig;
