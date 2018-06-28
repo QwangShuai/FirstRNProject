@@ -17,7 +17,11 @@ export default class MyAlbumGridView extends Component {
         super(props);
         this.state = {
             images: [
-                {key: 0, url: require('../res/images/add_image.png')},
+                {
+                    key: 0,
+                    url: require('../res/images/add_image.png'),
+                    date: '',
+                },
             ],
             isShowSelectImage: false,
         }
@@ -61,7 +65,12 @@ export default class MyAlbumGridView extends Component {
             }
         }
     }
+    componentDidMount(){
+        for(let i=0;i<this.props.itemInfo.length;i++){
+            this.state.images.push(this.props.itemInfo[i])
+        }
 
+    }
     /**
      * 拍照或者选择照片回调，返回链接对象
      * @param obj
@@ -69,8 +78,8 @@ export default class MyAlbumGridView extends Component {
     photoResult(obj) {
         let item = {
             key: this.state.images.length,
-            url: obj,
-        }
+            url: {uri:obj},
+    }
       //  this.state.images.splice(this.state.images.length - 1, 1);
         this.state.images.push(item);
        // this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});

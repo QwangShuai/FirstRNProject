@@ -16,7 +16,17 @@ export default class MyAlbum extends Component {
             itemInfo:[
                 {
                     key:0,
-                    images:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                    url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                    date: '2017年2月1日',
+                },
+                {
+                    key:21,
+                    url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                    date: '2017年2月1日',
+                },
+                {
+                    key:2,
+                    url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
                     date: '2017年2月1日',
                 }
             ],
@@ -33,7 +43,7 @@ export default class MyAlbum extends Component {
         return(
             <View style={Stylecss.styles.container}>
                 <ToolBar title={'我的相册'} isShowBack={true} backClick={this.backClick.bind(this)}/>
-                <MyAlbumGridView selectImages={this.selectImages.bind(this)}/>
+                <MyAlbumGridView itemInfo={this.state.itemInfo} selectImages={this.selectImages.bind(this)}/>
             </View>
         )
     }
