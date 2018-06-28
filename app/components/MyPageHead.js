@@ -37,7 +37,7 @@ export default class MyPageHead extends Component {
                                 resizeMode='stretch'
                             />
                         </View>
-                        <ImageBackground style={styles.levelImage} source={this.props.itemInfo.imageLevel}>
+                        <ImageBackground style={[styles.levelImage,{width:this.state.isLogin?UtilScreen.getWidth(179):0}]} source={this.props.itemInfo.imageLevel}>
                             <Text style={[styles.user_type,{height:this.state.isLogin?UtilScreen.getHeight(55):0}]}>{this.props.itemInfo.textLevel}</Text>
                         </ImageBackground>
 
