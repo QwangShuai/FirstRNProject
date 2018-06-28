@@ -13,7 +13,13 @@ export default class MyAlbum extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            itemInfo:[
+                {
+                    key:0,
+                    images:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                    date: '2017年2月1日',
+                }
+            ],
         }
     }
 
