@@ -124,7 +124,7 @@ export default class MyAlbumGridView extends Component {
                         <TouchableHighlight style={styles.imageDeleteStyle}
                                             onPress={this.deleteImage.bind(this, item, index)}
                                             underlayColor={'#f8f8f8'}>
-                            <Image
+                            <Image style={{width:UtilScreen.getWidth(30),height:UtilScreen.getHeight(30)}}
                                    source={require('../res/images/delete.png')} resizeMode='contain'/>
                         </TouchableHighlight>
                     </View>
