@@ -6,6 +6,7 @@ import {
     FlatList,
     Image,
     TouchableHighlight,
+    ImageBackground,
 } from 'react-native';
 import UtilScreen from '../util/UtilScreen';
 import SelectYesOrNo from '../components/SelectYesOrNo';
@@ -13,6 +14,13 @@ import GetPhotoFromPhone from "../util/GetPhotoFromPhone";
 
 const Stylecss = require('../common/Stylecss');
 export default class MyAlbumGridView extends Component {
+    static defaultProps = {
+        itemInfo: {
+            images: {uri: 'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+            date: '2017年2月1日',
+        },
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -27,13 +35,6 @@ export default class MyAlbumGridView extends Component {
         }
     }
 
-    static defaultProps = {
-        itemInfo: {
-            images:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
-            date: '2017年2月1日',
-        },
-    }
-
     addImage() {
         this.setState({
             isShowSelectImage: true,
@@ -45,10 +46,10 @@ export default class MyAlbumGridView extends Component {
         let data = this.state.images.concat();
         this.setState({
             images: data,
-        },()=>{
-            this.state.images.splice(this.state.images.length - 1, 1);
-            this.props.selectImages && this.props.selectImages(this.state.images.concat());
-            this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});
+        }, () => {
+            // this.state.images.splice(this.state.images.length - 1, 1);
+            // this.props.selectImages && this.props.selectImages(this.state.images.concat());
+            // this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});
         });
     }
 
@@ -65,12 +66,14 @@ export default class MyAlbumGridView extends Component {
             }
         }
     }
-    componentDidMount(){
-        for(let i=0;i<this.props.itemInfo.length;i++){
+
+    componentWillMount() {
+        for (let i = 0; i < this.props.itemInfo.length; i++) {
             this.state.images.push(this.props.itemInfo[i])
         }
 
     }
+
     /**
      * 拍照或者选择照片回调，返回链接对象
      * @param obj
@@ -78,42 +81,51 @@ export default class MyAlbumGridView extends Component {
     photoResult(obj) {
         let item = {
             key: this.state.images.length,
-            url: {uri:obj},
-    }
-      //  this.state.images.splice(this.state.images.length - 1, 1);
+            url: {uri: obj},
+        }
+        //  this.state.images.splice(this.state.images.length - 1, 1);
         this.state.images.push(item);
-       // this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});
+        // this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});
         let data = this.state.images.concat();
-        let backData=this.state.images.concat();
-        backData.splice(0,1);
-        this.props.selectImages && this.props.selectImages(backData);
+        // let backData = this.state.images.concat();
+        // backData.splice(0, 1);
+        // this.props.selectImages && this.props.selectImages(backData);
         this.setState({
             images: data
         });
     }
-    setItemView(item,index){
-        if(index===0){
-            return(
-                    <View style={styles.imageStyle}>
-                        <TouchableHighlight style={styles.imageStyle}
-                                            onPress={this.addImage.bind(this)}
-                                            underlayColor={'#f8f8f8'}>
-                            <Image
-                                source={require('../res/images/add_image.png')}/>
-                        </TouchableHighlight>
-                    </View>
+
+    setItemView(item, index) {
+        if (index === 0) {
+            return (
+                <View style={styles.imageStyle}>
+                    <TouchableHighlight style={{
+                        width: UtilScreen.getWidth(300),
+                        height: UtilScreen.getHeight(200),
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}
+                                        onPress={this.addImage.bind(this)}
+                                        underlayColor={'#f8f8f8'}>
+                        <Image
+                            source={require('../res/images/add_image.png')}/>
+                    </TouchableHighlight>
+                </View>
             )
         } else {
-            return(
+            return (
                 <View style={styles.container}>
-                    <View style={styles.imageStyle}>
-                            <Image style={styles.imageStyle}
-                                source={item.url} resizeMode='stretch'/>
+                    <View style={{width:UtilScreen.getWidth(300),height:UtilScreen.getHeight(200),marginLeft: UtilScreen.getWidth(40),
+                        marginTop: UtilScreen.getWidth(24),marginRight:UtilScreen.getWidth(20),
+                        borderRadius: UtilScreen.getHeight(10),}}>
+                    <Image style={{width: UtilScreen.getWidth(300),
+                        height: UtilScreen.getHeight(200),borderRadius: UtilScreen.getHeight(10)}}
+                                     source={item.url} />
                         <TouchableHighlight style={styles.imageDeleteStyle}
                                             onPress={this.deleteImage.bind(this, item, index)}
                                             underlayColor={'#f8f8f8'}>
-                            <Image style={styles.imageStyle}
-                                   source={require('../res/images/delete.png')} resizeMode='stretch'/>
+                            <Image
+                                   source={require('../res/images/delete.png')} resizeMode='contain'/>
                         </TouchableHighlight>
                     </View>
                     <Text style={styles.dataStyle}>{this.props.itemInfo.date}</Text>
@@ -121,6 +133,7 @@ export default class MyAlbumGridView extends Component {
             )
         }
     }
+
     render() {
         return (
             <View style={styles.container}>
@@ -141,29 +154,33 @@ export default class MyAlbumGridView extends Component {
 }
 
 const styles = StyleSheet.create({
-    container:{
+    container: {
         backgroundColor: '#fff'
     },
-    imageStyle:{
-        margin:UtilScreen.getWidth(25),
-        alignItems:'center',
-        justifyContent:'center',
-        width:UtilScreen.getWidth(300),
-        height:UtilScreen.getHeight(200),
-        borderRadius:UtilScreen.getWidth(10),
-        backgroundColor:'#f9f9f9',
+    imageStyle: {
+        marginLeft: UtilScreen.getWidth(40),
+        marginTop: UtilScreen.getWidth(24),
+        marginRight: UtilScreen.getWidth(20),
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: UtilScreen.getWidth(300),
+        height: UtilScreen.getHeight(200),
+        borderRadius: UtilScreen.getHeight(10),
+        backgroundColor: '#f9f9f9',
     },
-    dataStyle:{
-        marginLeft:UtilScreen.getWidth(40),
-        marginTop:UtilScreen.getHeight(15),
-        fontSize:12,
-        color:'#333333',
+    dataStyle: {
+        marginLeft: UtilScreen.getWidth(40),
+        marginTop: UtilScreen.getHeight(15),
+        fontSize: 12,
+        color: '#333333',
     },
-    imageDeleteStyle:{
-        position:'absolute',
-        right:UtilScreen.getWidth(16),
-        top:UtilScreen.getHeight(16),
-        width:UtilScreen.getWidth(30),
-        height:UtilScreen.getHeight(30),
+    imageDeleteStyle: {
+        position: 'absolute',
+        right: 0,
+        top: 0,
+        width: UtilScreen.getWidth(30),
+        height: UtilScreen.getHeight(30),
+        marginRight:UtilScreen.getWidth(10),
+        marginTop:UtilScreen.getHeight(10),
     },
 })
