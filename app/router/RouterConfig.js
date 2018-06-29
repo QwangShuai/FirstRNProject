@@ -36,22 +36,12 @@ import SimpleSelectCity from '../pages/SimpleSelectCity';
 import UploadIdCard from '../pages/UploadIdCard';
 import FriendsTogether from '../pages/FriendsTogether';
 import UnpaidDetails from '../components/UnpaidDetails';
-<<<<<<< HEAD
 import PolyContentItem from '../components/PolyContentItem';
 const RouterConfig = StackNavigator({
 
     // FriendsTogether: {screen: FriendsTogether},
     // Set: {screen: Set},
     // Order: {screen: Order},
-=======
-import PersonsModal from '../components/PersonsModal';
-import PolyContentItem from '../components/PolyContentItem';
-const RouterConfig = StackNavigator({
-    InfoCenter: {screen: InfoCenter},
-    PolyContentItem:{screen:PolyContentItem},
-    PersonsModal: {screen: PersonsModal},
-    Order: {screen: Order},
->>>>>>> 3ae30b1eb742678b12cd26576453f866014a4b7e
     // TravelItem: {screen: TravelItem},
     // Apply: {screen: Apply},
     // UploadIdCard: {screen: UploadIdCard},
@@ -72,7 +62,7 @@ const RouterConfig = StackNavigator({
     Initiatives: {screen: Initiatives},
     InitiativesItem: {screen: InitiativesItem},
     InfoSpeific: {screen: InfoSpeific},
-    //?
+    InfoCenter: {screen: InfoCenter},
     Registered: {screen: Registered},
     // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
     FocusOnActivities: {screen: FocusOnActivities},
