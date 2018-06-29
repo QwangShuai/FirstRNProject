@@ -23,7 +23,9 @@ export default class InfoItem extends Component {
         if (this.props.InfoItem.rPice != 0) {
             return (
                 <View style={[styles.container,{paddingLeft: UtilScreen.getWidth(26)}]}>
-                        <Image resizeMode='stretch' style={styles.lImg} source={this.props.InfoItem.lImg}></Image>
+                    <View style={styles.imageContet}>
+                        <Image resizeMode='cover' style={styles.lImg} source={this.props.InfoItem.lImg}></Image>
+                    </View>
                         <View style={styles.rContainer}>
                             <Text style={styles.leftText}>{this.props.InfoItem.rTitie}</Text>
                             <Text style={styles.rContent}>{this.props.InfoItem.rContent}</Text>
@@ -37,7 +39,9 @@ export default class InfoItem extends Component {
         } else if (this.props.InfoItem.rPice == 0) {
             return (
                 <View style={[styles.container,{paddingLeft: UtilScreen.getWidth(26)}]}>
-                        <Image resizeMode='contain' style={styles.lImg} source={this.props.InfoItem.lImg}></Image>
+                    <View style={styles.imageContet}>
+                        <Image resizeMode='cover' style={styles.lImg} source={this.props.InfoItem.lImg}></Image>
+                    </View>
                         <View style={styles.rContainer}>
                             <Text style={styles.leftText}>{this.props.InfoItem.rTitie}</Text>
                             <Text numberOfLines={1} style={styles.rContent}>{this.props.InfoItem.rContent}</Text>
@@ -61,12 +65,17 @@ const styles = StyleSheet.create({
 
 
     },
-    lImg: {
+    imageContet: {
+        backgroundColor:'#000',
+        overflow:'hidden',
         width: UtilScreen.getWidth(120),
         height: UtilScreen.getWidth(120),
         borderRadius: UtilScreen.getWidth(120),
-        marginRight: UtilScreen.getWidth(30),
         marginTop: UtilScreen.getWidth(26),
+    },
+    lImg: {
+        width: UtilScreen.getWidth(120),
+        height: UtilScreen.getWidth(120),
     },
     rContainer: {
         width: UtilScreen.getWidth(444),
