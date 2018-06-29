@@ -32,6 +32,7 @@ export default class MyAlbumGridView extends Component {
                     key: 0,
                     url: require('../res/images/add_image.png'),
                     date: '',
+                    id:'',
                 },
             ],
             isShowSelectImage: false,
@@ -46,7 +47,39 @@ export default class MyAlbumGridView extends Component {
 
     deleteImage(item, index) {
         this.state.images.splice(index, 1);
+        let formData = new FormData();
+        let param=md5.hex_md5(global.commons.baseurl+'action/ac_user/deleteAlbum');
+        let params=md5.hex_md5(param);
+        formData.append("listid", item);
+        formData.append('app_key',params);
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    formData.append("uid", result);
+                    fetch(global.commons.baseurl+'action/ac_user/deleteAlbum',{
+                        method:'POST',
+                        body:formData,
+                    })
+                        .then((response) => response.text() )
+                        .then((responseData)=>{
+                            var bf = new Buffer(responseData , 'base64')
+                            var  str= bf.toString();
+                            let result=JSON.parse(str);
+                           if(result.code===200){
+                               alert('操作成功!');
+                               return false;
+                           }
+                        })
+                        .catch((error)=>{console.error('error',error)});
+                } else {
+                    this.login();
+                }
+            } else {
+                //this.toast.show('查询数据失败', DURATION.LENGTH_SHORT);
+            }
+        })
         let data = this.state.images.concat();
+
         this.setState({
             images: data,
         }, () => {
@@ -71,10 +104,47 @@ export default class MyAlbumGridView extends Component {
     }
 
     componentWillMount() {
-        for (let i = 0; i < this.props.itemInfo.length; i++) {
-            this.state.images.push(this.props.itemInfo[i]);
-            console.log(this.state.images);
-        }
+        let formData = new FormData();
+        let param=md5.hex_md5(global.commons.baseurl+'action/ac_user/AlbumList');
+        let params=md5.hex_md5(param);
+        formData.append('app_key',params);
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    formData.append("uid", result);
+                    fetch(global.commons.baseurl+'action/ac_user/AlbumList',{
+                        method:'POST',
+                        headers:{
+                            'Content-Type':'multipart/form-data',
+                        },
+                        body:formData,
+                    })
+                        .then((response) => response.text() )
+                        .then((responseData)=>{
+                            var bf = new Buffer(responseData , 'base64')
+                            var  str= bf.toString();
+                            let result=JSON.parse(str);
+                            for(var i = 0;i<result.obj.length;i++){
+                                this.props.itemInfo.push({key:i, url:{uri:result.obj[i].upicurl}, date: result.obj[i].utime,id:result.obj[i].uid});
+                            }
+                           for (let i = 0; i < this.props.itemInfo.length; i++) {
+                                this.state.images.push(this.props.itemInfo[i]);
+                               let data = this.state.images.concat();
+                               this.setState({
+                                   images: data
+                               });
+                            }
+                            console.log(this.state.images);
+                        })
+                        .catch((error)=>{console.error('error',error)});
+                } else {
+                    this.login();
+                }
+            } else {
+                //this.toast.show('查询数据失败', DURATION.LENGTH_SHORT);
+            }
+        })
+
 
     }
     login(){
@@ -86,10 +156,6 @@ export default class MyAlbumGridView extends Component {
      * @param obj
      */
     photoResult(obj) {
-        let item = {
-            key: this.state.images.length,
-            url: {uri: obj},
-        }
         let source = {uri: obj,type: 'multipart/form-data', name: 'a.jpg'};
         let formData = new FormData();
         let param=md5.hex_md5(global.commons.baseurl+'action/ac_user/Photoalbum');
@@ -112,6 +178,16 @@ export default class MyAlbumGridView extends Component {
                             var bf = new Buffer(responseData , 'base64')
                             var  str= bf.toString();
                             let result=JSON.parse(str);
+                            let item = {
+                                key: this.state.images.length,
+                                url: {uri: obj},
+                                id:result.obj.id,
+                            }
+                            this.state.images.push(item);
+                            let data = this.state.images.concat();
+                            this.setState({
+                                images: data
+                            });
                             console.log('responseData',result);
                         })
                         .catch((error)=>{console.error('error',error)});
@@ -123,15 +199,13 @@ export default class MyAlbumGridView extends Component {
             }
         })
         //  this.state.images.splice(this.state.images.length - 1, 1);
-        this.state.images.push(item);
+
         // this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});
-        let data = this.state.images.concat();
+
         // let backData = this.state.images.concat();
         // backData.splice(0, 1);
         // this.props.selectImages && this.props.selectImages(backData);
-        this.setState({
-            images: data
-        });
+
     }
 
     setItemView(item, index) {
@@ -161,7 +235,7 @@ export default class MyAlbumGridView extends Component {
                         height: UtilScreen.getHeight(200),borderRadius: UtilScreen.getHeight(10)}}
                                      source={item.url} />
                         <TouchableHighlight style={styles.imageDeleteStyle}
-                                            onPress={this.deleteImage.bind(this, item, index)}
+                                            onPress={this.deleteImage.bind(this, item.id, index)}
                                             underlayColor={'#f8f8f8'}>
                             <Image style={{width:UtilScreen.getWidth(30),height:UtilScreen.getHeight(30)}}
                                    source={require('../res/images/delete.png')} resizeMode='contain'/>

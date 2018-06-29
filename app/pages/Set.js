@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {AppRegistry,View,Text,Image,TouchableHighlight} from 'react-native';
+import {AppRegistry,View,Text,Image,TouchableHighlight,AsyncStorage,Alert} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import SetModal from '../components/SetModal';
 const Stylecss = require('../common/Stylecss');
@@ -30,6 +30,15 @@ export default class Set extends   Component{
 
     updateToast(){
         this.ToastComponent.show('已是最新版本，暂无更新！~')
+    }
+    LoginOut(){
+            AsyncStorage.removeItem('uid', (error) => {
+                if (!error) {
+                    this.props.navigation.navigate('Home');
+                } else {
+                    alert('退出失败!');
+                }
+            })
     }
     clearCache(){
         this. setState({
@@ -62,7 +71,7 @@ export default class Set extends   Component{
                         <Image source={require('../res/images/chevron-left2.png')}/>
                     </TouchableHighlight>
                 </View>
-                <Text style={Stylecss.styles.set_logout}>注销登录</Text>
+                <Text style={Stylecss.styles.set_logout} onPress={this.LoginOut.bind(this)}>注销登录</Text>
                 <SetModal isShow={this.state.isShowClearCache}/>
                 <ToastComponent ref={ref => this.ToastComponent = ref} />
             </View>
