@@ -8,8 +8,6 @@ import Registered from '../pages/Registered';
 import Set from '../pages/Set';
 import PersonalInfo from '../pages/PersonalInfo';
 import Update from '../pages/Update';
-import ApplyPaymentState from '../components/ApplyPaymentState';
-import PickerViewDemo from '../components/PickerViewDemo';
 import Apply from '../pages/Apply';
 import CreateActivities from '../pages/CreateActivities';
 import Feedback from '../pages/Feedback';
@@ -17,7 +15,6 @@ import Agreement from '../pages/Agreement';
 import MyAlbum from '../pages/MyAlbum';
 import AddContent from '../pages/AddContent';
 import FocusOnActivities from '../pages/FocusOnActivities';
-import FocusOnActivitiesItem from '../components/FocusOnActivitiesItem';
 import InitiativesItem from '../components/InitiativesItem';
 import Initiatives from '../pages/Initiatives';
 import ActivitiesAttended from '../pages/ActivitiesAttended';
@@ -37,11 +34,14 @@ import Order from '../pages/Order';
 import PersonalInformation from '../pages/PersonalInformation';
 import SimpleSelectCity from '../pages/SimpleSelectCity';
 import UploadIdCard from '../pages/UploadIdCard';
+import FriendsTogether from '../pages/FriendsTogether';
 import UnpaidDetails from '../components/UnpaidDetails';
-import PersonsModal from '../components/PersonsModal';
+import PolyContentItem from '../components/PolyContentItem';
 const RouterConfig = StackNavigator({
-    PersonsModal: {screen: PersonsModal},
-    Order: {screen: Order},
+
+    // FriendsTogether: {screen: FriendsTogether},
+    // Set: {screen: Set},
+    // Order: {screen: Order},
     // TravelItem: {screen: TravelItem},
     // Apply: {screen: Apply},
     // UploadIdCard: {screen: UploadIdCard},
@@ -82,7 +82,6 @@ const RouterConfig = StackNavigator({
     Set: {screen: Set},
     Apply: {screen: Apply},
     Update: {screen: Update},
-    PickerViewDemo: {screen: PickerViewDemo},
     MyCollectionList: {screen: MyCollectionList},
     MyDraftList: {screen: MyDraftList},
     PersonalInfoDemo2: {screen: PersonalInfoDemo2},
@@ -92,5 +91,6 @@ const RouterConfig = StackNavigator({
     CheckOrder: {screen: CheckOrder},
     UnpaidDetails: {screen: UnpaidDetails},
     UploadIdCard: {screen: UploadIdCard},
+    PersonalInformation: {screen: PersonalInformation},
 });
 export default RouterConfig;
