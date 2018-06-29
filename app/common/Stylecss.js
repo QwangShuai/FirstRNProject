@@ -463,4 +463,10 @@ export const styles = StyleSheet.create({
         color:'#cacaca',
         fontSize:12,
     },
+    mark: {
+        flex: 1,
+        backgroundColor: 'rgba(52, 52, 52, 0.5)',
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 });

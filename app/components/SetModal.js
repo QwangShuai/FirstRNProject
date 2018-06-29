@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {View, StyleSheet, Modal, Text, Image} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
-
+const Styless = require('../common/Stylecss');
 export default class SetModal extends Component {
     constructor(props) {
         super(props);
@@ -33,14 +33,17 @@ export default class SetModal extends Component {
                    visible={this.state.isShow}
                    onRequestClose={this.setModalVisible.bind(this)}
             >
-                <View style={styles.content}>
-                    <Text style={styles.titleText}>确定要清楚缓存吗？</Text>
-                    <View style={styles.btnView}>
-                        <Text style={styles.cancelText} onPress={this.setModalVisible.bind(this)}>取消</Text>
-                        <Text style={styles.sureText} onPress={this.sureBtn.bind(this)}>确认</Text>
-                        <Text style={styles.dividerText}>|</Text>
+                <View style={Styless.styles.mark}>
+                    <View style={styles.content}>
+                        <Text style={styles.titleText}>确定要清楚缓存吗？</Text>
+                        <View style={styles.btnView}>
+                            <Text style={styles.cancelText} onPress={this.setModalVisible.bind(this)}>取消</Text>
+                            <Text style={styles.sureText} onPress={this.sureBtn.bind(this)}>确认</Text>
+                            <Text style={styles.dividerText}>|</Text>
+                        </View>
                     </View>
                 </View>
+
             </Modal>
         )
     }
@@ -50,6 +53,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
+
     content: {
         backgroundColor: 'red',
         width: UtilScreen.getWidth(460),

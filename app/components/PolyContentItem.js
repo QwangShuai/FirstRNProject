@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+/**
+ * 友聚友记list封装
+ */
 import {
     StyleSheet,
     Text,
