@@ -39,7 +39,10 @@ import SimpleSelectCity from '../pages/SimpleSelectCity';
 import UploadIdCard from '../pages/UploadIdCard';
 import UnpaidDetails from '../components/UnpaidDetails';
 import PersonsModal from '../components/PersonsModal';
+import PolyContentItem from '../components/PolyContentItem';
 const RouterConfig = StackNavigator({
+    InfoCenter: {screen: InfoCenter},
+    PolyContentItem:{screen:PolyContentItem},
     PersonsModal: {screen: PersonsModal},
     Order: {screen: Order},
     // TravelItem: {screen: TravelItem},
@@ -62,7 +65,7 @@ const RouterConfig = StackNavigator({
     Initiatives: {screen: Initiatives},
     InitiativesItem: {screen: InitiativesItem},
     InfoSpeific: {screen: InfoSpeific},
-    InfoCenter: {screen: InfoCenter},
+    //?
     Registered: {screen: Registered},
     // FocusOnActivitiesItem:{screen:FocusOnActivitiesItem},
     FocusOnActivities: {screen: FocusOnActivities},
