@@ -42,23 +42,25 @@ export default class PersonsModal extends Component {
                    transparent={true}
                    visible={this.props.modalVisible}
                    onRequestClose={this.props.setModalVisible}>
-                <View style={styles.content}>
-                    <Text style={Stylecss.styles.modal_titleStyle}>人数要求</Text>
-                    <TouchableHighlight style={Stylecss.styles.modal_clossImage} onPress={this.props.setModalVisible}>
-                        <Image source={require('../res/images/closs_pay.png')}/>
-                    </TouchableHighlight>
-                    <View style={{height:UtilScreen.getHeight(56),flexDirection:'row',marginTop:UtilScreen.getHeight(20)}}>
-                        <Text style={this.state.isState?[Stylecss.styles.modal_stateStyle,{color:'#f71f1f',borderColor:'#f71f1f'}]:Stylecss.styles.modal_stateStyle}>无</Text>
-                        <Text style={this.state.isLess?[Stylecss.styles.modal_stateStyle,{color:'#f71f1f',borderColor:'#f71f1f',marginLeft:UtilScreen.getWidth(20)}]:[Stylecss.styles.modal_stateStyle,{marginLeft:UtilScreen.getWidth(20)}]}>最少</Text>
-                        <Text style={this.state.isMany?[Stylecss.styles.modal_stateStyle,{color:'#f71f1f',borderColor:'#f71f1f',marginLeft:UtilScreen.getWidth(20)}]:[Stylecss.styles.modal_stateStyle,{marginLeft:UtilScreen.getWidth(20)}]}>最多</Text>
+                <View style={Stylecss.styles.mark}>
+                    <View style={styles.content}>
+                        <Text style={Stylecss.styles.modal_titleStyle}>人数要求</Text>
+                        <TouchableHighlight style={Stylecss.styles.modal_clossImage} onPress={this.props.setModalVisible}>
+                            <Image source={require('../res/images/closs_pay.png')}/>
+                        </TouchableHighlight>
+                        <View style={{height:UtilScreen.getHeight(56),flexDirection:'row',marginTop:UtilScreen.getHeight(20)}}>
+                            <Text style={this.state.isState?[Stylecss.styles.modal_stateStyle,{color:'#f71f1f',borderColor:'#f71f1f'}]:Stylecss.styles.modal_stateStyle}>无</Text>
+                            <Text style={this.state.isLess?[Stylecss.styles.modal_stateStyle,{color:'#f71f1f',borderColor:'#f71f1f',marginLeft:UtilScreen.getWidth(20)}]:[Stylecss.styles.modal_stateStyle,{marginLeft:UtilScreen.getWidth(20)}]}>最少</Text>
+                            <Text style={this.state.isMany?[Stylecss.styles.modal_stateStyle,{color:'#f71f1f',borderColor:'#f71f1f',marginLeft:UtilScreen.getWidth(20)}]:[Stylecss.styles.modal_stateStyle,{marginLeft:UtilScreen.getWidth(20)}]}>最多</Text>
+                        </View>
+                        <Text style={Stylecss.styles.modal_titleStyle}>输入人数</Text>
+                        <TextInput style={Stylecss.styles.modal_textStyle} placeholder='  请输入人数' secureTextEntry={this.state.isState} underlineColorAndroid='transparent'/>
+                        <Text style={Stylecss.styles.modal_titleStyle}>女生人数</Text>
+                        <TextInput style={Stylecss.styles.modal_textStyle} placeholder='  请输入人数' secureTextEntry={this.state.isState} underlineColorAndroid='transparent'/>
+                        <Text style={Stylecss.styles.modal_titleStyle}>男生人数</Text>
+                        <TextInput style={Stylecss.styles.modal_textStyle} placeholder='  请输入人数' secureTextEntry={this.state.isState} underlineColorAndroid='transparent'/>
+                        <Text style={Stylecss.styles.modal_btnStyle}>确定</Text>
                     </View>
-                    <Text style={Stylecss.styles.modal_titleStyle}>输入人数</Text>
-                    <TextInput style={Stylecss.styles.modal_textStyle} placeholder='  请输入人数' secureTextEntry={this.state.isState} underlineColorAndroid='transparent'/>
-                    <Text style={Stylecss.styles.modal_titleStyle}>女生人数</Text>
-                    <TextInput style={Stylecss.styles.modal_textStyle} placeholder='  请输入人数' secureTextEntry={this.state.isState} underlineColorAndroid='transparent'/>
-                    <Text style={Stylecss.styles.modal_titleStyle}>男生人数</Text>
-                    <TextInput style={Stylecss.styles.modal_textStyle} placeholder='  请输入人数' secureTextEntry={this.state.isState} underlineColorAndroid='transparent'/>
-                    <Text style={Stylecss.styles.modal_btnStyle}>确定</Text>
                 </View>
             </Modal>
         )
