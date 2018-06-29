@@ -27,12 +27,14 @@ export default class PolyContentItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            content:
+            content:[
                 {
                     key:0,
                     url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
                     text:'我也不知道该说些什么 绝望的一笔',
                 }
+            ]
+
 
         }
     }
@@ -44,7 +46,7 @@ export default class PolyContentItem extends Component {
                 <Text style={{color:'#333333',fontSize:14,paddingLeft:UtilScreen.getWidth(40),paddingTop:UtilScreen.getHeight(20),
                     paddingRight:UtilScreen.getWidth(40),paddingBottom:UtilScreen.getHeight(30)}}>{this.props.itemInfo.contentText}</Text>
                 <FlatList
-                    data={this.state.content}
+                    data={this.props.itemInfo.content}
                     renderItem={({item}) => {
                         return(
                             <View style={{height:UtilScreen.getHeight(472),width:UtilScreen.getWidth(750)}}>
