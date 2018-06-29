@@ -10,7 +10,7 @@ export default class InfoItem extends Component {
     static defaultProps = {
         InfoItem: {
             rTitie: '消息标题',
-            lImg: require('../res/images/user-1.png'),
+            lImg: require('../res/images/1.jpg'),
             rContent:'内容',
             rMore:'时间',
             rArrow:'几条消息',
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     rPice:{
         width:UtilScreen.getWidth(34),
         width:UtilScreen.getHeight(34),
-        borderRadius:50,
+        borderRadius:UtilScreen.getHeight(34),
         fontSize:12,
         color:'#fff',
         backgroundColor:'red',

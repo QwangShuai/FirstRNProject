@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {View, StyleSheet, Image, TextInput, Text, TouchableOpacity} from 'react-native';
+import {View, StyleSheet, Image, TextInput, Text} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
 
 export default class InfoItem extends Component {
@@ -23,8 +23,7 @@ export default class InfoItem extends Component {
         if (this.props.InfoItem.rPice != 0) {
             return (
                 <View style={[styles.container,{paddingLeft: UtilScreen.getWidth(26)}]}>
-                    <TouchableOpacity style={styles.container} onPress={this.props.myJump}>
-                        <Image resizeMode='contain' style={styles.lImg} source={this.props.InfoItem.lImg}></Image>
+                        <Image resizeMode='stretch' style={styles.lImg} source={this.props.InfoItem.lImg}></Image>
                         <View style={styles.rContainer}>
                             <Text style={styles.leftText}>{this.props.InfoItem.rTitie}</Text>
                             <Text style={styles.rContent}>{this.props.InfoItem.rContent}</Text>
@@ -33,13 +32,11 @@ export default class InfoItem extends Component {
                             <Text style={styles.rTime}>{this.props.InfoItem.rTime}</Text>
                             <Text style={styles.rPice}>{this.props.InfoItem.rPice}</Text>
                         </View>
-                    </TouchableOpacity>
                 </View>
             )
         } else if (this.props.InfoItem.rPice == 0) {
             return (
                 <View style={[styles.container,{paddingLeft: UtilScreen.getWidth(26)}]}>
-                    <TouchableOpacity style={styles.container} onPress={this.props.myJump}>
                         <Image resizeMode='contain' style={styles.lImg} source={this.props.InfoItem.lImg}></Image>
                         <View style={styles.rContainer}>
                             <Text style={styles.leftText}>{this.props.InfoItem.rTitie}</Text>
@@ -49,7 +46,6 @@ export default class InfoItem extends Component {
                             <Text style={styles.rTime}>{this.props.InfoItem.rTime}</Text>
                             <Text style={styles.rPiceOne}></Text>
                         </View>
-                    </TouchableOpacity>
                 </View>
             )
         }
@@ -67,8 +63,8 @@ const styles = StyleSheet.create({
     },
     lImg: {
         width: UtilScreen.getWidth(120),
-        height: UtilScreen.getHeight(120),
-        borderRadius: 50,
+        height: UtilScreen.getWidth(120),
+        borderRadius: UtilScreen.getWidth(120),
         marginRight: UtilScreen.getWidth(30),
         marginTop: UtilScreen.getWidth(26),
     },
@@ -98,8 +94,8 @@ const styles = StyleSheet.create({
     },
     rPice: {
         width: UtilScreen.getWidth(34),
-        width: UtilScreen.getHeight(34),
-        borderRadius: 50,
+        height: UtilScreen.getWidth(34),
+        borderRadius: UtilScreen.getWidth(34),
         fontSize: 12,
         color: '#fff',
         backgroundColor: 'red',
@@ -110,8 +106,8 @@ const styles = StyleSheet.create({
     },
     rPiceOne: {
         width: UtilScreen.getWidth(16),
-        width: UtilScreen.getHeight(16),
-        borderRadius: 50,
+        height: UtilScreen.getWidth(16),
+        borderRadius: UtilScreen.getWidth(16),
         backgroundColor: 'red',
         position: 'absolute',
         right: UtilScreen.getWidth(15),

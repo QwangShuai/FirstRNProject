@@ -4,7 +4,7 @@ import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
 import InfoSpeificItem from '../components/InfoSpeificItem';
 const Stylecss = require('../common/Stylecss');
-export default class InfoCenter extends Component {
+export default class InfoSpeific extends Component {
     static navigationOptions = {
         headerStyle:{height:0},
     };
@@ -12,14 +12,14 @@ export default class InfoCenter extends Component {
         super(props);
         this.state = {
             InfoSpeificItem: [
-                {key: 0,rTitie:'热门消息',lImg:require('../res/images/user-1.png'),rMore:'时间', rArrow:require('../res/images/user-1.png'),},
-                {key: 1,rTitie:'热门消息',lImg:require('../res/images/user-1.png'),rMore:'时间', rArrow:require('../res/images/user-1.png'),},
+                {key: 0,rTitie:'热门消息',lImg:require('../res/images/1.jpg'),rMore:'时间', rArrow:require('../res/images/user-1.png'),},
+                {key: 1,rTitie:'热门消息',lImg:require('../res/images/1.jpg'),rMore:'时间', rArrow:require('../res/images/user-1.png'),},
             ],
             modalVisible: true,
         }
     }
     backClick(){
-
+        this.props.navigation.goBack()
     }
     setModalVisible(visible) {
         this.setState({modalVisible: visible});
