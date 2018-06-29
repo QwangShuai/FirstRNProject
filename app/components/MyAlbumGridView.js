@@ -7,18 +7,21 @@ import {
     Image,
     TouchableHighlight,
     ImageBackground,
+    AsyncStorage,
+    Alert
 } from 'react-native';
 import UtilScreen from '../util/UtilScreen';
 import SelectYesOrNo from '../components/SelectYesOrNo';
 import GetPhotoFromPhone from "../util/GetPhotoFromPhone";
-
+const Buffer = require('buffer').Buffer;
+import md5 from "react-native-md5";
 const Stylecss = require('../common/Stylecss');
 export default class MyAlbumGridView extends Component {
     static defaultProps = {
-        itemInfo: {
+       /* itemInfo: {
             images: {uri: 'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
             date: '2017年2月1日',
-        },
+        },*/
     }
 
     constructor(props) {
@@ -69,9 +72,13 @@ export default class MyAlbumGridView extends Component {
 
     componentWillMount() {
         for (let i = 0; i < this.props.itemInfo.length; i++) {
-            this.state.images.push(this.props.itemInfo[i])
+            this.state.images.push(this.props.itemInfo[i]);
+            console.log(this.state.images);
         }
 
+    }
+    login(){
+        this.props.navigation.navigate('Home');
     }
 
     /**
@@ -83,6 +90,38 @@ export default class MyAlbumGridView extends Component {
             key: this.state.images.length,
             url: {uri: obj},
         }
+        let source = {uri: obj,type: 'multipart/form-data', name: 'a.jpg'};
+        let formData = new FormData();
+        let param=md5.hex_md5(global.commons.baseurl+'action/ac_user/Photoalbum');
+        let params=md5.hex_md5(param);
+        formData.append('app_key',params);
+        formData.append("albumimg",source);
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    formData.append("uid", result);
+                    fetch(global.commons.baseurl+'action/ac_user/Photoalbum',{
+                        method:'POST',
+                        headers:{
+                            'Content-Type':'multipart/form-data',
+                        },
+                        body:formData,
+                    })
+                        .then((response) => response.text() )
+                        .then((responseData)=>{
+                            var bf = new Buffer(responseData , 'base64')
+                            var  str= bf.toString();
+                            let result=JSON.parse(str);
+                            console.log('responseData',result);
+                        })
+                        .catch((error)=>{console.error('error',error)});
+                } else {
+                    this.login();
+                }
+            } else {
+                //this.toast.show('查询数据失败', DURATION.LENGTH_SHORT);
+            }
+        })
         //  this.state.images.splice(this.state.images.length - 1, 1);
         this.state.images.push(item);
         // this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});
