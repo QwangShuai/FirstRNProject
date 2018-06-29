@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet,Image, TextInput, Text} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
 
-export default class InfoItem extends Component {
+export default class InfoSpeificItem extends Component {
     constructor(props) {
         super(props);
     }
@@ -23,6 +23,7 @@ export default class InfoItem extends Component {
                     <Text style={styles.leftText}>{this.props.InfoItem.rTitie}</Text>
                     <Image style={styles.lImg} source={this.props.InfoItem.lImg}></Image>
                     <Text style={styles.rContent}>{this.props.InfoItem.rContent}</Text>
+                    <View style={{height:UtilScreen.getHeight(1),marginLeft:UtilScreen.getWidth(10),marginRight:UtilScreen.getWidth(10),backgroundColor:'#e5e5e5',}} />
                     <View style={styles.lContainer}>
                         <Text style={styles.rTime}>{this.props.InfoItem.rTime}</Text>
                         <Text style={styles.rArrow}>{this.props.InfoItem.rArrow}</Text>
@@ -34,13 +35,15 @@ export default class InfoItem extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        marginTop:UtilScreen.getHeight(40),
+        marginLeft:UtilScreen.getWidth(40),
         width: UtilScreen.getWidth(670),
         height: UtilScreen.getHeight(555),
         flexDirection: 'column',
         paddingLeft:UtilScreen.getWidth(20),
         paddingRight:UtilScreen.getWidth(20),
-
-
+        borderRadius:UtilScreen.getHeight(10),
+        backgroundColor:'#ffffff',
     },
     lImg: {
         width: UtilScreen.getWidth(630),
@@ -49,13 +52,12 @@ const styles = StyleSheet.create({
     },
     leftText:{
         fontSize:14,
-        marginTop:UtilScreen.getWidth(41),
-        marginBottom:UtilScreen.getWidth(15),
+        marginTop:UtilScreen.getHeight(20),
 
     },
     rContent:{
         fontSize:12,
-
+        lineHeight:UtilScreen.getHeight(80),
     },
     rTime:{
         fontSize:12,

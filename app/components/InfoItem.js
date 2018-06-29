@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
         width: UtilScreen.getWidth(120),
         height: UtilScreen.getWidth(120),
         borderRadius: UtilScreen.getWidth(120),
-        marginTop: UtilScreen.getWidth(26),
+        marginTop:UtilScreen.getHeight(13)
     },
     lImg: {
         width: UtilScreen.getWidth(120),
@@ -79,11 +79,11 @@ const styles = StyleSheet.create({
     },
     rContainer: {
         width: UtilScreen.getWidth(444),
-
+        marginLeft:UtilScreen.getWidth(30)
     },
     leftText: {
         fontSize: 14,
-        marginTop: UtilScreen.getWidth(41),
+        marginTop: UtilScreen.getWidth(21),
         marginBottom: UtilScreen.getWidth(15),
         // width:'100%',
 
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     },
     rTime: {
         fontSize: 12,
-        marginTop: UtilScreen.getWidth(45),
+        marginTop: UtilScreen.getWidth(21),
 
     },
     rPice: {
@@ -120,6 +120,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
         position: 'absolute',
         right: UtilScreen.getWidth(15),
-        top: UtilScreen.getHeight(114),
+        top: UtilScreen.getHeight(94),
     }
 })
