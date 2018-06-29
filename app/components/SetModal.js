@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Modal, Text,Image} from 'react-native';
+import {View, StyleSheet, Modal, Text, Image} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
 
 export default class SetModal extends Component {
@@ -13,28 +13,33 @@ export default class SetModal extends Component {
     setModalVisible() {
         this.setState({isShow: false});
     }
-    sureBtn(){
+
+    sureBtn() {
         // alert('nanguo ','nanguo',),
         this.setState({isShow: false});
     }
+
     componentWillReceiveProps(nextProps) {
         this.setState({
             isShow: nextProps.isShow,
         });
     }
-    render(){
-        return(
+
+    render() {
+        return (
             <Modal style={styles.container}
                    animationType={"slide"}
                    transparent={true}
                    visible={this.state.isShow}
                    onRequestClose={this.setModalVisible.bind(this)}
             >
-                <Text style={styles.titleText}>确定要清楚缓存吗？</Text>
-                <View style={styles.btnView}>
-                    <Text style={styles.cancelText} onPress={this.setModalVisible.bind(this)}>取消</Text>
-                    <Text style={styles.sureText} onPress={this.sureBtn.bind(this)}>确认</Text>
-                    <Text style={styles.dividerText}>|</Text>
+                <View style={styles.content}>
+                    <Text style={styles.titleText}>确定要清楚缓存吗？</Text>
+                    <View style={styles.btnView}>
+                        <Text style={styles.cancelText} onPress={this.setModalVisible.bind(this)}>取消</Text>
+                        <Text style={styles.sureText} onPress={this.sureBtn.bind(this)}>确认</Text>
+                        <Text style={styles.dividerText}>|</Text>
+                    </View>
                 </View>
             </Modal>
         )
@@ -42,53 +47,55 @@ export default class SetModal extends Component {
 }
 
 const styles = StyleSheet.create({
-    viewStyle:{
-
+    container: {
+        flex: 1,
     },
-    container:{
-        backgroundColor:'red',
-        width:UtilScreen.getWidth(460),
-        height:UtilScreen.getHeight(350),
-        borderRadius:UtilScreen.getWidth(10),
-        flexDirection:'row',
-        alignItems:'center',
+    content: {
+        backgroundColor: 'red',
+        width: UtilScreen.getWidth(460),
+        height: UtilScreen.getHeight(350),
+        borderRadius: UtilScreen.getWidth(10),
+        alignSelf: 'center',
+        backgroundColor: '#ffffff',
+        justifyContent: 'center',
+        alignItems: 'center',
     },
-    titleText:{
-        marginTop:UtilScreen.getHeight(123),
-        fontSize:15,
-        alignSelf:'center',
-        color:'#333333',
+    titleText: {
+        marginTop: UtilScreen.getHeight(123),
+        fontSize: 15,
+        alignSelf: 'center',
+        color: '#333333',
     },
-    btnView:{
-        alignItems:'center',
-        flexDirection:'row',
-        height:UtilScreen.getHeight(60),
-        marginTop:UtilScreen.getHeight(114),
-        borderTopColor:'#e5e5e5',
-        width:UtilScreen.getWidth(460),
-        borderTopWidth:UtilScreen.getHeight(1),
-        justifyContent:'center',
+    btnView: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        height: UtilScreen.getHeight(60),
+        marginTop: UtilScreen.getHeight(114),
+        borderTopColor: '#e5e5e5',
+        width: UtilScreen.getWidth(460),
+        borderTopWidth: UtilScreen.getHeight(1),
+        justifyContent: 'center',
     },
-    sureText:{
-        marginTop:UtilScreen.getHeight(11),
-        lineHeight:UtilScreen.getHeight(60),
-        position:'absolute',
-        right:UtilScreen.getWidth(81),
-        fontSize:15,
-        color:'#333333',
-        alignSelf:'center',
+    sureText: {
+        marginTop: UtilScreen.getHeight(11),
+        lineHeight: UtilScreen.getHeight(60),
+        position: 'absolute',
+        right: UtilScreen.getWidth(81),
+        fontSize: 15,
+        color: '#333333',
+        alignSelf: 'center',
     },
-    cancelText:{
-        marginTop:UtilScreen.getHeight(11),
-        lineHeight:UtilScreen.getHeight(60),
-        position:'absolute',
-        left:UtilScreen.getWidth(81),
-        fontSize:15,
-        color:'#333333',
-        alignSelf:'center',
+    cancelText: {
+        marginTop: UtilScreen.getHeight(11),
+        lineHeight: UtilScreen.getHeight(60),
+        position: 'absolute',
+        left: UtilScreen.getWidth(81),
+        fontSize: 15,
+        color: '#333333',
+        alignSelf: 'center',
     },
-    dividerText:{
-        fontSize:28,
-        color:'#979797',
+    dividerText: {
+        fontSize: 28,
+        color: '#979797',
     },
 })
