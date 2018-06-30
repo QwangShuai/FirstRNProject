@@ -129,7 +129,6 @@ export default class PersonalInfo extends Component {
     }
 
     static navigationOptions = {
-        // title:'登录',
         headerStyle: {height: 0},
     };
 
