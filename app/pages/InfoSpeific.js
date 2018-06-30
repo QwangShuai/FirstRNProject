@@ -27,7 +27,7 @@ export default class InfoSpeific extends Component {
         this.setState({modalVisible: visible});
     }
     itemClick(item){
-        
+        this.props.navigation.navigate('InfoDetails');
     }
     render(){
         return(

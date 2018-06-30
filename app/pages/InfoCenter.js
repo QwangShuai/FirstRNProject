@@ -15,15 +15,12 @@ export default class InfoCenter extends Component {
                 {key: 0,lImg:require('../res/images/1.jpg'),rTitie:'热门消息',rContent:'内容', rTime:'04月03日',rPice:'4',},
                 {key: 1,lImg:require('../res/images/1.jpg'),rTitie:'系统消息',rContent:'内内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容容', rTime:'04月03日',rPice:'0',},
             ],
-            modalVisible: true,
         }
     }
     backClick(){
         this.props.navigation.goBack()
     }
-    setModalVisible(visible) {
-        this.setState({modalVisible: visible});
-    }
+
     itemClick(item) {
         this.props.navigation.navigate('InfoSpeific');
     }
