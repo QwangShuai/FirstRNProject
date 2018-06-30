@@ -35,16 +35,14 @@ import PersonalInformation from '../pages/PersonalInformation';
 import SimpleSelectCity from '../pages/SimpleSelectCity';
 import UploadIdCard from '../pages/UploadIdCard';
 import FriendsTogether from '../pages/FriendsTogether';
-import UnpaidDetails from '../components/UnpaidDetails';
-import PolyContentItem from '../components/PolyContentItem';
+import InfoDetails from '../pages/InfoDetails';
+import UnpaidDetails from '../components/UnpaidDetails'
 const RouterConfig = StackNavigator({
 
-    // FriendsTogether: {screen: FriendsTogether},
     // Set: {screen: Set},
     // Order: {screen: Order},
     // TravelItem: {screen: TravelItem},
     // Apply: {screen: Apply},
-    // UploadIdCard: {screen: UploadIdCard},
     // PersonalInformation:{screen:PersonalInformation},
 
     MainTabPage: {screen: MainTabPage,
@@ -92,5 +90,6 @@ const RouterConfig = StackNavigator({
     UnpaidDetails: {screen: UnpaidDetails},
     UploadIdCard: {screen: UploadIdCard},
     PersonalInformation: {screen: PersonalInformation},
+    InfoDetails: {screen: InfoDetails},
 });
 export default RouterConfig;
