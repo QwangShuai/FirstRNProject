@@ -18,11 +18,10 @@ export default class MyComments extends Component {
                     headUrl: require('../res/images/1.jpg'),
                     sex: require('../res/images/nan.png'),
                     nickname: '昵称：帅气的小迷糊',
-                    chatRom: '土豆',
                     praise: '110',
                     contentText: '我爱旅游我爱旅游我爱旅游我爱旅游我 我爱旅游我爱旅游我爱旅游我爱旅游爱 旅游',
                     time: '2018-02-04 12：41',
-                    publisher: '张三丰',
+                    title: '细说三国',
                     commentsInfo: [
                         {
                             key: 0,
@@ -56,11 +55,10 @@ export default class MyComments extends Component {
                     headUrl: require('../res/images/1.jpg'),
                     sex: require('../res/images/nv.png'),
                     nickname: '昵称：美腻的小迷糊',
-                    chatRom: '西红柿',
                     praise: '120',
                     contentText: '我爱旅游我爱旅游我爱旅游我爱旅游我 我爱旅游我爱旅游我爱旅游我爱旅游爱 旅游',
                     time: '2018-02-04 12：41',
-                    publisher: '张丰',
+                    title: '燕雀安知鸿鹄之志',
                     commentsInfo: [
                         {
                             key: 0,

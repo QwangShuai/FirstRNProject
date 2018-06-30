@@ -11,11 +11,10 @@ export default class MyCommentsView extends Component {
             headUrl: require('../res/images/1.jpg'),
             sex: require('../res/images/nan.png'),
             nickname: '昵称：帅气的小迷糊',
-            chatRom: '土豆',
             praise: '110',
             contentText: '我爱旅游我爱旅游我爱旅游我爱旅游我 我爱旅游我爱旅游我爱旅游我爱旅游爱 旅游',
             time: '2018-02-04 12：41',
-            publisher: '张三丰',
+            title: '张三丰',
             commentsInfo: [
                 {
                     key: 0,
@@ -113,7 +112,7 @@ export default class MyCommentsView extends Component {
                             marginTop: UtilScreen.getHeight(4),
                             color: '#626262'
                         }}>
-                            {this.props.itemInfo.publisher} | {this.props.itemInfo.chatRom}聊天室</Text>
+                            {this.props.itemInfo.title}</Text>
                     </View>
                     <View style={{
                         position: 'absolute',
@@ -125,12 +124,13 @@ export default class MyCommentsView extends Component {
                             width: UtilScreen.getWidth(35),
                             height: UtilScreen.getHeight(35),
                             resizeMode: 'contain'
-                        }} source={require('../res/images/reply.png')}/>
+                        }} source={require('../res/images/thumbs-up.png')}/>
                         <Text style={{
                             color: '#cacaca',
                             fontSize: 15,
                             lineHeight: UtilScreen.getHeight(35),
-                            marginLeft: UtilScreen.getWidth(6)
+                            marginLeft: UtilScreen.getWidth(6),
+                            marginTop:UtilScreen.getHeight(2)
                         }}>{this.props.itemInfo.praise}</Text>
                     </View>
                 </View>
