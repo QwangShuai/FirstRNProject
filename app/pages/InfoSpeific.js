@@ -12,8 +12,10 @@ export default class InfoSpeific extends Component {
         super(props);
         this.state = {
             InfoSpeificItem: [
-                {key: 0,rTitie:'热门消息',lImg:require('../res/images/1.jpg'),rMore:'时间', rArrow:require('../res/images/user-1.png'),},
-                {key: 1,rTitie:'热门消息',lImg:require('../res/images/1.jpg'),rMore:'时间', rArrow:require('../res/images/user-1.png'),},
+                {key: 0,rTitie:'热门消息1',lImg:require('../res/images/1.jpg'),rContent:'内容', },
+                {key: 1,rTitie:'热门消息2',lImg:require('../res/images/1.jpg'),rContent:'内容',},
+                {key: 2,rTitie:'热门消息3',lImg:require('../res/images/1.jpg'),rContent:'内容',},
+                {key: 3,rTitie:'热门消息4',lImg:require('../res/images/1.jpg'),rContent:'内容',},
             ],
             modalVisible: true,
         }
@@ -24,6 +26,9 @@ export default class InfoSpeific extends Component {
     setModalVisible(visible) {
         this.setState({modalVisible: visible});
     }
+    itemClick(item){
+        
+    }
     render(){
         return(
             <View style={styles.container}>
@@ -33,11 +38,11 @@ export default class InfoSpeific extends Component {
                     renderItem={({item}) => {
                         return (
                             <View>
-                                <TouchableHighlight style={Stylecss.styles.lightitem}
+                                <TouchableHighlight style={{backgroundColor:'#f8f8f8'}}
+                                                    onPress={this.itemClick.bind(this,item)}
                                                     underlayColor={'#f8f8f8'}
                                 >
                                     <InfoSpeificItem InfoItem={item}/></TouchableHighlight>
-                                <View style={Stylecss.styles.line}/>
                             </View>
                         );
                     }}

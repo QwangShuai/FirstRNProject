@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import {View, StyleSheet,Image, TextInput, Text} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
-
+const Stylecss = require('../common/Stylecss');
 export default class InfoSpeificItem extends Component {
     constructor(props) {
         super(props);
@@ -12,8 +12,6 @@ export default class InfoSpeificItem extends Component {
             rTitie: '消息标题',
             lImg: require('../res/images/1.jpg'),
             rContent:'内容',
-            rMore:'时间',
-            rArrow:'几条消息',
         },
     }
 
@@ -23,10 +21,10 @@ export default class InfoSpeificItem extends Component {
                     <Text style={styles.leftText}>{this.props.InfoItem.rTitie}</Text>
                     <Image style={styles.lImg} source={this.props.InfoItem.lImg}></Image>
                     <Text style={styles.rContent}>{this.props.InfoItem.rContent}</Text>
-                    <View style={{height:UtilScreen.getHeight(1),marginLeft:UtilScreen.getWidth(10),marginRight:UtilScreen.getWidth(10),backgroundColor:'#e5e5e5',}} />
-                    <View style={styles.lContainer}>
-                        <Text style={styles.rTime}>{this.props.InfoItem.rTime}</Text>
-                        <Text style={styles.rArrow}>{this.props.InfoItem.rArrow}</Text>
+                    <View style={{height:UtilScreen.getHeight(1),backgroundColor:'#e5e5e5',}} />
+                    <View style={{height:UtilScreen.getHeight(80),flexDirection:'row',}}>
+                        <Text style={styles.rTime}>查看更多消息</Text>
+                        <Image style={styles.rPice} source={require('../res/images/chevron-left2.png')} resizeMode='contain'/>
                     </View>
                 </View>
             )
@@ -56,25 +54,21 @@ const styles = StyleSheet.create({
 
     },
     rContent:{
-        fontSize:12,
+        color:'#626262',
+        fontSize:14,
         lineHeight:UtilScreen.getHeight(80),
     },
     rTime:{
-        fontSize:12,
-        marginTop:UtilScreen.getWidth(45),
-
+        fontSize:14,
+        color:'#333333',
+        lineHeight:UtilScreen.getHeight(80),
     },
     rPice:{
-        width:UtilScreen.getWidth(34),
-        width:UtilScreen.getHeight(34),
-        borderRadius:UtilScreen.getHeight(34),
-        fontSize:12,
-        color:'#fff',
-        backgroundColor:'red',
-        textAlign:'center',
+        width:UtilScreen.getWidth(12),
+        height:UtilScreen.getHeight(20),
         position:'absolute',
-        right:UtilScreen.getWidth(15),
-        top:UtilScreen.getHeight(94),
+        alignSelf:'center',
+        right:UtilScreen.getWidth(5),
     },
     rPiceOne:{
         width:UtilScreen.getWidth(16),
@@ -84,5 +78,5 @@ const styles = StyleSheet.create({
         position:'absolute',
         right:UtilScreen.getWidth(15),
         top:UtilScreen.getHeight(114),
-    }
+    },
 })
