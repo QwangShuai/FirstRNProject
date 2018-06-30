@@ -9,7 +9,7 @@ export default class MyCommentsView extends Component {
     static defaultProps = {
         itemInfo: {
             headUrl: require('../res/images/1.jpg'),
-            sex: require('../res/images/nan.png'),
+            sex: require('../res/images/nan2.png'),
             nickname: '昵称：帅气的小迷糊',
             praise: '110',
             contentText: '我爱旅游我爱旅游我爱旅游我爱旅游我 我爱旅游我爱旅游我爱旅游我爱旅游爱 旅游',
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
         height: UtilScreen.getHeight(34),
         width: UtilScreen.getWidth(34),
         position: 'absolute',
-        right: 0,
+        right: 3,
         bottom: 0,
     },
 })
