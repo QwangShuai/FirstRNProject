@@ -124,13 +124,12 @@ export default class MyCommentsView extends Component {
                             width: UtilScreen.getWidth(35),
                             height: UtilScreen.getHeight(35),
                             resizeMode: 'contain'
-                        }} source={require('../res/images/thumbs-up.png')}/>
+                        }} source={require('../res/images/reply.png')}/>
                         <Text style={{
                             color: '#cacaca',
                             fontSize: 15,
                             lineHeight: UtilScreen.getHeight(35),
                             marginLeft: UtilScreen.getWidth(6),
-                            marginTop:UtilScreen.getHeight(2)
                         }}>{this.props.itemInfo.praise}</Text>
                     </View>
                 </View>
@@ -165,9 +164,12 @@ export default class MyCommentsView extends Component {
                                             underlayColor={'#f8f8f8'}
                                             onPress={this.itemClick.bind(this, item)}>
                                             <View style={{marginTop: UtilScreen.getHeight(4), flexDirection: 'row'}}>
-                                                <Text style={{color: '#0277EE', fontSize: 14}}
-                                                      onPress={this.userClick.bind(this, item)}>{item.user}</Text>
-                                                <Text style={{color: '#333333', fontSize: 14,textAlign:'center'}}> ： {item.comments}</Text>
+                                                <Text style={{color: '#333333', fontSize: 14}}>
+                                                    <Text style={{ color: '#0277EE',fontSize: 14,textAlign:'center'}}
+                                                          onPress={this.userClick.bind(this, item)}>{item.user}</Text>
+                                                    ： {item.comments}
+                                                      </Text>
+
                                             </View>
                                         </TouchableHighlight>
                                         <Text style={{color: '#333333', fontSize: 12, marginTop: UtilScreen.getHeight(6),height:(count==this.props.itemInfo.commentsInfo.length)?UtilScreen.getHeight(33):0}} onPress={this.packUp.bind(this)}>收起</Text>

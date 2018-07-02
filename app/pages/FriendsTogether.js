@@ -12,6 +12,7 @@ import {
     ScrollView
 } from 'react-native';
 import ToolBar from '../components/ToolBar';
+import ActivityView from '../components/ActivityView';
 import UtilScreen from '../util/UtilScreen';
 import PolyContentItem from '../components/PolyContentItem';
 
@@ -37,7 +38,104 @@ export default class FriendsTogether extends Component {
                 woman:'123',
                 man:'123',
                 price:'￥1500.00',
-            }
+            },
+            itemInfo: [
+                {
+                    ket:0,
+                    headUrl: require('../res/images/1.jpg'),
+                    nickname: '昵称：帅气的小迷糊',
+                    num: 2,
+                },
+                {
+                    ket:1,
+                    headUrl: require('../res/images/1.jpg'),
+                    nickname: '昵称：帅气的小迷糊',
+                    num: 1,
+                },
+                {
+                    ket:2,
+                    headUrl: require('../res/images/1.jpg'),
+                    nickname: '昵称：帅气的小迷糊',
+                    num: 2,
+                },
+                {
+                    ket:3,
+                    headUrl: require('../res/images/1.jpg'),
+                    nickname: '昵称：帅气的小迷糊',
+                    num: 1,
+                },
+                {
+                    ket:4,
+                    headUrl: require('../res/images/1.jpg'),
+                    nickname: '昵称：帅气的小迷糊',
+                    num: 2,
+                },
+                {
+                    ket:5,
+                    headUrl: require('../res/images/1.jpg'),
+                    nickname: '昵称：帅气的小迷糊',
+                    num: 1,
+                },
+                {
+                    ket:6,
+                    headUrl: require('../res/images/1.jpg'),
+                    nickname: '昵称：帅气的小迷糊',
+                    num: 2,
+                },
+                {
+                    ket:7,
+                    headUrl: require('../res/images/1.jpg'),
+                    nickname: '昵称：帅气的小迷糊',
+                    num: 1,
+                },
+            ],
+            myItem:[
+                {
+                    key:0,
+                    contentTitle:'【第1天】 玉龙雪山 景色美呆了',
+                    contentText:'玉龙雪山 景色美呆了 真的 我差点就信了  你别不信',
+                    content: [
+                        {
+                            key:0,
+                            url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                            text:'我也不知道该说些什么 绝望的一笔',
+                        },
+                        {
+                            key:1,
+                            url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                            text:'我也不知道该说些什么 五黑啊哈',
+                        },
+                    ],
+                },
+                {
+                    key:1,
+                    contentTitle:'【第2天】 玉龙雪山 景色美呆了',
+                    contentText:'玉龙雪山 景色美呆了 真的 我差点就信了  你别不信',
+                    content: [
+                        {
+                            key:0,
+                            url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                            text:'我也不知道该说些什么 绝望的一笔',
+                        },
+                        {
+                            key:1,
+                            url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                            text:'我也不知道该说些什么 五黑啊哈',
+                        },
+                        {
+                            key:2,
+                            url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                            text:'我也不知道该说些什么 lilili',
+                        },
+                        {
+                            key:3,
+                            url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                            text:'我也不知道该说些什么 五黑啊哈',
+                        },
+                    ],
+                },
+            ],
+            number:10,
         }
     }
 
@@ -81,7 +179,7 @@ export default class FriendsTogether extends Component {
                             height: UtilScreen.getHeight(183)
                         }}>
                             <Image style={{
-                                width: UtilScreen.getWidth(120),
+                                width: UtilScreen.getHeight(120),
                                 height: UtilScreen.getHeight(120),
                                 borderRadius: UtilScreen.getHeight(120),
                                 alignSelf: 'center',
@@ -139,6 +237,19 @@ export default class FriendsTogether extends Component {
                         color: '#333333',
                         fontSize: 14
                     }}>出行信息</Text>
+                    <ActivityView itemInfo={this.state.itemInfo} number={this.state.number}/>
+                    <FlatList
+                        data={this.state.myItem}
+                        renderItem={({item}) => {
+                            alert(item.content)
+                            return(
+                                <View>
+                                    <PolyContentItem itemInfo={item}/>
+                                </View>
+                            )
+                        }}
+                        keyExtractor={item => item.key}
+                    ></FlatList>
                 </View>
             </ScrollView>
         )

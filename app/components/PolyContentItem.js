@@ -15,6 +15,7 @@ export default class PolyContentItem extends Component {
     static defaultProps = {
 
         itemInfo:{
+            key:0,
             contentTitle:'【第二天】 玉龙雪山 景色美呆了',
             contentText:'玉龙雪山 景色美呆了 真的 我差点就信了  你别不信',
             content: [
