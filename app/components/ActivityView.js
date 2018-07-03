@@ -88,6 +88,7 @@ export default class ActivityView extends Component {
                             }
                         }
                     }
+                    keyExtractor={item => item.ket.toString()}
                 ></FlatList>
                 </View>
             )
@@ -115,6 +116,7 @@ export default class ActivityView extends Component {
                         )
                     }
                 }
+                keyExtractor={item => item.ket.toString()}
             ></FlatList>
                 </View>
             )
@@ -122,7 +124,7 @@ export default class ActivityView extends Component {
     }
     render() {
         return (
-            <View style={Stylecss.styles.container}>
+            <View style={styles.container}>
                 <View style={{
                     marginRight: UtilScreen.getWidth(40),
                     marginTop: UtilScreen.getHeight(20),
@@ -166,6 +168,9 @@ export default class ActivityView extends Component {
 }
 
 const styles = StyleSheet.create({
+    container:{
+      width:'100%',
+    },
     nicknameStyle:{
         color: '#333333',
         height:UtilScreen.getHeight(40),

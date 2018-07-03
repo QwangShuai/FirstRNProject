@@ -39,7 +39,7 @@ import InfoDetails from '../pages/InfoDetails';
 import MyComments from '../pages/MyComments';
 import UnpaidDetails from '../components/UnpaidDetails'
 const RouterConfig = StackNavigator({
-
+    FriendsTogether:{screen:FriendsTogether},
     // Set: {screen: Set},
     // Order: {screen: Order},
     // TravelItem: {screen: TravelItem},
