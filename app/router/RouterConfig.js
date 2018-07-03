@@ -36,6 +36,7 @@ import SimpleSelectCity from '../pages/SimpleSelectCity';
 import UploadIdCard from '../pages/UploadIdCard';
 import FriendsTogether from '../pages/FriendsTogether';
 import InfoDetails from '../pages/InfoDetails';
+import MyComments from '../pages/MyComments';
 import UnpaidDetails from '../components/UnpaidDetails'
 const RouterConfig = StackNavigator({
 
@@ -91,5 +92,6 @@ const RouterConfig = StackNavigator({
     UploadIdCard: {screen: UploadIdCard},
     PersonalInformation: {screen: PersonalInformation},
     InfoDetails: {screen: InfoDetails},
+    MyComments: {screen: MyComments},
 });
 export default RouterConfig;
