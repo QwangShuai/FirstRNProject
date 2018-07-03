@@ -19,17 +19,19 @@ export default class CostModal extends Component {
         if(nextProps.isCostState){
             this.setState({
                 isState:true,
-                itemInfo:{
-                    payment:0,
-                }
+                // itemInfo:{
+                //     payment:0,
+                // }
             })
+            this.state.itemInfo.payment=0;
         } else {
             this.setState({
                 isState:false,
-                itemInfo:{
-                    payment:1,
-                }
+                // itemInfo:{
+                //     payment:1,
+                // }
             })
+            this.state.itemInfo.payment=1;
         }
 
     }
