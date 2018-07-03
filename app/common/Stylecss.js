@@ -469,4 +469,10 @@ export const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    clossImage:{
+        position:'absolute',
+        right:UtilScreen.getWidth(20),
+        marginTop:UtilScreen.getHeight(20),
+        width:UtilScreen.getWidth(20),
+    },
 });

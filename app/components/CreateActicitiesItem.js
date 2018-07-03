@@ -9,6 +9,7 @@ export default class CreateActicitiesItem extends Component {
     }
     static defaultProps = {
         itemInfo: {
+            lUrl:require('../res/images/time-start.png'),
             lTitle: '左边主标题',
             rTitle: '右边文字',
         },
@@ -18,7 +19,8 @@ export default class CreateActicitiesItem extends Component {
         return(
             <View style={Stylecss.styles.container}>
                <View style={Stylecss.styles.set_label_view} >
-                    <Text style={Stylecss.styles.set_label_text}>{this.props.itemInfo.lTitle}</Text>
+                   <Image style={[Stylecss.styles.order_imageView,{position:'absolute',left:UtilScreen.getWidth(20)}]} source={this.props.itemInfo.lUrl} />
+                    <Text style={[Stylecss.styles.set_label_text,{left:UtilScreen.getWidth(63)}]}>{this.props.itemInfo.lTitle}</Text>
                    <Text style={Stylecss.styles.rightText}>{this.props.itemInfo.rTitle}</Text>
                  <TouchableHighlight style={Stylecss.styles.set_label_enter}>
                      <Image source={require('../res/images/chevron-left2.png')}/>

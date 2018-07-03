@@ -44,7 +44,7 @@ export default class PolyContentItem extends Component {
     }
     render(){
         return(
-            <View>
+            <View style={Stylecss.styles.container}>
                 <View style={{backgroundColor:'#e5e5e5',height:UtilScreen.getHeight(2),marginLeft:UtilScreen.getWidth(20),marginRight:UtilScreen.getWidth(20)}} />
                 <Text style={{color:'#333333',fontSize:15,marginLeft:UtilScreen.getWidth(22),marginTop:UtilScreen.getHeight(24)}}>{this.props.itemInfo.contentTitle}</Text>
                 <Text style={{color:'#333333',fontSize:14,paddingLeft:UtilScreen.getWidth(40),paddingTop:UtilScreen.getHeight(20),

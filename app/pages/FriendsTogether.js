@@ -32,110 +32,110 @@ export default class FriendsTogether extends Component {
                 pffavorite: '123456',
                 userpic: {uri: 'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
                 level: '123',
-                begin_time:'2018.05.01',
-                end_time:'2018.05.02',
-                city:'上海',
-                woman:'123',
-                man:'123',
-                price:'￥1500.00',
+                begin_time: '2018.05.01',
+                end_time: '2018.05.02',
+                city: '上海',
+                woman: '123',
+                man: '123',
+                price: '￥1500.00',
             },
             itemInfo: [
                 {
-                    ket:0,
+                    ket: 0,
                     headUrl: require('../res/images/1.jpg'),
                     nickname: '昵称：帅气的小迷糊',
                     num: 2,
                 },
                 {
-                    ket:1,
+                    ket: 1,
                     headUrl: require('../res/images/1.jpg'),
                     nickname: '昵称：帅气的小迷糊',
                     num: 1,
                 },
                 {
-                    ket:2,
+                    ket: 2,
                     headUrl: require('../res/images/1.jpg'),
                     nickname: '昵称：帅气的小迷糊',
                     num: 2,
                 },
                 {
-                    ket:3,
+                    ket: 3,
                     headUrl: require('../res/images/1.jpg'),
                     nickname: '昵称：帅气的小迷糊',
                     num: 1,
                 },
                 {
-                    ket:4,
+                    ket: 4,
                     headUrl: require('../res/images/1.jpg'),
                     nickname: '昵称：帅气的小迷糊',
                     num: 2,
                 },
                 {
-                    ket:5,
+                    ket: 5,
                     headUrl: require('../res/images/1.jpg'),
                     nickname: '昵称：帅气的小迷糊',
                     num: 1,
                 },
                 {
-                    ket:6,
+                    ket: 6,
                     headUrl: require('../res/images/1.jpg'),
                     nickname: '昵称：帅气的小迷糊',
                     num: 2,
                 },
                 {
-                    ket:7,
+                    ket: 7,
                     headUrl: require('../res/images/1.jpg'),
                     nickname: '昵称：帅气的小迷糊',
                     num: 1,
                 },
             ],
-            myItem:[
+            myItem: [
                 {
-                    key:0,
-                    contentTitle:'【第1天】 玉龙雪山 景色美呆了',
-                    contentText:'玉龙雪山 景色美呆了 真的 我差点就信了  你别不信',
+                    key: 0,
+                    contentTitle: '【第1天】 玉龙雪山 景色美呆了',
+                    contentText: '玉龙雪山 景色美呆了 真的 我差点就信了  你别不信',
                     content: [
                         {
-                            key:0,
-                            url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
-                            text:'我也不知道该说些什么 绝望的一笔',
+                            key: 0,
+                            url: {uri: 'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                            text: '我也不知道该说些什么 绝望的一笔',
                         },
                         {
-                            key:1,
-                            url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
-                            text:'我也不知道该说些什么 五黑啊哈',
+                            key: 1,
+                            url: {uri: 'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                            text: '我也不知道该说些什么 五黑啊哈',
                         },
                     ],
                 },
                 {
-                    key:1,
-                    contentTitle:'【第2天】 玉龙雪山 景色美呆了',
-                    contentText:'玉龙雪山 景色美呆了 真的 我差点就信了  你别不信',
+                    key: 1,
+                    contentTitle: '【第2天】 玉龙雪山 景色美呆了',
+                    contentText: '玉龙雪山 景色美呆了 真的 我差点就信了  你别不信',
                     content: [
                         {
-                            key:0,
-                            url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
-                            text:'我也不知道该说些什么 绝望的一笔',
+                            key: 0,
+                            url: {uri: 'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                            text: '我也不知道该说些什么 绝望的一笔',
                         },
                         {
-                            key:1,
-                            url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
-                            text:'我也不知道该说些什么 五黑啊哈',
+                            key: 1,
+                            url: {uri: 'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                            text: '我也不知道该说些什么 五黑啊哈',
                         },
                         {
-                            key:2,
-                            url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
-                            text:'我也不知道该说些什么 lilili',
+                            key: 2,
+                            url: {uri: 'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                            text: '我也不知道该说些什么 lilili',
                         },
                         {
-                            key:3,
-                            url:{uri:'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
-                            text:'我也不知道该说些什么 五黑啊哈',
+                            key: 3,
+                            url: {uri: 'http://pic10.nipic.com/20101003/2531170_181124047910_2.jpg'},
+                            text: '我也不知道该说些什么 五黑啊哈',
                         },
                     ],
                 },
             ],
-            number:10,
+            number: 10,
         }
     }
 
@@ -145,9 +145,9 @@ export default class FriendsTogether extends Component {
 
     render() {
         return (
-            <ScrollView>
-                <View style={Stylecss.styles.container}>
-                    <ToolBar title={'友聚详情'} isShowBack={true} backClick={this.backClick.bind(this)}/>
+            <View style={Stylecss.styles.container}>
+                <ToolBar title={'友聚详情'} isShowBack={true} backClick={this.backClick.bind(this)}/>
+                <ScrollView>
                     <Image style={{height: UtilScreen.getHeight(372), width: '100%', resizeMode: 'stretch'}}
                            source={this.state.item.pic}/>
                     <View style={styles.infoView}>
@@ -199,32 +199,56 @@ export default class FriendsTogether extends Component {
                         height: UtilScreen.getHeight(270),
                         width: UtilScreen.getWidth(710),
                         alignSelf: 'center',
-                        flexDirection:'row',
+                        flexDirection: 'row',
                     }} resizeMode='contain' source={require('../res/images/poly-box.png')}>
-                        <View style={{flex:1}}>
-                            <View style={{height:UtilScreen.getHeight(40),flexDirection:'row',marginTop:UtilScreen.getHeight(72)}}>
+                        <View style={{flex: 1}}>
+                            <View style={{
+                                height: UtilScreen.getHeight(40),
+                                flexDirection: 'row',
+                                marginTop: UtilScreen.getHeight(72)
+                            }}>
                                 <Image style={styles.imageView} source={require('../res/images/time-start.png')}/>
                                 <Text style={styles.textView}>开始时间：{this.state.item.begin_time}</Text>
                             </View>
-                            <View style={{height:UtilScreen.getHeight(40),flexDirection:'row',marginTop:UtilScreen.getHeight(24)}}>
+                            <View style={{
+                                height: UtilScreen.getHeight(40),
+                                flexDirection: 'row',
+                                marginTop: UtilScreen.getHeight(24)
+                            }}>
                                 <Image style={styles.imageView} source={require('../res/images/time-end.png')}/>
                                 <Text style={styles.textView}>结束时间：{this.state.item.end_time}</Text>
                             </View>
-                            <View style={{height:UtilScreen.getHeight(40),flexDirection:'row',marginTop:UtilScreen.getHeight(24)}}>
+                            <View style={{
+                                height: UtilScreen.getHeight(40),
+                                flexDirection: 'row',
+                                marginTop: UtilScreen.getHeight(24)
+                            }}>
                                 <Image style={styles.imageView} source={require('../res/images/place.png')}/>
                                 <Text style={styles.textView}>活动地点：{this.state.item.city}</Text>
                             </View>
                         </View>
-                        <View style={{flex:1}}>
-                            <View style={{height:UtilScreen.getHeight(40),flexDirection:'row',marginTop:UtilScreen.getHeight(72)}}>
+                        <View style={{flex: 1}}>
+                            <View style={{
+                                height: UtilScreen.getHeight(40),
+                                flexDirection: 'row',
+                                marginTop: UtilScreen.getHeight(72)
+                            }}>
                                 <Image style={styles.imageView} source={require('../res/images/price.png')}/>
                                 <Text style={styles.textView}>人均费用：{this.state.item.price}</Text>
                             </View>
-                            <View style={{height:UtilScreen.getHeight(40),flexDirection:'row',marginTop:UtilScreen.getHeight(24)}}>
+                            <View style={{
+                                height: UtilScreen.getHeight(40),
+                                flexDirection: 'row',
+                                marginTop: UtilScreen.getHeight(24)
+                            }}>
                                 <Image style={styles.imageView} source={require('../res/images/nv.png')}/>
                                 <Text style={styles.textView}>女生人数：{this.state.item.woman}</Text>
                             </View>
-                            <View style={{height:UtilScreen.getHeight(40),flexDirection:'row',marginTop:UtilScreen.getHeight(24)}}>
+                            <View style={{
+                                height: UtilScreen.getHeight(40),
+                                flexDirection: 'row',
+                                marginTop: UtilScreen.getHeight(24)
+                            }}>
                                 <Image style={styles.imageView} source={require('../res/images/nan.png')}/>
                                 <Text style={styles.textView}>男生人数：{this.state.item.man}</Text>
                             </View>
@@ -239,19 +263,76 @@ export default class FriendsTogether extends Component {
                     }}>出行信息</Text>
                     <ActivityView itemInfo={this.state.itemInfo} number={this.state.number}/>
                     <FlatList
+                        style={{flex: 1}}
                         data={this.state.myItem}
                         renderItem={({item}) => {
-                            alert(item.content)
-                            return(
-                                <View>
-                                    <PolyContentItem itemInfo={item}/>
-                                </View>
+                            return (
+                                <PolyContentItem itemInfo={item}/>
                             )
                         }}
                         keyExtractor={item => item.key}
                     ></FlatList>
-                </View>
-            </ScrollView>
+                    <View style={{height: UtilScreen.getHeight(98), flexDirection: 'row', backgroundColor: '#fff'}}>
+                        <View style={{
+                            flex: 1,
+                            borderWidth: UtilScreen.getHeight(1),
+                            borderColor: '#ededed',
+                            flexDirection: 'row'
+                        }}>
+                            <TouchableHighlight style={{flex: 1}}>
+                                <View style={{
+                                    flex: 1,
+                                    borderRightWidth: UtilScreen.getHeight(1),
+                                    borderRightColor: '#ededed'
+                                }}>
+                                    <Image style={styles.imageStyle} source={require('../res/images/message-y.png')}/>
+                                    <Text style={{
+                                        marginTop: UtilScreen.getHeight(4),
+                                        alignSelf: 'center',
+                                        color: '#333333',
+                                        fontSize: 10
+                                    }}>咨询队长</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight style={{flex: 1}}>
+                                <View style={{
+                                    flex: 1,
+                                    borderRightWidth: UtilScreen.getHeight(1),
+                                    borderRightColor: '#ededed'
+                                }}>
+                                    <Image style={styles.imageStyle} source={require('../res/images/message-y.png')}/>
+                                    <Text style={{
+                                        marginTop: UtilScreen.getHeight(4),
+                                        alignSelf: 'center',
+                                        color: '#333333',
+                                        fontSize: 10
+                                    }}>分享</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight style={{flex: 1}}>
+                                <View style={{flex: 1}}>
+                                    <Image style={styles.imageStyle} source={require('../res/images/heart-y.png')}/>
+                                    <Text style={{
+                                        marginTop: UtilScreen.getHeight(4),
+                                        alignSelf: 'center',
+                                        color: '#333333',
+                                        fontSize: 10
+                                    }}>关注</Text>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
+                        <Text style={{
+                            flex: 1,
+                            backgroundColor: '#ff9d00',
+                            color: '#fff',
+                            fontSize: 14,
+                            lineHeight: UtilScreen.getHeight(98),
+                            textAlign: 'center'
+                        }}>报名参加</Text>
+                    </View>
+                </ScrollView>
+            </View>
+
         )
     }
 }
@@ -278,17 +359,24 @@ const styles = StyleSheet.create({
         marginLeft: UtilScreen.getWidth(5),
     },
     imageView: {
-        marginLeft:UtilScreen.getWidth(20),
+        marginLeft: UtilScreen.getWidth(20),
         height: UtilScreen.getHeight(40),
         width: UtilScreen.getWidth(40),
         resizeMode: 'contain',
         alignSelf: 'center',
     },
-    textView:{
-        marginLeft:UtilScreen.getWidth(10),
-        color:'#333333',
-        fontSize:14,
-        lineHeight:UtilScreen.getHeight(40),
-        textAlign:'center',
+    textView: {
+        marginLeft: UtilScreen.getWidth(10),
+        color: '#333333',
+        fontSize: 14,
+        lineHeight: UtilScreen.getHeight(40),
+        textAlign: 'center',
+    },
+    imageStyle: {
+        marginTop: UtilScreen.getHeight(15),
+        height: UtilScreen.getHeight(40),
+        width: UtilScreen.getWidth(40),
+        resizeMode: 'contain',
+        alignSelf: 'center',
     },
 })

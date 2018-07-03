@@ -23,6 +23,7 @@ export default class Apply extends Component {
                 {key: 5, lTitle:`性        别:`, rHint: '请输入性别',},
                 {key: 6, lTitle:`年        龄:`, rHint: '请输入年龄',},
                 {key: 7, lTitle: '婚姻状况:', rHint: '请输入婚姻状况',},
+                {key:8,lTitle:'支付方式',rHint:'现场支付',},
             ],
             modalVisible: false,
             wxImage:require('../res/images/apply_true.png'),
@@ -30,6 +31,7 @@ export default class Apply extends Component {
             isPay:true,
             isState:false,
             isFailure:false,
+            orPay:false,
         }
     }
     backClick(){
@@ -72,30 +74,13 @@ export default class Apply extends Component {
 
         }
     }
-    render(){
-        return(
-            <View style={styles.container}>
-                <ToolBar title={'报名'} isShowBack={true} backClick={this.backClick.bind(this)}/>
-                <FlatList
-                    style={{flex:1}}
-                    data={this.state.itemInfo}
-                    renderItem={({item}) => {
-                        return (
-                            <View>
-                                <TouchableHighlight style={Stylecss.styles.lightitem}
-                                                    underlayColor={'#f8f8f8'}
-                                >
-                                    <ApplyInfoItem itemInfo={item}/></TouchableHighlight>
-                                <View style={Stylecss.styles.line}/>
-                            </View>
-                        );
-                    }}
-                    keyExtractor={item => item.key.toString()}
-                ></FlatList>
+    setView(){
+        if(this.state.orPay){
+            return(
                 <View style={Stylecss.styles.payView}>
                     <Text style={Stylecss.styles.leftText}>支付方式:</Text>
                     <View style={{height:UtilScreen.getHeight(2),width:UtilScreen.getWidth(670),backgroundColor:'#e5e5e5',marginTop:UtilScreen.getHeight(24),
-                                                    marginLeft:UtilScreen.getWidth(38),marginRight:UtilScreen.getWidth(40),}} />
+                        marginLeft:UtilScreen.getWidth(38),marginRight:UtilScreen.getWidth(40),}} />
                     <View style={Stylecss.styles.selectView}>
                         <Image style={Stylecss.styles.payImage} source={require('../res/images/apply_wechat.png')}/>
                         <Text style={Stylecss.styles.payText}>微信支付</Text>
@@ -112,8 +97,38 @@ export default class Apply extends Component {
                     </View>
                     <View style={{height:UtilScreen.getHeight(12),width:'100%',backgroundColor:'#f8f8f8',}} />
                 </View>
+            )
+        }
+    }
+    render(){
+        return(
+            <View style={styles.container}>
+                <ToolBar title={'报名'} isShowBack={true} backClick={this.backClick.bind(this)}/>
+                <FlatList
+                    style={{flex:1}}
+                    data={this.state.itemInfo}
+                    renderItem={({item,index}) => {
+                        if(index<8){
+                            return (
+                                <View>
+                                        <ApplyInfoItem itemInfo={item}/>
+                                    <View style={Stylecss.styles.line}/>
+                                </View>
+                            );
+                        } else if(index==8&&!this.state.orPay){
+                            return (
+                                <View>
+                                        <ApplyInfoItem itemInfo={item}/>
+                                    <View style={Stylecss.styles.line}/>
+                                </View>
+                            );
+                        }
+                    }}
+                    keyExtractor={item => item.key.toString()}
+                ></FlatList>
+                {this.setView()}
                 <View style={Stylecss.styles.paymentView}>
-                    <Text style={Stylecss.styles.paymentText} onPress={this.myPay.bind(this)}>支付</Text>
+                    <Text style={Stylecss.styles.paymentText} onPress={this.myPay.bind(this)}>{this.state.orPay?'支付':'报名'}</Text>
                 </View>
                 {/*<ApplyRealName modalVisible={this.state.modalVisible} setModalVisible={this.setModalVisible.bind(this)} jump={this.jumpToCard.bind(this)} />*/}
                 {/*<ApplyPaymentSuccess modalVisible={this.state.isState} setModalVisible={this.setModalVisible.bind(this)} jump={()=>this.setState({isState:false})} />*/}

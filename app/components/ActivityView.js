@@ -25,7 +25,19 @@ export default class ActivityView extends Component {
                     headUrl: require('../res/images/1.jpg'),
                     nickname: '帅气的小迷糊',
                     num: 2,
-                }
+                },
+                {
+                    key:1,
+                    headUrl: require('../res/images/1.jpg'),
+                    nickname: '帅气的小迷糊',
+                    num: 1,
+                },
+                {
+                    key:2,
+                    headUrl: require('../res/images/1.jpg'),
+                    nickname: '帅气的小迷糊',
+                    num: 10,
+                },
              ],
 
 
@@ -35,7 +47,7 @@ export default class ActivityView extends Component {
             this.setState({
                 isShow:false,
                 showText:'收起',
-                showImage:require('../res/images/chevron-down.png'),
+                showImage:require('../res/images/chevron-up.png'),
                 }
             )
         } else {
@@ -64,6 +76,7 @@ export default class ActivityView extends Component {
                                         <Image style={{height:UtilScreen.getHeight(80),width:UtilScreen.getHeight(80),borderRadius:UtilScreen.getHeight(80),}}
                                                source={item.headUrl} resizeMode='cover'></Image>
                                         <Text style={styles.nicknameStyle} numberOfLines={this.state.textLong}>{item.nickname}</Text>
+                                        <Text style={[styles.rPice,{width:(item.num==1)?0:UtilScreen.getWidth(34)}]}>{item.num}</Text>
                                     </View>
                                 )
                             } else if(index==this.state.num_columns){
@@ -97,6 +110,7 @@ export default class ActivityView extends Component {
                                 }}
                                        source={item.headUrl}></Image>
                                 <Text style={styles.nicknameStyle} numberOfLines={this.state.textLong}>{item.nickname}</Text>
+                                <Text style={[styles.rPice,{width:(item.num==1)?0:UtilScreen.getWidth(34)}]}>{item.num}</Text>
                             </View>
                         )
                     }
@@ -123,6 +137,7 @@ export default class ActivityView extends Component {
                         textAlign: 'center'
                     }}>参加人员（{this.props.itemInfo.length}/{this.props.number}）</Text>
                     <TouchableHighlight
+                        underlayColor='#ffffff'
                         onPress={this.switchState.bind(this)}
                         style={{
                         position: 'absolute',
@@ -158,5 +173,17 @@ const styles = StyleSheet.create({
         overflow:'hidden',
         lineHeight: UtilScreen.getHeight(40),
         marginTop: UtilScreen.getHeight(20)
+    },
+    rPice: {
+        width: UtilScreen.getWidth(34),
+        height: UtilScreen.getWidth(34),
+        borderRadius: UtilScreen.getWidth(34),
+        fontSize: 12,
+        color: '#fff',
+        backgroundColor: 'red',
+        textAlign: 'center',
+        position: 'absolute',
+        right: 0,
+        top: 0,
     },
 })
