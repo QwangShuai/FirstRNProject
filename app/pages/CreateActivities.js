@@ -183,6 +183,10 @@ export default class CreateActivities extends Component {
         this.UploadImageGridView.setImageDesc(this.state.index, str);
     }
     callbackCost(data){
+        this.setState({
+            isCost:false,
+        });
+        console.log(data)
         // let d = data;
         // this.state.itemInfo[3].rTitle = d.money;
         // let  data = this.state.itemInfo.concat();

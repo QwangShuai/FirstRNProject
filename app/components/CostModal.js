@@ -61,7 +61,7 @@ export default class CostModal extends Component {
                         <View style={styles.viewStyle}>
                             <TextInput placeholder='请输入说明(选填)' underlineColorAndroid='transparent' style={{padding:0,fontSize:12,lineHeight:UtilScreen.getHeight(54),width:UtilScreen.getWidth(400),marginLeft:UtilScreen.getWidth(40)}} onChangeText={(text)=>this.setState({itemInfo:{costsThat:text}})}/>
                         </View>
-                        <Text style={Stylecss.styles.modal_btnStyle} onPress={this.props.callbackCost(this.state.itemInfo)}>确定</Text>
+                        <Text style={Stylecss.styles.modal_btnStyle} onPress={this.props.callbackCost.bind(this,this.state.itemInfo)}>确定</Text>
                     </View>
                 </View>
             </Modal>
