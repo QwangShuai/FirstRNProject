@@ -6,17 +6,21 @@ export default class SetPwdModal extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isState: true,
+            isState: false,
+            itemInfo:{
+                pwd:'',
+            }
+
         }
     }
     componentWillReceiveProps(nextProps){
-        if(nextProps.isPay){
+        if(nextProps.isSet){
             this.setState({
-                isState:false,
+                isState:true,
             })
         } else {
             this.setState({
-                isState:true,
+                isState:false,
             })
         }
 
@@ -26,7 +30,7 @@ export default class SetPwdModal extends Component {
             <Modal style={Stylecss.styles.modal_container}
                    animationType={"slide"}
                    transparent={true}
-                   visible={this.props.modalVisible}
+                   visible={this.props.isSetPwdModal}
                    onRequestClose={this.props.setModalVisible}>
                 <View style={Stylecss.styles.mark}>
                     <View style={styles.content}>
@@ -37,11 +41,15 @@ export default class SetPwdModal extends Component {
                         <Text style={{color:'#333333',fontSize:10,marginTop:UtilScreen.getHeight(20),marginLeft:UtilScreen.getWidth(20)}}>分享、邀请好友加入活动时，会直接附上密码</Text>
                         <Text style={[styles.titleStyle,{marginLeft:UtilScreen.getWidth(20),marginTop:UtilScreen.getHeight(30)}]}>输入密码</Text>
                         <View style={{height:UtilScreen.getHeight(60),flexDirection:'row',}}>
-                            <TextInput style={Stylecss.styles.modal_textStyle} placeholder='  请输入密码' secureTextEntry={this.state.isState} underlineColorAndroid='transparent'/>
-                            <Image style={{width:UtilScreen.getWidth(32),height:UtilScreen.getHeight(30),alignSelf:'center',marginLeft:UtilScreen.getWidth(12)}}
-                                   source={this.state.isState?require('../res/images/eye-b-false.png'):require('../res/images/eye-b-true.png')} onPress={this.props.pwShow}/>
+                            <TextInput style={Stylecss.styles.modal_textStyle} placeholder='  请输入密码' secureTextEntry={this.state.isState} underlineColorAndroid='transparent' onChangeText={(text)=>{
+                                this.state.itemInfo.pwd = text;
+                            }}/>
+                            <TouchableHighlight style={{width:UtilScreen.getWidth(32),height:UtilScreen.getHeight(30),alignSelf:'center',marginLeft:UtilScreen.getWidth(12)}} onPress={this.props.setPwd_isShow}>
+                            <Image resizeMode='contain' style={{width:UtilScreen.getWidth(32),height:UtilScreen.getHeight(30),alignSelf:'center'}}
+                                   source={this.state.isState?require('../res/images/eye-b-false.png'):require('../res/images/eye-b-true.png')}/>
+                            </TouchableHighlight>
                         </View>
-                        <Text style={Stylecss.styles.modal_btnStyle}>确定</Text>
+                        <Text style={Stylecss.styles.modal_btnStyle} onPress={this.props.setPwd_callBack.bind(this,this.state.itemInfo)}>确定</Text>
                     </View>
                 </View>
             </Modal>
