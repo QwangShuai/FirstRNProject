@@ -241,14 +241,13 @@ export default class FriendsTogether extends Component {
                     <FlatList
                         data={this.state.myItem}
                         renderItem={({item}) => {
-                            alert(item.content)
                             return(
                                 <View>
                                     <PolyContentItem itemInfo={item}/>
                                 </View>
                             )
                         }}
-                        keyExtractor={item => item.key}
+                        keyExtractor={item => item.key.toString()}
                     ></FlatList>
                 </View>
             </ScrollView>

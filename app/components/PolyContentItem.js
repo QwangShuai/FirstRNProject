@@ -59,7 +59,7 @@ export default class PolyContentItem extends Component {
                             </View>
                         )
                     }}
-                    keyExtractor={item => item.key}
+                    keyExtractor={item => item.key.toString()}
                 ></FlatList>
             </View>
         )

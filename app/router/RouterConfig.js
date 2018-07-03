@@ -38,7 +38,7 @@ import FriendsTogether from '../pages/FriendsTogether';
 import InfoDetails from '../pages/InfoDetails';
 import UnpaidDetails from '../components/UnpaidDetails'
 const RouterConfig = StackNavigator({
-
+    FriendsTogether:{screen:FriendsTogether},
     // Set: {screen: Set},
     // Order: {screen: Order},
     // TravelItem: {screen: TravelItem},
