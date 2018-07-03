@@ -249,6 +249,64 @@ export default class FriendsTogether extends Component {
                         }}
                         keyExtractor={item => item.key.toString()}
                     ></FlatList>
+                    <View style={{height: UtilScreen.getHeight(98), flexDirection: 'row', backgroundColor: '#fff'}}>
+                        <View style={{
+                            flex: 1,
+                            borderWidth: UtilScreen.getHeight(1),
+                            borderColor: '#ededed',
+                            flexDirection: 'row'
+                        }}>
+                            <TouchableHighlight style={{flex: 1}}>
+                                <View style={{
+                                    flex: 1,
+                                    borderRightWidth: UtilScreen.getHeight(1),
+                                    borderRightColor: '#ededed'
+                                }}>
+                                    <Image style={styles.imageStyle} source={require('../res/images/message-y.png')}/>
+                                    <Text style={{
+                                        marginTop: UtilScreen.getHeight(4),
+                                        alignSelf: 'center',
+                                        color: '#333333',
+                                        fontSize: 10
+                                    }}>咨询队长</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight style={{flex: 1}}>
+                                <View style={{
+                                    flex: 1,
+                                    borderRightWidth: UtilScreen.getHeight(1),
+                                    borderRightColor: '#ededed'
+                                }}>
+                                    <Image style={styles.imageStyle} source={require('../res/images/share-y.png')}/>
+                                    <Text style={{
+                                        marginTop: UtilScreen.getHeight(4),
+                                        alignSelf: 'center',
+                                        color: '#333333',
+                                        fontSize: 10
+                                    }}>分享</Text>
+                                </View>
+                            </TouchableHighlight>
+                            <TouchableHighlight style={{flex: 1}}>
+                                <View style={{flex: 1}}>
+                                    <Image style={styles.imageStyle} source={require('../res/images/heart-y.png')}/>
+                                    <Text style={{
+                                        marginTop: UtilScreen.getHeight(4),
+                                        alignSelf: 'center',
+                                        color: '#333333',
+                                        fontSize: 10
+                                    }}>关注</Text>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
+                        <Text style={{
+                            flex: 1,
+                            backgroundColor: '#ff9d00',
+                            color: '#fff',
+                            fontSize: 14,
+                            lineHeight: UtilScreen.getHeight(98),
+                            textAlign: 'center'
+                        }}>报名参加</Text>
+                    </View>
                 </View>
             </ScrollView>
         )
@@ -289,5 +347,12 @@ const styles = StyleSheet.create({
         fontSize:14,
         lineHeight:UtilScreen.getHeight(40),
         textAlign:'center',
+    },
+    imageStyle: {
+        marginTop:UtilScreen.getHeight(20),
+        height: UtilScreen.getHeight(40),
+        width: UtilScreen.getWidth(40),
+        resizeMode: 'contain',
+        alignSelf: 'center',
     },
 })
