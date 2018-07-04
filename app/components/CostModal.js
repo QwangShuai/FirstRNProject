@@ -16,7 +16,7 @@ export default class CostModal extends Component {
         }
     }
     componentWillReceiveProps(nextProps){
-        if(nextProps.isCostState){
+        if(nextProps.isCostState==0){
             this.setState({
                 isState:true,
                 // itemInfo:{

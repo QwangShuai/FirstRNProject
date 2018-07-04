@@ -34,6 +34,26 @@ export default class CreateActivities extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            item:{
+                follow_title:'',
+                begin_time:'',
+                end_time:'',
+                file_img:'',
+                price:0,
+                price_info:'',
+                city:0,
+                price_type:0,
+                follow_pass:'',
+                people_limit:0,
+                people_num:0,
+                man_num:0,
+                woman_num:0,
+                age_begin:0,
+                age_end:0,
+                pfexplain:'',
+                marry:0,
+                sex:0,
+            },
             itemInfo: [
                 {key: 0, lUrl: require('../res/images/time-start.png'), lTitle: '开始时间:', rTitle: '0000-00-00',},
                 {key: 1, lUrl: require('../res/images/time-end.png'), lTitle: '结束时间:', rTitle: '0000-00-00',},
@@ -54,17 +74,16 @@ export default class CreateActivities extends Component {
                 placeholder: '30个字符以内，仅可以输入汉字、字母、数字或下划线',
                 maxSize: 30,
             },
-            titleText:'',
             index: 0,
             screenHeight: UtilScreen.getHeight(1334),
             hintText:'*',
             isCost:false,
-            isCostState:true,
+            isCostState:0,
             isShowSelectArea:false,
             isPersonsModal:false,
             isPersonsState:0,
             isActivitiesRequireModal:false,
-            isMarriage:true,
+            isMarriage:0,
             isSex:0,
             isSet:true,
             isSetPwdModal:false,
@@ -103,6 +122,7 @@ export default class CreateActivities extends Component {
         this.setState({
             ImageSource: {uri:obj},
         });
+        this.state.item.file_img = {uri: obj,type: 'multipart/form-data', name: 'a.jpg'};
     }
 
     backClick() {
@@ -121,12 +141,12 @@ export default class CreateActivities extends Component {
     }
     paymentReference(){
         this.setState ({
-            isCostState:true,
+            isCostState:0,
         })
     }
     paymentNow(){
         this.setState ({
-            isCostState:false
+            isCostState:1,
         })
     }
     itemClick(item) {
@@ -190,6 +210,11 @@ export default class CreateActivities extends Component {
         this.state.itemInfo[this.selectDate.key].rTitle = d;
         let data = this.state.itemInfo.concat();
         this.setState({isSelectDate: false, itemInfo: data});
+        if(this.selectDate.key==0){
+            this.state.item.begin_time = d;
+        } else {
+            this.state.item.end_time = d;
+        }
     }
 
     inputDialogDismissBack() {
@@ -214,16 +239,19 @@ export default class CreateActivities extends Component {
             isCost:false,
             itemInfo:mydata
         });
-
+        this.state.item.price = data.money;
+        this.state.item.price_type = this.state.isCostState;
+        this.state.item.price_info = data.other;
     }
     selectAreaResult(area,type) {
         let [province, city, street] = area;
         this.state.itemInfo[2].rTitle = province + '-' + city + '-' + street;
         let data = this.state.itemInfo.concat();
         this.setState({isShowSelectArea: false, itemInfo: data});
+        this.state.item.city = 0;
     }
     changeTitle(){
-        if(this.state.titleText.length==1){
+        if(this.state.item.follow_title.length==1){
             this.setState({
                 hintText:'*',
             })
@@ -256,6 +284,11 @@ export default class CreateActivities extends Component {
             itemInfo:data,
             isPersonsModal:false,
         })
+        this.state.item.people_limit = this.state.isPersonsState;
+        this.state.item. people_num = item.allPersons;
+        this.state.item. man_num = item.manPersons;
+        this.state.item. woman_num = item.womanPersons;
+
     }
     //活动要求modal
     activities_sex0(){
@@ -287,6 +320,12 @@ export default class CreateActivities extends Component {
         this.setState({
             isActivitiesRequireModal:false,
         })
+        this.state.item.marry = this.state.isMarriage;
+        this.state.item.age_begin = item.lowAge;
+        this.state.item.age_end = item.highAge;
+        this.state.item.pfexplain = item.other;
+        this.state.item.sex = this.state.isSex;
+
     }
     //设置密码modal
     setPwd_isShow(){
@@ -304,6 +343,78 @@ export default class CreateActivities extends Component {
             isSetPwdModal:false,
             itemInfo:data,
         })
+        this.state.item.follow_pass= item.pwd;
+    }
+    //下一步
+    nextStep(){
+        this.props.navigation.navigate('CreateContents');
+        postActivities();
+    }
+    //创建活动
+    postActivities(){
+        let formData = new FormData();
+        let param=md5.hex_md5(global.commons.baseurl+'action/ac_activity/add_activity');
+        let params=md5.hex_md5(param);
+        let data = this.state.item.concat();
+        formData.append('app_key',params);
+        formData.append('file_img',data.file_img);
+        formData.append('city',data.city);
+        formData.append('price_type',data.price_type);
+        formData.append('price_info',data.price_info);
+        formData.append('follow_pass',data.follow_pass);
+        formData.append('begin_time',data.begin_time);
+        formData.append('end_time',data.end_time);
+        formData.append('people_limit',data.people_limit);
+        formData.append('people_num',data.people_num);
+        formData.append('man_num',data.man_num);
+        formData.append('woman_num',data.woman_num);
+        formData.append('age_begin',data.age_begin);
+        formData.append('age_end',data.age_end);
+        formData.append('pfexplain',data.pfexplain);
+        formData.append('marry',data.marry);
+        formData.append('sex',data.sex);
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    formData.append("user_id", result);
+                    fetch(global.commons.baseurl+'action/ac_activity/add_travel',{
+                        method:'POST',
+                        body:formData,
+                    })
+                        .then((response) => response.text() )
+                        .then((responseData)=>{
+                            var bf = new Buffer(responseData , 'base64')
+                            var  str= bf.toString();
+                            let result=JSON.parse(str);
+                            if (result.code===200){
+                                Alert.alert(
+                                    '提示',
+                                    ''+result.message+'',
+                                    [
+                                        {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                    ]
+
+                                );
+                            }else{
+                                Alert.alert(
+                                    '提示',
+                                    '操作失败',
+                                    [
+                                        {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                    ]
+
+                                );
+                            }
+                            console.log('responseData',result);
+                        })
+                        .catch((error)=>{console.error('error',error)});
+                } else {
+                    this.login();
+                }
+            } else {
+                this.login();
+            }
+        })
     }
     render() {
         return (
@@ -313,8 +424,10 @@ export default class CreateActivities extends Component {
                     <View style={{height:UtilScreen.getHeight(88),flexDirection:'row',marginLeft:UtilScreen.getWidth(40)}}>
                         {/*<Text style={{color:'#ff0000',fontSize:14,alignSelf:'center'}}>{this.state.hintText}</Text>*/}
                         <TextInput style={{marginLeft:UtilScreen.getWidth(10),height:UtilScreen.getHeight(88),color:'#333333',fontSize:14,alignSelf:'center',padding:0,width:UtilScreen.getWidth(580)}}
-                                   placeholder='请输入活动标题' maxLength={30}  underlineColorAndroid='transparent' onChange={this.changeTitle.bind(this)} onChangeText={(text)=>this.setState({titleText:text})}/>
-                        <Text style={{color:'#333333',fontSize:14,position:'absolute',right:UtilScreen.getWidth(40),alignSelf:'center'}}>{this.state.titleText.length}/30</Text>
+                                   placeholder='请输入活动标题' maxLength={30}  underlineColorAndroid='transparent' onChange={this.changeTitle.bind(this)} onChangeText={(text)=>{
+                                       this.state.item.follow_title =text;
+                        }}/>
+                        <Text style={{color:'#333333',fontSize:14,position:'absolute',right:UtilScreen.getWidth(40),alignSelf:'center'}}>{this.state.item.follow_title.length}/30</Text>
                     </View>
 
                     <View style={Stylecss.styles.line}/>
@@ -336,7 +449,7 @@ export default class CreateActivities extends Component {
                         }}
                         keyExtractor={item => item.key.toString()}
                     ></FlatList>
-                    <Text style={styles.next}>下一步</Text>
+                    <Text style={styles.next} onPress={this.nextStep.bind(this)}>下一步</Text>
                 </ScrollView>
                 <SelectYesOrNo yesOrNo={this.takerPhotoOrSelect.bind(this)} isShow={this.state.isShowSelectPhoto}
                                topTitle={'拍照'} bottomTitle={'从相册中选择'}/>

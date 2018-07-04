@@ -13,18 +13,14 @@ export default class SelectArea extends Component {
         this.props.isShow ? this.AreaPicker.show() : this.AreaPicker.dismiss();
     }
 
-    btClick() {
-
-    }
-
     render() {
         return (
             <AreaPicker
                 areaJson={AreaJson}
                 selectedValue={['北京市', '北京市', '东城区']}
-                onCoverPress={()=>{ this.props.callBack('',0)}}
+                onCoverPress={()=>{ this.props.callBack(['北京市', '北京市', '东城区'],0)}}
                 onPickerCancel={() => {
-                    this.props.callBack('',0);
+                    this.props.callBack(['北京市', '北京市', '东城区'],0);
                 }}
                 onPickerConfirm={(value) => {
                     this.props.callBack(value,1);

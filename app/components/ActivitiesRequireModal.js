@@ -39,7 +39,7 @@ export default class ActivitiesRequireModal extends Component {
             })
         }
 
-        if(nextProps.isMarriage){
+        if(nextProps.isMarriage==0){
             this.setState({
                 isMarriage: true,
             })
