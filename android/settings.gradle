@@ -1,4 +1,6 @@
 rootProject.name = 'FirstRNProject'
+include ':react-native-netease-im'
+project(':react-native-netease-im').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-netease-im/android')
 include ':react-native-image-picker'
 project(':react-native-image-picker').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-image-picker/android')
 include ':react-native-svg'
@@ -6,5 +8,8 @@ project(':react-native-svg').projectDir = new File(rootProject.projectDir, '../n
 
 include ':react-native-vector-icons'
 project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-vector-icons/android')
+
+include ':react-native-netease-im'
+project(':react-native-netease-im').projectDir = new File(settingsDir, '../node_modules/react-native-netease-im/android')
 
 include ':app'

@@ -8,6 +8,12 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <permission
+        android:name="com.firstrnproject.permission.RECEIVE_MSG"
+        android:protectionLevel="signature"/>
+    <!-- 接收 SDK 消息广播权限， 第三方 APP 接入时，请将 com.im.demo 替换为自己的包名 -->
+    <uses-permission android:name="com.firstrnproject.permission.RECEIVE_MSG"/>
+
 
     <application
       android:name=".MainApplication"
@@ -15,6 +21,9 @@
       android:icon="@mipmap/ic_launcher"
       android:allowBackup="false"
       android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.netease.nim.appKey"
+            android:value="c8ace91e4e3de54f2893b405ed228d85" />
       <activity
         android:name=".MainActivity"
         android:label="@string/app_name"
