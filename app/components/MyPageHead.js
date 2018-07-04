@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, StyleSheet, ImageBackground, Image, TouchableHighlight, View,AsyncStorage,Alert} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
+import TeamInsertText from "../pages/TeamInsertText";
 
 export default class MyPageHead extends Component {
     constructor(props) {

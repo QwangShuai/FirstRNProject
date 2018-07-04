@@ -46,10 +46,14 @@ export default class MyPage extends Component {
         }
         this.jumpToOrder = this.jumpToOrder.bind(this);
         this.Sign_in = this.Sign_in.bind(this);
+        this.clickCallBack = this.clickCallBack.bind(this);
     }
 
     itemClick() {
 
+    }
+    clickCallBack(){
+        this.props.navigation.navigate('PersonalInfo',{routeName:'IndexPage'});
     }
     jumpToOrder(){
         this.props.navigation.navigate('Order',{routeName:'IndexPage'})
@@ -116,7 +120,7 @@ export default class MyPage extends Component {
     header(myInfo) {
         return (
             <View>
-                <MyPageHead imageSource={this.state.myInfo.headUrl} itemInfo={this.state.myInfo} jumplogin={this.Sign_in} is_login={this.state.is_login}></MyPageHead>
+                <MyPageHead imageSource={this.state.myInfo.headUrl} itemInfo={this.state.myInfo} jumplogin={this.Sign_in} is_login={this.state.is_login} clickCallBack={this.clickCallBack}></MyPageHead>
                 <MyPageMenu jump={this.jumpToOrder}></MyPageMenu>
             </View>
         );
