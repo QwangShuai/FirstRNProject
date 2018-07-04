@@ -9,6 +9,17 @@ export default class MyPageHead extends Component {
             isLogin:true,
         };
     }
+    componentWillReceiveProps(nextProps){//0 wei false
+        if (nextProps.is_login){
+            this.setState({
+                isLogin:true,
+            })
+        }else{
+            this.setState({
+                isLogin:false,
+            })
+        }
+    }
     render() {
         return (
             <ImageBackground style={styles.container}
@@ -26,7 +37,7 @@ export default class MyPageHead extends Component {
                     />
                 </TouchableHighlight>
                 <View style={{marginLeft: UtilScreen.getWidth(35)}}>
-                    <Text style={{color: '#333', fontSize: 15, fontWeight: '800', height: this.state.isLogin?0:UtilScreen.getHeight(50)}}>未登录</Text>
+                    <Text style={{color: '#333', fontSize: 15, fontWeight: '800', height: this.state.isLogin?0:UtilScreen.getHeight(50)}} onPress={this.props.jumplogin}>去登陆</Text>
                     <View style={{height:this.state.isLogin?UtilScreen.getHeight(245):0,overflow:'hidden',justifyContent:'center'}}>
                         <View style={{flexDirection: 'row',overflow:'hidden'}}>
                             <Text style={{fontSize: 14, color: '#333'}}>{this.props.itemInfo.nickname}</Text>

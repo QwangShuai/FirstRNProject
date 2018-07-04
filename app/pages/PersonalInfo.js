@@ -119,7 +119,7 @@ export default class PersonalInfo extends Component {
                         },
                         {key: 6, imageURL: require('../res/images/person_real_name.png'), lTitle: '实名认证', rValue: result.obj.usercodeok,},
                         {key: 7, imageURL: require('../res/images/person_is_single.png'), lTitle: '是否单身', rValue:result.obj.usermarry,},
-                        {key: 8, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV1',},],
+                        {key: 8, imageURL: require('../res/images/person_rank.png'), lTitle: '等级', rValue: 'LV'+result.obj.usermarry,},],
                 });
                 console.log(result);
             })
