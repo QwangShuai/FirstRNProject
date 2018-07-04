@@ -21,7 +21,8 @@ import PersonsModal from "../components/PersonsModal";
 import ActivitiesRequireModal from "../components/ActivitiesRequireModal";
 import SetPwdModal from "../components/SetPwdModal";
 import UploadImageGridView from '../components/UploadImageGridView';
-
+import md5 from "react-native-md5";
+const Buffer = require('buffer').Buffer;
 const Stylecss = require('../common/Stylecss');
 import MyInputDialog from '../components/MyInputDialog';
 import CostModal from '../components/CostModal';
