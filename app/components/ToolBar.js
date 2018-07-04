@@ -6,6 +6,7 @@ export default class ToolBar extends Component {
     static defaultProps = {
         title: '标题',
         isShowBack: true,
+        btn:''
     }
 
     constructor(props) {
@@ -41,6 +42,7 @@ export default class ToolBar extends Component {
                     ></Image>
                 </TouchableHighlight>
                 <Text style={styles.text}>{this.props.title}</Text>
+                <Text style={styles.btn} onPress={this.props.btnClick}>{this.props.btn}</Text>
             </View>
         );
     }
@@ -67,4 +69,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#fff',
     },
+    btn:{
+        position:'absolute',
+        right:UtilScree.getWidth(20),
+        fontSize: 16,
+        color: '#fff',
+        lineHeight:UtilScree.getHeight(80),
+        textAlign:'center',
+    }
 });

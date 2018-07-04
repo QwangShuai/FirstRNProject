@@ -13,7 +13,7 @@ import SelectYesOrNo from '../components/SelectYesOrNo';
 import GetPhotoFromPhone from "../util/GetPhotoFromPhone";
 
 
-export default class UploadImageGridView extends Component<Props> {
+export default class ImageGridView extends Component<Props> {
     constructor(props) {
         super(props)
         this.state = {
@@ -25,7 +25,7 @@ export default class UploadImageGridView extends Component<Props> {
     }
 
     static defaultProps = {
-        maxNumber: 3,
+        maxNumber: 9,
         isShowFirstLarge: true,
     }
     static navigationOptions = {
@@ -49,7 +49,13 @@ export default class UploadImageGridView extends Component<Props> {
             this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});
         });
     }
-
+    clearImages(){
+        this.setState({
+            images: [
+                {key: 0, url: require('../res/images/add_image.png')},
+            ],
+        })
+    }
     takerPhotoOrSelect(type) {
         this.setState({
             isShowSelectImage: false,
@@ -144,34 +150,6 @@ export default class UploadImageGridView extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{
-                    backgroundColor:'#fff',
-                    width: '100%',
-                    justifyContent:'center',
-                    alignItems:'center',
-                    height: this.props.isShowFirstLarge && this.state.images.length > 1 ? UtilScreen.getHeight(380) : 0
-                }}>
-                    <ImageBackground
-                        style={{
-                            width: UtilScreen.getWidth(692),
-                            height: this.props.isShowFirstLarge && this.state.images.length > 1 ? UtilScreen.getHeight(335) : 0
-                        }}
-                        source={this.state.images[0].url}
-                    >
-                        <Text
-                            style={[styles.imageDesc, {backgroundColor: this.state.images[0].isDesc ? 'rgba(68,156,250,0.5)' : '#449cfa'}]}
-                            onPress={this.props.editImage.bind(this, 0)}>{this.state.images[0].desc}</Text>
-                        <TouchableHighlight
-                            style={[styles.firstDeleteContainer, {height: this.props.isShowFirstLarge && this.state.images.length > 1 ? UtilScreen.getWidth(40) : 0}]}
-                            onPress={this.deleteImage.bind(this, this.state.images[0], 0)}
-                            underlayColor={'#f8f8f8'}
-                        >
-                            <Image style={styles.itemDelete} source={require('../res/images/delete.png')}
-                                   resizeMode='stretch'
-                            />
-                        </TouchableHighlight>
-                    </ImageBackground>
-                </View>
                 <FlatList
                     columnWrapperStyle={styles.flatliststyle}
                     numColumns={3}

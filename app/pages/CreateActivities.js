@@ -106,7 +106,7 @@ export default class CreateActivities extends Component {
     }
 
     backClick() {
-
+        this.props.navigation.goBack();
     }
     setModalVisible(){
         this.setState({

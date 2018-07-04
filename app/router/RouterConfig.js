@@ -35,16 +35,13 @@ import PersonalInformation from '../pages/PersonalInformation';
 import SimpleSelectCity from '../pages/SimpleSelectCity';
 import UploadIdCard from '../pages/UploadIdCard';
 import FriendsTogether from '../pages/FriendsTogether';
-import FrendRemeberDetails from '../pages/FrendRemeberDetails';
 import InfoDetails from '../pages/InfoDetails';
 import MyComments from '../pages/MyComments';
+import UnpaidDetails from '../components/UnpaidDetails';
 import Evaluation from '../pages/Evaluation';
-import CreateContents from '../pages/CreateContents';
-import UnpaidDetails from '../components/UnpaidDetails'
 const RouterConfig = StackNavigator({
-    // Evaluation:{screen:Evaluation},
-    CreateContents:{screen:CreateContents},
-    CreateActivities:{screen:CreateActivities},
+    Evaluation:{screen:Evaluation},
+    FriendsTogether:{screen:FriendsTogether},
     // Set: {screen: Set},
     // Order: {screen: Order},
     // TravelItem: {screen: TravelItem},
@@ -98,8 +95,5 @@ const RouterConfig = StackNavigator({
     PersonalInformation: {screen: PersonalInformation},
     InfoDetails: {screen: InfoDetails},
     MyComments: {screen: MyComments},
-    FriendsTogether:{screen:FriendsTogether},
-    Evaluation:{screen:Evaluation},
-    CreateContents:{screen:CreateContents},
 });
 export default RouterConfig;

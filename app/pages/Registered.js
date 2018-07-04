@@ -33,7 +33,7 @@ export default class Registered extends Component {
     }
 
     backClick() {
-        this.props.navigation.navigate('Home');
+        this.props.navigation.goBack();
     }
 
     shouldCompontUpdate() {
