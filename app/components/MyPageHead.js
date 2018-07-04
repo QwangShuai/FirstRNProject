@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, StyleSheet, ImageBackground, Image, TouchableHighlight, View} from 'react-native';
+import {Text, StyleSheet, ImageBackground, Image, TouchableHighlight, View,AsyncStorage,Alert} from 'react-native';
 import UtilScreen from '../util/UtilScreen';
 
 export default class MyPageHead extends Component {
@@ -9,7 +9,6 @@ export default class MyPageHead extends Component {
             isLogin:true,
         };
     }
-
     render() {
         return (
             <ImageBackground style={styles.container}

@@ -16,6 +16,10 @@ import CreateActicitiesItem from '../components/CreateActicitiesItem';
 import SelectYesOrNo from '../components/SelectYesOrNo';
 import MyDatePicker from '../components/MyDatePicker';
 import GetPhotoFromPhone from '../util/GetPhotoFromPhone';
+import SelectArea from "../components/SelectArea";
+import PersonsModal from "../components/PersonsModal";
+import ActivitiesRequireModal from "../components/ActivitiesRequireModal";
+import SetPwdModal from "../components/SetPwdModal";
 import UploadImageGridView from '../components/UploadImageGridView';
 
 const Stylecss = require('../common/Stylecss');
@@ -56,6 +60,14 @@ export default class CreateActivities extends Component {
             hintText:'*',
             isCost:false,
             isCostState:true,
+            isShowSelectArea:false,
+            isPersonsModal:false,
+            isPersonsState:0,
+            isActivitiesRequireModal:false,
+            isMarriage:true,
+            isSex:0,
+            isSet:true,
+            isSetPwdModal:false,
         };
         this.selectDate = {key: 1, title: '0'};
 
@@ -99,6 +111,9 @@ export default class CreateActivities extends Component {
     setModalVisible(){
         this.setState({
             isCost: false,
+            isPersonsModal:false,
+            isActivitiesRequireModal:false,
+            isSetPwdModal:false,
         });
     }
     selectImages(images) {
@@ -129,7 +144,9 @@ export default class CreateActivities extends Component {
                 this.selectDate = {key: 1, title: '选择活动结束时间'};
                 break;
             case 2:
-
+                    this.setState({
+                        isShowSelectArea:true,
+                    })
                 break;
             case 3:
                 this.setState({
@@ -137,10 +154,19 @@ export default class CreateActivities extends Component {
                 });
                 break;
             case 4:
-
+                this.setState({
+                    isPersonsModal:true,
+                })
                 break;
             case 5:
-
+                this.setState({
+                    isActivitiesRequireModal:true,
+                })
+                break;
+            case 6:
+                this.setState({
+                    isSetPwdModal:true,
+                })
                 break;
         }
     }
@@ -155,7 +181,6 @@ export default class CreateActivities extends Component {
             index: index,
         });
     }
-
     /**
      * 选择日期
      * @param date
@@ -183,18 +208,19 @@ export default class CreateActivities extends Component {
         this.UploadImageGridView.setImageDesc(this.state.index, str);
     }
     callbackCost(data){
+        this.state.itemInfo[3].rTitle = data.money;
+        let  mydata = this.state.itemInfo.concat();
         this.setState({
             isCost:false,
+            itemInfo:mydata
         });
-        console.log(data)
-        // let d = data;
-        // this.state.itemInfo[3].rTitle = d.money;
-        // let  data = this.state.itemInfo.concat();
-        // this.setState({
-        //     isCost:false,
-        //     itemInfo:data
-        // })
 
+    }
+    selectAreaResult(area,type) {
+        let [province, city, street] = area;
+        this.state.itemInfo[2].rTitle = province + '-' + city + '-' + street;
+        let data = this.state.itemInfo.concat();
+        this.setState({isShowSelectArea: false, itemInfo: data});
     }
     changeTitle(){
         if(this.state.titleText.length==1){
@@ -206,6 +232,78 @@ export default class CreateActivities extends Component {
                 hintText:'',
             })
         }
+    }
+    //人数要求modal操作方法
+    persons_none(){
+        this.setState({
+            isPersonsState:0,
+        })
+    }
+    persons_less(){
+        this.setState({
+            isPersonsState:1,
+        })
+    }
+    persons_many(){
+        this.setState({
+            isPersonsState:2,
+        })
+    }
+    callBackPerson(item){
+        this.state.itemInfo[4].rTitle = item.allPersons;
+        let data = this.state.itemInfo.concat();
+        this.setState({
+            itemInfo:data,
+            isPersonsModal:false,
+        })
+    }
+    //活动要求modal
+    activities_sex0(){
+        this.setState({
+            isSex:0,
+        })
+    }
+    activities_sex1(){
+        this.setState({
+            isSex:1,
+        })
+    }
+    activities_sex2(){
+        this.setState({
+            isSex:2,
+        })
+    }
+    activities_isMarriage0(){
+        this.setState({
+            isMarriage:true,
+        })
+    }
+    activities_isMarriage1(){
+        this.setState({
+            isMarriage:false,
+        })
+    }
+    activities_callBack(item){
+        this.setState({
+            isActivitiesRequireModal:false,
+        })
+    }
+    //设置密码modal
+    setPwd_isShow(){
+        let b = this.state.isSet?false:true;
+      this.setState({
+          isSet:b,
+      })
+    }
+
+    setPwd_callBack(item){
+        this.state.itemInfo[6].rTitle = item.pwd;
+        let data = this.state.itemInfo.concat();
+        console.log('我的数据呢：',item);
+        this.setState({
+            isSetPwdModal:false,
+            itemInfo:data,
+        })
     }
     render() {
         return (
@@ -248,9 +346,15 @@ export default class CreateActivities extends Component {
                                onCoverPress={this.inputDialogDismissBack.bind(this)}
                                inputProps={this.state.inputImageDescProps}/>
                 <CostModal isCost={this.state.isCost} isCostState={this.state.isCostState} setModalVisible={this.setModalVisible.bind(this)} paymentReference={this.paymentReference.bind(this)}
-                    paymentNow={this.paymentNow.bind(this)}
-                            callbackCost={this.callbackCost.bind(this)}
-                />
+                    paymentNow={this.paymentNow.bind(this)} callbackCost={this.callbackCost.bind(this)}/>
+                <SelectArea isShow={this.state.isShowSelectArea} callBack={this.selectAreaResult.bind(this)}/>
+                <PersonsModal isPersonsState={this.state.isPersonsState} isPersonsModal={this.state.isPersonsModal} setModalVisible={this.setModalVisible.bind(this)} persons_none={this.persons_none.bind(this)}
+                              persons_less={this.persons_less.bind(this)} persons_many={this.persons_many.bind(this)} callBackPerson={this.callBackPerson.bind(this)}/>
+                <ActivitiesRequireModal isActivitiesRequireModal={this.state.isActivitiesRequireModal} setModalVisible={this.setModalVisible.bind(this)} activities_sex0={this.activities_sex0.bind(this)}
+                                        activities_sex1={this.activities_sex1.bind(this)} activities_sex2={this.activities_sex2.bind(this)} activities_isMarriage0={this.activities_isMarriage0.bind(this)}
+                                        activities_isMarriage1={this.activities_isMarriage1.bind(this)} activities_callBack={this.activities_callBack.bind(this)} isMarriage={this.state.isMarriage} isSex={this.state.isSex}/>
+                <SetPwdModal isSetPwdModal={this.state.isSetPwdModal} isSet={this.state.isSet} setModalVisible={this.setModalVisible.bind(this)} setPwd_isShow={this.setPwd_isShow.bind(this)}
+                              setPwd_callBack={this.setPwd_callBack.bind(this)}/>
             </View>)
     }
 }

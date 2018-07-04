@@ -19,17 +19,19 @@ export default class CostModal extends Component {
         if(nextProps.isCostState){
             this.setState({
                 isState:true,
-                itemInfo:{
-                    payment:0,
-                }
+                // itemInfo:{
+                //     payment:0,
+                // }
             })
+            this.state.itemInfo.payment=0;
         } else {
             this.setState({
                 isState:false,
-                itemInfo:{
-                    payment:1,
-                }
+                // itemInfo:{
+                //     payment:1,
+                // }
             })
+            this.state.itemInfo.payment=1;
         }
 
     }
@@ -55,11 +57,20 @@ export default class CostModal extends Component {
                         <Text style={Stylecss.styles.modal_titleStyle}>输入金额</Text>
                         <View style={styles.viewStyle}>
                             <Text style={{marginLeft:UtilScreen.getWidth(40),lineHeight:UtilScreen.getHeight(54),fontSize:16,textAlign:'center'}}>￥</Text>
-                            <TextInput placeholder='00.00' underlineColorAndroid='transparent' style={{padding:0,fontSize:15,lineHeight:UtilScreen.getHeight(54),width:UtilScreen.getWidth(300),}} onChangeText={(text)=>this.setState({itemInfo:{money:text}})}/>
+                            <TextInput placeholder='00.00' underlineColorAndroid='transparent' style={{padding:0,fontSize:15,lineHeight:UtilScreen.getHeight(54),width:UtilScreen.getWidth(300),}} onChangeText={(text)=>{
+                                this.state.itemInfo.money = text;
+                                // let data = this.state.itemInfo.concat();
+                                // this.setState({itemInfo:data});
+
+                            }}/>
                         </View>
                         <Text style={Stylecss.styles.modal_titleStyle}>费用说明</Text>
                         <View style={styles.viewStyle}>
-                            <TextInput placeholder='请输入说明(选填)' underlineColorAndroid='transparent' style={{padding:0,fontSize:12,lineHeight:UtilScreen.getHeight(54),width:UtilScreen.getWidth(400),marginLeft:UtilScreen.getWidth(40)}} onChangeText={(text)=>this.setState({itemInfo:{costsThat:text}})}/>
+                            <TextInput placeholder='请输入说明(选填)' underlineColorAndroid='transparent' style={{padding:0,fontSize:12,lineHeight:UtilScreen.getHeight(54),width:UtilScreen.getWidth(400),marginLeft:UtilScreen.getWidth(40)}} onChangeText={(text)=>{
+                                this.state.itemInfo.costsThat = text;
+                                // let data = this.state.itemInfo.concat();
+                                // this.setState({itemInfo:data});
+                            } }/>
                         </View>
                         <Text style={Stylecss.styles.modal_btnStyle} onPress={this.props.callbackCost.bind(this,this.state.itemInfo)}>确定</Text>
                     </View>
