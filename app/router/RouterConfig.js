@@ -37,8 +37,10 @@ import UploadIdCard from '../pages/UploadIdCard';
 import FriendsTogether from '../pages/FriendsTogether';
 import InfoDetails from '../pages/InfoDetails';
 import MyComments from '../pages/MyComments';
-import UnpaidDetails from '../components/UnpaidDetails'
+import UnpaidDetails from '../components/UnpaidDetails';
+import Evaluation from '../pages/Evaluation';
 const RouterConfig = StackNavigator({
+    Evaluation:{screen:Evaluation},
     FriendsTogether:{screen:FriendsTogether},
     // Set: {screen: Set},
     // Order: {screen: Order},

@@ -92,7 +92,9 @@ export default class EvaluationView extends Component {
             )
         }
     }
-
+    componentWillReceiveProps(){
+        count=0;
+    }
     render() {
         return (
             <View style={Stylecss.styles.container}>
