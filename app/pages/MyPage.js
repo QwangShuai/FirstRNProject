@@ -47,16 +47,78 @@ export default class MyPage extends Component {
         this.jumpToOrder = this.jumpToOrder.bind(this);
         this.Sign_in = this.Sign_in.bind(this);
         this.clickCallBack = this.clickCallBack.bind(this);
+        this.JumpPage = this.JumpPage.bind(this);
     }
 
-    itemClick() {
+    itemClick(item) {
+        switch (item.key){
+            case 0:
 
+                break;
+            case 1:
+                this.JumpPage('MyAlbum');
+                break;
+            case 2:
+
+                break;
+            case 3:
+
+                break;
+            case 4:
+
+                break;
+            case 5:
+
+                break;
+            case 6:
+
+                break;
+            case 7:
+
+                break;
+        }
+
+    }
+    //跳转相应页面
+    JumpPage(Router){
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    this.props.navigation.navigate(Router,{routeName:'IndexPage'});
+                } else {
+                    this.props.navigation.navigate('Home',{routeName:'IndexPage'});
+                }
+            } else {
+                this.props.navigation.navigate('Home',{routeName:'IndexPage'});
+            }
+        })
     }
     clickCallBack(){
-        this.props.navigation.navigate('PersonalInfo',{routeName:'IndexPage'});
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    this.props.navigation.navigate('PersonalInfo',{routeName:'IndexPage'});
+                } else {
+                    this.props.navigation.navigate('Home',{routeName:'IndexPage'});
+                }
+            } else {
+                this.props.navigation.navigate('Home',{routeName:'IndexPage'});
+            }
+        })
     }
     jumpToOrder(){
-        this.props.navigation.navigate('Order',{routeName:'IndexPage'})
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    this.props.navigation.navigate('Order',{routeName:'IndexPage'})
+                } else {
+                    this.props.navigation.navigate('Home',{routeName:'IndexPage'});
+                }
+            } else {
+                this.props.navigation.navigate('Home',{routeName:'IndexPage'});
+            }
+        })
+
     }
     Sign_in(){
         this.props.navigation.navigate('Home');
