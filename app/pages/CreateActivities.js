@@ -8,7 +8,8 @@ import {
     TextInput,
     FlatList,
     TouchableHighlight,
-    ScrollView
+    ScrollView,
+    AsyncStorage
 } from 'react-native';
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
@@ -348,18 +349,14 @@ export default class CreateActivities extends Component {
     }
     //下一步
     nextStep(){
-        this.props.navigation.navigate('CreateContents');
-        postActivities();
-    }
-    //创建活动
-    postActivities(){
         let formData = new FormData();
         let param=md5.hex_md5(global.commons.baseurl+'action/ac_activity/add_activity');
         let params=md5.hex_md5(param);
-        let data = this.state.item.concat();
+        let data = this.state.item;
+        console.log('data',data);
         formData.append('app_key',params);
         formData.append('file_img',data.file_img);
-        formData.append('city',data.city);
+        formData.append('city','100000');
         formData.append('price_type',data.price_type);
         formData.append('price_info',data.price_info);
         formData.append('follow_pass',data.follow_pass);
@@ -377,7 +374,7 @@ export default class CreateActivities extends Component {
         AsyncStorage.getItem('uid', (error, result) => {
             if (!error) {
                 if (result !== '' && result !== null) {
-                    formData.append("user_id", result);
+                    formData.append("user_id", '7');
                     fetch(global.commons.baseurl+'action/ac_activity/add_travel',{
                         method:'POST',
                         body:formData,
@@ -392,7 +389,7 @@ export default class CreateActivities extends Component {
                                     '提示',
                                     ''+result.message+'',
                                     [
-                                        {text:'确定',onPress:(()=>{}),style:'cancel'}
+                                        {text:'确定',onPress:(()=>{this.props.navigation.navigate('CreateContents');}),style:'cancel'}
                                     ]
 
                                 );
@@ -408,14 +405,15 @@ export default class CreateActivities extends Component {
                             }
                             console.log('responseData',result);
                         })
-                        .catch((error)=>{console.error('error',error)});
+                        // .catch((error)=>{console.error('error',error)});
                 } else {
-                    this.login();
+                    this.props.navigation.navigate('Home',{position:'CreateActivities'});
                 }
             } else {
-                this.login();
+                this.props.navigation.navigate('Home',{position:'CreateActivities'});
             }
         })
+
     }
     render() {
         return (

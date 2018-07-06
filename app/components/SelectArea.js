@@ -24,20 +24,10 @@ export default class SelectArea extends Component {
                 var bf = new Buffer(responseData , 'base64')
                 var  str= bf.toString();
                 let result=JSON.parse(str);
-                if (result.code===200){
                     console.log('area',result);
-                    // this.setState({
-                    //     json:result.obj,
-                    // })
-                    for(let i=0;i<result.obj.length;i++){
-                        if(result.obj[i].ParentId==100000){
-
-                        }
-                    }
-
-                } else {
-                    console.log('area',result.message);
-                }
+                    this.setState({
+                        json:result,
+                    })
             })
     }
     componentDidUpdate() {
@@ -46,7 +36,7 @@ export default class SelectArea extends Component {
     render() {
         return (
             <AreaPicker
-                areaJson={AreaJson}
+                areaJson={this.state.json}
                 selectedValue={['北京市', '北京市', '东城区']}
                 onCoverPress={()=>{ this.props.callBack(['北京市', '北京市', '东城区'],0)}}
                 onPickerCancel={() => {
