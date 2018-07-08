@@ -7,10 +7,12 @@ export default class CostModal extends Component {
         super(props);
         this.mContext=mContext;
         this.state = {
-            isState:true,
+            isState0:true,
+            isState1:false,
+            isState2:false,
+            text:'',
             itemInfo:{
-                payment:0,
-                money:'',
+                money:0,
                 costsThat:'',
             }
         }
@@ -18,20 +20,28 @@ export default class CostModal extends Component {
     componentWillReceiveProps(nextProps){
         if(nextProps.isCostState==0){
             this.setState({
-                isState:true,
-                // itemInfo:{
-                //     payment:0,
-                // }
+                isState0:true,
+                isState1:false,
+                isState2:false,
+                text:'活动费用现场实际收取',
             })
             this.state.itemInfo.payment=0;
-        } else {
+        } else if(nextProps.isCostState==1) {
             this.setState({
-                isState:false,
-                // itemInfo:{
-                //     payment:1,
-                // }
+                isState0:false,
+                isState1:true,
+                isState2:false,
+                text:'活动费用由你支付，其他成员免费参与活动',
             })
             this.state.itemInfo.payment=1;
+        } else {
+            this.setState({
+                isState0: false,
+                isState1: false,
+                isState2: true,
+                text:'活动费用队员可选微信或支付宝支付。',
+            })
+            this.state.itemInfo.payment=2;
         }
 
     }
@@ -50,10 +60,11 @@ export default class CostModal extends Component {
                             <Image source={require('../res/images/closs_pay.png')}/>
                         </TouchableHighlight>
                         <View style={{marginTop:UtilScreen.getHeight(20),height:UtilScreen.getHeight(56),flexDirection:'row',}}>
-                            <Text style={[Stylecss.styles.modal_stateStyle,{color:this.state.isState?'#f71f1f':'#888888',borderColor:this.state.isState?'#f71f1f':'#888888'}]} onPress={this.props.paymentReference}>参考展示</Text>
-                            <Text style={[Stylecss.styles.modal_stateStyle,{marginLeft:UtilScreen.getWidth(60),color:this.state.isState?'#888888':'#f71f1f',borderColor:this.state.isState?'#888888':'#f71f1f'}]} onPress={this.props.paymentNow}>我请客</Text>
+                            <Text style={[Stylecss.styles.modal_stateStyle,{color:this.state.isState0?'#f71f1f':'#888888',borderColor:this.state.isState0?'#f71f1f':'#888888'}]} onPress={this.props.paymentReference}>参考展示</Text>
+                            <Text style={[Stylecss.styles.modal_stateStyle,{marginLeft:UtilScreen.getWidth(30),color:this.state.isState1?'#f71f1f':'#888888',borderColor:this.state.isState1?'#f71f1f':'#888888'}]} onPress={this.props.paymentNow}>我请客</Text>
+                            <Text style={[Stylecss.styles.modal_stateStyle,{marginLeft:UtilScreen.getWidth(30),color:this.state.isState2?'#f71f1f':'#888888',borderColor:this.state.isState2?'#f71f1f':'#888888'}]} onPress={this.props.paymentOnline}>线上支付</Text>
                         </View>
-                        <Text style={{color:'#333333',fontSize:10,marginTop:UtilScreen.getHeight(20)}}>{this.state.isState?'活动费用现场实际收取':'活动费用由你支付，其他成员免费参与活动'}</Text>
+                        <Text style={{color:'#333333',fontSize:10,marginTop:UtilScreen.getHeight(20)}}>{this.state.text}</Text>
                         <Text style={Stylecss.styles.modal_titleStyle}>输入金额</Text>
                         <View style={styles.viewStyle}>
                             <Text style={{marginLeft:UtilScreen.getWidth(40),lineHeight:UtilScreen.getHeight(54),fontSize:16,textAlign:'center'}}>￥</Text>

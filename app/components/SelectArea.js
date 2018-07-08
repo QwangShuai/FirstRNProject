@@ -8,7 +8,8 @@ export default class SelectArea extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            json:'',
+            json:[],
+            selectedValue:[],
         }
     }
     componentWillMount(){
@@ -22,11 +23,11 @@ export default class SelectArea extends Component {
         }) .then((response) => response.text() )
             .then((responseData)=>{
                 var bf = new Buffer(responseData , 'base64')
-                var  str= bf.toString();
+                var  str= bf.toString().toLowerCase();
                 let result=JSON.parse(str);
-                    console.log('area',result);
                     this.setState({
                         json:result,
+                        selectedValue:['北京', '北京市', '东城区'],
                     })
             })
     }
@@ -37,7 +38,7 @@ export default class SelectArea extends Component {
         return (
             <AreaPicker
                 areaJson={this.state.json}
-                selectedValue={['北京市', '北京市', '东城区']}
+                selectedValue={this.state.selectedValue}
                 onCoverPress={()=>{ this.props.callBack(['北京市', '北京市', '东城区'],0)}}
                 onPickerCancel={() => {
                     this.props.callBack(['北京市', '北京市', '东城区'],0);

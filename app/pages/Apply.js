@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,FlatList, TouchableHighlight} from 'react-native';
+import { AppRegistry ,View,Text,Image,StyleSheet,TextInput,FlatList, TouchableHighlight,AsyncStorage} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
 import ApplyInfoItem from '../components/ApplyInfoItem';
@@ -7,6 +7,8 @@ const Stylecss = require('../common/Stylecss');
 import ApplyRealName from '../components/ApplyRealName';
 import ApplyPaymentSuccess from '../components/ApplyPaymentSuccess';
 import ApplyPaymentState from '../components/ApplyPaymentState';
+const Buffer = require('buffer').Buffer;
+import md5 from "react-native-md5";
 export default class Apply extends Component {
     static navigationOptions = {
         headerStyle:{height:0},
@@ -19,12 +21,24 @@ export default class Apply extends Component {
                 {key:1,lTitle:'出发时间:',rHint:'2018-05-28',},
                 {key:2,lTitle:`费        用:`,rHint:'￥888.00',},
                 {key: 3, lTitle:`姓        名:`, rHint: '请输入姓名',},
-                {key: 4, lTitle: '联系方式:', rHint: '请输入手机号',},
-                {key: 5, lTitle:`性        别:`, rHint: '请输入性别',},
-                {key: 6, lTitle:`年        龄:`, rHint: '请输入年龄',},
-                {key: 7, lTitle: '婚姻状况:', rHint: '请输入婚姻状况',},
-                {key:8,lTitle:'支付方式',rHint:'现场支付',},
+                {key: 4, lTitle:`报名人数:`, rHint: '请输入参加活动的人数',},
+                {key: 5, lTitle: '联系方式:', rHint: '请输入手机号',},
+                {key: 6, lTitle:`性        别:`, rHint: '请输入性别',},
+                {key: 7, lTitle:`年        龄:`, rHint: '请输入年龄',},
+                {key: 8, lTitle: '婚姻状况:', rHint: '请输入婚姻状况',},
+                {key: 9,lTitle:'支付方式',rHint:'现场支付',},
             ],
+            item:{
+                num:0,
+                pfid:0,
+                pay_type:0,
+                money:0,
+                join_name:'',
+                join_tel:'',
+                join_sex:'',
+                join_age:'',
+                join_marry:'',
+            },
             modalVisible: false,
             wxImage:require('../res/images/apply_true.png'),
             alipayImage:require('../res/images/apply_false.png'),
@@ -58,6 +72,7 @@ export default class Apply extends Component {
             alipayImage:require('../res/images/apply_false.png'),
             isPay:true
         });
+        this.state.item.pay_type = 0
     }
     alipay_pay(){
         this.setState({
@@ -65,14 +80,59 @@ export default class Apply extends Component {
             alipayImage:require('../res/images/apply_true.png'),
             isPay:false
         });
+        this.state.item.pay_type = 1
     }
-    myPay(){
-        this.setState({isFailure: true});
-        if(this.state.isPay){//微信支付
+    myPay() {
+        // if(this.state.isPay){//微信支付
+        //     this.state.item.pay_type = 0
+        // } else {//支付宝支付
+        //     this.state.item.pay_type = 1
+        // }
+        let data = this.state.item;
+        console.log('请求数据：',data);
+        let formData = new FormData();
+        let param = md5.hex_md5(global.commons.baseurl + 'action/ac_order/user_join');
+        let params = md5.hex_md5(param);
+        formData.append('app_key', params);
+        // formData.append('num', data.num);
+        formData.append('pfid', 8);
+        // formData.append('user_id', 7);
+        formData.append('pay_type', data.pay_type);
+        formData.append('money', data.money);
+        formData.append('join_name', data.join_name);
+        formData.append('join_tel', data.join_tel);
+        formData.append('join_sex', data.join_sex);
+        formData.append('join_age', data.join_age);
+        formData.append('join_marry', data.join_marry);
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    formData.append("user_id", '7');
+                    fetch(global.commons.baseurl+'action/ac_order/user_join',{
+                        method:'POST',
+                        body:formData,
+                    })
+                        .then((response) => response.text() )
+                        .then((responseData)=>{
+                            var bf = new Buffer(responseData , 'base64')
+                            var  str= bf.toString();
+                            let result=JSON.parse(str);
+                            if (result.code===200){
+                                console.log('responseData',result);
+                            }else{
+                                console.log('responseData',result.message);
+                            }
+                            console.log('responseData',result);
+                        })
+                    // .catch((error)=>{console.error('error',error)});
+                } else {
+                    this.props.navigation.navigate('Home',{position:'Apply'});
+                }
+            } else {
+                this.props.navigation.navigate('Home',{position:'Apply'});
+            }
+        })
 
-        } else {//支付宝支付
-
-        }
     }
     setView(){
         if(this.state.orPay){
@@ -100,6 +160,31 @@ export default class Apply extends Component {
             )
         }
     }
+    editText(text,key){
+        console.log('myText',text)
+        switch (key){
+            case 3:
+                this.state.item.join_name = text;
+                break;
+            case 4:
+                this.state.item.num = text;
+                break;
+            case 5:
+                this.state.item.join_tel = text;
+                break;
+            case 6:
+                this.state.item.join_sex = text;
+                break;
+            case 7:
+                this.state.item.join_age = text;
+                break;
+        }
+        let data = this.state.item;
+        console.log('mydata',data)
+        this.setState({
+            item:data
+        })
+    }
     render(){
         return(
             <View style={styles.container}>
@@ -108,17 +193,17 @@ export default class Apply extends Component {
                     style={{flex:1}}
                     data={this.state.itemInfo}
                     renderItem={({item,index}) => {
-                        if(index<8){
+                        if(index<9){
                             return (
                                 <View>
-                                        <ApplyInfoItem itemInfo={item}/>
+                                        <ApplyInfoItem editText={this.editText.bind(this)} itemInfo={item}/>
                                     <View style={Stylecss.styles.line}/>
                                 </View>
                             );
-                        } else if(index==8&&!this.state.orPay){
+                        } else if(index==9&&!this.state.orPay){
                             return (
                                 <View>
-                                        <ApplyInfoItem itemInfo={item}/>
+                                        <ApplyInfoItem editText={this.editText.bind(this)} itemInfo={item}/>
                                     <View style={Stylecss.styles.line}/>
                                 </View>
                             );

@@ -9,7 +9,8 @@ import {
     FlatList,
     TouchableHighlight,
     ScrollView,
-    AsyncStorage
+    AsyncStorage,
+    Alert
 } from 'react-native';
 import ToolBar from '../components/ToolBar';
 import UtilScreen from '../util/UtilScreen';
@@ -27,6 +28,7 @@ const Buffer = require('buffer').Buffer;
 const Stylecss = require('../common/Stylecss');
 import MyInputDialog from '../components/MyInputDialog';
 import CostModal from '../components/CostModal';
+import DraftModal from '../components/DraftModal';
 
 export default class CreateActivities extends Component {
     static navigationOptions = {
@@ -37,12 +39,14 @@ export default class CreateActivities extends Component {
         super(props);
         this.state = {
             item:{
+                activity_id:0,
+                activity_info:'',
                 follow_title:'',
                 begin_time:'',
                 end_time:'',
                 file_img:'',
                 price:0,
-                price_info:'',
+                price_info:0,
                 city:0,
                 price_type:0,
                 follow_pass:'',
@@ -89,6 +93,7 @@ export default class CreateActivities extends Component {
             isSex:0,
             isSet:true,
             isSetPwdModal:false,
+            isShowDraftModal:false,
         };
         this.selectDate = {key: 1, title: '0'};
 
@@ -149,6 +154,11 @@ export default class CreateActivities extends Component {
     paymentNow(){
         this.setState ({
             isCostState:1,
+        })
+    }
+    paymentOnline(){
+        this.setState ({
+            isCostState:2,
         })
     }
     itemClick(item) {
@@ -212,10 +222,17 @@ export default class CreateActivities extends Component {
         this.state.itemInfo[this.selectDate.key].rTitle = d;
         let data = this.state.itemInfo.concat();
         this.setState({isSelectDate: false, itemInfo: data});
+        let a = d[0];
+        let b = d[1];
+        let c = d[2];
+        let time = a.split("年");
+        let time2 = b.split("月");
+        let time3 = c.split("日");
+
         if(this.selectDate.key==0){
-            this.state.item.begin_time = d;
+            this.state.item.begin_time = time[0]+'-'+time2[0]+'-'+time3[0];
         } else {
-            this.state.item.end_time = d;
+            this.state.item.end_time = time[0]+'-'+time2[0]+'-'+time3[0];
         }
     }
 
@@ -243,7 +260,7 @@ export default class CreateActivities extends Component {
         });
         this.state.item.price = data.money;
         this.state.item.price_type = this.state.isCostState;
-        this.state.item.price_info = data.other;
+        this.state.item.price_info = data.costsThat;
     }
     selectAreaResult(area,type) {
         let [province, city, street] = area;
@@ -310,12 +327,12 @@ export default class CreateActivities extends Component {
     }
     activities_isMarriage0(){
         this.setState({
-            isMarriage:true,
+            isMarriage:0,
         })
     }
     activities_isMarriage1(){
         this.setState({
-            isMarriage:false,
+            isMarriage:1,
         })
     }
     activities_callBack(item){
@@ -347,16 +364,36 @@ export default class CreateActivities extends Component {
         })
         this.state.item.follow_pass= item.pwd;
     }
+    //保存按钮点击事件
+    savaClick(){
+        this.setState({
+            isShowDraftModal:true,
+        })
+    }
+    saveSelect(type){
+        if(type==0){
+            this.nextStep(0);
+        } else if(type==1){
+            this.nextStep(1);
+        } else {
+            this.nextStep(1);
+        }
+    }
     //下一步
-    nextStep(){
+    nextStep(type){
         let formData = new FormData();
-        let param=md5.hex_md5(global.commons.baseurl+'action/ac_activity/add_activity');
+        console.log('网址',global.commons.baseurl+'action/ac_activity/add_travel');
+        let param=md5.hex_md5(global.commons.baseurl+'action/ac_activity/add_travel');
         let params=md5.hex_md5(param);
         let data = this.state.item;
         console.log('data',data);
         formData.append('app_key',params);
+        formData.append('activity_id',0);
+        formData.append('pfexamine',type);
+        formData.append('activity_info',data.activity_info);
         formData.append('file_img',data.file_img);
-        formData.append('city','100000');
+        formData.append('city',100000);
+        formData.append('price',data.price);
         formData.append('price_type',data.price_type);
         formData.append('price_info',data.price_info);
         formData.append('follow_pass',data.follow_pass);
@@ -389,7 +426,7 @@ export default class CreateActivities extends Component {
                                     '提示',
                                     ''+result.message+'',
                                     [
-                                        {text:'确定',onPress:(()=>{this.props.navigation.navigate('CreateContents');}),style:'cancel'}
+                                        {text:'确定',onPress:(()=>{this.props.navigation.navigate('CreateContents',{activity_id:result.obj.activity_id});}),style:'cancel'}
                                     ]
 
                                 );
@@ -421,14 +458,24 @@ export default class CreateActivities extends Component {
                 <ToolBar title={'创建活动'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <ScrollView>
                     <View style={{height:UtilScreen.getHeight(88),flexDirection:'row',marginLeft:UtilScreen.getWidth(40)}}>
-                        {/*<Text style={{color:'#ff0000',fontSize:14,alignSelf:'center'}}>{this.state.hintText}</Text>*/}
                         <TextInput style={{marginLeft:UtilScreen.getWidth(10),height:UtilScreen.getHeight(88),color:'#333333',fontSize:14,alignSelf:'center',padding:0,width:UtilScreen.getWidth(580)}}
                                    placeholder='请输入活动标题' maxLength={30}  underlineColorAndroid='transparent' onChange={this.changeTitle.bind(this)} onChangeText={(text)=>{
                                        this.state.item.follow_title =text;
                         }}/>
                         <Text style={{color:'#333333',fontSize:14,position:'absolute',right:UtilScreen.getWidth(40),alignSelf:'center'}}>{this.state.item.follow_title.length}/30</Text>
                     </View>
-
+                    <View style={{height:UtilScreen.getHeight(88),flexDirection:'row',marginLeft:UtilScreen.getWidth(40)}}>
+                        <Text style={{color:'#333333',fontSize:14,alignSelf:'center',marginLeft:UtilScreen.getWidth(10)}}>具体内容</Text>
+                        <Text style={{color:'#333333',fontSize:14,position:'absolute',right:UtilScreen.getWidth(40),alignSelf:'center'}}>{this.state.item.activity_info.length}/2000</Text>
+                    </View>
+                    <TextInput style={{height:UtilScreen.getHeight(160),color:'#333333',fontSize:14,alignSelf:'center',padding:0,width:UtilScreen.getWidth(650)}}
+                               placeholder='请输入活动内容' maxLength={2000} multiline={true} textAlignVertical='top' underlineColorAndroid='transparent' onChangeText={(text)=>{
+                        this.state.item.activity_info =text;
+                        let data = this.state.item;
+                        this.setState({
+                            item:data
+                        })
+                    }}/>
                     <View style={Stylecss.styles.line}/>
                 <TouchableHighlight underlayColor='#ffffff' onPress={this.clickImage.bind(this)}>
                     <Image style={styles.showImage} source={this.state.ImageSource}/>
@@ -448,7 +495,7 @@ export default class CreateActivities extends Component {
                         }}
                         keyExtractor={item => item.key.toString()}
                     ></FlatList>
-                    <Text style={styles.next} onPress={this.nextStep.bind(this)}>下一步</Text>
+                    <Text style={styles.next} onPress={this.savaClick.bind(this)}>保存</Text>
                 </ScrollView>
                 <SelectYesOrNo yesOrNo={this.takerPhotoOrSelect.bind(this)} isShow={this.state.isShowSelectPhoto}
                                topTitle={'拍照'} bottomTitle={'从相册中选择'}/>
@@ -458,7 +505,7 @@ export default class CreateActivities extends Component {
                                onCoverPress={this.inputDialogDismissBack.bind(this)}
                                inputProps={this.state.inputImageDescProps}/>
                 <CostModal isCost={this.state.isCost} isCostState={this.state.isCostState} setModalVisible={this.setModalVisible.bind(this)} paymentReference={this.paymentReference.bind(this)}
-                    paymentNow={this.paymentNow.bind(this)} callbackCost={this.callbackCost.bind(this)}/>
+                    paymentNow={this.paymentNow.bind(this)} callbackCost={this.callbackCost.bind(this)} paymentOnline={this.paymentOnline.bind(this)}/>
                 <SelectArea isShow={this.state.isShowSelectArea} callBack={this.selectAreaResult.bind(this)}/>
                 <PersonsModal isPersonsState={this.state.isPersonsState} isPersonsModal={this.state.isPersonsModal} setModalVisible={this.setModalVisible.bind(this)} persons_none={this.persons_none.bind(this)}
                               persons_less={this.persons_less.bind(this)} persons_many={this.persons_many.bind(this)} callBackPerson={this.callBackPerson.bind(this)}/>
@@ -467,6 +514,8 @@ export default class CreateActivities extends Component {
                                         activities_isMarriage1={this.activities_isMarriage1.bind(this)} activities_callBack={this.activities_callBack.bind(this)} isMarriage={this.state.isMarriage} isSex={this.state.isSex}/>
                 <SetPwdModal isSetPwdModal={this.state.isSetPwdModal} isSet={this.state.isSet} setModalVisible={this.setModalVisible.bind(this)} setPwd_isShow={this.setPwd_isShow.bind(this)}
                               setPwd_callBack={this.setPwd_callBack.bind(this)}/>
+                <DraftModal yesOrNo={this.saveSelect.bind(this)} isShow={this.state.isShowDraftModal} centerTitle='保存草稿'
+                               topTitle={'发表'} bottomTitle={'保存,继续填写'}/>
             </View>)
     }
 }

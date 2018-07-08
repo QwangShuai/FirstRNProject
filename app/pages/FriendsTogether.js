@@ -9,13 +9,14 @@ import {
     FlatList,
     TouchableHighlight,
     ImageBackground,
-    ScrollView
+    ScrollView,
 } from 'react-native';
 import ToolBar from '../components/ToolBar';
 import ActivityView from '../components/ActivityView';
 import UtilScreen from '../util/UtilScreen';
 import PolyContentItem from '../components/PolyContentItem';
-
+const Buffer = require('buffer').Buffer;
+import md5 from "react-native-md5";
 const Stylecss = require('../common/Stylecss');
 export default class FriendsTogether extends Component {
     static navigationOptions = {
@@ -142,7 +143,28 @@ export default class FriendsTogether extends Component {
     backClick() {
         this.props.navigation.goBack();
     }
+    componentDidMount() {
+        let formData = new FormData();
+        formData.append("pfID", 8);
+        let param=md5.hex_md5(global.commons.baseurl+'action/ac_activity/activity_info');
+        let params=md5.hex_md5(param);
+        formData.append('app_key',params);
+        fetch(global.commons.baseurl+'action/ac_activity/add_travel',{
+            method:'POST',
+            body:formData,
+        })
+            .then((response) => response.text() )
+            .then((responseData)=>{
+                var bf = new Buffer(responseData , 'base64')
+                var  str= bf.toString();
+                let result=JSON.parse(str);
+                if (result.code===200) {
+                    this.setState({
 
+                    })
+                }
+        })
+    }
     render() {
         return (
             <ScrollView>
