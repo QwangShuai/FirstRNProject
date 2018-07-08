@@ -1,4 +1,4 @@
-import React, { Component, UIManager } from 'react';
+import React, {Component, UIManager} from 'react';
 
 import {
     Text,
@@ -15,7 +15,7 @@ class AreaPicker extends BaseDialog {
 
     static defaultProps = {
         removeSubviews: false,
-        selectedValue: ['香港', '香港', '中西區'],
+        selectedValue: ['北京市', '北京市', '东城区'],
         areaJson: null,
         confirmText: '确定',
         confirmTextSize: 14,
@@ -33,25 +33,41 @@ class AreaPicker extends BaseDialog {
     constructor(props) {
         super(props);
         this.state = {
-            areaData: this.getAreaData(),
+            areaData: this.getAreaData(this.props.areaJson || []),
             path: new Animated.Value(0),
             ...this.formatPickerData(props.selectedValue)
         };
     }
 
     _getContentPosition() {
-        return { justifyContent: 'flex-end', alignItems: 'center' }
+        return {justifyContent: 'flex-end', alignItems: 'center'}
     }
 
-    getAreaData() {
-        let area = this.props.areaJson;
+    componentWillReceiveProps(nextProps) {
+        this.setState(
+            {
+                areaData: this.getAreaData(nextProps.areaJson || []),
+                 ...this.formatPickerData(this.props.selectedValue)
+            }
+        );
+    }
+
+
+    getAreaData(area) {
+        // let area = this.props.areaJson;
+        console.log('getArea', area);
         let data = [];
         let len = area.length;
         for (let i = 0; i < len; i++) {
             let city = [];
             for (let j = 0, cityLen = area[i]['city'].length; j < cityLen; j++) {
-                let _city = {};
-                _city[area[i]['city'][j]['name']] = area[i]['city'][j]['area'];
+                 let _city = {};
+                let county = [];
+                for (let x = 0, countyLen = area[i]['city'][j]['area'].length; x < countyLen; x++) {
+                    let _county = area[i]['city'][j]['area'][x].name;
+                    county.push(_county);
+                }
+                _city[area[i]['city'][j]['name']] =county; //area[i]['city'][j]['area'];
                 city.push(_city);
             }
             let _data = {};
@@ -67,7 +83,7 @@ class AreaPicker extends BaseDialog {
         let county = [];
         let firstCity = null;
         let firstCountry = null;
-        let areaData = this.getAreaData();
+        let areaData = this.getAreaData(this.props.areaJson);
         areaData.map((pitem) => {
             for (let pname in pitem) {
                 province.push(pname)
@@ -122,12 +138,12 @@ class AreaPicker extends BaseDialog {
                     list={item}
                     onPickerSelected={(toValue) => {
                         this.props.selectedValue[pickerId] = toValue;
-                        this.setState({ ...this.formatPickerData(this.props.selectedValue) });
+                        this.setState({...this.formatPickerData(this.props.selectedValue)});
                     }}
                     selectedIndex={selectedIndex}
                     fontSize={this.getSize(14)}
                     itemWidth={this.mScreenWidth / this.state.pickerData.length}
-                    itemHeight={this.props.itemHeight} />
+                    itemHeight={this.props.itemHeight}/>
             } else {
                 return null;
             }
@@ -140,7 +156,13 @@ class AreaPicker extends BaseDialog {
                 height: this.props.itemHeight * 5 + this.getSize(15) + this.getSize(44), width: this.mScreenWidth,
                 backgroundColor: '#ffffff'
             }}>
-            <View style={{ width: this.mScreenWidth, height: this.props.itemHeight * 5 + this.getSize(15), flexDirection: 'row', position: 'absolute', bottom: 0 }}>
+            <View style={{
+                width: this.mScreenWidth,
+                height: this.props.itemHeight * 5 + this.getSize(15),
+                flexDirection: 'row',
+                position: 'absolute',
+                bottom: 0
+            }}>
                 {this.renderPicker()}
             </View>
             <View style={{
@@ -154,8 +176,17 @@ class AreaPicker extends BaseDialog {
                             this.props.onPickerCancel && this.props.onPickerCancel();
                         });
                     }}
-                    style={{ width: this.getSize(60), height: this.getSize(44), justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontSize: this.props.cancelTextSize, fontWeight: '400', color: this.props.cancelTextColor }}>{this.props.cancelText}</Text>
+                    style={{
+                        width: this.getSize(60),
+                        height: this.getSize(44),
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <Text style={{
+                        fontSize: this.props.cancelTextSize,
+                        fontWeight: '400',
+                        color: this.props.cancelTextColor
+                    }}>{this.props.cancelText}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
                     onPress={() => {
@@ -163,8 +194,17 @@ class AreaPicker extends BaseDialog {
                             this.props.onPickerConfirm && this.props.onPickerConfirm(this.props.selectedValue);
                         });
                     }}
-                    style={{ width: this.getSize(60), height: this.getSize(44), justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontSize: this.props.confirmTextSize, fontWeight: '400', color: this.props.confirmTextColor }}>{this.props.confirmText}</Text>
+                    style={{
+                        width: this.getSize(60),
+                        height: this.getSize(44),
+                        justifyContent: 'center',
+                        alignItems: 'center'
+                    }}>
+                    <Text style={{
+                        fontSize: this.props.confirmTextSize,
+                        fontWeight: '400',
+                        color: this.props.confirmTextColor
+                    }}>{this.props.confirmText}</Text>
                 </TouchableOpacity>
             </View>
         </View>

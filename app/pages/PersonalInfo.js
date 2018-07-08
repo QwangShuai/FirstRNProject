@@ -56,7 +56,7 @@ export default class PersonalInfo extends Component {
         this.selectItemDate = {key: 4, title: '选择您的出生日期'};
     }
     login(){
-        this.props.navigation.navigate('Home',{position:'PersonalInfo'});
+       // this.props.navigation.navigate('Home',{position:'PersonalInfo'});
     }
     asQuery() {
         AsyncStorage.getItem('uid', (error, result) => {
