@@ -6,6 +6,9 @@ import UtilScreen from '../util/UtilScreen';
 export default class ApplyInfoItem extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            key:0,
+        }
     }
     static defaultProps = {
         itemInfo: {
@@ -15,18 +18,20 @@ export default class ApplyInfoItem extends Component {
     }
 
     render(){
-        if(this.props.itemInfo.key>=0&&this.props.itemInfo.key<3||this.props.itemInfo.key==8){
+        if(this.props.itemInfo.key>=0&&this.props.itemInfo.key<3||this.props.itemInfo.key==9){
             return(
                 <View style={styles.container}>
                     <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
                     <Text style={styles.rightTitle}>{this.props.itemInfo.rHint}</Text>
                 </View>
             )
-        } else if(this.props.itemInfo.key>=3&&this.props.itemInfo.key<8){
+        } else if(this.props.itemInfo.key>=3&&this.props.itemInfo.key<9){
             return(
                 <View style={styles.container}>
                     <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
-                    <TextInput style={styles.rightHint} placeholder={this.props.itemInfo.rHint} underlineColorAndroid={'transparent'}/>
+                    <TextInput style={styles.rightHint} placeholder={this.props.itemInfo.rHint} underlineColorAndroid={'transparent'} onChangeText={(text)=>
+                        this.props.editText.bind(this,text,this.props.itemInfo)
+                    }/>
                 </View>
             )
         }
