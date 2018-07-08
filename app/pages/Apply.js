@@ -160,9 +160,9 @@ export default class Apply extends Component {
             )
         }
     }
-    editText(text,item){
+    editText(text,key){
         console.log('myText',text)
-        switch (item.key){
+        switch (key){
             case 3:
                 this.state.item.join_name = text;
                 break;
@@ -179,7 +179,8 @@ export default class Apply extends Component {
                 this.state.item.join_age = text;
                 break;
         }
-        let data = this.state.item.concat();
+        let data = this.state.item;
+        console.log('mydata',data)
         this.setState({
             item:data
         })

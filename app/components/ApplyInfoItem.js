@@ -7,9 +7,10 @@ export default class ApplyInfoItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            key:0,
+            myText: '',
         }
     }
+
     static defaultProps = {
         itemInfo: {
             lTitle: '左边主标题',
@@ -17,21 +18,24 @@ export default class ApplyInfoItem extends Component {
         },
     }
 
-    render(){
-        if(this.props.itemInfo.key>=0&&this.props.itemInfo.key<3||this.props.itemInfo.key==9){
-            return(
+    render() {
+        if (this.props.itemInfo.key >= 0 && this.props.itemInfo.key < 3 || this.props.itemInfo.key == 9) {
+            return (
                 <View style={styles.container}>
                     <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
                     <Text style={styles.rightTitle}>{this.props.itemInfo.rHint}</Text>
                 </View>
             )
-        } else if(this.props.itemInfo.key>=3&&this.props.itemInfo.key<9){
-            return(
+        } else if (this.props.itemInfo.key >= 3 && this.props.itemInfo.key < 9) {
+            return (
                 <View style={styles.container}>
                     <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
-                    <TextInput style={styles.rightHint} placeholder={this.props.itemInfo.rHint} underlineColorAndroid={'transparent'} onChangeText={(text)=>
-                        this.props.editText.bind(this,text,this.props.itemInfo)
-                    }/>
+                    <TextInput autoCorrect={false} style={styles.rightHint} placeholder={this.props.itemInfo.rHint}
+                               underlineColorAndroid={'transparent'}
+                               onChange={this.props.editText.bind(this, this.state.myText, this.props.itemInfo.key)}
+                               onChangeText={(text) =>
+                                   this.state.myText = text
+                               }/>
                 </View>
             )
         }
@@ -46,27 +50,27 @@ const styles = StyleSheet.create({
 
     },
     leftText: {
-        alignSelf:'center',
+        alignSelf: 'center',
         color: '#333',
         fontSize: 14,
-        width:UtilScreen.getWidth(140),
+        width: UtilScreen.getWidth(140),
         marginLeft: UtilScreen.getWidth(38),
-        textAlign:'justify',
+        textAlign: 'justify',
 
     },
-    rightHint:{
-        padding:0,
-      fontSize:14,
-        width:'100%',
-      alignSelf:'center',
-        color:'#cacaca',
+    rightHint: {
+        padding: 0,
+        fontSize: 14,
+        width: '100%',
+        alignSelf: 'center',
+        color: '#cacaca',
         // lineHeight:UtilScreen.getHeight(86),
     },
-    rightTitle:{
-        fontSize:14,
-        width:'100%',
-        alignSelf:'center',
-        color:'#333',
+    rightTitle: {
+        fontSize: 14,
+        width: '100%',
+        alignSelf: 'center',
+        color: '#333',
         // lineHeight:UtilScreen.getHeight(86),
     },
 })
