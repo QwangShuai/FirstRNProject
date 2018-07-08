@@ -25,7 +25,7 @@ const Buffer = require('buffer').Buffer;
 const Stylecss = require('../common/Stylecss');
 import MyInputDialog from '../components/MyInputDialog';
 import CostModal from '../components/CostModal';
-
+import ModalDropdown from 'react-native-modal-dropdown';
 export default class CreateFriendRemember extends Component {
     static navigationOptions = {
         headerStyle: {height: 0},
@@ -35,23 +35,24 @@ export default class CreateFriendRemember extends Component {
         super(props);
         this.state = {
             item:{
-                follow_title:'',
-                begin_time:'',
-                end_time:'',
-                file_img:'',
-                price:0,
-                price_info:'',
-                city:0,
-                price_type:0,
-                follow_pass:'',
-                sex:0,
+                follow_title:'',//标题
+                begin_time:'',//开始时间
+                end_time:'',//结束时间
+                file_img:null,//主图
+                fmpeople:'5',//出游人数
+                city:0,//地点
+                activity_info:"这是内容内容这是内容内容这是内容内容这是内容内容这是内容内容",//内容
+                follow_pass:'',//密码
+                fmlable:4,//标签
+                fmpartyId:0,//所属活动,
+                insertatext:0,//是否可以插文
             },
             itemInfo: [
                 {key: 0, lUrl: require('../res/images/time-start.png'), lTitle: '开始时间:', rTitle: '0000-00-00',},
                 {key: 1, lUrl: require('../res/images/time-end.png'), lTitle: '结束时间:', rTitle: '0000-00-00',},
                 {key: 2, lUrl: require('../res/images/place.png'), lTitle: '活动地点:', rTitle: '城市名字',},
-                {key: 3, lUrl: require('../res/images/price.png'), lTitle: '人均费用:', rTitle: '￥000.00',},
-                {key: 4, lUrl: require('../res/images/enter-activity.png'), lTitle: '进入活动:', rTitle: '参加活动需输入密码',},
+                {key: 3, lUrl: require('../res/images/price.png'), lTitle: '出游人数', rTitle: '填写人数',},
+                {key: 4, lUrl: require('../res/images/enter-activity.png'), lTitle: '进入友记:', rTitle: '需输入密码',},
             ],
             isShowSelectPhoto: false,
             isSelectDate: false,
@@ -255,34 +256,41 @@ export default class CreateFriendRemember extends Component {
     //下一步
     nextStep(){
         let formData = new FormData();
-        let param=md5.hex_md5(global.commons.baseurl+'action/ac_activity/add_activity');
+        let param=md5.hex_md5(global.commons.baseurl+'action/ac_article/InsertArticle');
         let params=md5.hex_md5(param);
         let data = this.state.item;
-        console.log('data',data);
         formData.append('app_key',params);
-        formData.append('file_img',data.file_img);
-        formData.append('city','100000');
-        formData.append('price_type',data.price_type);
-        formData.append('price_info',data.price_info);
-        formData.append('follow_pass',data.follow_pass);
-        formData.append('begin_time',data.begin_time);
-        formData.append('end_time',data.end_time);
-        formData.append('sex',data.sex);
+        formData.append('fmtitle',data.follow_title);
+        formData.append('fmcontent',data.activity_info);
+        formData.append('fmaddress',data.city);
+        formData.append("images",data.file_img);
+        formData.append('fmlable',data.fmlable);
+        formData.append('fmgotime',data.begin_time[0]+'-'+data.begin_time[1]+'-'+data.begin_time[2]);
+        formData.append('fmendtime',data.end_time[0]+'-'+data.end_time[1]+'-'+data.end_time[2]);
+        formData.append('fmpeople',data.fmpeople);
+        formData.append('fmpartyID',data.fmpartyId);
+        formData.append('accesspassword',data.follow_pass);
+        formData.append('insertatext',data.insertatext);
         AsyncStorage.getItem('uid', (error, result) => {
             if (!error) {
                 if (result !== '' && result !== null) {
-                    formData.append("user_id", '7');
-                    fetch(global.commons.baseurl+'action/ac_activity/add_travel',{
+                    formData.append("userID", result);
+                    fetch(global.commons.baseurl+'action/ac_article/InsertArticle',{
                         method:'POST',
+                        headers:{
+                            'Content-Type':'multipart/form-data',
+                        },
                         body:formData,
                     })
                         .then((response) => response.text() )
                         .then((responseData)=>{
+                            console.log('responseData',responseData);
+                            return false;
                             var bf = new Buffer(responseData , 'base64')
                             var  str= bf.toString();
                             let result=JSON.parse(str);
-                            if (result.code===200){
-                                Alert.alert(
+                            /*if (result.code===200){*/
+                                /*Alert.alert(
                                     '提示',
                                     ''+result.message+'',
                                     [
@@ -299,7 +307,7 @@ export default class CreateFriendRemember extends Component {
                                     ]
 
                                 );
-                            }
+                            }*/
                             console.log('responseData',result);
                         })
                     // .catch((error)=>{console.error('error',error)});
@@ -315,20 +323,35 @@ export default class CreateFriendRemember extends Component {
     render() {
         return (
             <View style={Stylecss.styles.container}>
-                <ToolBar title={'创建活动'} isShowBack={true} backClick={this.backClick.bind(this)}/>
+                <ToolBar title={'创建友记'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                     <View style={{height:UtilScreen.getHeight(88),flexDirection:'row',marginLeft:UtilScreen.getWidth(40)}}>
                         {/*<Text style={{color:'#ff0000',fontSize:14,alignSelf:'center'}}>{this.state.hintText}</Text>*/}
                         <TextInput style={{marginLeft:UtilScreen.getWidth(10),height:UtilScreen.getHeight(88),color:'#333333',fontSize:14,alignSelf:'center',padding:0,width:UtilScreen.getWidth(580)}}
-                                   placeholder='请输入活动标题' maxLength={30}  underlineColorAndroid='transparent' onChange={this.changeTitle.bind(this)} onChangeText={(text)=>{
+                                   placeholder='请输入友记标题' maxLength={30}  underlineColorAndroid='transparent' onChange={this.changeTitle.bind(this)} onChangeText={(text)=>{
                             this.state.item.follow_title =text;
                         }}/>
                         <Text style={{color:'#333333',fontSize:14,position:'absolute',right:UtilScreen.getWidth(40),alignSelf:'center'}}>{this.state.item.follow_title.length}/30</Text>
+
                     </View>
 
-                    <View style={Stylecss.styles.line}/>
+
+                <View style={Stylecss.styles.line}/>
+                {/*<ModalDropdown options={['option 1', 'option 2']}/>*/}
                     <TouchableHighlight underlayColor='#ffffff' onPress={this.clickImage.bind(this)}>
                         <Image style={styles.showImage} source={this.state.ImageSource}/>
                     </TouchableHighlight>
+                <View style={{height:UtilScreen.getHeight(88),flexDirection:'row',marginLeft:UtilScreen.getWidth(40)}}>
+                    <Text style={{color:'#333333',fontSize:14,alignSelf:'center',marginLeft:UtilScreen.getWidth(10)}}>具体内容</Text>
+                    <Text style={{color:'#333333',fontSize:14,position:'absolute',right:UtilScreen.getWidth(40),alignSelf:'center'}}>{this.state.item.activity_info.length}/2000</Text>
+                </View>
+                <TextInput style={{height:UtilScreen.getHeight(160),color:'#333333',fontSize:14,alignSelf:'center',padding:0,width:UtilScreen.getWidth(650)}}
+                           placeholder='请输入活动内容' maxLength={2000} multiline={true} textAlignVertical='top' underlineColorAndroid='transparent' onChangeText={(text)=>{
+                    this.state.item.activity_info =text;
+                    let data = this.state.item;
+                    this.setState({
+                        item:data
+                    })
+                }}/>
                     <FlatList
                         data={this.state.itemInfo}
                         renderItem={({item}) => {

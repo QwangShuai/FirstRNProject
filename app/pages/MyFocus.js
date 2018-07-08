@@ -56,6 +56,9 @@ export default class MyFocus extends Component {
             isInvite:false,
         })
     }
+    pay(){
+
+    }
     inviteShow(){
         this.setState({
             isInvite:true,
