@@ -55,7 +55,6 @@ class AreaPicker extends BaseDialog {
 
     getAreaData(area) {
         // let area = this.props.areaJson;
-        console.log('getArea', area);
         let data = [];
         let len = area.length;
         for (let i = 0; i < len; i++) {

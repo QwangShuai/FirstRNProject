@@ -46,7 +46,7 @@ export default class CreateContents extends Component {
         });
     }
     backClick() {
-        this.props.navigation.navigate('CreateActivities');
+        this.props.navigation.goBack();
     }
     addContent(){//继续添加  清空当前页面内容
         this.setState({

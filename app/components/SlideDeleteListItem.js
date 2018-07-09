@@ -66,7 +66,7 @@ export default class SlideDeleteListItem extends View {
 
     render() {
         return (
-            <View>
+            <View style={{height:UtilScreen.getHeight(this.props.myHeight)}}>
                 <View style={styles.right}>
                     <TouchableHighlight
                         onPress={() => {

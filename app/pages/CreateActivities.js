@@ -40,7 +40,7 @@ export default class CreateActivities extends Component {
         this.state = {
             item:{
                 activity_id:0,
-                activity_info:'',
+                follow_info:'',
                 follow_title:'',
                 begin_time:'',
                 end_time:'',
@@ -390,7 +390,8 @@ export default class CreateActivities extends Component {
         formData.append('app_key',params);
         formData.append('activity_id',0);
         formData.append('pfexamine',type);
-        formData.append('activity_info',data.activity_info);
+        formData.append('follow_info',data.follow_info);
+        formData.append('follow_title',data.follow_title);
         formData.append('file_img',data.file_img);
         formData.append('city',100000);
         formData.append('price',data.price);
@@ -422,23 +423,11 @@ export default class CreateActivities extends Component {
                             var  str= bf.toString();
                             let result=JSON.parse(str);
                             if (result.code===200){
-                                Alert.alert(
-                                    '提示',
-                                    ''+result.message+'',
-                                    [
-                                        {text:'确定',onPress:(()=>{this.props.navigation.navigate('CreateContents',{activity_id:result.obj.activity_id});}),style:'cancel'}
-                                    ]
+                                this.setState({
+                                    isShowDraftModal:false,
+                                })
+                                this.props.navigation.navigate('CreateContents',{activity_id:result.obj.activity_id})
 
-                                );
-                            }else{
-                                Alert.alert(
-                                    '提示',
-                                    '操作失败',
-                                    [
-                                        {text:'确定',onPress:(()=>{}),style:'cancel'}
-                                    ]
-
-                                );
                             }
                             console.log('responseData',result);
                         })
@@ -466,11 +455,11 @@ export default class CreateActivities extends Component {
                     </View>
                     <View style={{height:UtilScreen.getHeight(88),flexDirection:'row',marginLeft:UtilScreen.getWidth(40)}}>
                         <Text style={{color:'#333333',fontSize:14,alignSelf:'center',marginLeft:UtilScreen.getWidth(10)}}>具体内容</Text>
-                        <Text style={{color:'#333333',fontSize:14,position:'absolute',right:UtilScreen.getWidth(40),alignSelf:'center'}}>{this.state.item.activity_info.length}/2000</Text>
+                        <Text style={{color:'#333333',fontSize:14,position:'absolute',right:UtilScreen.getWidth(40),alignSelf:'center'}}>{this.state.item.follow_info.length}/2000</Text>
                     </View>
                     <TextInput style={{height:UtilScreen.getHeight(160),color:'#333333',fontSize:14,alignSelf:'center',padding:0,width:UtilScreen.getWidth(650)}}
                                placeholder='请输入活动内容' maxLength={2000} multiline={true} textAlignVertical='top' underlineColorAndroid='transparent' onChangeText={(text)=>{
-                        this.state.item.activity_info =text;
+                        this.state.item.follow_info =text;
                         let data = this.state.item;
                         this.setState({
                             item:data
