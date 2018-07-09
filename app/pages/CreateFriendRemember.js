@@ -25,7 +25,6 @@ const Buffer = require('buffer').Buffer;
 const Stylecss = require('../common/Stylecss');
 import MyInputDialog from '../components/MyInputDialog';
 import CostModal from '../components/CostModal';
-import ModalDropdown from 'react-native-modal-dropdown';
 export default class CreateFriendRemember extends Component {
     static navigationOptions = {
         headerStyle: {height: 0},

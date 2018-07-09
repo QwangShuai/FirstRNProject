@@ -10,14 +10,14 @@ export default class InitiativesItem extends Component {
 
     static defaultProps = {
         itemInfo: {
-            title: '云南旅游活动云南旅游活动云南旅游活动云 南旅游活动云南旅游活动云南旅游活动',
-            imageUrl: {uri:'http://img.51tietu.net/upload/www.51tietu.net/2014-8/201408240241206330.jpg'},
-            startTime:'开始时间  :  2018.01.01',
-            endTime:'结束时间  :  2018.04.20',
-            cost:'人均费用  :  ￥888.88',
-            views:'浏览  ：  1234',
-            participants:'报名人数  :  25',
-            focusOn:'关注  ：  10000',
+            pftitle: '云南旅游活动云南旅游活动云南旅游活动云 南旅游活动云南旅游活动云南旅游活动',
+            pfpic: {uri:'http://img.51tietu.net/upload/www.51tietu.net/2014-8/201408240241206330.jpg'},
+            pfgotime:'开始时间  :  2018.01.01',
+            pfendtime:'结束时间  :  2018.04.20',
+            pfspend:'人均费用  :  ￥888.88',
+            pflook:'浏览:1234',
+            join_num:'报名人数  :  25',
+            focusOn:'关注:10000',
         },
     }
 
@@ -43,15 +43,15 @@ export default class InitiativesItem extends Component {
                 <View style={{marginTop:UtilScreen.getHeight(22),height:UtilScreen.getHeight(2),backgroundColor:'#e5e5e5',
                     marginLeft:UtilScreen.getWidth(40),width:UtilScreen.getWidth(670)}} />
                 <View style={styles.myView}>
+                    <View style={[styles.itemView,{position:'absolute',left:0}]}>
+                        <Image style={styles.imageItem} source={require('../res/images/editor.png')} resizeMode='contain'/>
+                        <Text style={[styles.startTime,{marginLeft:UtilScreen.getWidth(4)}]}>编辑</Text>
+                    </View>
                     <View style={styles.itemView}>
-                        <Image style={styles.imageItem} source={require('../res/images/enter-chat.png')} resizeMode='contain'/>
+                        <Image style={[styles.imageItem,{alignSelf:'center'}]} source={require('../res/images/editor.png')} resizeMode='contain'/>
                         <Text style={[styles.startTime,{marginLeft:UtilScreen.getWidth(4)}]}>进入聊天室</Text>
                     </View>
-                    <View style={styles.itemView}>
-                        <Image style={styles.imageItem} source={require('../res/images/consel.png')} resizeMode='contain'/>
-                        <Text style={[styles.startTime,{marginLeft:UtilScreen.getWidth(4)}]}>咨询领队</Text>
-                    </View>
-                    <View style={styles.itemView}>
+                    <View style={[styles.itemView,{position:'absolute',right:0}]}>
                         <Image style={styles.imageItem} source={require('../res/images/delete.png')} resizeMode='contain'/>
                         <Text style={[styles.startTime,{marginLeft:UtilScreen.getWidth(4)}]}>取消活动</Text>
                     </View>
@@ -106,6 +106,8 @@ const styles = StyleSheet.create({
         height:UtilScreen.getHeight(32),
     },
     myView:{
+        justifyContent:'center',
+        alignItems:'center',
         marginTop:UtilScreen.getHeight(20),
         height:UtilScreen.getHeight(46),
         width:UtilScreen.getWidth(670),
@@ -114,7 +116,6 @@ const styles = StyleSheet.create({
     },
     itemView:{
         alignItems:'center',
-        flex:1,
         flexDirection:'row',
     },
     imageItem:{

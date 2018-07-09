@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Image,FlatList,TouchableHighlight} from 'react-native';
+import {View, Text, StyleSheet, Image,FlatList,TouchableHighlight,AsyncStorage} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import InitiativesItem from '../components/InitiativesItem';
+import md5 from "react-native-md5";
+const Buffer = require('buffer').Buffer;
 
 const Stylecss = require('../common/Stylecss');
 
@@ -16,13 +18,13 @@ export default class Initiatives extends Component {
             itemInfo:[
                 {
                     key:0,
-                    title: '云南旅游活动云南旅游活动云南旅游活动云 南旅游活动云南旅游活动云南旅游活动',
-                    imageUrl: {uri:'http://img.51tietu.net/upload/www.51tietu.net/2014-8/201408240241206330.jpg'},
-                    startTime:'开始时间  :  2018.01.01',
-                    endTime:'结束时间  :  2018.04.20',
-                    cost:'人均费用  :  ￥888.88',
-                    views:'浏览:1234',
-                    participants:'报名人数  :  25',
+                    pftitle: '云南旅游活动云南旅游活动云南旅游活动云 南旅游活动云南旅游活动云南旅游活动',
+                    pfpic: {uri:'http://img.51tietu.net/upload/www.51tietu.net/2014-8/201408240241206330.jpg'},
+                    pfgotime:'开始时间  :  2018.01.01',
+                    pfendtime:'结束时间  :  2018.04.20',
+                    pfspend:'人均费用  :  ￥888.88',
+                    pflook:'浏览:1234',
+                    join_num:'报名人数  :  25',
                     focusOn:'关注:10000',
                 },
             ],

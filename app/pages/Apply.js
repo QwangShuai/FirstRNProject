@@ -30,7 +30,7 @@ export default class Apply extends Component {
             ],
             item:{
                 num:0,
-                pfid:0,
+                pfid:8,
                 pay_type:0,
                 money:0,
                 join_name:'',
@@ -94,7 +94,7 @@ export default class Apply extends Component {
         let param = md5.hex_md5(global.commons.baseurl + 'action/ac_order/user_join');
         let params = md5.hex_md5(param);
         formData.append('app_key', params);
-        // formData.append('num', data.num);
+        formData.append('num', data.num);
         formData.append('pfid', 8);
         // formData.append('user_id', 7);
         formData.append('pay_type', data.pay_type);
@@ -177,6 +177,9 @@ export default class Apply extends Component {
                 break;
             case 7:
                 this.state.item.join_age = text;
+                break;
+            case 8:
+                this.state.item.join_marry = text;
                 break;
         }
         let data = this.state.item;
