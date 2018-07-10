@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StyleSheet, Dimensions, PixelRatio, TextInput, FlatList,RefreshControl,TouchableHighlight} from 'react-native';
+import {View, Text, Image, StyleSheet, Dimensions, PixelRatio, TextInput, FlatList,RefreshControl,TouchableHighlight,AsyncStorage} from 'react-native';
 import FriendPartySwiperBanner from '../components/FriendPartySwiperBanner';
 import FriendPartyItem from '../components/FriendPartyItem';
 import ToolBar from '../components/ToolBar';
@@ -16,86 +16,6 @@ export default class FriendParty extends Component {
         super(props);
         this.state={
             items: [
-                /*{
-                    key: 0,
-                    imageURL: require('../res/images/guangzhou.jpg'),
-                    totalNum:10,
-                    joinNum:4,
-                    article: {
-                        title: '标题1',
-                        content: '当地时间12日上午，朝鲜最高领导人金正恩与美国总统特朗普在新加坡嘉佩乐酒店举行首次会晤，双方握手致意。这是在任的朝美领导人数十年来首次会晤及握手。',
-                        date: '2018-6-14',
-                        visitorsNum: 15600,
-                        messageNum: 1200,
-                    },
-                    userInfo: {
-                        userName: '爱吃土豆的西瓜',
-                        userLevel: 'LV 1',
-                        headImagePath: require('../res/images/head_image.png'),
-                        isAttention:false,
-                    },
-                    attentionUser:[
-                        require('../res/images/head_image.png'),
-                        require('../res/images/head_image.png'),
-                        require('../res/images/head_image.png'),
-                        require('../res/images/head_image.png')
-                    ],
-                },
-                {
-                    key: 1,
-                    imageURL: require('../res/images/4.jpg'),
-                    totalNum:100,
-                    joinNum:40,
-                    article: {
-                        title: '标题',
-                        content: '当地时间12日上午，朝鲜最高领导人金正恩与美国总统特朗普在新加坡嘉佩乐酒店举行首次会晤，双方握手致意。这是在任的朝美领导人数十年来首次会晤及握手。',
-                        date: '2018-6-14',
-                        visitorsNum: 15600,
-                        messageNum: 1200,
-                    },
-                    userInfo: {
-                        userName: '爱吃土豆的西瓜',
-                        userLevel: 'LV 1',
-                        headImagePath: require('../res/images/head_image.png'),
-                        isAttention:false,
-                    },
-                    attentionUser:[
-                        require('../res/images/head_image.png'),
-                        require('../res/images/head_image.png'),
-                        require('../res/images/head_image.png'),
-                        require('../res/images/head_image.png'),
-                        require('../res/images/head_image.png'),
-                        require('../res/images/head_image.png'),
-                        require('../res/images/head_image.png'),
-                        require('../res/images/article.png'),
-                        require('../res/images/article.png'),
-                        require('../res/images/head_image.png'),
-                    ],
-                },{
-                    key: 2,
-                    imageURL: require('../res/images/shanghai.jpg'),
-                    totalNum:10,
-                    joinNum:4,
-                    article: {
-                        title: '标题',
-                        content: '当地时间12日上午，朝鲜最高领导人金正恩与美国总统特朗普在新加坡嘉佩乐酒店举行首次会晤，双方握手致意。这是在任的朝美领导人数十年来首次会晤及握手。',
-                        date: '2018-6-14',
-                        visitorsNum: 15600,
-                        messageNum: 1200,
-                    },
-                    userInfo: {
-                        userName: '爱吃土豆的西瓜',
-                        userLevel: 'LV 1',
-                        headImagePath: require('../res/images/head_image.png'),
-                        isAttention:false,
-                    },
-                    attentionUser:[
-                        require('../res/images/head_image.png'),
-                        require('../res/images/head_image.png'),
-                        require('../res/images/head_image.png'),
-                        require('../res/images/head_image.png')
-                    ],
-                }*/
 
             ],
             refreshing: false,
@@ -175,7 +95,7 @@ export default class FriendParty extends Component {
                 });
 
             })
-            .catch((error)=>{console.error('error',error)});
+            // .catch((error)=>{console.error('error',error)});
     }
     componentDidMount() {
         //请求数据
@@ -220,7 +140,39 @@ export default class FriendParty extends Component {
         }
     }
     focus(id){
+        let formData = new FormData();
+        let param = md5.hex_md5(global.commons.baseurl + 'action/ac_activity/follow_attention');
+        let params = md5.hex_md5(param);
+        formData.append('app_key', params);
+        formData.append('pfID', id);
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    formData.append("userID", '7');
+                    fetch(global.commons.baseurl+'action/ac_activity/follow_attention',{
+                        method:'POST',
+                        body:formData,
+                    })
+                        .then((response) => response.text() )
+                        .then((responseData)=>{
+                            var bf = new Buffer(responseData , 'base64')
+                            var  str= bf.toString();
+                            let result=JSON.parse(str);
+                            if (result.code===200){
 
+                            }else{
+
+                            }
+                            console.log('responseData',result);
+                        })
+                    // .catch((error)=>{console.error('error',error)});
+                } else {
+                    this.props.navigation.navigate('Home',{position:'FriendParty'});
+                }
+            } else {
+                this.props.navigation.navigate('Home',{position:'FriendParty'});
+            }
+        })
     }
     itemClick(item){
         this.props.navigation.navigate('FriendsTogether',{pfID:item.pfID});

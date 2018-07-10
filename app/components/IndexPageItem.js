@@ -24,7 +24,7 @@ export default class IndexPageItem extends Component {
                             style={{width:UtilScreen.getWidth(120),height:UtilScreen.getWidth(120),alignSelf:'center',marginTop:UtilScreen.getHeight(20),borderRadius:UtilScreen.getWidth(60)}}
                             source={this.props.item.userInfo.headImagePath}
                         />
-                        <Text style={{marginTop:UtilScreen.getHeight(10),borderRadius:5,alignSelf:'center',paddingRight:UtilScreen.getWidth(20),paddingLeft:UtilScreen.getWidth(20),color:'#fff',fontSize:14,backgroundColor:'#ff9d00'}}>{this.props.item.userInfo.userLevel}</Text>
+                        <Text style={{borderRadius:5,alignSelf:'center',paddingRight:UtilScreen.getWidth(20),paddingLeft:UtilScreen.getWidth(20),color:'#fff',fontSize:14,backgroundColor:'#ff9d00'}}>{this.props.item.userInfo.userLevel}</Text>
                     </View>
                 </View>
                 <View style={{width:'100%',height:UtilScreen.getHeight(2),backgroundColor:'#efeff4',marginTop:UtilScreen.getHeight(20)}}/>
