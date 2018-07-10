@@ -52,7 +52,7 @@ export default class FriendPartyItem extends Component {
                                             borderRadius: UtilScreen.getWidth(25),
                                         }}
                                         key={index}
-                                        resizeMode='stretch'
+                                        resizeMode='cover'
                                         source={item}/>);
                                 }else if (index===8){
                                     return (<Text  key={index} style={{backgroundColor:'#fff',fontSize:18,color:'#333',height:UtilScreen.getHeight(50),lineHeight:UtilScreen.getHeight(50)}}>···</Text>);
@@ -114,10 +114,10 @@ export default class FriendPartyItem extends Component {
                                 <Text style={{color:'#333',marginLeft:UtilScreen.getWidth(10),fontSize:12}}>咨询领队</Text>
                             </View>
                         </TouchableHighlight>
-                        <TouchableHighlight>
+                        <TouchableHighlight onPress={this.props.focus.bind(this,this.props.item.pfID)}>
                             <View style={{flexDirection:'row'}}>
                                 <Image
-                                    source={ require('../res/images/attentioned.png')}
+                                    source={this.props.item.focusOn===0? require('../res/images/attentioned.png'):require('../res/images/heart-y.png')}
                                 />
                                 <Text style={{color:'#333',marginLeft:UtilScreen.getWidth(10),fontSize:12}}>关注活动</Text>
                             </View>

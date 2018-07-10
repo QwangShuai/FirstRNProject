@@ -22,21 +22,9 @@ export default class ActivityView extends Component {
             [
                 {
                     key:0,
-                    headUrl: require('../res/images/1.jpg'),
-                    nickname: '帅气的小迷糊',
+                    userpic: require('../res/images/1.jpg'),
+                    username: '帅气的小迷糊',
                     num: 2,
-                },
-                {
-                    key:1,
-                    headUrl: require('../res/images/1.jpg'),
-                    nickname: '帅气的小迷糊',
-                    num: 1,
-                },
-                {
-                    key:2,
-                    headUrl: require('../res/images/1.jpg'),
-                    nickname: '帅气的小迷糊',
-                    num: 10,
                 },
              ],
 
@@ -74,8 +62,8 @@ export default class ActivityView extends Component {
                                 return (
                                     <View style={{height:UtilScreen.getHeight(140),marginTop:UtilScreen.getHeight(30),width:UtilScreen.getWidth(80),marginLeft:UtilScreen.getWidth(30)}}>
                                         <Image style={{height:UtilScreen.getHeight(80),width:UtilScreen.getHeight(80),borderRadius:UtilScreen.getHeight(80),}}
-                                               source={item.headUrl} resizeMode='cover'></Image>
-                                        <Text style={styles.nicknameStyle} numberOfLines={this.state.textLong}>{item.nickname}</Text>
+                                               source={{uri:item.userpic.toString()}} resizeMode='cover'></Image>
+                                        <Text style={styles.nicknameStyle} numberOfLines={this.state.textLong}>{item.username}</Text>
                                         <Text style={[styles.rPice,{width:(item.num==1)?0:UtilScreen.getWidth(34)}]}>{item.num}</Text>
                                     </View>
                                 )
@@ -88,7 +76,7 @@ export default class ActivityView extends Component {
                             }
                         }
                     }
-                    keyExtractor={item => item.ket.toString()}
+                    // keyExtractor={item => item.ket.toString()}
                 ></FlatList>
                 </View>
             )
@@ -109,14 +97,14 @@ export default class ActivityView extends Component {
                                     borderRadius: UtilScreen.getHeight(80),
                                     resizeMode: 'cover'
                                 }}
-                                       source={item.headUrl}></Image>
-                                <Text style={styles.nicknameStyle} numberOfLines={this.state.textLong}>{item.nickname}</Text>
+                                       source={{uri:item.userpic.toString()}}></Image>
+                                <Text style={styles.nicknameStyle} numberOfLines={this.state.textLong}>{item.username}</Text>
                                 <Text style={[styles.rPice,{width:(item.num==1)?0:UtilScreen.getWidth(34)}]}>{item.num}</Text>
                             </View>
                         )
                     }
                 }
-                keyExtractor={item => item.ket.toString()}
+                // keyExtractor={item => item.ket.toString()}
             ></FlatList>
                 </View>
             )
@@ -137,7 +125,7 @@ export default class ActivityView extends Component {
                         fontSize: 16,
                         lineHeight: UtilScreen.getHeight(45),
                         textAlign: 'center'
-                    }}>参加人员（{this.props.itemInfo.length}/{this.props.number}）</Text>
+                    }}>参加人员（{this.props.number}/{this.props.maxNum}）</Text>
                     <TouchableHighlight
                         underlayColor='#ffffff'
                         onPress={this.switchState.bind(this)}
@@ -177,7 +165,8 @@ const styles = StyleSheet.create({
         fontSize: 14,
         overflow:'hidden',
         lineHeight: UtilScreen.getHeight(40),
-        marginTop: UtilScreen.getHeight(20)
+        marginTop: UtilScreen.getHeight(20),
+        alignSelf:'center'
     },
     rPice: {
         width: UtilScreen.getWidth(34),

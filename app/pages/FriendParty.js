@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Image, StyleSheet, Dimensions, PixelRatio, TextInput, FlatList,RefreshControl} from 'react-native';
+import {View, Text, Image, StyleSheet, Dimensions, PixelRatio, TextInput, FlatList,RefreshControl,TouchableHighlight} from 'react-native';
 import FriendPartySwiperBanner from '../components/FriendPartySwiperBanner';
 import FriendPartyItem from '../components/FriendPartyItem';
 import ToolBar from '../components/ToolBar';
@@ -119,6 +119,7 @@ export default class FriendParty extends Component {
                 var bf = new Buffer(responseData , 'base64')
                 var  str= bf.toString();
                 let result=JSON.parse(str);
+                console.log('友聚详情数据',result);
                 let data = result.obj;
                 let dataBlob = [];
                 let attentionUser=null;
@@ -137,6 +138,8 @@ export default class FriendParty extends Component {
                     this.state.items.push(
                         {
                             key: j,
+                            pfID:data[i].pfID,
+                            focusOn:data[i].focusOn,
                             imageURL: {uri:data[i].pfpic},
                             totalNum:data[i].pfpeople,
                             joinNum:data[i].have_num,
@@ -216,6 +219,12 @@ export default class FriendParty extends Component {
             );
         }
     }
+    focus(id){
+
+    }
+    itemClick(item){
+        this.props.navigation.navigate('FriendsTogether',{pfID:item.pfID});
+    }
     render() {
         return (
             <View style={styles.container}>
@@ -226,7 +235,11 @@ export default class FriendParty extends Component {
                         data={this.state.items}
                         renderItem={({item,index}) => {
                             return (
-                                <FriendPartyItem item={item}  index={index}/>
+                                <TouchableHighlight
+                                                    underlayColor={'#f8f8f8'}
+                                                    onPress={this.itemClick.bind(this, item)}>
+                                <FriendPartyItem focus={this.focus.bind(this)}  item={item}  index={index}/>
+                                </TouchableHighlight>
                             );
                         }}
                         keyExtractor={item => item.key.toString()}

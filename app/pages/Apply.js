@@ -218,8 +218,8 @@ export default class Apply extends Component {
                 <View style={Stylecss.styles.paymentView}>
                     <Text style={Stylecss.styles.paymentText} onPress={this.myPay.bind(this)}>{this.state.orPay?'支付':'报名'}</Text>
                 </View>
-                {/*<ApplyRealName modalVisible={this.state.modalVisible} setModalVisible={this.setModalVisible.bind(this)} jump={this.jumpToCard.bind(this)} />*/}
-                {/*<ApplyPaymentSuccess modalVisible={this.state.isState} setModalVisible={this.setModalVisible.bind(this)} jump={()=>this.setState({isState:false})} />*/}
+                <ApplyRealName modalVisible={this.state.modalVisible} setModalVisible={this.setModalVisible.bind(this)} jump={this.jumpToCard.bind(this)} />
+                <ApplyPaymentSuccess modalVisible={this.state.isState} setModalVisible={this.setModalVisible.bind(this)} jump={()=>this.setState({isState:false})} />
                 <ApplyPaymentState modalVisible={this.state.isFailure} setModalVisible={()=>this.setState({isFailure:false})} jump={this.jumpToOrder.bind(this)} />
             </View>
         );

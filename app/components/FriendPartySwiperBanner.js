@@ -58,23 +58,23 @@ export default class FriendPartySwiperBanner extends Component{
                             </View>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight>
-                        <View style={{flexDirection:'row'}}>
-                            <Text style={{color:'#333',marginLeft:UtilScreen.getWidth(10),fontSize:12}}>选择标签</Text>
-                            <View  style={{marginLeft:UtilScreen.getWidth(10),alignSelf:'center',justifyContent:'space-between',height:UtilScreen.getHeight(30)}}>
-                                <Image
-                                    style={{width:UtilScreen.getWidth(15),height:UtilScreen.getHeight(10)}}
-                                    source={ require('../res/images/triangle_up.png')}
-                                    resizeMode='stretch'
-                                />
-                                <Image
-                                    style={{width:UtilScreen.getWidth(15),height:UtilScreen.getHeight(10)}}
-                                    source={ require('../res/images/triangle_down.png')}
-                                    resizeMode='stretch'
-                                />
-                            </View>
-                        </View>
-                    </TouchableHighlight>
+                    {/*<TouchableHighlight>*/}
+                        {/*<View style={{flexDirection:'row'}}>*/}
+                            {/*<Text style={{color:'#333',marginLeft:UtilScreen.getWidth(10),fontSize:12}}>选择标签</Text>*/}
+                            {/*<View  style={{marginLeft:UtilScreen.getWidth(10),alignSelf:'center',justifyContent:'space-between',height:UtilScreen.getHeight(30)}}>*/}
+                                {/*<Image*/}
+                                    {/*style={{width:UtilScreen.getWidth(15),height:UtilScreen.getHeight(10)}}*/}
+                                    {/*source={ require('../res/images/triangle_up.png')}*/}
+                                    {/*resizeMode='stretch'*/}
+                                {/*/>*/}
+                                {/*<Image*/}
+                                    {/*style={{width:UtilScreen.getWidth(15),height:UtilScreen.getHeight(10)}}*/}
+                                    {/*source={ require('../res/images/triangle_down.png')}*/}
+                                    {/*resizeMode='stretch'*/}
+                                {/*/>*/}
+                            {/*</View>*/}
+                        {/*</View>*/}
+                    {/*</TouchableHighlight>*/}
                     <TouchableHighlight>
                         <View style={{flexDirection:'row'}}>
                             <Text style={{color:'#333',fontSize:12}}>查询领队</Text>
