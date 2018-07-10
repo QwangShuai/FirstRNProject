@@ -85,18 +85,6 @@ export default class Initiatives extends Component {
                             var  str= bf.toString();
                             let result=JSON.parse(str);
                             if (result.code===200){
-                                // for(let i=0;i<result.obj.length;i++){
-                                //     this.itemInfo[i].pfID = result.obj[i].pfID;
-                                //     this.itemInfo[i].pfpic = {uri:result.obj[i].pfpic};
-                                //     this.itemInfo[i].pftitle = result.obj[i].pftitle;
-                                //     this.itemInfo[i].pfgotime = result.obj[i].pfgotime;
-                                //     this.itemInfo[i].pfendtime = result.obj[i].pfendtime;
-                                //     this.itemInfo[i].pfspend = result.obj[i].pfspend;
-                                //     this.itemInfo[i].pflook = result.obj[i].pflook;
-                                //     this.itemInfo[i].join_num = result.obj[i].join_num;
-                                //     this.itemInfo[i].focusOn = result.obj[i].focusOn;
-                                // }
-                                //  let data = this.state.itemInfo.concat();
                                 console.log('数据呢',result.obj[0].pfpic);
                                 this.setState({
                                     itemInfo:result.obj

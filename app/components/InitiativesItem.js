@@ -58,7 +58,7 @@ export default class InitiativesItem extends Component {
                     </TouchableHighlight>
                     <TouchableHighlight style={{width:UtilScreen.getWidth(186),height:UtilScreen.getHeight(46)}} onPress={this.props.enterChat}>
                     <View style={styles.itemView}>
-                        <Image style={[styles.imageItem,{alignSelf:'center'}]} source={require('../res/images/editor.png')} resizeMode='contain'/>
+                        <Image style={[styles.imageItem,{alignSelf:'center'}]} source={require('../res/images/enter-chat.png')} resizeMode='contain'/>
                         <Text style={[styles.startTime,{marginLeft:UtilScreen.getWidth(4)}]}>进入聊天室</Text>
                     </View>
                     </TouchableHighlight>
