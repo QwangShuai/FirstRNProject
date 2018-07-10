@@ -11,7 +11,7 @@ export default class FocusOnActivitiesItem extends Component {
     static defaultProps = {
         itemInfo: {
             title: '云南旅游活动云南旅游活动云南旅游活动云 南旅游活动云南旅游活动云南旅游活动',
-            imageUrl: {uri:'http://img.51tietu.net/upload/www.51tietu.net/2014-8/201408240241206330.jpg'},
+            imageUrl: 'http://img.51tietu.net/upload/www.51tietu.net/2014-8/201408240241206330.jpg',
             startTime:'开始时间',
             views:'浏览量  :  12293',
             participants:'参加人数  :  25',
@@ -23,7 +23,7 @@ export default class FocusOnActivitiesItem extends Component {
             <View style={{backgroundColor:'#ffffff'}}>
                 <Text style={styles.titleStyle}>{this.props.itemInfo.title}</Text>
                 <View style={styles.viewStyle}>
-                    <Image style={styles.imageStyle} source={this.props.itemInfo.imageUrl}/>
+                    <Image style={styles.imageStyle} source={{uri:this.props.itemInfo.imageUrl.toString()}}/>
                     <View style={styles.rightView}>
                         <Text style={[styles.startTime,{marginTop:UtilScreen.getHeight(20)}]}>开始时间：2018-1-1</Text>
                         <View style={styles.textView}>

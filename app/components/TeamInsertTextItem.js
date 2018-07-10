@@ -10,29 +10,34 @@ export default class TeamInsertTextItem extends Component {
 
     static defaultProps = {
         itemInfo: {
-            insertText:'队友的插文，想说什么就说什么呗！',
-            imageUrl:{uri:'http://img.51tietu.net/upload/www.51tietu.net/2014-8/20 1408240241206330.jpg'},
-            state:'待审核',
-            headUrl:require('../res/images/head.png'),
+            fmpID:0,
+            fmID:0,
+            userID:0,
+            fmptitle:'队友的插文，想说什么就说什么呗！',
+            fmpurl:'http://img.51tietu.net/upload/www.51tietu.net/2014-8/201408240241206330.jpg',
+            fmpexamine:'待审核',
+            headimg:'http://img.51tietu.net/upload/www.51tietu.net/2014-8/201408240241206330.jpg',
             nickname:'昵称',
-            releaseTime:'发布时间：2018-03-30',
+            fmptime:'2018-03-30',
+            fmpdel:0,
+            fmpshield:0,
         }
     }
     render(){
         return(
             <View style={Styless.styles.container}>
-                <Text style={Styless.styles.it_insertTextStyle}>{this.props.itemInfo.insertText}</Text>
+                <Text style={Styless.styles.it_insertTextStyle}>{this.props.itemInfo.fmptitle}</Text>
                 <View style={styles.viewStyle}>
-                    <Image style={styles.imageStyle} source={this.props.itemInfo.imageUrl}/>
+                    <Image style={styles.imageStyle} source={{uri:this.props.itemInfo.fmpurl.toString()}}/>
                     <View style={{flexDirection:'column'}}>
                         <View style={styles.myView}>
-                            <Image style={styles.headStyle} source={this.props.itemInfo.headUrl}/>
+                            <Image style={styles.headStyle} source={{uri:this.props.itemInfo.headimg}}/>
                             <Text style={[styles.timeStyle,{marginLeft:UtilScreen.getWidth(4)}]}>{this.props.itemInfo.nickname}</Text>
                         </View>
-                        <Text style={[styles.timeStyle,{marginLeft:UtilScreen.getWidth(40)}]}>{this.props.itemInfo.releaseTime}</Text>
+                        <Text style={[styles.timeStyle,{marginLeft:UtilScreen.getWidth(40)}]}>发布时间：{this.props.itemInfo.fmptime}</Text>
                     </View>
                 </View>
-                <Text style={styles.stateStyle}>{this.props.itemInfo.state}</Text>
+                <Text style={styles.stateStyle}>{this.props.itemInfo.fmpexamine}</Text>
                 <View style={styles.tit_myView}>
                     <TouchableHighlight style={[Styless.styles.it_smallImageStyle,{right:UtilScreen.getWidth(235)}]} onPress={this.props.toastResult}>
                         <Image style={Styless.styles.it_smallImageStyle} source={require('../res/images/show.png')} resizeMode='contain'/>
@@ -62,7 +67,7 @@ const styles = StyleSheet.create({
         height:UtilScreen.getHeight(200),
     },
     headStyle:{
-        width:UtilScreen.getWidth(80),
+        width:UtilScreen.getHeight(80),
         height:UtilScreen.getHeight(80),
         borderRadius:UtilScreen.getWidth(120),
     },
