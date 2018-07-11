@@ -12,6 +12,7 @@ import com.firstrnproject.alipay.AlipayPackage;
 import com.horcrux.svg.SvgPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.brentvatne.react.ReactVideoPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +34,8 @@ public class MainApplication extends Application implements ReactApplication {
             new SvgPackage(),
               new AnExampleReactPackge(),
               new VectorIconsPackage(),
-              new AlipayPackage()
+              new AlipayPackage(),
+              new ReactVideoPackage()
       );
     }
 

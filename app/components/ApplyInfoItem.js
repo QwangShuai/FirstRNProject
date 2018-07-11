@@ -32,9 +32,10 @@ export default class ApplyInfoItem extends Component {
                     <Text style={styles.leftText}>{this.props.itemInfo.lTitle}</Text>
                     <TextInput autoCorrect={false} style={styles.rightHint} placeholder={this.props.itemInfo.rHint}
                                underlineColorAndroid={'transparent'}
-                               onChange={this.props.editText.bind(this, this.state.myText, this.props.itemInfo.key)}
-                               onChangeText={(text) =>
-                                   this.state.myText = text
+                               //onChange={this.props.editText.bind(this, this.state.myText, this.props.itemInfo.key)}
+                               onChangeText={(text) => {
+                                   this.props.editText(text, this.props.itemInfo.key)
+                               }
                                }/>
                 </View>
             )

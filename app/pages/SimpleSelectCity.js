@@ -30,9 +30,9 @@ export default class SimpleSelectCity extends Component {
             <View style={styles.container}>
                 <Header nav={this.props.nav} title="当前城市：哈尔滨" />
                 <SearchBox />
-                <ScrollView>
+                {/*<ScrollView>*/}
                     <CityList nav={this.props.nav}/>
-                </ScrollView>
+                {/*</ScrollView>*/}
             </View>
         )
     }

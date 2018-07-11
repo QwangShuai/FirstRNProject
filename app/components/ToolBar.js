@@ -42,7 +42,7 @@ export default class ToolBar extends Component {
                     ></Image>
                 </TouchableHighlight>
                 <Text style={styles.text}>{this.props.title}</Text>
-                <Text style={styles.btn} onPress={this.props.btnClick}>{this.props.btn}</Text>
+                <Text style={[styles.btn,{fontSize:15}]} onPress={this.props.btnClick}>{this.props.btn}</Text>
             </View>
         );
     }
