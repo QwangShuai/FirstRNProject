@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import {AppRegistry, View, Text, Image, StyleSheet, TextInput,Alert} from 'react-native';
+import {AppRegistry, View, Text, Image, StyleSheet, TextInput,Alert,AsyncStorage} from 'react-native';
 import ToolBar from '../components/ToolBar';
 import ImageGridView from '../components/ImageGridView';
 import MyInputDialog from '../components/MyInputDialog';
 import UtilScreen from '../util/UtilScreen';
 const Stylecss = require('../common/Stylecss');
+import md5 from "react-native-md5";
+const Buffer = require('buffer').Buffer;
 
 export default class CreateContents extends Component {
     static navigationOptions = {
@@ -38,24 +40,37 @@ export default class CreateContents extends Component {
             isShowInputImageDesc: false,
         });
         this.ImageGridView.setImageDesc(this.state.index, str);
-        this.state.textarea_img.push(str);
-        console.log('我的图片描述',this.state.textarea_img);
+        if(this.state.textarea_img.length<this.state.index+1){
+            for(let i=0;i<this.state.index+2-this.state.textarea_img.length;i++){
+                this.state.textarea_img.push('');
+            }
+        }
+        this.state.textarea_img.splice(this.state.index,1,str)
     }
     inputDialogDismissBack() {
         this.setState({isShowInputImageDesc: false});
     }
-    btnClick(){//完成返回主页
+    btnClick(){
         console.log('是否执行','------');
         let formData = new FormData();
         let param=md5.hex_md5(global.commons.baseurl+'action/ac_activity/add_travel_info');
         let params=md5.hex_md5(param);
+        formData.append('activity_id',8);
+        formData.append('title',this.state.titleText);
+        formData.append('textarea_img',this.state.textarea_img);
+        // formData.append('activity_files',this.state.activity_files);
+        formData.append('content',this.state.context);
         formData.append('app_key',params);
         AsyncStorage.getItem('uid', (error, result) => {
             if (!error) {
                 if (result !== '' && result !== null) {
                     formData.append("user_id", 7);
+                    console.log('什么几把万一',formData);
                     fetch(global.commons.baseurl+'action/ac_activity/add_travel_info',{
                         method:'POST',
+                        headers:{
+                            'Content-Type':'multipart/form-data',
+                        },
                         body:formData,
                     })
                         .then((response) => response.text() )
@@ -65,7 +80,6 @@ export default class CreateContents extends Component {
                             var  str= bf.toString();
                             let result=JSON.parse(str);
                             if (result.code===200){
-                                console.log('数据呢',result.obj[0].pfpic);
                                 this.setState({
                                     itemInfo:result.obj
                                 })
@@ -84,7 +98,7 @@ export default class CreateContents extends Component {
             }
         })
 
-        this.props.navigation.navigate('MainTabPage');
+        // this.props.navigation.navigate('MainTabPage');
     }
     editImage(index) {
         this.setState({
@@ -102,9 +116,16 @@ export default class CreateContents extends Component {
         })
         this.ImageGridView.clearImages();
     }
-    returnImages(obj){
-        this.state.activity_files.push(obj);
+    returnImages(data){
+        this.state.textarea_img.splice(0,this.state.textarea_img.length);
+        this.state.activity_files.splice(0,this.state.activity_files.length);
+        for(let i=0;i<data.length-1;i++){
+            let source = {uri:data[i].url.uri,type: 'multipart/form-data', name: 'a.jpg'};
+            this.state.textarea_img.push(data[i].desc);
+            this.state.activity_files.push(source);
+        }
         console.log('我的图片',this.state.activity_files);
+        console.log('我的图片内容',this.state.textarea_img);
     }
     render() {
         return (

@@ -47,6 +47,7 @@ export default class ImageGridView extends Component<Props> {
             this.props.selectImages && this.props.selectImages(this.state.images.concat());
             this.state.images.push({key: this.state.images.length, url: require('../res/images/add_image.png')});
         });
+        this.props.returnImages(data);
     }
     clearImages(){
         this.setState({
@@ -74,7 +75,6 @@ export default class ImageGridView extends Component<Props> {
      * @param obj
      */
     photoResult(obj) {
-        this.props.returnImages(this,obj);
         let item = {
             key: this.state.images.length - 1,
             url: {uri:obj},
@@ -89,6 +89,7 @@ export default class ImageGridView extends Component<Props> {
         this.setState({
             images: data
         });
+        this.props.returnImages(data);
     }
 
     /**
@@ -101,6 +102,7 @@ export default class ImageGridView extends Component<Props> {
         this.setState({
             images: data,
         });
+        this.props.returnImages(data);
     }
 
 
