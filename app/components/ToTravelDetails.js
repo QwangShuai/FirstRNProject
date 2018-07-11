@@ -94,7 +94,7 @@ export default class ToTravelDetails extends Component {
     render(){
         return(
             <View style={{flex:1,backgroundColor: '#ffffff',flexDirection:'column',}} >
-                <ToolBar title={'待支付'} isShowBack={true} backClick={this.backClick.bind(this)}/>
+                <ToolBar title={'待行程'} isShowBack={true} backClick={this.backClick.bind(this)}/>
                 <OrderHeadDetailsItem itemInfo={this.props.itemInfo} isShow={this.state.isShow}/>
                 <Text style={[Styless.styles.order_Text,{marginTop:UtilScreen.getHeight(20)}]}>{this.props.orderInfo.orderNum}</Text>
                 <Text style={Styless.styles.order_Text}>{this.props.orderInfo.payNum}</Text>

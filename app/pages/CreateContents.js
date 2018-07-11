@@ -23,6 +23,12 @@ export default class CreateContents extends Component {
                 placeholder: '30个字符以内，仅可以输入汉字、字母、数字或下划线',
                 maxSize: 30,
             },
+            textarea_img:[
+
+            ],
+            activity_files:[
+
+            ],
         }
     }
     inputImageDescResult(str) {
@@ -32,11 +38,51 @@ export default class CreateContents extends Component {
             isShowInputImageDesc: false,
         });
         this.ImageGridView.setImageDesc(this.state.index, str);
+        this.state.textarea_img.push(str);
     }
     inputDialogDismissBack() {
         this.setState({isShowInputImageDesc: false});
     }
     btnClick(){//完成返回主页
+        console.log('是否执行','------');
+        let formData = new FormData();
+        let param=md5.hex_md5(global.commons.baseurl+'action/ac_activity/add_travel_info');
+        let params=md5.hex_md5(param);
+        formData.append('app_key',params);
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    formData.append("user_id", 7);
+                    fetch(global.commons.baseurl+'action/ac_activity/add_travel_info',{
+                        method:'POST',
+                        body:formData,
+                    })
+                        .then((response) => response.text() )
+                        .then((responseData)=>{
+                            console.log('responseData',responseData);
+                            var bf = new Buffer(responseData , 'base64')
+                            var  str= bf.toString();
+                            let result=JSON.parse(str);
+                            if (result.code===200){
+                                console.log('数据呢',result.obj[0].pfpic);
+                                this.setState({
+                                    itemInfo:result.obj
+                                })
+                            } else{
+                                console.log('responseData',result.message);
+                            }
+
+                            console.log('responseData',result);
+                        })
+                    // .catch((error)=>{console.error('error',error)});
+                } else {
+                    this.props.navigation.navigate('Home',{position:'CreateContents'});
+                }
+            } else {
+                this.props.navigation.navigate('Home',{position:'CreateContents'});
+            }
+        })
+
         this.props.navigation.navigate('MainTabPage');
     }
     editImage(index) {
