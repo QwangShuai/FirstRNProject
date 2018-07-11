@@ -39,6 +39,7 @@ export default class CreateContents extends Component {
         });
         this.ImageGridView.setImageDesc(this.state.index, str);
         this.state.textarea_img.push(str);
+        console.log('我的图片描述',this.state.textarea_img);
     }
     inputDialogDismissBack() {
         this.setState({isShowInputImageDesc: false});
@@ -101,6 +102,10 @@ export default class CreateContents extends Component {
         })
         this.ImageGridView.clearImages();
     }
+    returnImages(obj){
+        this.state.activity_files.push(obj);
+        console.log('我的图片',this.state.activity_files);
+    }
     render() {
         return (
             <View style={Stylecss.styles.container}>
@@ -117,7 +122,7 @@ export default class CreateContents extends Component {
                 </View>
                 <TextInput style={{width:UtilScreen.getWidth(672),height:UtilScreen.getHeight(211),color:'#333333',fontSize:14,padding:0,alignSelf:'center',textAlignVertical: 'top'}}
                     placeholder='请输入内容' maxLength={2000} underlineColorAndroid='transparent' value={this.state.context} multiline={true} onChangeText={(text)=>this.setState({context:text})} />
-                <ImageGridView editImage={this.editImage.bind(this)} inputImageDescResult={this.inputImageDescResult.bind(this)} ref={ref=>this.ImageGridView=ref} />
+                <ImageGridView returnImages={this.returnImages.bind(this)} editImage={this.editImage.bind(this)} inputImageDescResult={this.inputImageDescResult.bind(this)} ref={ref=>this.ImageGridView=ref} />
                 <View style={Stylecss.styles.line}/>
                 <Text style={Stylecss.styles.set_logout} onPress={this.addContent.bind(this)}>继续添加</Text>
                 <MyInputDialog isShow={this.state.isShowInputImageDesc} callBack={this.inputImageDescResult.bind(this)}

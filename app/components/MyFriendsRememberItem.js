@@ -56,7 +56,7 @@ export default class MyFriendsRememberItem extends Component {
                             <Text style={[styles.startTime,{marginLeft:UtilScreen.getWidth(4)}]}>编辑</Text>
                         </View>
                     </TouchableHighlight>
-                    <TouchableHighlight style={{width:UtilScreen.getWidth(186),height:UtilScreen.getHeight(46)}} onPress={this.props.teamInsert}>
+                    <TouchableHighlight style={{width:UtilScreen.getWidth(186),height:UtilScreen.getHeight(46)}} onPress={this.props.teamInsertText}>
                         <View style={styles.itemView}>
                             <Image style={[styles.imageItem,{alignSelf:'center'}]} source={require('../res/images/insert-text.png')} resizeMode='contain'/>
                             <Text style={[styles.startTime,{marginLeft:UtilScreen.getWidth(4)}]}>队友插文</Text>

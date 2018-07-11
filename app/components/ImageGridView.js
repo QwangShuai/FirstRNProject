@@ -37,7 +37,6 @@ export default class ImageGridView extends Component<Props> {
             isShowSelectImage: true,
         });
     }
-
     deleteImage(item, index) {
         this.state.images.splice(index, 1);
         let data = this.state.images.concat();
@@ -75,6 +74,7 @@ export default class ImageGridView extends Component<Props> {
      * @param obj
      */
     photoResult(obj) {
+        this.props.returnImages(this,obj);
         let item = {
             key: this.state.images.length - 1,
             url: {uri:obj},

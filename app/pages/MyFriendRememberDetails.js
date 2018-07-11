@@ -7,7 +7,7 @@ import md5 from "react-native-md5";
 const Buffer = require('buffer').Buffer;
 import ToolBar from '../components/ToolBar';
 const Stylecss = require('../common/Stylecss');
-export default class MyFriendsRemember extends Component {
+export default class MyFriendRememberDetails extends Component {
 
     static navigationOptions = {
         headerStyle: {height: 0},
