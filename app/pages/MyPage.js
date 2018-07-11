@@ -47,7 +47,8 @@ export default class MyPage extends Component {
         this.jumpToOrder = this.jumpToOrder.bind(this);
         this.Sign_in = this.Sign_in.bind(this);
         this.clickCallBack = this.clickCallBack.bind(this);
-        this.JumpPage = this.JumpPage.bind(this);
+        this.JumpPage = this.JumpPage.bind(this);//JumpAddText
+        this.JumpAddText = this.JumpAddText.bind(this);
     }
 
     itemClick(item) {
@@ -120,6 +121,20 @@ export default class MyPage extends Component {
         })
 
     }
+    JumpAddText(){
+        AsyncStorage.getItem('uid', (error, result) => {
+            if (!error) {
+                if (result !== '' && result !== null) {
+                    this.props.navigation.navigate('CreateFriendRemember',{routeName:'IndexPage'})
+                } else {
+                    this.props.navigation.navigate('Home',{routeName:'IndexPage'});
+                }
+            } else {
+                this.props.navigation.navigate('Home',{routeName:'IndexPage'});
+            }
+        })
+
+    }
     Sign_in(){
         this.props.navigation.navigate('Home');
     }
@@ -183,7 +198,7 @@ export default class MyPage extends Component {
         return (
             <View>
                 <MyPageHead imageSource={this.state.myInfo.headUrl} itemInfo={this.state.myInfo} jumplogin={this.Sign_in} is_login={this.state.is_login} clickCallBack={this.clickCallBack}></MyPageHead>
-                <MyPageMenu jump={this.jumpToOrder}></MyPageMenu>
+                <MyPageMenu jump={this.jumpToOrder} AddText={this.JumpAddText}></MyPageMenu>
             </View>
         );
     }

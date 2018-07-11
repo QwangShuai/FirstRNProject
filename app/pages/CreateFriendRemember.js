@@ -25,6 +25,7 @@ const Buffer = require('buffer').Buffer;
 const Stylecss = require('../common/Stylecss');
 import MyInputDialog from '../components/MyInputDialog';
 import CostModal from '../components/CostModal';
+import DraftModal from '../components/DraftModal';
 export default class CreateFriendRemember extends Component {
     static navigationOptions = {
         headerStyle: {height: 0},
@@ -72,6 +73,7 @@ export default class CreateFriendRemember extends Component {
             isShowSelectArea:false,
             isSet:true,
             isSetPwdModal:false,
+            isShowDraftModal:false,
         };
         this.selectDate = {key: 1, title: '0'};
 
@@ -98,7 +100,20 @@ export default class CreateFriendRemember extends Component {
     clickImage() {
         this.setState({isShowSelectPhoto: !this.state.isShowSelectPhoto,});
     }
-
+    savaClick(){
+        this.setState({
+            isShowDraftModal:true,
+        })
+    }
+    saveSelect(type){
+        if(type==0){
+            this.nextStep(0);//正常发布
+        } else if(type==1){
+            this.nextStep(1);//草稿
+        } else {
+            this.nextStep(1);
+        }
+    }
     /**
      * 拍照或者选择照片回调，返回链接对象
      * @param obj
@@ -221,7 +236,7 @@ export default class CreateFriendRemember extends Component {
         this.state.itemInfo[2].rTitle = province + '-' + city + '-' + street;
         let data = this.state.itemInfo.concat();
         this.setState({isShowSelectArea: false, itemInfo: data});
-        this.state.item.city = 0;
+        this.state.item.city = province + '-' + city + '-' + street;
     }
     changeTitle(){
         if(this.state.item.follow_title.length==1){
@@ -253,12 +268,13 @@ export default class CreateFriendRemember extends Component {
         this.state.item.follow_pass= item.pwd;
     }
     //下一步
-    nextStep(){
+    nextStep(type){
         let formData = new FormData();
         let param=md5.hex_md5(global.commons.baseurl+'action/ac_article/InsertArticle');
         let params=md5.hex_md5(param);
         let data = this.state.item;
         formData.append('app_key',params);
+        formData.append('type',type);
         formData.append('fmtitle',data.follow_title);
         formData.append('fmcontent',data.activity_info);
         formData.append('fmaddress',data.city);
@@ -283,17 +299,17 @@ export default class CreateFriendRemember extends Component {
                     })
                         .then((response) => response.text() )
                         .then((responseData)=>{
-                            console.log('responseData',responseData);
-                            return false;
+                            /*console.log('responseData',responseData);
+                            return false;*/
                             var bf = new Buffer(responseData , 'base64')
                             var  str= bf.toString();
                             let result=JSON.parse(str);
-                            /*if (result.code===200){*/
-                                /*Alert.alert(
+                            if (result.code===200){
+                                Alert.alert(
                                     '提示',
                                     ''+result.message+'',
                                     [
-                                        {text:'确定',onPress:(()=>{this.props.navigation.navigate('CreateContents');}),style:'cancel'}
+                                        {text:'确定',onPress:(()=>{this.props.navigation.navigate('MyPage');}),style:'cancel'}
                                     ]
 
                                 );
@@ -306,7 +322,7 @@ export default class CreateFriendRemember extends Component {
                                     ]
 
                                 );
-                            }*/
+                            }
                             console.log('responseData',result);
                         })
                     // .catch((error)=>{console.error('error',error)});
@@ -366,7 +382,7 @@ export default class CreateFriendRemember extends Component {
                         }}
                         keyExtractor={item => item.key.toString()}
                     ></FlatList>
-                    <Text style={styles.next} onPress={this.nextStep.bind(this)}>下一步</Text>
+                    <Text style={styles.next} onPress={this.savaClick.bind(this)}>完成</Text>
                 <SelectYesOrNo yesOrNo={this.takerPhotoOrSelect.bind(this)} isShow={this.state.isShowSelectPhoto}
                                topTitle={'拍照'} bottomTitle={'从相册中选择'}/>
                 <MyDatePicker isShow={this.state.isSelectDate} callBack={this.selectData.bind(this)}
@@ -379,6 +395,8 @@ export default class CreateFriendRemember extends Component {
                 <SelectArea isShow={this.state.isShowSelectArea} callBack={this.selectAreaResult.bind(this)}/>
                 <SetPwdModal isSetPwdModal={this.state.isSetPwdModal} isSet={this.state.isSet} setModalVisible={this.setModalVisible.bind(this)} setPwd_isShow={this.setPwd_isShow.bind(this)}
                              setPwd_callBack={this.setPwd_callBack.bind(this)}/>
+                <DraftModal yesOrNo={this.saveSelect.bind(this)} isShow={this.state.isShowDraftModal} centerTitle='保存草稿'
+                            topTitle={'发表'}/>
             </View>)
     }
 }

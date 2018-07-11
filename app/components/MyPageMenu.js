@@ -105,8 +105,9 @@ export default class MyPageMenu extends Component {
                                 style={{width:UtilScreen.getWidth(50),height:UtilScreen.getHeight(50)}}
                                 source={require('../res/images/report.png')}
                                 resizeMode='contain'
+
                             />
-                            <Text style={{color:'#333',fontSize:14,marginTop:UtilScreen.getHeight(15)}}>
+                            <Text style={{color:'#333',fontSize:14,marginTop:UtilScreen.getHeight(15)}} onPress={this.props.AddText}>
                                 发表
                             </Text>
                         </View>
