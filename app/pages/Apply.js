@@ -183,7 +183,7 @@ export default class Apply extends Component {
                 break;
         }
         let data = this.state.item;
-        console.log('mydata',data)
+        console.log('mydata',this)
         this.setState({
             item:data
         })
