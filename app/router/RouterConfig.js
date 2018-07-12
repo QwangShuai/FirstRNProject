@@ -35,14 +35,25 @@ import PersonalInformation from '../pages/PersonalInformation';
 import SimpleSelectCity from '../pages/SimpleSelectCity';
 import UploadIdCard from '../pages/UploadIdCard';
 import FriendsTogether from '../pages/FriendsTogether';
+import CreateFriendRemember from '../pages/CreateFriendRemember';
 import InfoDetails from '../pages/InfoDetails';
 import MyComments from '../pages/MyComments';
 import UnpaidDetails from '../components/UnpaidDetails';
+import WaitEvaluationDetails from '../components/WaitEvaluationDetails';
+import RefundDetails from '../components/RefundDetails';
+import ToTravelDetails from '../components/ToTravelDetails';
+import OrderRate from '../components/OrderRate';
 import Evaluation from '../pages/Evaluation';
+import FirendRemeberDetails from '../pages/FirendRemeberDetails';
+import CreateContents from '../pages/CreateContents';
+import InitiativesDetails from '../pages/InitiativesDetails';
 const RouterConfig = StackNavigator({
-    Evaluation:{screen:Evaluation},
-    FriendsTogether:{screen:FriendsTogether},
-    // Set: {screen: Set},
+
+    CreateContents: {screen: CreateContents},
+    // InitiativesDetails: {screen: InitiativesDetails},
+    // CreateActivities: {screen: CreateActivities},
+    // Initiatives: {screen: Initiatives},
+    // FriendsTogether: {screen: FriendsTogether},
     // Order: {screen: Order},
     // TravelItem: {screen: TravelItem},
     // Apply: {screen: Apply},
@@ -95,5 +106,14 @@ const RouterConfig = StackNavigator({
     PersonalInformation: {screen: PersonalInformation},
     InfoDetails: {screen: InfoDetails},
     MyComments: {screen: MyComments},
+    Evaluation:{screen:Evaluation},
+    CreateContents:{screen:CreateContents},
+    CreateFriendRemember: {screen: CreateFriendRemember},
+    FirendRemeberDetails: {screen: FirendRemeberDetails},
+    FriendsTogether:{screen:FriendsTogether},
+    InitiativesDetails:{screen:InitiativesDetails},
+    RefundDetails: {screen: RefundDetails},
+    WaitEvaluationDetails: {screen: WaitEvaluationDetails},
+    ToTravelDetails: {screen: ToTravelDetails},
 });
 export default RouterConfig;

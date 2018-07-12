@@ -57,13 +57,16 @@ export default class CreateContents extends Component {
         let params=md5.hex_md5(param);
         formData.append('activity_id',8);
         formData.append('title',this.state.titleText);
-        formData.append('textarea_img',this.state.textarea_img);
-        // formData.append('activity_files',this.state.activity_files);
+        formData.append('textarea_img','这是一个测试|这是一个测试2');
+        for(let i=0;i<this.state.activity_files;i++){
+            formData.append('activity_files',this.state.activity_files[i]);
+        }
+
         formData.append('content',this.state.context);
         formData.append('app_key',params);
-        AsyncStorage.getItem('uid', (error, result) => {
-            if (!error) {
-                if (result !== '' && result !== null) {
+        // AsyncStorage.getItem('uid', (error, result) => {
+        //     if (!error) {
+        //         if (result !== '' && result !== null) {
                     formData.append("user_id", 7);
                     console.log('什么几把万一',formData);
                     fetch(global.commons.baseurl+'action/ac_activity/add_travel_info',{
@@ -88,14 +91,14 @@ export default class CreateContents extends Component {
                             }
 
                             console.log('responseData',result);
-                        })
-                    // .catch((error)=>{console.error('error',error)});
-                } else {
-                    this.props.navigation.navigate('Home',{position:'CreateContents'});
-                }
-            } else {
-                this.props.navigation.navigate('Home',{position:'CreateContents'});
-            }
+                        // })
+            //         // .catch((error)=>{console.error('error',error)});
+            //     } else {
+            //         this.props.navigation.navigate('Home',{position:'CreateContents'});
+            //     }
+            // } else {
+            //     this.props.navigation.navigate('Home',{position:'CreateContents'});
+            // }
         })
 
         // this.props.navigation.navigate('MainTabPage');
@@ -126,6 +129,7 @@ export default class CreateContents extends Component {
         }
         console.log('我的图片',this.state.activity_files);
         console.log('我的图片内容',this.state.textarea_img);
+        console.log('我的数据',data);
     }
     render() {
         return (
